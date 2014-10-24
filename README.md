@@ -3,12 +3,13 @@ sandy-utils
 
 processing bits attached to the sandy (and other) data processing streams. 
 
-basic structure:
+basic structure (ruby gem style):
 * sandy-utils
-  * bin  (actual heads of utils go here)
+  * bin 
+    * foo (util called foo)
   * lib
     * sandy.rb (includes everything in sandy/)
-    * sandy
+    * sandy/
       * version.rb 
       * other shared stuff
   * configs
