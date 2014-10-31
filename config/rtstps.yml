@@ -1,0 +1,4 @@
+configs:
+  npp: "path_to_npp.xml"
+  t1: "path_to_terra.xml"
+  a1: "path_to_aqua.xml"

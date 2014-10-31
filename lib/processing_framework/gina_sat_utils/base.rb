@@ -22,8 +22,6 @@ class SatDataFile
                return nil
 	end
 
-	alias_method :sumon, :get
-	
 	def SatDataFile.valid?( x )
 	       return true if (SatDataFileDMSP.guess(x) )
 	       return true if (SatDataFileNOAA.guess(x) )
@@ -56,6 +54,7 @@ class SatDataFileBase
 	attr_reader :archive_path
 	attr_reader :scene_id
 
+
 	def initialize ( x) 
                 @full_path = x
                 @name = File.basename(x)
@@ -74,6 +73,12 @@ class SatDataFileBase
 		return SatDataFileMODIS.new(x) if (SatDataFileMODIS.guess(x) )		
 		return nil
 	end
+
+	#this is stupid, should just alias.
+        def SatDataFileBase.get( x)
+		return SatDataFileBase.sumon( x)
+        end
+
 
         def read_size ( )
                 @size = (File.size(@full_path))
@@ -144,11 +149,11 @@ class SatDataFileBase
 end
 
 
-require "sandy/gina_sat_utils/modis"
-require "sandy/gina_sat_utils/dmsp"
-require "sandy/gina_sat_utils/noaa_poes"
-require "sandy/gina_sat_utils/landsat"
-require "sandy/gina_sat_utils/snpp.rb"
-require "sandy/gina_sat_utils/sv_bundle"
-require "sandy/gina_sat_utils/goes"
-require "sandy/gina_sat_utils/quicks"
+require_relative "modis"
+require_relative "dmsp"
+require_relative "noaa_poes"
+require_relative "landsat"
+require_relative "snpp.rb"
+require_relative "sv_bundle"
+require_relative "goes"
+require_relative "quicks"

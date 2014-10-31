@@ -12,5 +12,5 @@ basic structure (ruby gem style):
     * sandy/
       * version.rb 
       * other shared stuff
-  * configs
+  * config
     * foo.yml (config for util in bin, named foo) 
