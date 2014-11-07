@@ -1,5 +1,5 @@
 configs:
-  npp: "path_to_npp.xml"
-  t1: "path_to_terra.xml"
-  a1: "path_to_aqua.xml"
-rtsps_driver: "$RTSTPS_HOME/bin/batch.sh"
+  npp: "/opt/rt-stps/config/npp.xml"
+  t1: "/opt/rt-stps/config/terra.xml"
+  a1: "/opt/rt-stps/config/aqua.xml"
+rtsps_driver: "/opt/rt-stps/bin/batch.sh"
