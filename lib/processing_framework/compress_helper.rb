@@ -1,6 +1,6 @@
 module ProcessingFramework 
 	class CompressHelper 
-		def CompressHelper.uncompress( t )
+		def CompressHelper.uncompress( x )
 	        	case (x.split(".").last)
                 		when "gz"
                         		system("gunzip", x)
