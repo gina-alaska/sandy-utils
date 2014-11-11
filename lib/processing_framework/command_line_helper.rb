@@ -1,5 +1,6 @@
 module ProcessingFramework 
 	require "clamp"
+	require "fileutils"
 	class CommandLineHelper  < Clamp::Command
 		# shared options
 		#@config = nil
@@ -12,6 +13,17 @@ module ProcessingFramework
   		def execute
 			raise "CommandLineHelper should not be instatiated directly." 
     		end
+
+
+		#Perhaps not the best place for this - copies everything in the current directory to the directory at output
+		def copy_output( output)
+			output += "/" if output[-1] != "/"
+			FileUtils.mkdir(output)  if (!File.exists?(output))
+                        Dir.glob("*").each do |x|
+                                puts("INFO: Copying #{x} to #{output}")
+                                FileUtils.cp(x, output)
+                        end
+		end
 
   	end
 end
