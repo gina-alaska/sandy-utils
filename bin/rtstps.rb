@@ -32,16 +32,18 @@ class RtstpsClamp <  ProcessingFramework::CommandLineHelper
 		sourcefile = ""
 
         	#make DATA (this is silly)
-        	FileUtils.mkdir(working_dir + "/DATA/")
+        	FileUtils.mkdir(working_dir + "/data/")
 		FileUtils.cd(working_dir) do
 			#This part is so we don't have to tweek the DATA part of the rtsps configs.
              		sourcefile = File.basename(input)
              		FileUtils.cp(input, sourcefile)
              		sourcefile = ProcessingFramework::CompressHelper.uncompress(sourcefile)
         	end
-        	FileUtils.cd(working_dir + "/DATA/") do
+        	FileUtils.cd(working_dir + "/data/") do
 			ProcessingFramework::ShellOutHelper.run_shell("#{conf["rtsps_driver"]} #{conf["configs"][platform]} ../#{sourcefile}")
-	    		FileUtils.mkdir(output)  if (File.exists?(output))
+		
+			# Maybe should do something else, perhaps complain?
+	    		FileUtils.mkdir(output)  if (!File.exists?(output)) 
 			#copy output
             		Dir.glob("*").each do |x|
                			puts("INFO: Copying #{x} to #{output}")
