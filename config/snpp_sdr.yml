@@ -1,0 +1,16 @@
+configs:
+  viirs: 
+   driver: viirs_sdr.sh
+   options: "-z"
+   rdr_glob: "RNSCA-RVIRS*.h5"
+  atms: 
+   driver: atms_sdr.sh
+   options: "-z"
+   rdr_glob: "RATMS-RNSCA*.h5"
+  cris: 
+   driver: cris_sdr.sh
+   options: "-z"
+   rdr_glob: "RCRIS-RNSC*.h5"
+limits:
+  processor: 1
+env: /opt/cspp/SDR_2_0/cspp_sdr_env.sh
