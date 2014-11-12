@@ -1,0 +1,8 @@
+driver: drrtv2awips.sh
+configs:
+  default: 
+   options: "--adaptive-dnb"
+   grid: 203_10k
+   save: "SSEC_AWIPS_HYPER-AK*"
+limits:
+  processor: 2
