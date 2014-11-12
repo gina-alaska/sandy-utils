@@ -7,3 +7,6 @@
 pkg/
 *.o
 no_git*
+*BAK
+*bak
+test_*
