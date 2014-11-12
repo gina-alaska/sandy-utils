@@ -3,7 +3,7 @@ sandy-utils
 
 processing bits attached to the sandy (and other) data processing streams. 
 
-This toolset is intented to provide a (fairly) uniform interface for processing GINA's NRT data. 
+This toolset is intended to provide a (fairly) uniform interface for processing GINA's NRT data. 
 
 basic structure (ruby gem style):
 * sandy-utils
@@ -31,7 +31,7 @@ basic structure (ruby gem style):
     * viirs_awips.yml
 
 
-Notes
+###Notes
 ===========
 Each tool should provide a "--help" option showing a brief description of what it does, and how to use it. 
 ```
@@ -51,7 +51,7 @@ Options:
 ```
 
 
-##Common arguements
+###Common arguments
   * __tempdir__
     * working or temp directory to use.  Also controlled via $PROCESSING_TEMPDIR . 
   * __outdir__
