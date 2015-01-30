@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 # RTSPS helper..
 
+ENV['BUNDLE_GEMFILE'] = File.join(File.expand_path("../..", __FILE__), "Gemfile")
+require 'bundler/setup'
 require "fileutils"
 require_relative "../lib/processing_framework"
 
@@ -41,9 +43,9 @@ class RtstpsClamp <  ProcessingFramework::CommandLineHelper
         	end
         	FileUtils.cd(working_dir + "/data/") do
 			ProcessingFramework::ShellOutHelper.run_shell("#{conf["rtsps_driver"]} #{conf["configs"][platform]} ../#{sourcefile}")
-		
+
 			# Maybe should do something else, perhaps complain?
-	    		FileUtils.mkdir(output)  if (!File.exists?(output)) 
+	    		FileUtils.mkdir(output)  if (!File.exists?(output))
 			#copy output
             		Dir.glob("*").each do |x|
                			puts("INFO: Copying #{x} to #{output}")

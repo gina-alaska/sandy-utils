@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
 # SDR processing tool..
-# Run like: 
+# Run like:
 # /snpp_sdr.rb --inputdir /hub/raid/jcable/sandy/source/npp_test/ -m viirs -p 2 -o /hub/raid/jcable/sandy/output/test_viirs/ -t /hub/raid/jcable/sandy/temp/
 
+ENV['BUNDLE_GEMFILE'] = File.join(File.expand_path("../..", __FILE__), "Gemfile")
+require 'bundler/setup'
 require "fileutils"
 require_relative "../lib/processing_framework"
 
