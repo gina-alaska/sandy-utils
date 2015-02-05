@@ -26,6 +26,8 @@ class SnppAwipsClamp <  ProcessingFramework::CommandLineHelper
 
 	output = "#{outdir}"
 	outdir += "/" + basename if basename
+  basename = File.basename(inputdir) if !basename
+  
 
 	processing_cfg = conf["configs"]["#{mode}"]
 
