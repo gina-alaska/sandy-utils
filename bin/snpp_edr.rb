@@ -25,6 +25,8 @@ class SnppEDRClamp <  ProcessingFramework::CommandLineHelper
 
 	output = "#{outdir}"
 	outdir += "/" + basename if basename
+  basename = File.basename(inputdir) if !basename
+  
 
 	#check mode
      	raise "Unknown/unconfigured mode #{mode}" if !conf["configs"][mode]

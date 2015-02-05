@@ -19,7 +19,7 @@ class RtstpsClamp <  ProcessingFramework::CommandLineHelper
 
 	output = "#{outdir}"
 	outdir += "/" + basename if basename
-	basename = File.basename(input_dir) if !basename
+	basename = File.basename(input) if !basename
 
 	platform =  basename.split(".").first
 
