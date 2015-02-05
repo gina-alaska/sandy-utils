@@ -15,15 +15,15 @@ module ProcessingFramework
 
 
 		#Perhaps not the best place for this - copies everything in the current directory to the directory at output
-		def copy_output( output, save_glob="*")
+		def copy_output( output, save_glob="*", copy_dirs=false)
 			#add trailing slash, if needed
 			output += "/" if output[-1] != "/"
 		
 			FileUtils.mkdir_p(output)  if (!File.exists?(output))
                         Dir.glob(save_glob).each do |x|
-				if ( File?(x) )
+				if ( File.file?(x) || copy_dirs )
 					puts("INFO: Copying #{x} to #{output}")
-                                	FileUtils.cp(x, output)
+                                	FileUtils.cp_r(x, output)
 				else
 					puts("INFO: Not a file, skipping #{x} to #{output}")
 				end
