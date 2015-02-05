@@ -25,9 +25,10 @@ class SnppViirsSdrClamp <  ProcessingFramework::CommandLineHelper
 
 	output = "#{outdir}"
 	outdir += "/" + basename if basename
+  basename = File.basename(input) if !basename
 
 	#check mode
-     	raise "Unknown/unconfigured mode #{mode}" if !conf["configs"][mode]
+ 	raise "Unknown/unconfigured mode #{mode}" if !conf["configs"][mode]
 
 	working_dir = "#{tempdir}/#{basename}"
      	begin
