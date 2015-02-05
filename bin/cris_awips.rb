@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
 # Tool to generate awips stuff for cris
-# 
+#
 # for more info see: criss_awips.rb --help
 
+ENV['BUNDLE_GEMFILE'] = File.join(File.expand_path("../..", __FILE__), "Gemfile")
+require 'bundler/setup'
 require "fileutils"
 require_relative "../lib/processing_framework"
 
