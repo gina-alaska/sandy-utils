@@ -45,7 +45,7 @@ class RtstpsClamp <  ProcessingFramework::CommandLineHelper
 			ProcessingFramework::ShellOutHelper.run_shell("#{conf["rtsps_driver"]} #{conf["configs"][platform]} ../#{sourcefile}")
 
 			# Maybe should do something else, perhaps complain?
-	    		FileUtils.mkdir(output)  if (!File.exists?(output))
+	    		FileUtils.mkdir_p(output)  if (!File.exists?(output))
 			#copy output
             		Dir.glob("*").each do |x|
                			puts("INFO: Copying #{x} to #{output}")
