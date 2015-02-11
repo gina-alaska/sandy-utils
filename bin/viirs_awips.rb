@@ -27,16 +27,16 @@ class SnppAwipsClamp <  ProcessingFramework::CommandLineHelper
 	output = "#{outdir}"
 	outdir += "/" + basename if basename
   basename = File.basename(inputdir) if !basename
-  
+
 
 	processing_cfg = conf["configs"]["#{mode}"]
 
 	#check mode
-     	raise "Unknown/unconfigured mode #{mode}" if !conf["configs"][mode]
+ 	raise "Unknown/unconfigured mode #{mode}" if !conf["configs"][mode]
 
 	working_dir = "#{tempdir}/#{basename}"
 
-     	begin
+ 	begin
 		#make temp space
 		FileUtils.rm_r(working_dir) if (File.exists?(working_dir))
 		FileUtils.mkdir(working_dir)
@@ -47,11 +47,15 @@ class SnppAwipsClamp <  ProcessingFramework::CommandLineHelper
 				#polar to grid seems to say fail a lot, even when it works - just print warning
 				puts ("INFO: #{conf["driver"]} says it failed, but ignoring.")
 			end
+      Dir.glob("SSEC_AWIPS*") do |awips_file|
+        system("gzip #{awips_file}")
+        File.rename("#{awips_file}.gz", awips_file)
+      end
 			copy_output(output, processing_cfg["save"])
 		end
 		FileUtils.rm_r(working_dir)
 	rescue RuntimeError => e
-	      	puts ("Error: #{e.to_s}")
+  	puts ("Error: #{e.to_s}")
 		FileUtils.rm_r(working_dir) if (File.exists?(working_dir))
 		exit(-1)
 	end
