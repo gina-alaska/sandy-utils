@@ -1,5 +1,5 @@
 configs:
-  viirs: 
+  viirs:
    driver: viirs_edr.sh
    options: "-z --alg='VCM'"
 limits:

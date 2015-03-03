@@ -1,3 +1,3 @@
 module GinaSatUtils
-	require_relative "gina_sat_utils/base"
+  require_relative 'gina_sat_utils/base'
 end
