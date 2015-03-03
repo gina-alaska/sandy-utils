@@ -4,4 +4,4 @@ configs:
    options: "-z --alg='ALL'"
 limits:
   processor: 1
-env: ${CSPP_EDR_HOME}/cspp_edr_env.sh"
+env: ${CSPP_EDR_HOME}/cspp_edr_env.sh
