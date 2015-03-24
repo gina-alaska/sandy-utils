@@ -1,13 +1,13 @@
 configs:
-  viirs: 
+  viirs:
    driver: viirs_sdr.sh
-   options: "-z"
+   options: "-z -e"
    rdr_glob: "RNSCA-RVIRS*.h5"
-  atms: 
+  atms:
    driver: atms_sdr.sh
    options: "-z"
    rdr_glob: "RATMS-RNSCA*.h5"
-  cris: 
+  cris:
    driver: cris_sdr.sh
    options: "-z"
    rdr_glob: "RCRIS-RNSC*.h5"
