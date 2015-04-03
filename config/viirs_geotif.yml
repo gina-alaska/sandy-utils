@@ -1,0 +1,8 @@
+configs:
+  default: 
+   options: "--adaptive-dnb"
+   grid_file: "config/viirs_geotiff_grids.grd" 
+   polar2grid_driver: "viirs2gtiff.sh"
+   atm_polar2grid_driver: "crefl2gtiff.sh"
+limits:
+  processor: 2
