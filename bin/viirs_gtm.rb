@@ -30,7 +30,7 @@ class SnppViirsGtmClamp <  ProcessingFramework::CommandLineHelper
       FileUtils.cd(working_dir) do
         command = ". #{conf['env']} ; #{processing_cfg['driver']} -p #{processors} #{processing_cfg['options']}  #{inputdir}/#{processing_cfg['rdr_glob']}"
         fail 'Processing failed. GTM' unless ProcessingFramework::ShellOutHelper.run_shell(command)
-        command = ". #{conf['env']} ; awips2_gtm_edr.sh -s KNES -r TIPB run_ier"
+        command = ". #{conf['env']} ; awips2_gtm_edr.sh -s KNES -r TIPB ."
         fail 'Processing failed. AWIPS Conversion' unless ProcessingFramework::ShellOutHelper.run_shell(command)
 
         copy_output(outdir)
