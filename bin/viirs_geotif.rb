@@ -56,7 +56,7 @@ class ViirsGeotifClamp <  ProcessingFramework::CommandLineHelper
 
   # generates i bands
   def generate_300(cfg, i, p)
-    command = "#{cfg['polar2grid_driver']} --num-procs #{p} -g #{cfg['igrid']} -d #{i} #{cfg["polar2_grid_options"]} --grid-configs #{get_grid_path(cfg)}"
+    command = "#{cfg['polar2grid_driver']} --num-procs #{p} -g #{cfg['igrid']} -d #{i} #{cfg['polar2_grid_options']} --grid-configs #{get_grid_path(cfg)}"
     fail "ERROR: the command \"#{command}\" failed." unless (ProcessingFramework::ShellOutHelper.run_shell(command))
     # save the i bands
     cleanup("*#{cfg['mgrid']}.tif", /npp_viirs_i_\d\d_\w+/)
@@ -64,7 +64,7 @@ class ViirsGeotifClamp <  ProcessingFramework::CommandLineHelper
 
   # generates m bands
   def generate_600(cfg, i, p)
-    command = "#{cfg['polar2grid_driver']} --num-procs #{p} -g #{cfg['mgrid']} -d #{i} #{cfg["polar2_grid_options"]} --grid-configs #{get_grid_path(cfg)}"
+    command = "#{cfg['polar2grid_driver']} --num-procs #{p} -g #{cfg['mgrid']} -d #{i} #{cfg['polar2_grid_options']} --grid-configs #{get_grid_path(cfg)}"
     fail "ERROR: the command \"#{command}\" failed." unless (ProcessingFramework::ShellOutHelper.run_shell(command))
 
     # save the m bands and the dnb band.
@@ -101,12 +101,12 @@ class ViirsGeotifClamp <  ProcessingFramework::CommandLineHelper
   # maps bands from MXX IXX formats to the i_xx/m_xx format
   def band_mapper(band)
     case band[0]
-      when 'M'
-        return 'm_' + band[1, 2]
-      when 'I'
-        return 'i_' + band[1, 2]
-      when 'D'
-        return '_dnb_'
+    when 'M'
+      return 'm_' + band[1, 2]
+    when 'I'
+      return 'i_' + band[1, 2]
+    when 'D'
+      return '_dnb_'
     end
   end
 
@@ -133,11 +133,11 @@ class ViirsGeotifClamp <  ProcessingFramework::CommandLineHelper
     # make vrt
     ProcessingFramework::ShellOutHelper.run_shell("gdalbuildvrt -resolution highest -separate #{tmp_name}.vrt #{red} #{green} #{blue}")
     # stretch
-    ProcessingFramework::ShellOutHelper.run_shell("gdal_contrast_stretch #{image_hsh["stretch"]} #{tmp_name}.vrt #{tmp_name}.tif")
+    ProcessingFramework::ShellOutHelper.run_shell("gdal_contrast_stretch #{image_hsh['stretch']} #{tmp_name}.vrt #{tmp_name}.tif")
 
     if (bands['p'])
       pan = get_band(bands['p'])
-      ProcessingFramework::ShellOutHelper.run_shell("gdal_contrast_stretch #{image_hsh["stretch"]} #{pan} #{pan}.tmp")
+      ProcessingFramework::ShellOutHelper.run_shell("gdal_contrast_stretch #{image_hsh['stretch']} #{pan} #{pan}.tmp")
       ProcessingFramework::ShellOutHelper.run_shell("gdal_landsat_pansharp -ndv 0 -rgb #{tmp_name}.tif -pan #{pan}.tmp -o #{tmp_file}.pan.tif")
       ProcessingFramework::ShellOutHelper.run_shell("rm -v #{pan}.tmp", opts)
       tmp_file =  "#{tmp_file}.pan"
@@ -188,23 +188,23 @@ class ViirsGeotifClamp <  ProcessingFramework::CommandLineHelper
   end
 
   def get_date_of_pass(f)
-	 DateTime.strptime(f.split('_')[4, 2].join('_'), '%Y%m%d_%H%M%S')
+    DateTime.strptime(f.split('_')[4, 2].join('_'), '%Y%m%d_%H%M%S')
   end
 
-  def generate_filename(f,mapping)
-	get_date_of_pass(f).strftime(mapping)
-  end 
+  def generate_filename(f, mapping)
+    get_date_of_pass(f).strftime(mapping)
+  end
 
-  def reformat_and_rename_dnb (hsh)
-	dnb = Dir.glob(hsh["dnb"]["save"])
-	fail("Too many DNB files found.. #{dnb.join(" ")}") if dnb.length > 1
-	fail("No DNB files found.. #{dnb.join(" ")}") if dnb.length == 0
-	dnb=dnb.first
-	outfilename =  generate_filename(dnb, hsh["dnb"]["name"])
+  def reformat_and_rename_dnb(hsh)
+    dnb = Dir.glob(hsh['dnb']['save'])
+    fail("Too many DNB files found.. #{dnb.join(' ')}") if dnb.length > 1
+    fail("No DNB files found.. #{dnb.join(' ')}") if dnb.length == 0
+    dnb = dnb.first
+    outfilename =  generate_filename(dnb, hsh['dnb']['name'])
 
-	reformat_geotif(dnb, outfilename)
-	
-	return [outfilename]
+    reformat_geotif(dnb, outfilename)
+
+    [outfilename]
   end
 end
 
