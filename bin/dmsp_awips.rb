@@ -33,7 +33,7 @@ class DMSPAwipsClamp <  ProcessingFramework::CommandLineHelper
 		infile = File.basename(infile)
 		grided = project(infile,conf)
 		tscantifs = to_geotiffs(scale(grided, conf), grided,conf)
-
+		reformat(tscantifs, conf)
 		exit(-1)
 		
 		
@@ -97,6 +97,20 @@ class DMSPAwipsClamp <  ProcessingFramework::CommandLineHelper
 	raise("infile #{infile} is a directory containing several ols file.") if infile.length > 1 
 	return infile.first
   end
+
+
+  #right now just does vis
+  def reformat(tifs,cfg)
+	#do vis
+	vis = File.basename(tifs["vis"], ".tif")
+	command= " #{cfg["awips_conversion"]["vis_stretch"]} #{vis}.tif #{vis}.stretched.tif"
+	puts("INFO: stretching #{command}")
+	ProcessingFramework::ShellOutHelper.run_shell(command)
+	command = "gdalwarp #{cfg["awips_conversion"]["warp_opts"]} -te #{cfg["awips_conversion"]["extents"]} #{cfg["gdal"]["co_opts"]} -t_srs #{cfg["awips_conversion"]["proj"]} #{vis}.stretched.tif #{vis}.302.tif"
+	puts("INFO: warping to 302.. #{command}")
+	ProcessingFramework::ShellOutHelper.run_shell(command)
+  end
+
 end
 
 DMSPAwipsClamp.run

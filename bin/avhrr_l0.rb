@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# RTSPS helper..
+# avhrr l0..
 
 ENV['BUNDLE_GEMFILE'] = File.join(File.expand_path('../..', __FILE__), 'Gemfile')
 require 'bundler/setup'
@@ -7,7 +7,7 @@ require 'fileutils'
 require_relative '../lib/processing_framework'
 
 class DMSPL0Clamp <  ProcessingFramework::CommandLineHelper
-  @description = 'This tool processes DMSP data to L0'
+  @description = 'This tool processes AVHRR data to L0'
   @config = ProcessingFramework::ConfigLoader.default_path(__FILE__)
 
   option ['-c', '--config'], 'config', "The config file. Using #{@config} as the default.", default: @config
@@ -35,9 +35,11 @@ class DMSPL0Clamp <  ProcessingFramework::CommandLineHelper
       		sourcefile = File.basename(input)
       		FileUtils.cp(input, sourcefile)
       		sourcefile = ProcessingFramework::CompressHelper.uncompress(sourcefile)
-      		tm =  DateTime.strptime(sourcefile.split('.')[1, 2].join('.'), '%y%j.%H%M%S')
+		# Realtime processing - don't use filename, use current name, so can process any style of name.
+      		#tm =  DateTime.strptime(sourcefile.split('.')[1, 2].join('.'), '%y%j.%H%M')
+		tm = Time.now
 
-      		command = "rtdin #{conf['opts']} tape_device=./#{sourcefile} pass_date=#{tm.strftime("%Y.%j")} pass_time=#{tm.strftime("%H:%M:%S")} satellite=f-#{sourcefile.split(".").first[1,2]}  ."
+      		command = "hrptin #{conf['opts']} tape_device=./#{sourcefile} pass_year=#{tm.strftime("%Y")}  . "
       		ProcessingFramework::ShellOutHelper.run_shell(". #{conf['terascan_driver']} ;  #{command}")
       		conf["save"].each do |i|
 			Dir.glob(i).each do |x|

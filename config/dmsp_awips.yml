@@ -14,7 +14,10 @@ tscan_export:
   command: "expgeotiff"
   thermal_opts: "include_vars=ols_infrared sort_by_line=no apply_scaling=yes add_offset=0 force_unsigned=no trans_matrix=yes"
   visible_opts: "include_vars=ols_visible sort_by_line=no apply_scaling=no add_offset=0 force_unsigned=no trans_matrix=yes"
-  
-  
-
-
+awips_conversion:
+  extents: " -4952960.856 -6857977.390 3431039.144 381022.610 "
+  proj: "'+proj=stere +lat_0=90 +lat_ts=60 +lon_0=-150 +k=1 +x_0=0 +y_0=0 +a=6371200 +b=6371200 +units=m +no_defs'" 
+  warp_opts: "-tr 1000 1000 -rb"
+  vis_stretch: "gdal_contrast_stretch -valid-range 1..254 -linear-stretch 128 60 "
+gdal: 
+  co_opts: "-co COMPRESS=DEFLATE -co TILED=YES -co TILED=YES"
