@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# avhrr l0..
+# terra and aqua l1 ..
 
 ENV['BUNDLE_GEMFILE'] = File.join(File.expand_path('../..', __FILE__), 'Gemfile')
 require 'bundler/setup'
@@ -7,7 +7,7 @@ require 'fileutils'
 require_relative '../lib/processing_framework'
 
 class AquaAndTerra_L1Clamp <  ProcessingFramework::CommandLineHelper
-  @description = 'This tool processes AVHRR data to L0'
+  @description = 'This tool processes Terra and Aqua data to L0'
   @config = ProcessingFramework::ConfigLoader.default_path(__FILE__)
 
   option ['-c', '--config'], 'config', "The config file. Using #{@config} as the default.", default: @config
