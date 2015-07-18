@@ -40,7 +40,7 @@ class AvhrrAwipsClamp <  ProcessingFramework::CommandLineHelper
 		conf["bands"].keys.each do |mode|
 			conf["bands"][mode].each do |bd|
 				puts("Info: processing band #{bd} (#{mode})")
-				out_file = rename(export(grided, conf, mode, bd, conf["awips"]["naming"][bd], "UAF"), "AVHRR", bd, platform, downlink, tm)
+				out_file = rename(export(grided, conf,  mode, bd, conf["awips"]["naming"][bd], "UAF"), "AVHRR", conf["awips"]["naming"][bd]["name"], platform, downlink, tm)
 				set_time(out_file, tm) 
 				files_to_save << out_file
 			end
@@ -143,12 +143,12 @@ class AvhrrAwipsClamp <  ProcessingFramework::CommandLineHelper
 
   #sets time attribute on awips file
   def set_time(fl, tm)
-	 ProcessingFramework::ShellOutHelper.run_shell("ncatted -O -a validTime,global,o,d,#{tm.to_time.to_f} #{fl}")
+	 ProcessingFramework::ShellOutHelper.run_shell("ncap2 -O -s \"validTime = #{tm.to_time.to_f}\" #{fl} #{fl}")
   end
 
   #gets the time
   def get_time( infile)
-	DateTime.strptime(File.basename(infile).split('.')[1, 2].join('.'), '%y%j.%H%M')
+	DateTime.strptime(File.basename(infile).split('.')[1, 2].join('.')+"+0", '%y%j.%H%M%z')
   end
 
 end
