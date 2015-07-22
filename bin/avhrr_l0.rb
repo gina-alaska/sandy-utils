@@ -26,10 +26,10 @@ class DMSPL0Clamp <  ProcessingFramework::CommandLineHelper
     begin
       # make temp space
       FileUtils.rm_r(working_dir) if (File.exist?(working_dir))
-      FileUtils.mkdir(working_dir)
+      FileUtils.mkdir_p(working_dir)
 
       # make output space
-      FileUtils.mkdir(output)
+      FileUtils.mkdir_p(output)
 
       FileUtils.cd(working_dir) do
         sourcefile = File.basename(input)

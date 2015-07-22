@@ -25,7 +25,7 @@ class AvhrrAwipsClamp <  ProcessingFramework::CommandLineHelper
     begin
       # make temp space
       FileUtils.rm_r(working_dir) if (File.exist?(working_dir))
-      FileUtils.mkdir(working_dir)
+      FileUtils.mkdir_p(working_dir)
       FileUtils.cd(working_dir) do
         files_to_save = []
         infile = check_input(input)
@@ -45,6 +45,8 @@ class AvhrrAwipsClamp <  ProcessingFramework::CommandLineHelper
             files_to_save << out_file
           end
         end
+
+        FileUtils.mkdir_p(output)
 
         files_to_save.each do |i|
           FileUtils.cp(i, output)
