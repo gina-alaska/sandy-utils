@@ -6,7 +6,7 @@ require 'bundler/setup'
 require 'fileutils'
 require_relative '../lib/processing_framework'
 
-class DMSPL0Clamp <  ProcessingFramework::CommandLineHelper
+class AVHRRL0Clamp <  ProcessingFramework::CommandLineHelper
   @description = 'This tool processes AVHRR data to L0'
   @config = ProcessingFramework::ConfigLoader.default_path(__FILE__)
 
