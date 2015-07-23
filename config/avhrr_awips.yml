@@ -4,10 +4,10 @@ save:
 griding:
   opts: "master_var=master brute_force=no off_protect=no add_to_output=no include_vars=\\* poly_size=100 interpolate=nn whole_input=yes apply_scaling=yes"
   master: "Master_3752"
-scaling: 
+scaling:
   visible: sqrt_stretch
   thermal: awips_thermal_stretch
-export: 
+export:
   visible: "expgeotiff add_offset=0  sort_by_line=no sort_by_var=no apply_scaling=yes reverse_bytes=no trans_matrix=no"
   thermal: "expgeotiff sort_by_line=no apply_scaling=yes add_offset= trans_matrix= force_unsigned= "
 bands:
@@ -21,18 +21,18 @@ bands:
     - avhrr_ch5
 awips_conversion:
   extents: " -4952960.856 -6857977.390 3431039.144 381022.610 "
-  proj: "'+proj=stere +lat_0=90 +lat_ts=60 +lon_0=-150 +k=1 +x_0=0 +y_0=0 +a=6371200 +b=6371200 +units=m +no_defs'" 
+  proj: "'+proj=stere +lat_0=90 +lat_ts=60 +lon_0=-150 +k=1 +x_0=0 +y_0=0 +a=6371200 +b=6371200 +units=m +no_defs'"
   warp_opts: "-tr 1000 1000 -rb"
-gdal: 
+gdal:
   co_opts: "-co COMPRESS=DEFLATE -co TILED=YES -co TILED=YES"
 polar2grid:
-  env: "/home/jcable/polar2grid/polar2grid/bin/polar2grid_env.sh"
+  env: "$POLAR2GRID_HOME/bin/polar2grid_env.sh"
   grid: "$POLAR2GRID_HOME/ShellB3/lib/python2.7/site-packages/polar2grid-1.2.0-py2.7.egg/polar2grid/awips/ncml/grid203.ncml"
 awips:
   naming:
     avhrr_ch1:
       satllite_name: "AVHRR"
-      channel: "0.63 um"  
+      channel: "0.63 um"
       name: "ch1"
     avhrr_ch2:
       satllite_name: "AVHRR"
