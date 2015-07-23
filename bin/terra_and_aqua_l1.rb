@@ -45,7 +45,7 @@ class AquaAndTerraL1Clamp <  ProcessingFramework::CommandLineHelper
 		run_with_modis_tools("#{conf["processing"][platform]["l1_driver"]} #{pds.first}", conf)	
 
 		#find L1A_LAC
-		rLACs = Dir.glob("*L1A_LAC")
+		rLACs = Dir.glob("[AT]*L1A_LAC")
         	if (rLACs.length != 1 )
                 	raise ("Found more than one L1A_LAC file - #{rLACs.join(" ")} ")
         	end
@@ -57,7 +57,7 @@ class AquaAndTerraL1Clamp <  ProcessingFramework::CommandLineHelper
 		run_with_modis_tools("#{conf["processing"][platform]["geo_driver"]} #{rLACs.first}", conf)
 
                 #find GEOs 
-                rGEOs = Dir.glob("*GEO")
+                rGEOs = Dir.glob("[AT]*GEO")
                 if (rGEOs.length != 1 )
                         raise ("Found more than one GEO file - #{rGEOs.join(" ")} ")
                 end
@@ -66,7 +66,7 @@ class AquaAndTerraL1Clamp <  ProcessingFramework::CommandLineHelper
                 run_with_modis_tools("#{conf["processing"][platform]["l1b_driver"]} #{rLACs.first} #{rGEOs.first}", conf)
 
 	        #find  L1B_LAC
-                rL1B_LACs = Dir.glob("*L1B_LAC")
+                rL1B_LACs = Dir.glob("[AT]*L1B_LAC")
                 if (rL1B_LACs.length != 1 )
                         raise ("Found more than one L1B_LAC file - #{rL1B_LACs.join(" ")} ")
                 end
