@@ -57,4 +57,4 @@ class AVHRRL0Clamp <  ProcessingFramework::CommandLineHelper
   end
 end
 
-DMSPL0Clamp.run
+AVHRRL0Clamp.run
