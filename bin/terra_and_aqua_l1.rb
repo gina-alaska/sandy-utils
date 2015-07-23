@@ -6,7 +6,7 @@ require 'bundler/setup'
 require 'fileutils'
 require_relative '../lib/processing_framework'
 
-class AquaAndTerra_L1Clamp <  ProcessingFramework::CommandLineHelper
+class AquaAndTerraL1Clamp <  ProcessingFramework::CommandLineHelper
   @description = 'This tool processes Terra and Aqua data to L0'
   @config = ProcessingFramework::ConfigLoader.default_path(__FILE__)
 
@@ -117,5 +117,5 @@ class AquaAndTerra_L1Clamp <  ProcessingFramework::CommandLineHelper
   end
 end
 
-AquaAndTerra_L1Clamp.run
+AquaAndTerraL1Clamp.run
 
