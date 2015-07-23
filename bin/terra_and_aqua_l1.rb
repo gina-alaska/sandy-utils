@@ -29,19 +29,67 @@ class AquaAndTerra_L1Clamp <  ProcessingFramework::CommandLineHelper
     	FileUtils.mkdir(working_dir)
 
 	# make output space
-	FileUtils.mkdir(output)
+	FileUtils.mkdir(output) if (!File.exists?(output))
 
     	FileUtils.cd(working_dir) do
-      		sourcefile = File.basename(input)
-      		FileUtils.cp(input, sourcefile)
-      		sourcefile = ProcessingFramework::CompressHelper.uncompress(sourcefile)
-		# Realtime processing - don't use filename, use current name, so can process any style of name.
-      		#tm =  DateTime.strptime(sourcefile.split('.')[1, 2].join('.'), '%y%j.%H%M')
-		tm = Time.now
+		Dir.glob("#{input}/*.PDS").each {|pds| FileUtils.cp(pds, ".") }
+                pds = Dir.glob(conf["processing"][platform]["pds"])
+		raise ("too many/not enough pds files => #{pds.join(" ")}") if (pds.length != 1 )
 
-      		command = "hrptin #{conf['opts']} tape_device=./#{sourcefile} pass_year=#{tm.strftime("%Y")}  . "
-      		ProcessingFramework::ShellOutHelper.run_shell(". #{conf['terascan_driver']} ;  #{command}")
-      		conf["save"].each do |i|
+		raise("Unknown platform..") if (!conf["processing"][platform])
+
+		#update luts
+		run_with_modis_tools(conf["processing"][platform]["update_luts"], conf) if conf["processing"][platform]["update_luts"]
+		
+		#To l1
+		run_with_modis_tools("#{conf["processing"][platform]["l1_driver"]} #{pds.first}", conf)	
+
+		#find L1A_LAC
+		rLACs = Dir.glob("*L1A_LAC")
+        	if (rLACs.length != 1 )
+                	raise ("Found more than one L1A_LAC file - #{rLACs.join(" ")} ")
+        	end
+
+		#perform gbad processing, if needed
+		run_with_modis_tools(conf["processing"][platform]["gbad"], conf) if ( conf["processing"][platform]["gbad"] )
+
+		#geo processing
+		run_with_modis_tools("#{conf["processing"][platform]["geo_driver"]} #{rLACs.first}", conf)
+
+                #find GEOs 
+                rGEOs = Dir.glob("*GEO")
+                if (rGEOs.length != 1 )
+                        raise ("Found more than one GEO file - #{rGEOs.join(" ")} ")
+                end
+
+                #L1B processing
+                run_with_modis_tools("#{conf["processing"][platform]["l1b_driver"]} #{rLACs.first} #{rGEOs.first}", conf)
+
+	        #find  L1B_LAC
+                rL1B_LACs = Dir.glob("*L1B_LAC")
+                if (rL1B_LACs.length != 1 )
+                        raise ("Found more than one L1B_LAC file - #{rL1B_LACs.join(" ")} ")
+                end
+
+		#perform destriping, if needed
+                run_with_modis_tools("#{conf["processing"][platform]["destripe"]} #{rL1B_LACs.first}", conf) if ( conf["processing"][platform]["destripe"] )
+
+		gina_name = get_gina_name(rL1B_LACs.first, platform)
+	
+		FileUtils.ln(rL1B_LACs.first, gina_name+".cal1000.hdf")
+		FileUtils.ln(rGEOs.first, gina_name+".geo.hdf")
+		
+		#500m
+		rL1B_HKM = Dir.glob("*L1B_HKM").first
+                FileUtils.ln(rL1B_HKM, gina_name+".cal500.hdf") if (rL1B_HKM)
+
+		#250m
+                rL1B_QKM = Dir.glob("*L1B_QKM").first
+                FileUtils.ln(rL1B_QKM, gina_name+".cal250.hdf") if (rL1B_QKM)
+
+
+      		conf["processing"]["save"].each do |i|
+			puts("INFO: Saving #{i}")
 			Dir.glob(i).each do |x|
 				puts "INFO: Copying #{x} to #{output}"
         			FileUtils.cp(x, output)
@@ -51,9 +99,21 @@ class AquaAndTerra_L1Clamp <  ProcessingFramework::CommandLineHelper
 	end
      rescue RuntimeError => e
        puts "Error: #{e.to_s}"
-       FileUtils.rm_r(working_dir) if (File.exist?(working_dir))
+       #FileUtils.rm_r(working_dir) if (File.exist?(working_dir))
        exit(-1)
     end
+  end
+
+  def get_l1_time(s)
+        DateTime.strptime(s[1, 13], '%Y%j%H%M%S')
+  end
+
+  def get_gina_name(x, platform)
+	platform + "." + get_l1_time(x).strftime("%Y%m%d.%H%M")
+  end
+
+  def run_with_modis_tools(s, cfg)
+	 ProcessingFramework::ShellOutHelper.run_shell(". #{cfg["modis_tools_setup"]}; #{s}")
   end
 end
 
