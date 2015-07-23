@@ -22,7 +22,7 @@ class AvhrrAwipsClamp <  ProcessingFramework::CommandLineHelper
     outdir += '/' + basename if basename
     basename = File.basename(input) unless basename
     working_dir = "#{tempdir}/#{basename}"
-    
+
     begin
       # make temp space
       FileUtils.rm_r(working_dir) if (File.exist?(working_dir))
@@ -49,8 +49,10 @@ class AvhrrAwipsClamp <  ProcessingFramework::CommandLineHelper
 
         FileUtils.mkdir_p(output)
 
-        files_to_save.each do |i|
-          FileUtils.cp(i, output)
+        files_to_save.each do |file|
+          ProcessingFramework::ShellOutHelper.run_shell("gzip #{file}")
+          File.rename("#{file}.gz", file)
+          FileUtils.cp(file, output)
         end
       end
       FileUtils.rm_r(working_dir)
