@@ -41,7 +41,7 @@ awips:
     avhrr_ch3a:
       satllite_name: "AVHRR"
       channel: "1.6 um"
-      name: "ch3"
+      name: "ch3a"
     avhrr_ch3:
       satllite_name: "AVHRR"
       channel: "3.7 um"
