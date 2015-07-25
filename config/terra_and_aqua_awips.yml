@@ -1,5 +1,5 @@
-driver: "/opt/modis/polar2grid/polar2grid-swbundle-2.0.0rc10/bin/modis2awips.sh"
-driver_crefl: "/opt/modis/polar2grid/polar2grid-swbundle-2.0.0rc10/bin/crefl2awips.sh"
+driver: "$POLAR2GRID_HOME/bin/modis2awips.sh"
+driver_crefl: "$POLAR2GRID_HOME/bin/crefl2awips.sh"
 configs:
   default: 
    options: " "
