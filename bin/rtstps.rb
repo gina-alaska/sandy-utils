@@ -46,7 +46,7 @@ class RtstpsClamp <  ProcessingFramework::CommandLineHelper
       #  This assumption is made because they expect you to always run RT-STPS
       #  from its install directory.
       #  Fix this by copying the leapsec file to the cwd
-      FileUtils.cp("#{ENV['RTSTPS_HOME']}/leapsec.dat", ".") if File.exists?("#{ENV['RTSTPS_HOME']}/leapsec.dat}")
+      FileUtils.cp("#{ENV['RTSTPS_HOME']}/leapsec.dat", ".") if File.exists?("#{ENV['RTSTPS_HOME']}/leapsec.dat")
       ProcessingFramework::ShellOutHelper.run_shell("#{conf['rtsps_driver']} #{conf['configs'][platform]} ../#{sourcefile}")
 
       # Maybe should do something else, perhaps complain?
