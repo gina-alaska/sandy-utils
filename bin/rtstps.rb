@@ -42,6 +42,11 @@ class RtstpsClamp <  ProcessingFramework::CommandLineHelper
     end
 
     FileUtils.cd(working_dir + '/data/') do
+      # New versions of RT-STPS require a leapsec.dat in the cwd.
+      #  This assumption is made because they expect you to always run RT-STPS
+      #  from its install directory.
+      #  Fix this by copying the leapsec file to the cwd
+      FileUtils.cp("#{ENV['RTSTPS_HOME']}/leapsec.dat", ".") if File.exists?("#{ENV['RTSTPS_HOME']}/leapsec.dat}")
       ProcessingFramework::ShellOutHelper.run_shell("#{conf['rtsps_driver']} #{conf['configs'][platform]} ../#{sourcefile}")
 
       # Maybe should do something else, perhaps complain?
