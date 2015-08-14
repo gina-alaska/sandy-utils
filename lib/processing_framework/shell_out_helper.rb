@@ -52,7 +52,7 @@ module ProcessingFramework
     end
 
     def debug?
-      true
+      false
     end
   end
 end
