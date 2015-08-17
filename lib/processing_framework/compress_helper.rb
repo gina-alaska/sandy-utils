@@ -16,5 +16,15 @@ module ProcessingFramework
 
       filename
     end
+
+    def gzip!(file)
+      shell_out!("gzip #{file}", live_stream: false)
+      "#{file}.gz"
+    end
+
+    def bzip2!(file)
+      shell_out!("bzip2 #{file}", live_stream: false)
+      "#{file}.bz2"
+    end
   end
 end
