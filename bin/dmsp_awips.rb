@@ -5,8 +5,9 @@ require 'fileutils'
 require_relative '../lib/processing_framework'
 
 class DMSPAwipsClamp <  ProcessingFramework::CommandLineHelper
-  banner = 'This tool processes DMSP data to L0'
-
+  banner 'This tool processes DMSP data to L0'
+  default_config 'dmsp_awips'
+  
   parameter "INPUT", "The input file"
   parameter "OUTUPT", "The output file"
 

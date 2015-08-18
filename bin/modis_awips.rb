@@ -8,9 +8,10 @@ require 'bundler/setup'
 require 'fileutils'
 require_relative '../lib/processing_framework'
 
-class TerraAndAquaAwipsClamp <  ProcessingFramework::CommandLineHelper
+class ModisAwipsClamp <  ProcessingFramework::CommandLineHelper
   attr_reader :processing_cfg
-  banner = 'This tool takes MODIS data and makes it AWIPS ready.'
+  banner 'This tool takes MODIS data and makes it AWIPS ready.'
+  default_config 'modis_awips'
 
   option ['-m', '--mode'], 'mode', "The mode to use #{@conf['configs'].keys.join(',')}.", default: 'default'
   option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: @conf['limits']['processor']
@@ -101,4 +102,4 @@ class TerraAndAquaAwipsClamp <  ProcessingFramework::CommandLineHelper
   end
 end
 
-TerraAndAquaAwipsClamp.run
+ModisAwipsClamp.run

@@ -6,7 +6,8 @@ require_relative '../lib/processing_framework'
 
 class SnppAwipsClamp <  ProcessingFramework::CommandLineHelper
   banner 'This tool takes VIIRS data and makes it AWIPS ready.'
-
+  default_config 'viirs_awips'
+  
   option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: 1
 
   parameter "INPUT", "The input directory"

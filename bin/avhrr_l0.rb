@@ -7,7 +7,8 @@ require_relative '../lib/processing_framework'
 class AVHRRL0Clamp <  ProcessingFramework::CommandLineHelper
   include ProcessingFramerwork::CompressHelper
   banner 'This tool processes AVHRR data to L0'
-
+  default_config 'avhrr_l0'
+  
   parameter "INPUT", "The input file"
   parameter "OUTPUT", "The output directory"
 

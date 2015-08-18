@@ -6,7 +6,8 @@ require_relative '../lib/processing_framework'
 
 class ViirsGeotifClamp <  ProcessingFramework::CommandLineHelper
   banner 'This tool takes VIIRS data and makes geotifs .'
-
+  default_config 'viirs_geotif'
+  
   option ['-m', '--mode'], 'mode', "The mode to use.", default: 'default'
   option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: @conf['limits']['processor']
 
@@ -152,9 +153,9 @@ class ViirsGeotifClamp <  ProcessingFramework::CommandLineHelper
 
   def reformat_geotif(infile, outfile)
     # gdal opts
-    gdal_opts = "-co TILED=YES -co COMPRESS=LZW -a_nodata \"0 0 0\" "
-    shell_out!("gdal_translate #{gdal_opts} #{infile} #{outfile} ")
-    shell_out!("add_overviews.rb #{outfile} ")
+    gdal_opts = "-co TILED=YES -co COMPRESS=LZW -a_nodata \"0 0 0\""
+    shell_out!("gdal_translate #{gdal_opts} #{infile} #{outfile}")
+    shell_out!("add_overviews.rb #{outfile}")
   end
 
   def copy_output(output, list)

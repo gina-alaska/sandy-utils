@@ -6,7 +6,8 @@ require_relative '../lib/processing_framework'
 
 class RtstpsClamp < ProcessingFramework::CommandLineHelper
   include ProcessingFramework::CompressHelper
-  banner = 'This tool does CCSDS unpacking using Rtstps for SNPP, AQUA, and TERRA.'
+  banner 'This tool does CCSDS unpacking using Rtstps for SNPP, AQUA, and TERRA.'
+  default_config 'rtstps'
 
   option ['-c', '--config'], 'config', "The config file. Using #{@config} as the default.", default: @config
 

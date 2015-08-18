@@ -4,9 +4,9 @@ require 'bundler/setup'
 require 'fileutils'
 require_relative '../lib/processing_framework'
 
-class AquaAndTerraL1Clamp <  ProcessingFramework::CommandLineHelper
-  banner = 'This tool processes Terra and Aqua data to L0'
-
+class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
+  banner 'This tool processes Terra and Aqua data to L0'
+  default_config 'modis_l1'
   parameter "INPUT", "The input directory"
   parameter "OUTPUT", "The output directory"
 
@@ -91,4 +91,4 @@ class AquaAndTerraL1Clamp <  ProcessingFramework::CommandLineHelper
   end
 end
 
-AquaAndTerraL1Clamp.run
+ModisL1Clamp.run

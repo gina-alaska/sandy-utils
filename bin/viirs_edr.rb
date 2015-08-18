@@ -6,6 +6,7 @@ require_relative '../lib/processing_framework'
 
 class SnppEDRClamp <  ProcessingFramework::CommandLineHelper
   banner 'This tool does EDR processing for SNPP.'
+  default_config 'viirs_edr'
 
   option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: 1
 
