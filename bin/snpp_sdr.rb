@@ -30,7 +30,7 @@ class SnppViirsSdrClamp <  ProcessingFramework::CommandLineHelper
         command = ". #{conf['env']} ; #{conf['driver']} -p #{processors} #{conf['options']}  #{input}/#{conf['rdr_glob']}"
         result = shell_out!(command)
 
-        copy_output(output)
+        copy_output(output, '*.h5')
       end
     end
   end
