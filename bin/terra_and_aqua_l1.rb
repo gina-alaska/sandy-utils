@@ -6,14 +6,15 @@ require_relative '../lib/processing_framework'
 
 class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
   banner 'This tool processes Terra and Aqua data to L0'
-  default_config 'modis_l1'
+  default_config 'terra_and_aqua_l1'
+
   parameter "INPUT", "The input directory"
   parameter "OUTPUT", "The output directory"
 
   def execute
     basename = File.basename(input) unless basename
-    platform =  basename.split('.').first
-    exit_with_error('Unknown platform..', 19) if conf['processing'][platform]
+    platform = basename.split('.').first
+    exit_with_error('Unknown platform..', 19) if conf['processing'][platform].nil?
 
     working_dir = "#{tempdir}/#{basename}"
 
@@ -33,7 +34,7 @@ class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
       rLACs = Dir.glob('[AT]*L1A_LAC')
       if (rLACs.length != 1)
         fail("Found more than one L1A_LAC file - #{rLACs.join(' ')} ")
-       end
+      end
 
       # perform gbad processing, if needed
       run_with_modis_tools(conf['processing'][platform]['gbad'], conf) if (conf['processing'][platform]['gbad'])
@@ -87,7 +88,8 @@ class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
   end
 
   def run_with_modis_tools(s, cfg)
-    shell_out!(". #{cfg['modis_tools_setup']}; #{s}")
+    #shell_out!(". #{cfg['modis_tools_setup']}; #{s}")
+    shell_out!(s)
   end
 end
 

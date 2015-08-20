@@ -11,11 +11,11 @@ require_relative '../lib/processing_framework'
 class ModisAwipsClamp <  ProcessingFramework::CommandLineHelper
   attr_reader :processing_cfg
   banner 'This tool takes MODIS data and makes it AWIPS ready.'
-  default_config 'modis_awips'
+  default_config 'terra_and_aqua_awips'
 
-  option ['-m', '--mode'], 'mode', "The mode to use #{@conf['configs'].keys.join(',')}.", default: 'default'
-  option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: @conf['limits']['processor']
-  option ['-s', '--save'], 'save_pattern', 'A regular expression for the items to save - that is what items generated should be saved.', default: @conf['configs']['default']['save']
+  option ['-m', '--mode'], 'mode', "The mode to use.", default: 'default'
+  option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: 1
+  option ['-s', '--save'], 'save_pattern', 'A regular expression for the items to save - that is what items generated should be saved.', default: '*'
 
   parameter "INPUT", "The input directory"
   parameter "OUTPUT", "The output directory"
@@ -24,11 +24,7 @@ class ModisAwipsClamp <  ProcessingFramework::CommandLineHelper
     @processing_cfg = conf['configs'][mode]
     exit_with_error("Unknown mode #{mode}", 19) if processing_cfg.nil?
 
-    output = "#{outdir}"
-    outdir += '/' + basename if basename
-    basename = File.basename(inputdir) unless basename
-
-
+    basename = File.basename(input) unless basename
     working_dir = "#{tempdir}/#{basename}"
 
     inside(working_dir) do
@@ -47,19 +43,19 @@ class ModisAwipsClamp <  ProcessingFramework::CommandLineHelper
       conf['driver'],
       "-d #{input}",
       processing_cfg['options'],
-      "-g  #{processing_cfg['grid']}",
+      "-g #{processing_cfg['grid']}",
       "--backend-configs #{get_config_item(processing_cfg['p2g_config'])}"
     ].join(" ")
     shell_out!(command)
   end
 
   def crefl2awips
-    copy_and_rename(inputdir)
+    copy_and_rename(input)
     command = [
-      conf['crefl_driver'],
-      "-d #{input}",
+      conf['driver_crefl'],
+      "-d .",
       processing_cfg['options'],
-      "-g  #{processing_cfg['grid']}",
+      "-g #{processing_cfg['grid']}",
       "--backend-configs #{get_config_item(processing_cfg['p2g_config'])}"
     ].join(" ")
     shell_out!(command)
