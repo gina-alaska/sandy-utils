@@ -6,10 +6,10 @@ module ProcessingFramework
       filename = case File.extname(file)
       when '.gz'
         shell_out!("gunzip #{file}", live_stream: false)
-        File.basename(x, '.gz')
+        File.basename(file, '.gz')
       when '.bz2'
         shell_out!("bunzip2 #{file}", live_stream: false)
-        File.basename(x, '.bz2')
+        File.basename(file, '.bz2')
       else
         file
       end

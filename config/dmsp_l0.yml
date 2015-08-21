@@ -5,4 +5,4 @@ save:
   - "*.mi_s"
   - "*.t1_s"
   - "*.t2_s"
-opts: "correct_wf=yes dmsp_types=all on_pass_disk=no ols_res=hi temp_units= use_master=no start_time= fine_lines=8500 start_samples=1 fine_samples=7340 ss_calib= start_sample=1"
+opts: "correct_wf=yes dmsp_types=all on_pass_disk=no ols_res=max calibrate=yes temp_units=kelvin use_master=no start_time= fine_lines=8500 start_samples=1 fine_samples=7340 ss_calib= start_sample=1"

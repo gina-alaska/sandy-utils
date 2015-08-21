@@ -7,15 +7,15 @@ require_relative '../lib/processing_framework'
 class DMSPL0Clamp <  ProcessingFramework::CommandLineHelper
   banner 'This tool processes DMSP data to L0'
   default_config 'dmsp_l0'
-  
-  parameter "INPUT", "The input file"
-  parameter "OUTPUT", "The output file"
+
+  parameter 'INPUT', 'The input file'
+  parameter 'OUTPUT', 'The output file'
 
   def execute
     basename = File.basename(input) unless basename
     working_dir = "#{tempdir}/#{basename}"
 
-    inside(working_dir)
+    inside(working_dir) do
       sourcefile = File.basename(input)
       FileUtils.cp(input, sourcefile)
       sourcefile = uncompress(sourcefile)
