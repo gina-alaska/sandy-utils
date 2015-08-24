@@ -8,58 +8,41 @@ require 'fileutils'
 require_relative '../lib/processing_framework'
 
 class AvhrrAwipsClamp <  ProcessingFramework::CommandLineHelper
-  @description = 'This tool processes AVHRR to an format understood by awips'
-  @config = ProcessingFramework::ConfigLoader.default_path(__FILE__)
+  banner 'This tool processes AVHRR to an format understood by awips'
+  default_config 'avhrr_awips'
 
-  option ['-c', '--config'], 'config', "The config file. Using #{@config} as the default.", default: @config
-  option ['-i', '--input'], 'input', 'The input file. ', required: true
   option ['-d', '--downlink'], 'dowlink', 'The downlink location.', default: 'UAF'
 
-  def execute
-    conf = ProcessingFramework::ConfigLoader.new(__FILE__)
+  parameter "INPUT", "The input file"
+  parameter "OUTPUT", "The output directory"
 
-    output = "#{outdir}"
-    outdir += '/' + basename if basename
+  def execute
     basename = File.basename(input) unless basename
     working_dir = "#{tempdir}/#{basename}"
 
-    begin
-      # make temp space
-      FileUtils.rm_r(working_dir) if (File.exist?(working_dir))
-      FileUtils.mkdir_p(working_dir)
-      FileUtils.cd(working_dir) do
-        files_to_save = []
-        infile = check_input(input)
+    inside(working_dir) do
+      files_to_save = []
+      infile = check_input(input)
 
-        basename = File.basename(infile) unless basename
-        platform =  basename.split('.').first
+      platform =  basename.split('.').first
 
-        tm = get_time(infile)
-        FileUtils.cp(infile, '.')
-        infile = File.basename(infile)
-        grided = project(infile, conf)
-        conf['bands'].keys.each do |mode|
-          conf['bands'][mode].each do |bd|
-            puts("Info: processing band #{bd} (#{mode})")
-            out_file = rename(export(grided, conf,  mode, bd, conf['awips']['naming'][bd], 'UAF'), 'AVHRR', conf['awips']['naming'][bd]['name'], platform, downlink, tm)
-            set_time(out_file, tm)
-            files_to_save << out_file
-          end
-        end
-
-        FileUtils.mkdir_p(output)
-
-        files_to_save.each do |file|
-          ProcessingFramework::ShellOutHelper.run_shell("gzip #{file}")
-          File.rename("#{file}.gz", file)
-          FileUtils.cp(file, output)
+      tm = get_time(infile)
+      FileUtils.cp(infile, '.')
+      infile = File.basename(infile)
+      grided = project(infile, conf)
+      conf['bands'].keys.each do |mode|
+        conf['bands'][mode].each do |bd|
+          puts("Info: processing band #{bd} (#{mode})")
+          out_file = rename(export(grided, conf,  mode, bd, conf['awips']['naming'][bd], 'UAF'), 'AVHRR', conf['awips']['naming'][bd]['name'], platform, downlink, tm)
+          set_time(out_file, tm)
+          files_to_save << out_file
         end
       end
-      FileUtils.rm_r(working_dir)
-    rescue RuntimeError => e
-      puts "Error: #{e.to_s}"
-      FileUtils.rm_r(working_dir) if (File.exist?(working_dir))
-      exit(-1)
+
+      files_to_save.each do |file|
+        gzip!(file)
+      end
+      copy_output(output, "UAF_AWIPS*.gz")
     end
   end
 
@@ -86,16 +69,16 @@ class AvhrrAwipsClamp <  ProcessingFramework::CommandLineHelper
     command = "#{cfg['export'][mode]} include_vars=#{band} #{fr_file} #{fr_file}.#{band}.float.tif"
     tscan_run(command, cfg)
 
-    ProcessingFramework::ShellOutHelper.run_shell("#{cfg['scaling'][mode]} #{fr_file}.#{band}.float.tif #{fr_file}.#{band}.awips.tif")
-    ProcessingFramework::ShellOutHelper.run_shell("gdalwarp #{cfg['awips_conversion']['warp_opts']} -te #{cfg['awips_conversion']['extents']} #{cfg['gdal']['co_opts']} -t_srs #{cfg['awips_conversion']['proj']}  #{fr_file}.#{band}.awips.tif  #{fr_file}.#{band}.302.tif")
+    shell_out!("#{cfg['scaling'][mode]} #{fr_file}.#{band}.float.tif #{fr_file}.#{band}.awips.tif")
+    shell_out!("gdalwarp #{cfg['awips_conversion']['warp_opts']} -te #{cfg['awips_conversion']['extents']} #{cfg['gdal']['co_opts']} -t_srs #{cfg['awips_conversion']['proj']}  #{fr_file}.#{band}.awips.tif  #{fr_file}.#{band}.302.tif")
 
-    ProcessingFramework::ShellOutHelper.run_shell("gdal_translate #{fr_file}.#{band}.302.tif -of ENVI ./noaa_avhrr_#{band}_203.uint1.8384.7239")
-    ProcessingFramework::ShellOutHelper.run_shell('rm -rfv *.xml *.hdr')
+    shell_out!("gdal_translate #{fr_file}.#{band}.302.tif -of ENVI ./noaa_avhrr_#{band}_203.uint1.8384.7239")
+    shell_out!('rm -rfv *.xml *.hdr')
 
-    command = ". #{cfg['polar2grid']['env']} ; python -m polar2grid.awips.awips_netcdf ./noaa_avhrr_#{band}_203.uint1.8384.7239  #{cfg['polar2grid']['grid']} UAF_AWIPS_#{naming['satllite_name']}-AK_1KM \"#{naming['channel']}\" #{source} #{naming['satllite_name']}"
-    ProcessingFramework::ShellOutHelper.run_shell(command, cfg)
+    command = ". #{cfg['polar2grid']['env']} ; python -m polar2grid.awips.awips_netcdf ./noaa_avhrr_#{band}_203.uint1.8384.7239  #{cfg['polar2grid']['grid']} UAF_AWIPS_#{naming['satellite_name']}-AK_1KM \"#{naming['channel']}\" #{source} #{naming['satellite_name']}"
+    tscan_run(command, cfg)
 
-    "UAF_AWIPS_#{naming['satllite_name']}-AK_1KM"
+    "UAF_AWIPS_#{naming['satellite_name']}-AK_1KM"
   end
 
   # converts from terascan to geotifs
@@ -109,7 +92,7 @@ class AvhrrAwipsClamp <  ProcessingFramework::CommandLineHelper
 
   def tscan_run(command, cfg)
     puts("INFO: Running \". #{cfg['terascan_driver']} ;  #{command}\"")
-    ProcessingFramework::ShellOutHelper.run_shell(". #{cfg['terascan_driver']} ;  #{command}")
+    shell_out!(". #{cfg['terascan_driver']} ;  #{command}")
   end
 
   def check_input(infile)
@@ -128,10 +111,10 @@ class AvhrrAwipsClamp <  ProcessingFramework::CommandLineHelper
     vis = File.basename(tifs['vis'], '.tif')
     command = " #{cfg['awips_conversion']['vis_stretch']} #{vis}.tif #{vis}.stretched.tif"
     puts("INFO: stretching #{command}")
-    ProcessingFramework::ShellOutHelper.run_shell(command)
+    shell_out! command
     command = "gdalwarp #{cfg['awips_conversion']['warp_opts']} -te #{cfg['awips_conversion']['extents']} #{cfg['gdal']['co_opts']} -t_srs #{cfg['awips_conversion']['proj']} #{vis}.stretched.tif #{vis}.302.tif"
     puts("INFO: warping to 302.. #{command}")
-    ProcessingFramework::ShellOutHelper.run_shell(command)
+    shell_out! command
   end
 
   # renames the awips file to the correct naming scheme
@@ -144,7 +127,7 @@ class AvhrrAwipsClamp <  ProcessingFramework::CommandLineHelper
 
   # sets time attribute on awips file
   def set_time(fl, tm)
-    ProcessingFramework::ShellOutHelper.run_shell("ncap2 -O -s \"validTime = #{tm.to_time.to_f}\" #{fl} #{fl}")
+    shell_out!("ncap2 -O -s \"validTime = #{tm.to_time.to_f}\" #{fl} #{fl}")
   end
 
   # gets the time
