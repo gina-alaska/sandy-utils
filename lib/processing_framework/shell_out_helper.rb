@@ -52,7 +52,7 @@ module ProcessingFramework
     end
 
     def debug?
-      false
+      !!ENV['DEBUG']
     end
   end
 end
