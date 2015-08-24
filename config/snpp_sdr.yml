@@ -13,4 +13,4 @@ configs:
    rdr_glob: "RCRIS-RNSC*.h5"
 limits:
   processor: 1
-env: /opt/cspp/SDR_2_0/cspp_sdr_env.sh
+env: $CSPP_SDR_HOME/cspp_sdr_env.sh
