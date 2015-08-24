@@ -21,8 +21,8 @@ class SnppAwipsClamp <  ProcessingFramework::CommandLineHelper
     processing_cfg = conf['configs'][mode]
 
     working_dir = "#{tempdir}/#{basename}"
-    inside(working_dir)
-      command = "#{conf['driver']} --num-procs #{processors} #{processing_cfg['options']} -g  #{processing_cfg['grid']}  -d #{inputdir} "
+    inside(working_dir) do
+      command = "#{conf['driver']} #{processing_cfg['options']} -g  #{processing_cfg['grid']}  -d #{input} "
       shell_out!(command)
       Dir.glob('SSEC_AWIPS*') do |awips_file|
         gzip!(awips_file)
