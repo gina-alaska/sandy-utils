@@ -1,8 +1,8 @@
 driver: viirs2awips.sh
 configs:
-  default: 
-   options: "--adaptive-dnb"
-   grid: 203
-   save: "SSEC_AWIPS_VIIRS*"
+  default:
+    options: "-p ifog i01 i02 i03 i04 i05 adaptive_dnb dynamic_dnb"
+    grid: 203
+    save: "UAF_AWIPS_VIIRS*"
 limits:
   processor: 2
