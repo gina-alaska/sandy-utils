@@ -16,18 +16,18 @@ class RtstpsClamp < ProcessingFramework::CommandLineHelper
 
   def execute
     # Check platform
-    platform = basename.split('.').first
-    exit_with_error("Unknown platform: #{platform}", 19) unless conf['configs']['platform']
-
     basename = File.basename(input) unless basename
+    platform = basename.split('.').first
+    exit_with_error("Unknown platform: #{platform}", 19) unless conf['configs'][platform]
+
     working_dir = "#{tempdir}/#{basename}"
 
     inside(working_dir) do
       # RT-STPS XML Assumes you have a data directory for it to write out to
       FileUtils.mkdir('data')
       sourcefile = File.basename(input)
-      File.Utils.cp(input, sourcefile)
-      uncompress(sourcefile)
+      FileUtils.cp(input, sourcefile)
+      sourcefile = uncompress(sourcefile)
 
       inside("#{working_dir}/data") do
         # RT-STPS Expects to write to ../data
@@ -39,7 +39,7 @@ class RtstpsClamp < ProcessingFramework::CommandLineHelper
         leapsec_source = "#{ENV['RTSTPS_HOME']}/leapsec.dat"
         FileUtils.cp(leapsec_source, '.') if File.exist?(leapsec_source)
 
-        shell_out!("#{conf['rtstps_driver']} #{conf['configs']['platform']} ../#{sourcefile}")
+        shell_out!("#{conf['rtstps_driver']} #{conf['configs'][platform]} ../#{sourcefile}")
 
         copy_output(output)
       end
