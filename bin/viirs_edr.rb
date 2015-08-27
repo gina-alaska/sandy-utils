@@ -14,18 +14,18 @@ class SnppEDRClamp <  ProcessingFramework::CommandLineHelper
   parameter 'OUTPUT', 'The output directory'
 
   def execute
-    mode = 'default'  # TODO: Refactor yml to not require mode
+    mode = 'viirs'  # TODO: Refactor yml to not require mode
     exit_with_error("Unknown/unconfigured mode #{mode}", 19) unless conf['configs'][mode]
     processing_cfg = conf['configs'][mode]
 
-    basename = File.basename(inputdir) unless basename
+    basename = File.basename(input) unless basename
     working_dir = "#{tempdir}/#{basename}"
 
     inside(working_dir) do
       command = ". #{conf['env']} ; #{processing_cfg['driver']} -p #{processors} #{processing_cfg['options']} -i #{input}"
       shell_out!(command)
 
-      copy_output(output)
+      copy_output(output, '*.h5')
     end
   end
 end
