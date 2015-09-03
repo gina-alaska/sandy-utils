@@ -9,44 +9,34 @@ require 'fileutils'
 require_relative '../lib/processing_framework'
 
 class SnppViirsSdrClamp <  ProcessingFramework::CommandLineHelper
-  @description = 'This tool does SDR processing for SNPP.'
-  @config = ProcessingFramework::ConfigLoader.default_path(__FILE__)
-  @conf = ProcessingFramework::ConfigLoader.new(__FILE__)
+  default_config 'snpp_sdr'
+  banner 'This tool does SDR processing for SNPP.'
 
-  option ['-c', '--config'], 'config', "The config file. Using #{@config} as the default.", default: @config
-  option ['-i', '--inputdir'], 'inputdir', 'The input directory. ', required: true
-  option ['-m', '--mode'], 'mode', "The SDR to process, valid options are #{@conf['configs'].keys.join(',')}.", default: 'viirs'
-  option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: @conf['limits']['processor']
+  option ['-m', '--mode'], 'mode', "The SDR to process, valid options are viirs, cris, atms.", default: 'viirs'
+  option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: 1
+
+  parameter "INPUT", "Input directory"
+  parameter "OUTPUT", "Output directory"
 
   def execute
-    conf = ProcessingFramework::ConfigLoader.new(__FILE__)
+    exit_with_error("Unknown/unconfigured mode: #{mode}", 19) unless conf['configs'][mode]
 
-    output = "#{outdir}"
-    outdir += '/' + basename if basename
-    basename = File.basename(inputdir) unless basename
-
-    # check mode
-    fail "Unknown/unconfigured mode #{mode}" unless conf['configs'][mode]
+    basename = File.basename(input) unless basename
 
     working_dir = "#{tempdir}/#{basename}"
-    begin
-      # make temp space
-      FileUtils.rm_r(working_dir) if (File.exist?(working_dir))
-      FileUtils.mkdir(working_dir)
+    inside(working_dir) do
+      processing_cfg = conf['configs'][mode]
 
-      processing_cfg = conf['configs']["#{mode}"]
+      input_file = if File.exist?(input) && !File.directory?(input)
+                     input
+                   else
+                     Dir.glob(File.join(input, processing_cfg['rdr_glob'])).first
+                   end
 
-      FileUtils.cd(working_dir) do
-        command = ". #{conf['env']} ; #{processing_cfg['driver']} -p #{processors} #{processing_cfg['options']}  #{inputdir}/#{processing_cfg['rdr_glob']}"
-        fail 'Processing failed.' unless ProcessingFramework::ShellOutHelper.run_shell(command)
-        # raise "Processing Failed" if (ProcessingFramework::ShellOutHelper.run_shell
-        copy_output(output)
-      end
-      FileUtils.rm_r(working_dir)
-    rescue RuntimeError => e
-      puts "Error: #{e.to_s}"
-      FileUtils.rm_r(working_dir) if (File.exist?(working_dir))
-      exit(-1)
+      command = ". #{conf['env']} ; #{processing_cfg['driver']} -p #{processors} #{processing_cfg['options']}  #{input_file}"
+      result = shell_out!(command)
+
+      copy_output(output, '*.h5')
     end
   end
 end

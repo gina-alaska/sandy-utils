@@ -1,9 +1,8 @@
 require 'mixlib/shellout'
 
 module ProcessingFramework
-  # just a sub, replace with something more useful later..
   module ShellOutHelper
-    SHELL_OUT_DEFAULTS = {live_stream: STDOUT, timeout: 15 * 60}
+    SHELL_OUT_DEFAULTS = {live_stream: STDOUT, timeout: 60 * 60}
 
     def shell_out!(command, opts={})
       opts = SHELL_OUT_DEFAULTS.merge(opts)
@@ -52,7 +51,7 @@ module ProcessingFramework
     end
 
     def debug?
-      false
+      !!ENV['DEBUG']
     end
   end
 end

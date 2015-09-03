@@ -1,6 +1,6 @@
 driver: viirs2awips.sh
 configs:
-  default: 
+  default:
    options: "--adaptive-dnb"
    grid: 203
    save: "SSEC_AWIPS_VIIRS*"

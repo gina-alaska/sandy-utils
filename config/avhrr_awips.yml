@@ -31,26 +31,26 @@ polar2grid:
 awips:
   naming:
     avhrr_ch1:
-      satllite_name: "AVHRR"
+      satellite_name: "AVHRR"
       channel: "0.63 um"
       name: "ch1"
     avhrr_ch2:
-      satllite_name: "AVHRR"
+      satellite_name: "AVHRR"
       channel: "0.86 um"
       name: "ch2"
     avhrr_ch3a:
-      satllite_name: "AVHRR"
+      satellite_name: "AVHRR"
       channel: "1.6 um"
       name: "ch3a"
     avhrr_ch3:
-      satllite_name: "AVHRR"
+      satellite_name: "AVHRR"
       channel: "3.7 um"
       name: "ch3b"
     avhrr_ch4:
-      satllite_name: "AVHRR"
+      satellite_name: "AVHRR"
       channel: "10.8 um"
       name: "ch4"
     avhrr_ch5:
-      satllite_name: "AVHRR"
+      satellite_name: "AVHRR"
       channel: "12.0 um"
       name: "ch5"

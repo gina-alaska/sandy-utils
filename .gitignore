@@ -10,3 +10,4 @@ no_git*
 *BAK
 *bak
 test_*
+.bundle

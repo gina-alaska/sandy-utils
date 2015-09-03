@@ -1,8 +1,8 @@
 driver: "$POLAR2GRID_HOME/bin/modis2awips.sh"
 driver_crefl: "$POLAR2GRID_HOME/bin/crefl2awips.sh"
 configs:
-  default: 
-   options: " "
+  default:
+   options: "--grid-coverage 0 "
    grid: 203
    save: "UAF*"
    p2g_config: "uaf_awips_backend.ini"

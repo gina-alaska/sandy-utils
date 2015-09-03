@@ -8,63 +8,57 @@ require 'bundler/setup'
 require 'fileutils'
 require_relative '../lib/processing_framework'
 
-class TerraAndAquaAwipsClamp <  ProcessingFramework::CommandLineHelper
-  @description = 'This tool takes VIIRS data and makes it AWIPS ready .'
-  @config = ProcessingFramework::ConfigLoader.default_path(__FILE__)
-  @conf = ProcessingFramework::ConfigLoader.new(__FILE__)
+class ModisAwipsClamp <  ProcessingFramework::CommandLineHelper
+  attr_reader :processing_cfg
+  banner 'This tool takes MODIS data and makes it AWIPS ready.'
+  default_config 'terra_and_aqua_awips'
 
-  option ['-c', '--config'], 'config', "The config file. Using #{@config} as the default.", default: @config
-  option ['-i', '--inputdir'], 'inputdir', 'The input directory. ', required: true
-  option ['-m', '--mode'], 'mode', "The mode to use #{@conf['configs'].keys.join(',')}.", default: 'default'
-  option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: @conf['limits']['processor']
-  option ['-s', '--save'], 'save_pattern', 'A regular expression for the items to save - that is what items generated should be saved.', default: @conf['configs']['default']['save']
+  option ['-m', '--mode'], 'mode', "The mode to use.", default: 'default'
+  option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: 1
+  option ['-s', '--save'], 'save_pattern', 'A regular expression for the items to save - that is what items generated should be saved.', default: '*'
+
+  parameter "INPUT", "The input directory"
+  parameter "OUTPUT", "The output directory"
 
   def execute
-    conf = ProcessingFramework::ConfigLoader.new(__FILE__)
+    @processing_cfg = conf['configs'][mode]
+    exit_with_error("Unknown mode #{mode}", 19) if processing_cfg.nil?
 
-    output = "#{outdir}"
-    outdir += '/' + basename if basename
-    basename = File.basename(inputdir) unless basename
-
-    processing_cfg = conf['configs']["#{mode}"]
-
-    # check mode
-    fail "Unknown/unconfigured mode #{mode}" unless conf['configs'][mode]
-
+    basename = File.basename(input) unless basename
     working_dir = "#{tempdir}/#{basename}"
 
-    begin
-     # make temp space
-     FileUtils.rm_r(working_dir) if (File.exist?(working_dir))
-     FileUtils.mkdir(working_dir)
+    inside(working_dir) do
+      modis2awips
+      crefl2awips if conf['driver_crefl']
 
-     FileUtils.cd(working_dir) do
-       command = "#{processing_cfg['options']} -g  #{processing_cfg['grid']} --backend-configs #{get_config_item(processing_cfg['p2g_config'])}"
-       unless (ProcessingFramework::ShellOutHelper.run_shell("#{conf['driver']} -d #{inputdir} #{command}"))
-         # polar to grid seems to say fail a lot, even when it works - just print warning
-         puts "INFO: #{conf['driver']} says it failed, but ignoring."
-       end
+      Dir.glob(processing_cfg['save']).each do |awips_file|
+        gzip!(awips_file)
+      end
+      copy_output(output, processing_cfg['save'])
+    end
+  end
 
-       if conf['driver_crefl']
-         copy_and_rename(inputdir)
-         unless (ProcessingFramework::ShellOutHelper.run_shell("#{conf['driver_crefl']} -d . #{command}"))
-           # polar to grid seems to say fail a lot, even when it works - just print warning
-           puts "INFO: #{conf['driver_crefl']} says it failed, but ignoring."
-         end
-       end
+  def modis2awips
+    command = [
+      conf['driver'],
+      "-d #{input}",
+      processing_cfg['options'],
+      "-g #{processing_cfg['grid']}",
+      "--backend-configs #{get_config_item(processing_cfg['p2g_config'])}"
+    ].join(" ")
+    shell_out!(command)
+  end
 
-       Dir.glob(processing_cfg['save']) do |awips_file|
-         ProcessingFramework::ShellOutHelper.run_shell("gzip -v #{awips_file}")
-         File.rename("#{awips_file}.gz", awips_file)
-       end
-       copy_output(output, processing_cfg['save'])
-     end
-     # FileUtils.rm_r(working_dir)
-   rescue RuntimeError => e
-     puts "Error: #{e.to_s}"
-     # FileUtils.rm_r(working_dir) if (File.exist?(working_dir))
-     exit(-1)
-   end
+  def crefl2awips
+    copy_and_rename(input)
+    command = [
+      conf['driver_crefl'],
+      "-d .",
+      processing_cfg['options'],
+      "-g #{processing_cfg['grid']}",
+      "--backend-configs #{get_config_item(processing_cfg['p2g_config'])}"
+    ].join(" ")
+    shell_out!(command)
   end
 
   # returns path to extras in config
@@ -104,4 +98,4 @@ class TerraAndAquaAwipsClamp <  ProcessingFramework::CommandLineHelper
   end
 end
 
-TerraAndAquaAwipsClamp.run
+ModisAwipsClamp.run

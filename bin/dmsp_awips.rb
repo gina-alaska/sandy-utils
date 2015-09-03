@@ -1,53 +1,36 @@
 #!/usr/bin/env ruby
-# RTSPS helper..
-
 ENV['BUNDLE_GEMFILE'] = File.join(File.expand_path('../..', __FILE__), 'Gemfile')
 require 'bundler/setup'
 require 'fileutils'
 require_relative '../lib/processing_framework'
 
 class DMSPAwipsClamp <  ProcessingFramework::CommandLineHelper
-  @description = 'This tool processes DMSP data to L0'
-  @config = ProcessingFramework::ConfigLoader.default_path(__FILE__)
-
-  option ['-c', '--config'], 'config', "The config file. Using #{@config} as the default.", default: @config
-  option ['-i', '--input'], 'input', 'The input file. ', required: true
+  banner 'This tool processes DMSP data to L0'
+  default_config 'dmsp_awips'
+  
+  parameter "INPUT", "The input file"
+  parameter "OUTUPT", "The output file"
 
   def execute
-    conf = ProcessingFramework::ConfigLoader.new(__FILE__)
-
-    output = "#{outdir}"
-    outdir += '/' + basename if basename
     basename = File.basename(input) unless basename
-
-    platform =  basename.split('.').first
-
     working_dir = "#{tempdir}/#{basename}"
-    begin
-      # make temp space
-      FileUtils.rm_r(working_dir) if (File.exist?(working_dir))
-      FileUtils.mkdir(working_dir)
-      FileUtils.cd(working_dir) do
-        infile = check_input(input)
-        FileUtils.cp(infile, '.')
-        infile = File.basename(infile)
-        grided = project(infile, conf)
-        tscantifs = to_geotiffs(scale(grided, conf), grided, conf)
-        reformat(tscantifs, conf)
-        exit(-1)
 
-        # conf["save"].each do |i|
-        # Dir.glob(i).each do |x|
-        # puts "INFO: Copying #{x} to #{output}"
-        # FileUtils.cp(x, output)
-        # end
-        # end
-        # FileUtils.rm_r(working_dir)
-      end
-     rescue RuntimeError => e
-       puts "Error: #{e.to_s}"
-       FileUtils.rm_r(working_dir) if (File.exist?(working_dir))
-       exit(-1)
+    inside(working_dir) do
+      infile = check_input(input)
+      FileUtils.cp(infile, '.')
+      infile = File.basename(infile)
+      grided = project(infile, conf)
+      tscantifs = to_geotiffs(scale(grided, conf), grided, conf)
+      reformat(tscantifs, conf)
+      exit(-1)
+
+      # conf["save"].each do |i|
+      # Dir.glob(i).each do |x|
+      # puts "INFO: Copying #{x} to #{output}"
+      # FileUtils.cp(x, output)
+      # end
+      # end
+      # FileUtils.rm_r(working_dir)
     end
   end
 
@@ -81,7 +64,7 @@ class DMSPAwipsClamp <  ProcessingFramework::CommandLineHelper
 
   def tscan_run(command, cfg)
     puts("INFO: Running \". #{cfg['terascan_driver']} ;  #{command}\"")
-    ProcessingFramework::ShellOutHelper.run_shell(". #{cfg['terascan_driver']} ;  #{command}")
+    shell_out!(". #{cfg['terascan_driver']} ;  #{command}")
   end
 
   def check_input(infile)
@@ -100,10 +83,10 @@ class DMSPAwipsClamp <  ProcessingFramework::CommandLineHelper
     vis = File.basename(tifs['vis'], '.tif')
     command = " #{cfg['awips_conversion']['vis_stretch']} #{vis}.tif #{vis}.stretched.tif"
     puts("INFO: stretching #{command}")
-    ProcessingFramework::ShellOutHelper.run_shell(command)
+    shell_out!(command)
     command = "gdalwarp #{cfg['awips_conversion']['warp_opts']} -te #{cfg['awips_conversion']['extents']} #{cfg['gdal']['co_opts']} -t_srs #{cfg['awips_conversion']['proj']} #{vis}.stretched.tif #{vis}.302.tif"
     puts("INFO: warping to 302.. #{command}")
-    ProcessingFramework::ShellOutHelper.run_shell(command)
+    shell_out!(command)
   end
 end
 
