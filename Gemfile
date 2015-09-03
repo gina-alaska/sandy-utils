@@ -2,6 +2,7 @@
 source 'https://rubygems.org'
 
 gem 'clamp'
+gem 'mixlib-shellout'
 
 group :development do
   gem 'rubocop'

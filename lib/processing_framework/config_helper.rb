@@ -1,28 +1,35 @@
 module ProcessingFramework
   class ConfigLoader
     require 'yaml'
-    def initialize(t)
-      @conf = load(get_config_path(t))
+
+    def initialize(filename)
+      begin
+        @conf = YAML.load_file(get_config_path(filename))
+      rescue Errno::ENOENT => e
+        @conf = YAML.load_file(get_config_path("#{filename}.yml"))
+      end
     end
 
     def [](k)
       @conf[k]
     end
 
-    def get_name(t)
-      File.basename(t, '.rb')
+    def get_name(filename)
+      File.basename(filename, '.rb')
     end
 
-    def get_config_path(t)
-      File.dirname(t) + '/../config/' + get_name(t) + '.yml'
+    def get_config_path(filename)
+      # This method should recieve an absolute path or a filename
+      # If we recieve a filename, then assume the default from config should be loaded
+      if File.basename(filename) == filename
+        filename = File.join(File.expand_path("../../../config", __FILE__), filename)
+      end
+
+      filename
     end
 
-    def load(t)
-      File.open(t) { |fd| YAML.load(fd) }
-    end
-
-    def ConfigLoader.default_path(t)
-      File.dirname(t) + '/../config/' + File.basename(t, '.rb') + '.yml'
+    def ConfigLoader.default_path(filename)
+      File.dirname(filename) + '/../config/' + File.basename(filename, '.rb') + '.yml'
     end
   end
 end
