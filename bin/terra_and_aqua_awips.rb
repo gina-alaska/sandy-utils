@@ -56,6 +56,7 @@ class ModisAwipsClamp <  ProcessingFramework::CommandLineHelper
       "-d .",
       processing_cfg['options'],
       "-g #{processing_cfg['grid']}",
+      "-p #{@processing_cfg['crefl_bands']}",
       "--backend-configs #{get_config_item(processing_cfg['p2g_config'])}"
     ].join(" ")
     shell_out!(command)
