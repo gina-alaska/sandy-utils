@@ -49,6 +49,8 @@ class ModisAwipsClamp <  ProcessingFramework::CommandLineHelper
     shell_out!(command)
   end
 
+  # make crefl products
+  # note this will fail for nighttime passes.
   def crefl2awips
     copy_and_rename(input)
     command = [
@@ -97,7 +99,7 @@ class ModisAwipsClamp <  ProcessingFramework::CommandLineHelper
     # note - copy not link, link causes it to use the file name of the target, not the renamed file.
     mapper.keys.each do |z|
       hdf = Dir.glob(inputdir + '/*' + z).first
-      FileUtils.cp(hdf, pg_basename + '.' + mapper[z])  if (File.exist?(hdf))
+      FileUtils.cp(hdf, pg_basename + '.' + mapper[z]) if (hdf)
     end
   end
 end
