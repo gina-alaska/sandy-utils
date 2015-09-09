@@ -7,7 +7,6 @@ module ProcessingFramework
     def shell_out!(command, opts={})
       opts = SHELL_OUT_DEFAULTS.merge(opts)
       cmd = ::Mixlib::ShellOut.new(command, opts)
-      puts("Running: \'#{command}\'")
       cmd.run_command
 
       cmd
