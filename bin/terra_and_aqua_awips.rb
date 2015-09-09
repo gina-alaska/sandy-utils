@@ -13,12 +13,12 @@ class ModisAwipsClamp <  ProcessingFramework::CommandLineHelper
   banner 'This tool takes MODIS data and makes it AWIPS ready.'
   default_config 'terra_and_aqua_awips'
 
-  option ['-m', '--mode'], 'mode', "The mode to use.", default: 'default'
+  option ['-m', '--mode'], 'mode', 'The mode to use.', default: 'default'
   option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: 1
   option ['-s', '--save'], 'save_pattern', 'A regular expression for the items to save - that is what items generated should be saved.', default: '*'
 
-  parameter "INPUT", "The input directory"
-  parameter "OUTPUT", "The output directory"
+  parameter 'INPUT', 'The input directory'
+  parameter 'OUTPUT', 'The output directory'
 
   def execute
     @processing_cfg = conf['configs'][mode]
@@ -45,7 +45,7 @@ class ModisAwipsClamp <  ProcessingFramework::CommandLineHelper
       processing_cfg['options'],
       "-g #{processing_cfg['grid']}",
       "--backend-configs #{get_config_item(processing_cfg['p2g_config'])}"
-    ].join(" ")
+    ].join(' ')
     shell_out!(command)
   end
 
@@ -53,12 +53,12 @@ class ModisAwipsClamp <  ProcessingFramework::CommandLineHelper
     copy_and_rename(input)
     command = [
       conf['driver_crefl'],
-      "-d .",
+      '-d .',
       processing_cfg['options'],
       "-g #{processing_cfg['grid']}",
       "-p #{@processing_cfg['crefl_bands']}",
       "--backend-configs #{get_config_item(processing_cfg['p2g_config'])}"
-    ].join(" ")
+    ].join(' ')
     shell_out!(command)
   end
 
@@ -95,7 +95,10 @@ class ModisAwipsClamp <  ProcessingFramework::CommandLineHelper
     mapper = { 'cal1000.hdf' => '1000m.hdf', 'cal500.hdf' => '500m.hdf', 'cal250.hdf' => '250m.hdf', 'geo.hdf' => 'geo.hdf' }
     pg_basename = get_p2g_naming(Dir.glob(inputdir + '/*.geo.hdf').first)
     # note - copy not link, link causes it to use the file name of the target, not the renamed file.
-    mapper.keys.each { |z| FileUtils.cp(Dir.glob(inputdir + '/*' + z).first, pg_basename + '.' + mapper[z]) }
+    mapper.keys.each do |z|
+      hdf = Dir.glob(inputdir + '/*' + z).first
+      FileUtils.cp(hdf, pg_basename + '.' + mapper[z])  if (File.exist?(hdf))
+    end
   end
 end
 
