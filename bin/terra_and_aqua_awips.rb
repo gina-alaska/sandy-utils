@@ -52,10 +52,9 @@ class ModisAwipsClamp <  ProcessingFramework::CommandLineHelper
   # make crefl products
   # note this will fail for nighttime passes.
   def crefl2awips
-    copy_and_rename(input)
     command = [
       conf['driver_crefl'],
-      '-d .',
+      "-d #{input}",
       processing_cfg['options'],
       "-g #{processing_cfg['grid']}",
       "-p #{@processing_cfg['crefl_bands']}",
@@ -67,40 +66,6 @@ class ModisAwipsClamp <  ProcessingFramework::CommandLineHelper
   # returns path to extras in config
   def get_config_item(item)
     File.join(File.expand_path('../../config', __FILE__), item)
-  end
-
-  # gets the time of the data..
-  def get_time(item)
-    DateTime.strptime(File.basename(item).split('.')[1, 2].join('.') + '+0', '%Y%m%d.%H%M%z')
-  end
-
-  # gets the naming scheme p2g expects..
-  def get_p2g_naming(item)
-    ##
-    # Notes from Kathy, for polar2grid  :
-    # Input naming conventions for MODIS files should be:
-    # t1.YYJJJ.hhmm.1000m.hdf
-    # t1.YYJJJ.hhmm.500m.hdf
-    # t1.YYJJJ.hhmm.250m.hdf
-    # t1.YYJJJ.hhmm.geo.hdf
-    # Where YY is the last two digits of the year
-    # JJJ is the Julian day of the year.
-    # HH is the 2 digit hour
-    # MM is the 2 digit minute
-    # MODIS crefl2awips.sh will work with this naming convention.
-    basename = File.basename(item)
-    platform = basename.split('.')[0]
-    platform + '.' + get_time(item).strftime('%y%j.%H%M')
-  end
-
-  def copy_and_rename(inputdir)
-    mapper = { 'cal1000.hdf' => '1000m.hdf', 'cal500.hdf' => '500m.hdf', 'cal250.hdf' => '250m.hdf', 'geo.hdf' => 'geo.hdf' }
-    pg_basename = get_p2g_naming(Dir.glob(inputdir + '/*.geo.hdf').first)
-    # note - copy not link, link causes it to use the file name of the target, not the renamed file.
-    mapper.keys.each do |z|
-      hdf = Dir.glob(inputdir + '/*' + z).first
-      FileUtils.cp(hdf, pg_basename + '.' + mapper[z]) if (hdf)
-    end
   end
 end
 
