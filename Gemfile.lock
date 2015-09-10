@@ -57,6 +57,7 @@ GEM
     thor (0.19.1)
     timers (4.0.1)
       hitimes
+    version (1.0.0)
 
 PLATFORMS
   ruby
@@ -67,3 +68,4 @@ DEPENDENCIES
   guard-rubocop
   mixlib-shellout
   rubocop
+  version
