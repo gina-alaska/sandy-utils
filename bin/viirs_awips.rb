@@ -27,7 +27,7 @@ class SnppAwipsClamp <  ProcessingFramework::CommandLineHelper
       Dir.glob('SSEC_AWIPS*') do |awips_file|
         gzip!(awips_file)
       end
-      copy_output(output, '*')#processing_cfg['save'])
+      copy_output(output, 'SSEC_AWIPS*.gz')#processing_cfg['save'])
     end
   end
 end
