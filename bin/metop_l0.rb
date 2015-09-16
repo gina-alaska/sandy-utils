@@ -16,7 +16,8 @@ class MetopL0Clamp < ProcessingFramework::CommandLineHelper
 
   def execute
     exit_with_error("File size to small", 11) if File.stat(input).size < 25000000
-
+    
+    basename = File.basename(input) unless basename
     working_dir = "#{tempdir}/#{basename}"
 
     inside(working_dir) do

@@ -15,6 +15,8 @@ class MetopL0Clamp <  ProcessingFramework::CommandLineHelper
   parameter "OUTPUT", 'The output directory'
 
   def execute
+
+    basename = File.basename(input) unless basename
     @working_dir = "#{tempdir}/#{basename}"
 
     inside(@working_dir) do
