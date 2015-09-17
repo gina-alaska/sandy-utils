@@ -18,6 +18,7 @@ class MetopL0Clamp <  ProcessingFramework::CommandLineHelper
     @working_dir = "#{tempdir}/#{basename}"
 
     inside(@working_dir) do
+      get_tle
       run_aapp_metop('AVHRR')
       run_aapp_metop('HIRS AMSU-A MHS', 'HIRS')
       run_aapp_metop('IASI', 'IASI')
@@ -54,6 +55,11 @@ class MetopL0Clamp <  ProcessingFramework::CommandLineHelper
 
   def convert_hdf5(file)
     command = "convert_to_hdf5 -c #{@working_dir}/#{file}"
+    shell_out!(command)
+  end
+
+  def get_tle
+    command = 'get_tle'
     shell_out!(command)
   end
 
