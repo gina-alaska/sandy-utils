@@ -10,14 +10,17 @@ class RtstpsClamp < ProcessingFramework::CommandLineHelper
   default_config 'rtstps'
 
   option ['-c', '--config'], 'config', "The config file. Using #{@config} as the default.", default: @config
-
+  option ['-p', '--platform'], 'platform', 'The platform this data is from (npp, a1, t1)', attribute_name: :platform_type
   parameter "INPUT", "The input file"
   parameter "OUTPUT", "The output directory"
 
   def execute
     # Check platform
     basename = File.basename(input) unless basename
-    platform = basename.split('.').first
+
+    platform = platform_type
+    platform ||= basename.split(".").first
+
     exit_with_error("Unknown platform: #{platform}", 19) unless conf['configs'][platform]
 
     working_dir = "#{tempdir}/#{basename}"
