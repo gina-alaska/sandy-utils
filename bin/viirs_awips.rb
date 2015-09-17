@@ -36,6 +36,7 @@ class SnppAwipsClamp <  ProcessingFramework::CommandLineHelper
       conf['driver'],
       "-d #{input}",
       @processing_cfg['options'],
+      "--day-fraction #{@processing_cfg['day_cover']}",
       "-g #{@processing_cfg['grid']}",
       "--backend-configs #{get_config_item(@processing_cfg['p2g_config'])}"
     ].join(" ")

@@ -3,6 +3,7 @@ driver_crefl: crefl2awips.sh
 configs:
   default:
    options: "--grid-coverage 0"
+   day_cover: "70"
    grid: 203
    save: 
      - "UAF_AWIPS_npp_viirs_adaptive*"
@@ -12,6 +13,7 @@ configs:
      - "UAF_AWIPS_npp_viirs_m1[13456]*"
      - "UAF_AWIPS_npp_viirs_viirs_crefl0[3489]*"
      - "UAF_AWIPS_npp_viirs_viirs_crefl10*" 
+     - "UAF_AWIPS_npp_viirs_ifog*"
    p2g_config: "uaf_awips_backend.ini"
    crefl_bands: " viirs_crefl03 viirs_crefl04  viirs_crefl08 viirs_crefl09 viirs_crefl10 "
 limits:
