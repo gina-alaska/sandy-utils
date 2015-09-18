@@ -16,12 +16,17 @@ class MetopL0Clamp < ProcessingFramework::CommandLineHelper
 
   def execute
     exit_with_error("File size to small", 11) if File.stat(input).size < 25000000
-    
+
     basename = File.basename(input) unless basename
     working_dir = "#{tempdir}/#{basename}"
 
     inside(working_dir) do
-      run_ccsds_to_l0
+      # RT-STPS XML Assumes you have a data directory for it to write out to
+      sourcefile = File.basename(input)
+      FileUtils.cp(input, sourcefile)
+      sourcefile = uncompress(sourcefile)
+
+      run_ccsds_to_l0(sourcefile)
       rename_to_eps
       generate_mmam_xml
       patch_l0_from_mmam
@@ -32,10 +37,10 @@ class MetopL0Clamp < ProcessingFramework::CommandLineHelper
 
   private
 
-  def run_ccsds_to_l0
+  def run_ccsds_to_l0 sourcefile
     mphr_file = create_mphr
 
-    command = "ccsds_to_l0 -i #{input} --config-mphr #{mphr_file}"
+    command = "ccsds_to_l0 -i #{sourcefile} --config-mphr #{mphr_file}"
     shell_out!(command)
   end
 
