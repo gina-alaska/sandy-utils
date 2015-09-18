@@ -8,12 +8,16 @@ class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
   banner 'This tool processes Terra and Aqua data to L0'
   default_config 'terra_and_aqua_l1'
 
+  option ['-p', '--platform'], 'platform', 'The platform this data is from (a1, t1)', attribute_name: :platform_type
+
   parameter 'INPUT', 'The input directory'
   parameter 'OUTPUT', 'The output directory'
 
   def execute
     basename = File.basename(input) unless basename
-    platform = basename.split('.').first
+    platform = platform_type
+    platform ||= basename.split(".").first
+
     exit_with_error('Unknown platform..', 19) if conf['processing'][platform].nil?
 
     working_dir = "#{tempdir}/#{basename}"
