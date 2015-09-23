@@ -2,9 +2,20 @@ driver: "$POLAR2GRID_HOME/bin/modis2awips.sh"
 driver_crefl: "$POLAR2GRID_HOME/bin/crefl2awips.sh"
 configs:
   default:
-   options: "--grid-coverage 0 "
+   options: "--grid-coverage 0"
    grid: 203
-   save: "UAF*"
+   save: 
+     - "UAF_AWIPS_terra_modis_vis0[123467]*"
+     - "UAF_AWIPS_terra_modis_vis26*"
+     - "UAF_AWIPS_terra_modis_bt2[03789]*"
+     - "UAF_AWIPS_terra_modis_bt3[012]*"
+     - "UAF_AWIPS_terra_modis_modis_crefl0[12346]*"
+     - "UAF_AWIPS_aqua_modis_vis26*"
+     - "UAF_AWIPS_aqua_modis_vis0[123467]*"
+     - "UAF_AWIPS_aqua_modis_bt2[03789]*"
+     - "UAF_AWIPS_aqua_modis_bt3[012]*"
+     - "UAF_AWIPS_aqua_modis_modis_crefl0[12346]*"
+   crefl_bands: " modis_crefl01_250m modis_crefl02_250m modis_crefl03_1000m modis_crefl04_1000m modis_crefl06_1000m "
    p2g_config: "uaf_awips_backend.ini"
 limits:
   processor: 2
