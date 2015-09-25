@@ -3,7 +3,7 @@ driver_crefl: crefl2awips.sh
 configs:
   default:
    options: "--grid-coverage 0"
-   day_cover: "70"
+   day_cover: "0.10"
    grid: 203
    save: 
      - "UAF_AWIPS_npp_viirs_adaptive*"
