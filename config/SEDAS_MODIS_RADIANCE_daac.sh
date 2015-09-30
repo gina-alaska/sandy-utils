@@ -102,12 +102,12 @@ $TDFFILE
 set STATUS = $status
 if ($STATUS != 0) exit $STATUS
  
-set YY = `echo $CALFILE_1000M | cut -c2-5`
+set YY = 20`echo $CALFILE_1000M | cut -c4-5`
 set JDAY = `echo $CALFILE_1000M | cut -c6-8`
 set PDATE = `echo $YY"."$JDAY`
-set HH = `echo $CALFILE_1000M | cut -c9-10`
-set MM = `echo $CALFILE_1000M | cut -c11-12`
-set SS = `echo $CALFILE_1000M | cut -c13-14`
+set HH = `echo $CALFILE_1000M | cut -c10-11`
+set MM = `echo $CALFILE_1000M | cut -c12-13`
+set SS = '00' #`echo $CALFILE_1000M | cut -c13-14`
 set PASSTIME = `echo $HH":"$MM":"$SS`
 set DIMS = `getdim include_vars='' annotate=n printout=n $TDFFILE`
 echo "Pass date (YYYY.DDD) is $PDATE & pass time (GMT) is $PASSTIME"
