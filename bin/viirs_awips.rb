@@ -18,18 +18,48 @@ class SnppAwipsClamp <  ProcessingFramework::CommandLineHelper
     exit_with_error("Unknown/unconfigured mode #{mode}", 19) unless conf['configs'][mode]
 
     basename = File.basename(input) unless basename
-    processing_cfg = conf['configs'][mode]
+    @processing_cfg = conf['configs'][mode]
 
     working_dir = "#{tempdir}/#{basename}"
     inside(working_dir) do
-      command = "#{conf['driver']} --num-procs #{processors} #{processing_cfg['options']} -g #{processing_cfg['grid']} -d #{input} "
-      shell_out!(command, timeout: 9000)
-      Dir.glob('SSEC_AWIPS*') do |awips_file|
+      viirs2awips
+      crefl2awips if conf['driver_crefl']
+      Dir.glob(@processing_cfg['save']).each do |awips_file|
         gzip!(awips_file)
       end
-      copy_output(output, '*')#processing_cfg['save'])
+      copy_output(output, @processing_cfg['save'])
     end
   end
+
+  def viirs2awips
+    command = [
+      conf['driver'],
+      "-d #{input}",
+      @processing_cfg['options'],
+      "--day-fraction #{@processing_cfg['day_cover']}",
+      "-g #{@processing_cfg['grid']}",
+      "--backend-configs #{get_config_item(@processing_cfg['p2g_config'])}"
+    ].join(" ")
+    shell_out!(command)
+  end
+
+  def crefl2awips
+    command = [
+      conf['driver_crefl'],
+      "-d #{input}",
+      @processing_cfg['options'],
+      "-g #{@processing_cfg['grid']}",
+      "-p #{@processing_cfg['crefl_bands']}",
+      "--backend-configs #{get_config_item(@processing_cfg['p2g_config'])}"
+    ].join(" ")
+    shell_out!(command)
+  end
+
+  def get_config_item(item)
+    File.join(File.expand_path('../../config', __FILE__), item)
+  end
+
+
 end
 
 SnppAwipsClamp.run

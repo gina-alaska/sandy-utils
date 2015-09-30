@@ -4,10 +4,6 @@ processing:
     - "[at]1*.cal250.hdf"
     - "[at]1*.cal1000.hdf"
     - "[at]1*.geo.hdf"
-    - "[AT]*.L1A_LAC"
-    - "[AT]*.L1B_HKM"
-    - "[AT]*.L1B_QKM"
-    - "[AT]*.GEO"
   t1:
    l1_driver: "modis_L1A.py --startnudge=0 --stopnudge=0 --mission=T "
    geo_driver: "modis_GEO.py -v --threshold=80"

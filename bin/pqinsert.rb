@@ -4,7 +4,7 @@ require 'bundler/setup'
 require 'clamp'
 require_relative '../lib/processing_framework'
 
-class PqinsertClamp <  Clamp::Command
+class PqinsertClamp < ProcessingFramework::CommandLineHelper
   banner 'This tool inserts files into an LDM queue using pqinsert'
 
   option ['-s', '--suffix'], 'suffix', 'Append this string to the name of the file when inserting'

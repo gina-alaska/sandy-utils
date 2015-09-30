@@ -8,12 +8,16 @@ class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
   banner 'This tool processes Terra and Aqua data to L0'
   default_config 'terra_and_aqua_l1'
 
-  parameter "INPUT", "The input directory"
-  parameter "OUTPUT", "The output directory"
+  option ['-p', '--platform'], 'platform', 'The platform this data is from (a1, t1)', attribute_name: :platform_type
+
+  parameter 'INPUT', 'The input directory'
+  parameter 'OUTPUT', 'The output directory'
 
   def execute
     basename = File.basename(input) unless basename
-    platform = basename.split('.').first
+    platform = platform_type
+    platform ||= basename.split(".").first
+
     exit_with_error('Unknown platform..', 19) if conf['processing'][platform].nil?
 
     working_dir = "#{tempdir}/#{basename}"
@@ -25,10 +29,10 @@ class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
       exit_with_error("too many/not enough pds files => #{pds.join(' ')}", 11) if (pds.length != 1)
 
       # update luts
-      run_with_modis_tools(conf['processing'][platform]['update_luts'], conf) if conf['processing'][platform]['update_luts']
+      shell_out!(conf['processing'][platform]['update_luts']) if conf['processing'][platform]['update_luts']
 
       # To l1
-      run_with_modis_tools("#{conf['processing'][platform]['l1_driver']} #{pds.first}", conf)
+      shell_out!("#{conf['processing'][platform]['l1_driver']} #{pds.first}")
 
       # find L1A_LAC
       rLACs = Dir.glob('[AT]*L1A_LAC')
@@ -37,10 +41,10 @@ class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
       end
 
       # perform gbad processing, if needed
-      run_with_modis_tools(conf['processing'][platform]['gbad'], conf) if (conf['processing'][platform]['gbad'])
+      shell_out!(conf['processing'][platform]['gbad']) if (conf['processing'][platform]['gbad'])
 
       # geo processing
-      run_with_modis_tools("#{conf['processing'][platform]['geo_driver']} #{rLACs.first}", conf)
+      shell_out!("#{conf['processing'][platform]['geo_driver']} #{rLACs.first}")
 
       # find GEOs
       rGEOs = Dir.glob('[AT]*GEO')
@@ -49,7 +53,7 @@ class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
       end
 
       # L1B processing
-      run_with_modis_tools("#{conf['processing'][platform]['l1b_driver']} #{rLACs.first} #{rGEOs.first}", conf)
+      shell_out!("#{conf['processing'][platform]['l1b_driver']} #{rLACs.first} #{rGEOs.first}")
 
       # find  L1B_LAC
       rL1B_LACs = Dir.glob('[AT]*L1B_LAC')
@@ -58,20 +62,20 @@ class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
       end
 
       # perform destriping, if needed
-      run_with_modis_tools("#{conf['processing'][platform]['destripe']} #{rL1B_LACs.first}", conf) if (conf['processing'][platform]['destripe'])
+      shell_out!("#{conf['processing'][platform]['destripe']} #{rL1B_LACs.first}") if (conf['processing'][platform]['destripe'])
 
-      gina_name = get_gina_name(rL1B_LACs.first, platform)
+      gina_name = get_gina_name(rL1B_LACs.first, platform, get_l1_time(rGEOs.first))
 
-      FileUtils.ln(rL1B_LACs.first, gina_name + '.cal1000.hdf')
-      FileUtils.ln(rGEOs.first, gina_name + '.geo.hdf')
+      FileUtils.mv(rL1B_LACs.first, gina_name + '.cal1000.hdf')
+      FileUtils.mv(rGEOs.first, gina_name + '.geo.hdf')
 
-      # 500m
+      # 500m - not produced for night passes
       rL1B_HKM = Dir.glob('*L1B_HKM').first
-      FileUtils.ln(rL1B_HKM, gina_name + '.cal500.hdf') if (rL1B_HKM)
+      FileUtils.mv(rL1B_HKM, gina_name + '.cal500.hdf') if (rL1B_HKM)
 
-      # 250m
+      # 250m - not produced for night passes
       rL1B_QKM = Dir.glob('*L1B_QKM').first
-      FileUtils.ln(rL1B_QKM, gina_name + '.cal250.hdf') if (rL1B_QKM)
+      FileUtils.mv(rL1B_QKM, gina_name + '.cal250.hdf') if (rL1B_QKM)
 
       conf['processing']['save'].each do |glob|
         copy_output(output, glob)
@@ -83,14 +87,23 @@ class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
     DateTime.strptime(s[1, 13], '%Y%j%H%M%S')
   end
 
-  def get_gina_name(x, platform)
-    platform + '.' + get_l1_time(x).strftime('%Y%m%d.%H%M')
+  # gets the naming scheme p2g expects..
+  def get_gina_name(item, platform, pass_tm)
+    ##
+    # Notes from Kathy, on naming conventions:
+    # Input naming conventions for MODIS files should be:
+    # t1.YYJJJ.hhmm.1000m.hdf
+    # t1.YYJJJ.hhmm.500m.hdf
+    # t1.YYJJJ.hhmm.250m.hdf
+    # t1.YYJJJ.hhmm.geo.hdf
+    # Where YY is the last two digits of the year
+    # JJJ is the Julian day of the year.
+    # HH is the 2 digit hour
+    # MM is the 2 digit minute
+    # MODIS crefl2awips.sh will work with this naming convention.
+    platform + '.' + pass_tm.strftime('%y%j.%H%M')
   end
 
-  def run_with_modis_tools(s, cfg)
-    #shell_out!(". #{cfg['modis_tools_setup']}; #{s}")
-    shell_out!(s)
-  end
 end
 
 ModisL1Clamp.run
