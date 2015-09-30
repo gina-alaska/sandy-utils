@@ -31,8 +31,8 @@ class ModisTdfClamp <  ProcessingFramework::CommandLineHelper
       hdf_hk = get_hdf('cal500')
 
       # these should always exist
-      exit_with_error('Missing 1k hdf file') unless hdf_1k
-      exit_with_error('Missing geo hdf file') unless hdf_geo
+      exit_with_error('Missing 1k hdf file', -1) unless hdf_1k
+      exit_with_error('Missing geo hdf file', -1) unless hdf_geo
 
       if hdf_qk
         # day time
@@ -43,7 +43,9 @@ class ModisTdfClamp <  ProcessingFramework::CommandLineHelper
       end
 
       # run the additional conversion steps on the tdf files made above
-      Dir.glob('*_tdf').each { |tdf| tdf_additions(tdf, basename) }
+      tdfs = Dir.glob('*_tdf')
+      exit_with_error('The terascan tdf to hdf conversion failed', -1) unless tdfs.length > 0
+      tdfs.each { |tdf| tdf_additions(tdf, basename) }
 
       copy_output(output, @processing_cfg['save'])
     end
@@ -69,7 +71,7 @@ class ModisTdfClamp <  ProcessingFramework::CommandLineHelper
 
     # loop though names,
     names.stdout.split.each do |name|
-      putsu "Info: Renaming #{name}"
+      puts "Info: Renaming #{name}"
       command = ['/opt/terascan/bin/varname', 'old_var_name=' + name,  'new_var_name=' + name + '_temp', tdf + '.bt.tdf'].join(' ')
       terascan_run(command)
     end
@@ -115,8 +117,8 @@ class ModisTdfClamp <  ProcessingFramework::CommandLineHelper
 
   # runs after sourcing the tscan config. Used for terascan comamnds.
   def terascan_run(command)
-    results = shell_out!(". #{@processing_cfg['terascan']['driver']} ;  #{command}", {"env" => {"SHELL"=>"/bin/bash"}})
-    exit_with_error("The terascan command #{command} failed") unless results.status.success?
+    results = shell_out!(". #{@processing_cfg['terascan']['driver']} ;  #{command}", 'env' => { 'SHELL' => '/bin/bash' })
+    exit_with_error("The terascan command #{command} failed", -1) unless results.status.success?
     results
   end
 end
