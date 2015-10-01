@@ -76,7 +76,8 @@ class ModisTdfClamp <  ProcessingFramework::CommandLineHelper
       terascan_run(command)
     end
 
-    FileUtils.mv(tdf + '.bt.tdf', basename + '.modis_cal.tdf')
+    FileUtils.mv(tdf + '.bt.tdf', basename + '.modis_bright.tdf')
+    FileUtils.mv(tdf + '.bt', basename + '.modis_cal.tdf')
   end
 
   # does night conversion - no 250k or 500k
