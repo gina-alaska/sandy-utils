@@ -7,9 +7,9 @@ require_relative '../lib/processing_framework'
 class ViirsGeotifClamp <  ProcessingFramework::CommandLineHelper
   banner 'This tool takes VIIRS data and makes geotifs .'
   default_config 'viirs_geotif'
-  
+
   option ['-m', '--mode'], 'mode', "The mode to use.", default: 'default'
-  option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: @conf['limits']['processor']
+  option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: 1 
 
   parameter "INPUT", "The input directory"
   parameter "OUTPUT", "The output directory"
