@@ -1,0 +1,6 @@
+processing:
+  atms: 
+    save:
+      - "NPR-MIRS-IMG*.nc"
+      - "NPR-MIRS-SND*.nc"
+    driver: "run_mirs.bash  -v -s npp "

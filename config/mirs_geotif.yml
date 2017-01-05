@@ -1,0 +1,6 @@
+processing:
+  atms: 
+    save:
+      - "*.tif"
+    driver: "mirs2gtiff.sh -g 203_10km --grid-coverage 0 --dtype real4 --compress DEFLATE --tiled  -p mirs_rain_rate sea_ice snow_cover surface_type tpw"
+grids: place_holder
