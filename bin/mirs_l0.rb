@@ -13,11 +13,10 @@ class MirsL0Clamp <  ProcessingFramework::CommandLineHelper
   banner 'This tool does MIRS processing for ATMS.'
   option ['-s', '--sensor'], 'sensor', 'The sensor this data is from (atms)', attribute_name: :sensor
 
-  parameter "INPUT", "Input directory"
-  parameter "OUTPUT", "Output directory"
+  parameter 'INPUT', 'Input directory'
+  parameter 'OUTPUT', 'Output directory'
 
   def execute
-
     exit_with_error('Unknown sensor..', 19) if conf['processing'][sensor].nil?
 
     basename = File.basename(input) unless basename

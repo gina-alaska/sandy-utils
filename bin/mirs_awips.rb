@@ -37,12 +37,10 @@ class MirsAwipsClamp <  ProcessingFramework::CommandLineHelper
     end
   end
 
-
-  #finds an item in config/
+  # finds an item in config/
   def get_config_item(item)
     File.join(File.expand_path('../../config', __FILE__), item)
   end
-
 end
 
 MirsAwipsClamp.run
