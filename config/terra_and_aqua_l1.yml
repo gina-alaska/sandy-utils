@@ -6,7 +6,7 @@ processing:
     - "[at]1*.geo.hdf"
   t1:
    l1_driver: "modis_L1A.py --startnudge=0 --stopnudge=0 --mission=T "
-   geo_driver: "modis_GEO.py -v --threshold=80"
+   geo_driver: "modis_GEO.py -v --disable-download --threshold=80"
    l1b_driver: "modis_L1B.py"
    destripe: "run_modis_destripe.csh terra"
    pds: "*001.PDS"
