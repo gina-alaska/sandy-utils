@@ -2,34 +2,45 @@ require 'mixlib/shellout'
 
 module ProcessingFramework
   module ShellOutHelper
-    SHELL_OUT_DEFAULTS = {live_stream: STDOUT, timeout: 60 * 60}
+    SHELL_OUT_DEFAULTS = { live_stream: STDOUT, timeout: 60 * 60 }
 
-    def shell_out!(command, opts={})
+    # runs command, with opts
+    def shell_out(command, opts = {})
       opts = SHELL_OUT_DEFAULTS.merge(opts)
       cmd = ::Mixlib::ShellOut.new(command, opts)
       cmd.run_command
+
+      if (cmd.error?)
+        puts("WARNING: the command \"#{command}\" returned an error")
+      end
+
+      cmd
+    end
+
+    # runs command, with opts, and throws an exception on an error
+    def shell_out!(command, opts = {})
+      cmd = shell_out(command, opts)
+      cmd.error!
 
       cmd
     end
 
     def inside(directory)
-      begin
-        create_workdir(directory)
-        FileUtils.cd(directory) do
-          yield
-        end
-      rescue RuntimeError => e
-        exit_with_error(e.to_s, 10)
-      ensure
-        cleanup_workdir(directory) unless debug?
+      create_workdir(directory)
+      FileUtils.cd(directory) do
+        yield
       end
+    rescue RuntimeError => e
+      exit_with_error(e.to_s, 10)
+    ensure
+      cleanup_workdir(directory) unless debug?
     end
 
     def copy_output(output, save_glob = '*', copy_dirs = false)
       # add trailing slash, if needed
       output += '/' if output[-1] != '/'
 
-      FileUtils.mkdir_p(output)  unless (File.exist?(output))
+      FileUtils.mkdir_p(output) unless (File.exist?(output))
       Dir.glob(save_glob).each do |x|
         if (File.file?(x) || copy_dirs)
           puts("INFO: Copying #{x} to #{output}")
@@ -41,6 +52,7 @@ module ProcessingFramework
     end
 
     private
+
     def create_workdir(directory)
       cleanup_workdir(directory)
       FileUtils.mkdir_p(directory)
