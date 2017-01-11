@@ -23,13 +23,26 @@ class MirsAwipsClamp <  ProcessingFramework::CommandLineHelper
 
     working_dir = "#{tempdir}/#{basename}"
     inside(working_dir) do
-      command = "#{conf['processing'][sensor]['driver']} -f #{input}/NPR-MIRS-IMG*.nc"
+      command = "#{conf['processing'][sensor]['driver']} --backend-configs #{get_config_item(conf['processing'][sensor]['p2g_backend'])} -f #{input}/NPR-MIRS-IMG*.nc"
       result = shell_out!(command)
+
+      # compress
+      conf['processing'][sensor]['save'].each do |awips_file|
+        gzip!(awips_file)
+      end
+
       conf['processing'][sensor]['save'].each do |glob|
         copy_output(output, glob)
       end
     end
   end
+
+
+  #finds an item in config/
+  def get_config_item(item)
+    File.join(File.expand_path('../../config', __FILE__), item)
+  end
+
 end
 
 MirsAwipsClamp.run
