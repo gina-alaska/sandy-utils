@@ -1,8 +1,8 @@
 processing:
   save:
-    - "[at]1*.cal500.hdf"
-    - "[at]1*.cal250.hdf"
-    - "[at]1*.cal1000.hdf"
+    - "[at]1*.500m.hdf"
+    - "[at]1*.250m.hdf"
+    - "[at]1*.1000m.hdf"
     - "[at]1*.geo.hdf"
   t1:
    l1_driver: "modis_L1A.py --startnudge=0 --stopnudge=0 --mission=T "

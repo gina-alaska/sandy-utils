@@ -44,7 +44,12 @@ class RtstpsClamp < ProcessingFramework::CommandLineHelper
 
         shell_out!("#{conf['rtstps_driver']} #{conf['configs'][platform]} ../#{sourcefile}")
 
-        copy_output(output)
+        # This is silly.  We really should have seperate scripts for snpp, aqua and terra
+        if platform == "npp"
+          copy_output(output, '*.h5')
+        else
+          copy_output(output, "*.PDS")
+        end
       end
     end
   end
