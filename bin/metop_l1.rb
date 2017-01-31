@@ -44,7 +44,7 @@ class MetopL0Clamp <  ProcessingFramework::CommandLineHelper
 
   def run_aapp_metop(sensors, g=' ')
     command = "AAPP_RUN_METOP -i '#{sensors}' -g '#{g}' -d #{input} -o #{@working_dir}"
-    shell_out!(command, env: {"TLE" => "1",
+    shell_out(command, env: {"TLE" => "1",
                               "PAR_NAVIGATION_DEFAULT_LISTESAT" => spacecraft_id,
                               "WRK" => "#{@working_dir}/WRK"}.merge(conf['env']))
   end
