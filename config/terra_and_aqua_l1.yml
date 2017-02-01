@@ -13,7 +13,7 @@ processing:
    update_luts: "update_luts.py terra -v"
   a1:
    l1_driver: "modis_L1A.py --log --verbose --mission=A --startnudge=5 --stopnudge=5 "
-   geo_driver: "modis_GEO.py --log --verbose --enable-dem --disable-download -a aqua.att -e aqua.eph "
+   geo_driver: "modis_GEO.py --log --verbose --enable-dem --threshold=80 -a aqua.att -e aqua.eph "
    l1b_driver: "modis_L1B.py"
    destripe: "run_modis_destripe.csh aqua"
    gbad_old: "/opt/modis/gbad/wrapper/gbad/run aqua.gbad.pds P1540957*001.PDS aqua.gbad_eph aqua_eph aqua.gbad_att aqua_att"
