@@ -8,11 +8,10 @@ class AVHRRL0Clamp <  ProcessingFramework::CommandLineHelper
   banner 'This tool processes AVHRR data to L0'
   default_config 'avhrr_l0'
 
-  parameter "INPUT", "The input file"
-  parameter "OUTPUT", "The output directory"
+  parameter 'INPUT', 'The input file'
+  parameter 'OUTPUT', 'The output directory'
 
   def execute
-
     basename = File.basename(input) unless basename
     platform = basename.split('.').first
 
@@ -23,11 +22,15 @@ class AVHRRL0Clamp <  ProcessingFramework::CommandLineHelper
       sourcefile = uncompress(sourcefile)
 
       year = Time.now.strftime('%Y')
-      command = "hrptin #{conf['opts']} tape_device=./#{sourcefile} pass_year=#{year} ."
-      shell_out!(command)
+      begin
+        command = "hrptin #{conf['opts']} tape_device=./#{sourcefile} pass_year=#{year} ."
+        shell_out!(command)
 
-      conf['save'].each do |pattern|
-        copy_output(output, pattern)
+        conf['save'].each do |pattern|
+          copy_output(output, pattern)
+        end
+      rescue RuntimeError
+        puts('INFO: hrptin failed, most likely the data was invalid or very short.')
       end
     end
   end
