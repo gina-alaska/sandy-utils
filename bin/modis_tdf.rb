@@ -26,9 +26,9 @@ class ModisTdfClamp <  ProcessingFramework::CommandLineHelper
       Dir.glob(input + '/*.hdf') { |hdf| FileUtils.cp(hdf, '.') }
 
       hdf_geo = get_hdf('geo')
-      hdf_1k = get_hdf('cal1000')
-      hdf_qk = get_hdf('cal250')
-      hdf_hk = get_hdf('cal500')
+      hdf_1k = get_hdf('1000m')
+      hdf_qk = get_hdf('250m')
+      hdf_hk = get_hdf('500m')
 
       # these should always exist
       exit_with_error('Missing 1k hdf file', -1) unless hdf_1k
