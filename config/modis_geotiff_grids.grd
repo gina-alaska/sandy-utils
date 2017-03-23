@@ -1,0 +1,4 @@
+alaska_1000,                proj4, +proj=aea +lat_1=55 +lat_2=65 +lat_0=50 +lon_0=-154 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs, 6000, 4000, 1000,-1000, -3000000, 3000000
+alaska_500,                 proj4, +proj=aea +lat_1=55 +lat_2=65 +lat_0=50 +lon_0=-154 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs, 12000, 8000, 500,-500, -3000000, 3000000
+alaska_250,                 proj4, +proj=aea +lat_1=55 +lat_2=65 +lat_0=50 +lon_0=-154 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs, 24000, 16000, 250,-250,  -3000000, 3000000
+
