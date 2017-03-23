@@ -24,15 +24,15 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
       save_list = []
       # single
       processing_cfg['single'].each do |single|
-        save_list << generate_image_sb(single, input,processing_cfg)
+        save_list << generate_image_sb(single, input, processing_cfg)
       end
       # combinations
       processing_cfg['combinations'].each do |rgb|
-	save_list << generate_image(rgb, input, processing_cfg)
+        save_list << generate_image(rgb, input, processing_cfg)
       end
 
       save_list.each do |geotif|
-	copy_output(output, geotif)
+        copy_output(output, geotif)
       end
     end
   end
@@ -42,10 +42,11 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
   end
 
   # locates correct file for a band generated with polar_to_grid
+  # should throw an exception if the file isn't found, more than one is found, or the band isn't in the mapping
   def get_band(input_dir, band, cfg)
     file_name_pattern = band_mapper(band, cfg)
-    fail "Couldn't find band mapping for #{band}" if !file_name_pattern 
-    puts("Looking for #{file_name_pattern}")
+    fail "Couldn't find band mapping for #{band}" unless file_name_pattern
+    puts("INFO: Looking for #{file_name_pattern}")
     band = Dir.glob(input_dir + '/' + file_name_pattern)
     fail "Too many bands found (#{band.join(',')} for band #{color}" if (band.length > 1)
     fail "No bands found for band #{color}" if (band.length == 0)
@@ -57,26 +58,24 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
   def generate_image(image_hsh, input, cfg, basename = nil)
     bands = image_hsh['bands']
 
-    red = get_band(input,bands['r'],cfg)
-    green = get_band(input,bands['g'],cfg)
-    blue = get_band(input,bands['b'],cfg)
+    red = get_band(input, bands['r'], cfg)
+    green = get_band(input, bands['g'], cfg)
+    blue = get_band(input, bands['b'], cfg)
 
     unless (basename)
       # determine the correct naming scheme... use the "Red" file to figure this out.
       # naming format is npp_viirs_m_04_20150326_214512_alaska_300.tif like.
-      date_of_pass = DateTime.strptime(red.split('_')[-4, 2].join('_'), '%Y%m%d_%H%M%S')
+      date_of_pass = get_date_of_pass(red)
       basename = date_of_pass.strftime(image_hsh['name'])
     end
     final_file = basename
     tmp_name = basename + '.tmp.vrt'
 
-    puts tmp_name
-
     # make vrt
     shell_out!("gdalbuildvrt -resolution highest -separate #{tmp_name} #{red} #{green} #{blue}")
 
     if (bands['p'])
-      pan = get_band(input,bands['p'],cfg)
+      pan = get_band(input, bands['p'], cfg)
       shell_out!("gdal_landsat_pansharp -ndv 0 -rgb #{tmp_name} -pan #{pan} -o #{tmp_name}.pan.tif")
       tmp_file =  "#{tmp_name}.pan.tif"
     end
@@ -93,12 +92,12 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
   def generate_image_sb(image_hsh, input, cfg, basename = nil)
     # options for stretching
 
-    band = get_band(input,image_hsh['band'],cfg)
+    band = get_band(input, image_hsh['band'], cfg)
 
     unless (basename)
       # determine the correct naming scheme... use the "Red" file to figure this out.
       # naming format is npp_viirs_m_04_20150326_214512_alaska_300.tif like.
-      date_of_pass = DateTime.strptime(File.basename(band).split('_')[-4, 2].join('_'), '%Y%m%d_%H%M%S')
+      date_of_pass = get_date_of_pass(band)
       basename = date_of_pass.strftime(image_hsh['name'])
     end
 
@@ -106,7 +105,8 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
     tmp_name = basename + '.tmp'
 
     reformat_geotif(band, final_file + '.tif')
-    [final_file + '.tif']
+    shell_out!("gdal_translate -of png -outsize 5% 5% #{final_file}.tif #{final_file}.small.png")
+    [final_file + '.tif', final_file + '.small.png']
   end
 
   def reformat_geotif(infile, outfile)
@@ -124,24 +124,14 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
     list.each { |x|  FileUtils.cp(x, output) }
   end
 
+  # get date of pass, from p2g style naming
   def get_date_of_pass(f)
-    DateTime.strptime(f.split('_')[4, 2].join('_'), '%Y%m%d_%H%M%S')
+    DateTime.strptime(File.basename(f).split('_')[-4, 2].join('_'), '%Y%m%d_%H%M%S')
   end
 
+  # generate output filename
   def generate_filename(f, mapping)
     get_date_of_pass(f).strftime(mapping)
-  end
-
-  def reformat_and_rename_dnb(hsh)
-    dnb = Dir.glob(hsh['dnb']['save'])
-    fail("Too many DNB files found.. #{dnb.join(' ')}") if dnb.length > 1
-    fail("No DNB files found.. #{dnb.join(' ')}") if dnb.length == 0
-    dnb = dnb.first
-    outfilename =  generate_filename(dnb, hsh['dnb']['name'])
-
-    reformat_geotif(dnb, outfilename)
-
-    [outfilename]
   end
 end
 
