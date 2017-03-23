@@ -1,7 +1,7 @@
 configs:
   npp: 
    mapper:
-     dnb: npp_viirs_adaptive_dnb_*_alaska_300.tif
+     dnb: npp_viirs_dynamic_dnb_*_alaska_600.tif
      i01: npp_viirs_i01*_alaska_300.tif
      i02: npp_viirs_i02*_alaska_300.tif
      i03: npp_viirs_i03*_alaska_300.tif
@@ -23,20 +23,20 @@ configs:
    single:
    - title: true_color
      band: true_color
-     name: "npp.%y%j.%H%M_true_color"
+     name: "npp.%Y%m%d.%H%M_true_color"
    - title: dnb
      band: dnb
-     name: "npp.%y%j.%H%M_DNB"
+     name: "npp.%Y%m%d.%H%M_DNB"
    - title: thermal
      band: "i05"
-     name: "npp.%y%j.%H%M_I05"
+     name: "npp.%Y%m%d.%H%M_I05"
    combinations:
    - title: landcolor
      bands:
        r: "i03"
        g: "i02"
        b: "i01"
-     name: "npp.%y%j.%H%M_I03_I02_I01"
+     name: "npp.%Y%m%d.%H%M_I03_I02_I01"
   t1:
    mapper:
      "30": terra_modis_bt30_*_alaska_1000.tif
@@ -54,10 +54,10 @@ configs:
    single:
    - title: true_color
      band: true_color
-     name: "t1.%y%j.%H%M_true_color"
+     name: "t1.%Y%m%d.%H%M_true_color"
    - title: thermal
      band: "31"
-     name: "t1.%y%j.%H%M_31"
+     name: "t1.%Y%m%d.%H%M_31"
    combinations:
    - title: 261
      bands:
@@ -65,21 +65,21 @@ configs:
        g: "6"
        b: "1_500"
        p: "1"
-     name: "t1.%y%j.%H%M_2_6_1_1"
+     name: "t1.%Y%m%d.%H%M_2_6_1_1"
    - title: 721
      bands:
        r: "7"
        g: "2_500"
        b: "1_500"
        p: "1"
-     name: "t1.%y%j.%H%M_7_2_1_1"
+     name: "t1.%Y%m%d.%H%M_7_2_1_1"
    - title: 367
      bands:
        r: "3"
        g: "6"
        b: "7"
        p: "1"
-     name: "t1.%y%j.%H%M_3_6_7"
+     name: "t1.%Y%m%d.%H%M_3_6_7"
   a1:
    mapper:
      30: aqua_modis_bt30_*_alaska_1000.tif
@@ -96,10 +96,10 @@ configs:
    single:
    - title: true_color
      band: true_color
-     name: "a1.%y%j.%H%M_true_color"
+     name: "a1.%Y%m%d.%H%M_true_color"
    - title: thermal
      band: "31"
-     name: "a1.%y%j.%H%M_31"
+     name: "a1.%Y%m%d.%H%M_31"
    combinations:
    - title: landcolor
      bands:
@@ -107,6 +107,6 @@ configs:
        g: "2_500"
        b: "1_500"
        p: "1"
-     name: "a1.%y%j.%H%M_7_2_1_1"
+     name: "a1.%Y%m%d.%H%M_7_2_1_1"
 limits:
   processor: 1
