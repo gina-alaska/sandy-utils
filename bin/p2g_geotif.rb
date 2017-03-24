@@ -8,7 +8,7 @@ class P2gGeotifClamp <  ProcessingFramework::CommandLineHelper
   banner 'This tool makes geotifs from modis and viirs data .'
   default_config 'p2g_geotif'
 
-  option ['-m', '--mode'], 'mode', 'The mode to use.', default: 'viirs'
+  option ['-m', '--mode'], 'mode', 'The mode to use.',  :required => true
 
   parameter 'INPUT', 'The input directory'
   parameter 'OUTPUT', 'The output directory'

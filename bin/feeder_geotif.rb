@@ -8,7 +8,7 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
   banner 'This tool takes MODIS and VIIRS data and makes geotifs intended for feeder.'
   default_config 'feeder_geotif'
 
-  option ['-m', '--mode'], 'mode', 'The mode to use.', default: 'default'
+  option ['-m', '--mode'], 'mode', 'The mode to use.',  :required => true
 
   parameter 'INPUT', 'The input directory'
   parameter 'OUTPUT', 'The output directory'
