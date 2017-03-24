@@ -23,7 +23,7 @@ class P2gGeotifClamp <  ProcessingFramework::CommandLineHelper
     inside(working_dir) do
       grid = " --grid-configs #{get_grid_path(processing_cfg)} "
       processing_cfg['tasks'].each do |task|
-	#generates errors, if some products are not generated, like for example at night
+        # generates errors, if some products are not generated, like for example at night
         shell_out("#{task} #{processing_cfg['p2g_args']} #{grid} -d #{input}")
       end
       copy_output(output, processing_cfg['save'])
@@ -40,11 +40,10 @@ class P2gGeotifClamp <  ProcessingFramework::CommandLineHelper
     output += '/' if output[-1] != '/'
 
     FileUtils.mkdir_p(output)  unless (File.exist?(output))
-    list.each do |glob|  
-	Dir.glob(glob).each {|x| FileUtils.cp(x, output) }
+    list.each do |glob|
+      Dir.glob(glob).each { |x| FileUtils.cp(x, output) }
     end
   end
-
 end
 
 P2gGeotifClamp.run
