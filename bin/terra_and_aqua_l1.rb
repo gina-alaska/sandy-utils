@@ -66,16 +66,16 @@ class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
 
       gina_name = get_gina_name(rL1B_LACs.first, platform, get_l1_time(rGEOs.first))
 
-      FileUtils.mv(rL1B_LACs.first, gina_name + '.cal1000.hdf')
+      FileUtils.mv(rL1B_LACs.first, gina_name + '.1000m.hdf')
       FileUtils.mv(rGEOs.first, gina_name + '.geo.hdf')
 
       # 500m - not produced for night passes
       rL1B_HKM = Dir.glob('*L1B_HKM').first
-      FileUtils.mv(rL1B_HKM, gina_name + '.cal500.hdf') if (rL1B_HKM)
+      FileUtils.mv(rL1B_HKM, gina_name + '.500m.hdf') if (rL1B_HKM)
 
       # 250m - not produced for night passes
       rL1B_QKM = Dir.glob('*L1B_QKM').first
-      FileUtils.mv(rL1B_QKM, gina_name + '.cal250.hdf') if (rL1B_QKM)
+      FileUtils.mv(rL1B_QKM, gina_name + '.250m.hdf') if (rL1B_QKM)
 
       conf['processing']['save'].each do |glob|
         copy_output(output, glob)

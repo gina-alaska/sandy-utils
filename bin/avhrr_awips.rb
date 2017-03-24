@@ -69,7 +69,7 @@ class AvhrrAwipsClamp <  ProcessingFramework::CommandLineHelper
     command = "#{cfg['export'][mode]} include_vars=#{band} #{fr_file} #{fr_file}.#{band}.float.tif"
     tscan_run(command, cfg)
 
-    shell_out!("#{cfg['scaling'][mode]} #{fr_file}.#{band}.float.tif #{fr_file}.#{band}.awips.tif")
+    shell_out("#{cfg['scaling'][mode]} #{fr_file}.#{band}.float.tif #{fr_file}.#{band}.awips.tif")
     shell_out!("gdalwarp #{cfg['awips_conversion']['warp_opts']} -te #{cfg['awips_conversion']['extents']} #{cfg['gdal']['co_opts']} -t_srs #{cfg['awips_conversion']['proj']}  #{fr_file}.#{band}.awips.tif  #{fr_file}.#{band}.302.tif")
 
     shell_out!("gdal_translate #{fr_file}.#{band}.302.tif -of ENVI ./noaa_avhrr_#{band}_203.uint1.8384.7239")
