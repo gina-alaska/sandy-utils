@@ -23,7 +23,8 @@ class P2gGeotifClamp <  ProcessingFramework::CommandLineHelper
     inside(working_dir) do
       grid = " --grid-configs #{get_grid_path(processing_cfg)} "
       processing_cfg['tasks'].each do |task|
-        shell_out!("#{task} #{processing_cfg['p2g_args']} #{grid} -d #{input}")
+	#generates errors, if some products are not generated, like for example at night
+        shell_out("#{task} #{processing_cfg['p2g_args']} #{grid} -d #{input}")
       end
       copy_output(output, processing_cfg['save'])
     end

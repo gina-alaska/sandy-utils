@@ -82,17 +82,17 @@ configs:
      name: "t1.%Y%m%d.%H%M_3_6_7"
   a1:
    mapper:
-     30: aqua_modis_bt30_*_alaska_1000.tif
-     31: aqua_modis_bt31_*_alaska_1000.tif
-     true_color: aqua_modis_true_color_*_alaska_250.tif
-     1: aqua_modis_vis01_*_alaska_250.tif
-     1_500: aqua_modis_vis01_*_alaska_500.tif
-     2: aqua_modis_vis02_*_alaska_250.tif
-     2_500: aqua_modis_vis02_*_alaska_500.tif
-     3: aqua_modis_vis03_*_alaska_500.tif
-     4: aqua_modis_vis04_*_alaska_500.tif
-     5: aqua_modis_vis05_*_alaska_500.tif
-     7: aqua_modis_vis07_*_alaska_500.tif
+     "30": aqua_modis_bt30_*_alaska_1000.tif
+     "31": aqua_modis_bt31_*_alaska_1000.tif
+     "true_color": aqua_modis_true_color_*_alaska_250.tif
+     "1": aqua_modis_vis01_*_alaska_250.tif
+     "1_500": aqua_modis_vis01_*_alaska_500.tif
+     "2": aqua_modis_vis02_*_alaska_250.tif
+     "2_500": aqua_modis_vis02_*_alaska_500.tif
+     "3": aqua_modis_vis03_*_alaska_500.tif
+     "4": aqua_modis_vis04_*_alaska_500.tif
+     "5": aqua_modis_vis05_*_alaska_500.tif
+     "7": aqua_modis_vis07_*_alaska_500.tif
    single:
    - title: true_color
      band: true_color
@@ -101,7 +101,7 @@ configs:
      band: "31"
      name: "a1.%Y%m%d.%H%M_31"
    combinations:
-   - title: landcolor
+   - title: "721"
      bands:
        r: "7"
        g: "2_500"

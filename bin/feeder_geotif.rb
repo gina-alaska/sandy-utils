@@ -24,11 +24,19 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
       save_list = []
       # single
       processing_cfg['single'].each do |single|
-        save_list << generate_image_sb(single, input, processing_cfg)
+	begin 
+        	save_list << generate_image_sb(single, input, processing_cfg)
+	rescue RuntimeError => e     
+                puts("INFO: skipping #{single["title"]}, band not found. #{e.to_s}")
+        end
       end
       # combinations
       processing_cfg['combinations'].each do |rgb|
-        save_list << generate_image(rgb, input, processing_cfg)
+	begin
+        	save_list << generate_image(rgb, input, processing_cfg)
+	rescue RuntimeError => e 
+		puts("INFO: skipping #{rgb["title"]}, bands not found. #{e.to_s}")
+	end
       end
 
       save_list.each do |geotif|
@@ -47,10 +55,10 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
     file_name_pattern = band_mapper(band, cfg)
     fail "Couldn't find band mapping for #{band}" unless file_name_pattern
     puts("INFO: Looking for #{file_name_pattern}")
-    band = Dir.glob(input_dir + '/' + file_name_pattern)
-    fail "Too many bands found (#{band.join(',')} for band #{color}" if (band.length > 1)
-    fail "No bands found for band #{color}" if (band.length == 0)
-    band.first
+    band_file = Dir.glob(input_dir + '/' + file_name_pattern)
+    fail "Too many bands found (#{band_file.join(',')} for band #{color}" if (band_file.length > 1)
+    fail "No bands found for band #{band}" if (band_file.length == 0)
+    band_file.first
   end
 
   ##
