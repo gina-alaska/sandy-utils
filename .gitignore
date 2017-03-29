@@ -11,3 +11,6 @@ no_git*
 *bak
 test_*
 .bundle
+
+.kitchen
+results

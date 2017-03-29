@@ -15,7 +15,7 @@ class CrisAwipsClamp <  ProcessingFramework::CommandLineHelper
 
   option ['-c', '--config'], 'config', "The config file. Using #{@config} as the default.", default: @config
   option ['-i', '--inputdir'], 'inputdir', 'The input directory. ', required: true
-  option ['-m', '--mode'], 'mode', "The mode to use #{@conf['configs'].keys.join(',')}.", default: 'default'
+  option ['-m', '--mode'], 'mode', "The mode to use.", default: 'default'
   option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: @conf['limits']['processor']
   option ['-s', '--save'], 'save_pattern', 'A regular expression for the items to save - that is what items generated should be saved.', default: @conf['configs']['default']['save']
 

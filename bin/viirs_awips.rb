@@ -52,7 +52,7 @@ class SnppAwipsClamp <  ProcessingFramework::CommandLineHelper
       "-p #{@processing_cfg['crefl_bands']}",
       "--backend-configs #{get_config_item(@processing_cfg['p2g_config'])}"
     ].join(" ")
-    shell_out!(command)
+    shell_out(command)
   end
 
   def get_config_item(item)
