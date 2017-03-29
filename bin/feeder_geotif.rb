@@ -8,7 +8,7 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
   banner 'This tool takes MODIS and VIIRS data and makes geotifs intended for feeder.'
   default_config 'feeder_geotif'
 
-  option ['-m', '--mode'], 'mode', 'The mode to use.',  :required => true
+  option ['-m', '--mode'], 'mode', 'The mode to use.',  required: true
 
   parameter 'INPUT', 'The input directory'
   parameter 'OUTPUT', 'The output directory'
@@ -122,14 +122,6 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
     gdal_opts = "-co TILED=YES -co COMPRESS=DEFLATE -co ZLEVEL=9 -co PREDICTOR=2 -a_nodata \"0 0 0\""
     shell_out!("gdal_translate #{gdal_opts} #{infile} #{outfile}")
     shell_out!("add_overviews.rb #{outfile}")
-  end
-
-  def copy_output(output, list)
-    # add trailing slash, if needed
-    output += '/' if output[-1] != '/'
-
-    FileUtils.mkdir_p(output)  unless (File.exist?(output))
-    list.each { |x|  FileUtils.cp(x, output) }
   end
 
   # get date of pass, from p2g style naming
