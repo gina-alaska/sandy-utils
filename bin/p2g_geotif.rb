@@ -8,7 +8,7 @@ class P2gGeotifClamp <  ProcessingFramework::CommandLineHelper
   banner 'This tool makes geotifs from modis and viirs data .'
   default_config 'p2g_geotif'
 
-  option ['-m', '--mode'], 'mode', 'The mode to use.',  :required => true
+  option ['-m', '--mode'], 'mode', 'The mode to use.',  required: true
 
   parameter 'INPUT', 'The input directory'
   parameter 'OUTPUT', 'The output directory'
@@ -26,23 +26,15 @@ class P2gGeotifClamp <  ProcessingFramework::CommandLineHelper
         # generates errors, if some products are not generated, like for example at night
         shell_out("#{task} #{processing_cfg['p2g_args']} #{grid} -d #{input}")
       end
-      copy_output(output, processing_cfg['save'])
+      processing_cfg['save'].each do |save_glob|
+        copy_output(output, save_glob)
+      end
     end
   end
 
   # gets path to the grid file.
   def get_grid_path(cfg)
     File.join(File.expand_path('../../config', __FILE__), cfg['grid_file'])
-  end
-
-  def copy_output(output, list)
-    # add trailing slash, if needed
-    output += '/' if output[-1] != '/'
-
-    FileUtils.mkdir_p(output)  unless (File.exist?(output))
-    list.each do |glob|
-      Dir.glob(glob).each { |x| FileUtils.cp(x, output) }
-    end
   end
 end
 
