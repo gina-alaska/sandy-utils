@@ -25,10 +25,10 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
       # single
       processing_cfg['single'].each do |single|
         begin
-                save_list << generate_image_sb(single, input, processing_cfg)
+          save_list << generate_image_sb(single, input, processing_cfg)
         rescue RuntimeError => e
           puts("INFO: skipping #{single['title']}, band not found. #{e.to_s}")
-              end
+        end
       end
       # combinations
       processing_cfg['combinations'].each do |rgb|
