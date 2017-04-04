@@ -9,6 +9,7 @@ class P2gGeotifClamp <  ProcessingFramework::CommandLineHelper
   default_config 'p2g_geotif'
 
   option ['-m', '--mode'], 'mode', 'The mode to use.',  required: true
+  option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: 1
 
   parameter 'INPUT', 'The input directory'
   parameter 'OUTPUT', 'The output directory'
@@ -22,13 +23,26 @@ class P2gGeotifClamp <  ProcessingFramework::CommandLineHelper
 
     inside(working_dir) do
       grid = " --grid-configs #{get_grid_path(processing_cfg)} "
-      processing_cfg['tasks'].each do |task|
-        # generates errors, if some products are not generated, like for example at night
-        shell_out("#{task} #{processing_cfg['p2g_args']} #{grid} -d #{input}")
+
+
+      #run the p2g commands in threads
+      threads = []
+      1.upto(processors.to_i) do |thread_number|
+        threads << Thread.new do
+	  #each p2g thread needs to run in a seperate directory so their temp files don't conflict
+          FileUtils.mkdir("thread_#{thread_number}")
+          loop do
+            task = processing_cfg['tasks'].pop
+            break if (task.nil?)
+            shell_out("cd thread_#{thread_number}; #{task} #{processing_cfg['p2g_args']} #{grid} -d #{input}")
+          end
+          processing_cfg['save'].each do |save_glob|
+            copy_output(output, "thread_#{thread_number}/" + save_glob)
+          end
+        end
       end
-      processing_cfg['save'].each do |save_glob|
-        copy_output(output, save_glob)
-      end
+
+      threads.each(&:join)
     end
   end
 
