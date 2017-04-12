@@ -5,9 +5,9 @@ configs:
     tasks: 
      - "viirs2gtiff.sh --grid-coverage 0.002 -p 'i01 i02 i03 i04 i05' -g alaska_300 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
      - "viirs2gtiff.sh --grid-coverage 0.002 -p 'm02 m03 m04 m06 m07 m08 m15 dnb' -g alaska_600 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
-     - "crefl2gtiff.sh --grid-coverage 0.002 --true-color -g alaska_300"
-     - "viirs2gtiff.sh --grid-coverage 0.002 -p  'i01 i02 i03 i04 i05 adaptive_dnb dynamic_dnb histogram_dnb' -g alaska_300"
+     - "viirs2gtiff.sh --grid-coverage 0.002 --true-color -p  'i01 i02 i03 i04 i05 ' -g alaska_300"
      - "viirs2gtiff.sh --grid-coverage 0.002 --png-quicklook -p  'm02 m03 m04 m05 m06 m07 m08 m15 adaptive_dnb dynamic_dnb histogram_dnb' -g alaska_600"
+     - "crefl2gtiff.sh --grid-coverage 0.002 --true-color -g alaska_300"
     save:
      - "*.tif"
      - "npp_viirs_dynamic_dnb_*_alaska_600.png"
