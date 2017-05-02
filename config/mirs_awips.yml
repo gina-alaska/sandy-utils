@@ -3,5 +3,12 @@ processing:
     save:
       - "*.nc"
       - "*.nc.gz" 
-    driver: "mirs2awips.sh -g 203_10km --grid-coverage 0 -p mirs_rain_rate sea_ice snow_cover surface_type tpw mirs_btemp_02 mirs_btemp_16"
+    driver: "mirs2awips.sh -g 203_10km --grid-coverage 0 -p mirs_rain_rate sea_ice snow_cover tpw swe"
     p2g_backend: "mirs_awips_backend.ini"
+  amsu:
+    save:
+      - "*.nc"
+      - "*.nc.gz"
+    driver: "mirs2awips.sh -g 203_10km --grid-coverage 0 -p mirs_rain_rate sea_ice snow_cover tpw swe"
+    p2g_backend: "mirs_awips_backend.ini"
+
