@@ -3,10 +3,10 @@ processing:
     save:
       - "*.tif"
       - "*.png"
-    driver: "mirs2gtiff.sh -g 203_10km --output-pattern uaf_gina_{satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.tif --png-quicklook --grid-coverage 0 --dtype real4 --compress DEFLATE --tiled  -p mirs_rain_rate sea_ice snow_cover surface_type tpw mirs_btemp_02 mirs_btemp_16 swe"
+    driver: "mirs2gtiff.sh -g 203_10km --output-pattern uaf_gina_{satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.tif --png-quicklook --grid-coverage 0 --dtype real4 --compress DEFLATE --tiled  -p rain_rate sea_ice snow_cover surface_type tpw mirs_btemp_02 mirs_btemp_16 swe"
   amsu:
     save:
       - "*.tif"
       - "*.png"
-    driver: "mirs2gtiff.sh -g 203_10km --output-pattern uaf_gina_{satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.tif --png-quicklook --grid-coverage 0 --dtype real4 --compress DEFLATE --tiled  -p mirs_rain_rate sea_ice snow_cover surface_type tpw mirs_btemp_02 mirs_btemp_16 swe"
+    driver: "mirs2gtiff.sh -g 203_10km --output-pattern uaf_gina_{satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.tif --png-quicklook --grid-coverage 0 --dtype real4 --compress DEFLATE --tiled  -p rain_rate sea_ice snow_cover surface_type tpw mirs_btemp_02 mirs_btemp_16 swe"
 grids: place_holder
