@@ -23,7 +23,7 @@ class MirsAwipsClamp <  ProcessingFramework::CommandLineHelper
 
     working_dir = "#{tempdir}/#{basename}"
     inside(working_dir) do
-      command = "#{conf['processing'][sensor]['driver']} --backend-configs #{get_config_item(conf['processing'][sensor]['p2g_backend'])} -f #{input}/NPR-MIRS-IMG*.nc"
+      command = "#{conf['processing'][sensor]['driver']} --backend-configs #{get_config_item(conf['processing'][sensor]['p2g_backend'])} -f #{input}/*IMG*.nc"
       result = shell_out!(command)
 
       # compress
