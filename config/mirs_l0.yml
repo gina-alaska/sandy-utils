@@ -4,3 +4,8 @@ processing:
       - "NPR-MIRS-IMG*.nc"
       - "NPR-MIRS-SND*.nc"
     driver: "run_mirs.bash  -v -s npp "
+  metop-b:
+    save:
+      - "*.nc"
+      - "*.nc"
+    driver: "run_mirs.bash  -v -s metopB " 
