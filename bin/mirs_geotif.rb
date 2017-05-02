@@ -23,7 +23,7 @@ class MirsGeoTiffClamp <  ProcessingFramework::CommandLineHelper
 
     working_dir = "#{tempdir}/#{basename}"
     inside(working_dir) do
-      command = "#{conf['processing'][sensor]['driver']} -f #{input}/NPR-MIRS-IMG*.nc"
+      command = "#{conf['processing'][sensor]['driver']} -f #{input}/*IMG*.nc"
       result = shell_out!(command)
       conf['processing'][sensor]['save'].each do |glob|
         copy_output(output, glob)
