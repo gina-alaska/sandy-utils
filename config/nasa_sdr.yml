@@ -1,0 +1,68 @@
+configs:
+  viirs:
+   input:
+     viirs.rdr: "RNSCA*RVIRS*.h5"
+   driver: /hub/raid/jcable/drl/SPA/C-SDR/wrapper/VIIRS_C-SDR/run
+   output:  
+     - "viirs.gdnbo"
+     - "viirs.gimgo"
+     - "viirs.gitco"
+     - "viirs.gmodo"
+     - "viirs.gmtco"
+     - "viirs.icdbg"
+     - "viirs.ivcdb"
+     - "viirs.ivobc"
+     - "viirs.svdnb"
+     - "viirs.svi01"
+     - "viirs.svi02"
+     - "viirs.svi03"
+     - "viirs.svi04"
+     - "viirs.svi05"
+     - "viirs.svm01"
+     - "viirs.svm02"
+     - "viirs.svm03"
+     - "viirs.svm04"
+     - "viirs.svm05"
+     - "viirs.svm06"
+     - "viirs.svm07"
+     - "viirs.svm08"
+     - "viirs.svm09"
+     - "viirs.svm10"
+     - "viirs.svm11"
+     - "viirs.svm12"
+     - "viirs.svm13"
+     - "viirs.svm14"
+     - "viirs.svm15"
+     - "viirs.svm16"
+   anc:
+     tle:
+       url: "ftp://is.sci.gsfc.nasa.gov/ancillary/ephemeris/tle/drl.tle*"
+       filename: "drl.tle.%Y%m%d*"
+       location: /opt/drl/anc/tce/
+       max_age: 2
+       name: "tle"
+     polar_wander:
+       url: "ftp://is.sci.gsfc.nasa.gov/ancillary/temporal/off_USNO-PolarWander-UT1-ANC_Ser7_USNO_000f*.ascii"
+       filename: "off_USNO-PolarWander-UT1-ANC_Ser7_USNO_000f_%Y%m%d*.ascii"
+       location: /opt/drl/anc/polar_wander/
+       max_age: 14
+       name: "polar"
+     sdr.lut:
+       url: "ftp://is.sci.gsfc.nasa.gov/ancillary/LUTs/npp/viirs/1.5.07.01/VIIRS*SDR_BE_LUTs_*tar.gz"
+       filename_template: "VIIRSSDR_BE_LUTs_%y%m%d.tar.gz"
+       filename: "VIIRS*SDR_BE_LUTs_*.tar.gz"
+       location: /opt/drl/anc/lut/
+       ignore_date: true
+       name: "sdr.lut"
+     leapsec:
+       url: "ftp://is.sci.gsfc.nasa.gov/ancillary/temporal/leapsec.*"
+       filename: "leapsec.%Y%m%d*.dat"
+       location: /opt/drl/anc/leapsec/
+       max_age: 2
+       name: "leapsec"
+   options: "compress on"
+   save: "*.h5"
+   rdr_glob: "RNSCA-RVIRS*.h5"
+limits:
+  processor: 1
+env: $CSPP_SDR_HOME/cspp_sdr_env.sh
