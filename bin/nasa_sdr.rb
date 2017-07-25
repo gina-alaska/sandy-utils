@@ -1,24 +1,21 @@
 #!/usr/bin/env ruby
-# SDR processing tool..
+# Nasa SDR processing tool..
 # Run like:
-# /snpp_sdr.rb --inputdir /hub/raid/jcable/sandy/source/npp_test/ -m viirs -p 2 -o /hub/raid/jcable/sandy/output/test_viirs/ -t /hub/raid/jcable/sandy/temp/
+# ./nasa_sdr.rb -m viirs -t /hub/raid/jcable/nasa_sdr_test/tmp/ /hub/raid/jcable/nasa_sdr_test/in/ /hub/raid/jcable/nasa_sdr_test/out
 
 ENV['BUNDLE_GEMFILE'] = File.join(File.expand_path('../..', __FILE__), 'Gemfile')
 require 'bundler/setup'
 require 'fileutils'
 require_relative '../lib/processing_framework'
 
-require 'pp'
-
-class SnppViirsSdrClamp <  ProcessingFramework::CommandLineHelper
+class NasaSnppSdrClamp <  ProcessingFramework::CommandLineHelper
   default_config 'nasa_sdr'
   banner 'This tool does SDR processing for SNPP using the NASA toolset.'
 
-  option ['-m', '--mode'], 'mode', "The SDR to process, valid options are viirs.", default: 'viirs'
-  option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: 1
+  option ['-m', '--mode'], 'mode', 'The SDR to process, valid options are viirs.', default: 'viirs'
 
-  parameter "INPUT", "Input directory"
-  parameter "OUTPUT", "Output directory"
+  parameter 'INPUT', 'Input directory'
+  parameter 'OUTPUT', 'Output directory'
 
   def execute
     exit_with_error("Unknown/unconfigured mode: #{mode}", 19) unless conf['configs'][mode]
@@ -42,164 +39,153 @@ class SnppViirsSdrClamp <  ProcessingFramework::CommandLineHelper
     end
   end
 
+  # builds the command line for sdr processing
+  def build_sdr_command_line(cfg, input)
+    tm_of_data = get_time_of_data(input, cfg)
+    tm_of_end_data = get_time_of_end_of_data(input, cfg)
 
+    command = ''
 
- def build_sdr_command_line(cfg, input) 
+    # get anc files
+    command += ' ' + get_anc_options(cfg, tm_of_data) + ' '
 
-	tm_of_data = get_time_of_data(input, cfg)
-	tm_of_end_data = get_time_of_end_of_data(input,cfg)
+    # get output commands
+    command += ' ' + get_output_line(cfg, tm_of_data, tm_of_end_data) + ' '
 
-	command = "" 
-	
-	#get anc files
-	command += " " + get_anc_options(cfg, tm_of_data) + " " 
-	
-	#get output commands
-	command += " " + get_output_line(cfg, tm_of_data, tm_of_end_data) + " "
+    # add input
+    command += ' ' + cfg['input'].keys.first + ' ' + get_a_rdr(input, cfg) + ' '
 
-	#add input
-	command += " " + cfg["input"].keys.first + " " + get_a_rdr(input, cfg) + " "
+    command
+  end
 
-	command
- end
+  # builds the arguements to sdr processing.
+  def get_output_line(cfg, tm_of_data, tm_of_end_of_data)
+    command_line = []
+    time_now = Time.now.utc
+    cfg['output'].each do |item|
+      command_line << item + ' ' +  get_output_item(item, tm_of_data, tm_of_end_of_data, time_now)
+    end
 
+    command_line.join(' ')
+  end
 
- def get_output_line(cfg, tm_of_data,tm_of_end_of_data) 
-	command_line = []
-	time_now = Time.now.utc
-	cfg["output"].each do |item|
-		command_line << item + " " +  get_output_item(item, tm_of_data,tm_of_end_of_data, time_now)
-	end	
+  # formats the output file name
+  # Note -> tm_of_end_of_data isn't a tm object, but a string from the file name with the utc data of the end of the pass
+  def get_output_item(item, tm_of_start_of_data, tm_of_end_of_data, tm_now)
+    name = []
 
-	command_line.join(" ")
- end
+    # strip out the leading bit, viirs.gdnbo => gdnbo
+    name << item.split('.')[1].upcase
 
+    # hard coded to npp, fix me
+    name << 'npp'
 
+    # date
+    name << tm_of_start_of_data.strftime('d%Y%m%d')
 
+    # start time
+    name << tm_of_start_of_data.strftime('t%H%M%S0')
 
- #formats the output file name
- # Note -> tm_of_end_of_data isn't a tm object, but a string from the file name with the utc data of the end of the pass
- def get_output_item(item, tm_of_start_of_data,tm_of_end_of_data, tm_now)
-	name = []
-	
-	#strip out the leading bit, viirs.gdnbo => gdnbo
-	name << item.split(".")[1].upcase
-	
-	#hard coded to npp, fix me
-	name << "npp" 
+    # end time
+    name << tm_of_end_of_data
 
-	#date
-	name << tm_of_start_of_data.strftime("d%Y%m%d")
-	
-	#start time
-	name << tm_of_start_of_data.strftime("t%H%M%S0")
+    # orbit - just set to 1, it isn't possible to figure out the correct number
+    name << 'b00001'
 
-	#end time 
-	name << tm_of_end_of_data	
-		
-	#orbit - just set to 1, it isn't possible to figure out the correct number
-        name << "b00001"
+    # time of creation
+    name << tm_now.strftime('c%Y%m%d%H%M%S%6N')
 
-	#time of creation
-	name << tm_now.strftime("c%Y%m%d%H%M%S%6N")
+    # source
+    name << 'gina'
 
-	#source
-	name << "gina"
+    name.join('_') + '.h5'
+  end
 
-	name.join("_") + ".h5"
- end
+  # finds anc stuff, locates the correct files, and builds commandline
+  def get_anc_options(cfg, tm_of_data)
+    get_anc(cfg, tm_of_data)
+    command = ''
+    cfg['anc'].each do |_key, values|
+      command += " #{values['name']} #{values['path']} "
+    end
 
+    command
+  end
 
- # finds anc stuff, locates the correct files, and builds commandline
- def get_anc_options(cfg, tm_of_data)
-	get_anc(cfg, tm_of_data)
-	command = ""
-	cfg["anc"].each do |key,values|
-		command += " #{values["name"]} #{values["path"]} "	
-        end
+  # finds anc files for each item
+  def get_anc(cfg, tm_of_data)
+    cfg['anc'].each do |_name, set|
+      set['path'] = get_anc_set(set, tm_of_data)
+      puts("INFO: For #{set['name']} using #{set['path']}")
+    end
+  end
 
-	command
- end
-
-# finds anc files for each item
- def get_anc(cfg, tm_of_data)
-	cfg["anc"].each do |name, set|
-		set["path"] = get_anc_set(set, tm_of_data)
-	end
- end
-
-#gets the anc for a particular item.
+  # gets the anc for a particular item.
   def get_anc_set(set, tm_of_data)
+    if (set['ignore_date'])
+      anc = get_anc_for_date(set, tm_of_data)
+      return anc if anc
+    else
+      0.upto(set['max_age']) do |age|
+        # anc = get_anc_for_date(set,tm_of_data - 24*60*60*age)
+        anc = get_anc_for_date(set, tm_of_data - age)
+        return anc if anc
+      end
+    end
 
-	if (set["ignore_date"] )	
-		anc = get_anc_for_date(set,tm_of_data)
-		return anc if anc
-   	else
-		0.upto(set["max_age"]) do | age| 
-			#anc = get_anc_for_date(set,tm_of_data - 24*60*60*age)
-			anc = get_anc_for_date(set,tm_of_data - age)
-			return anc if anc
-		end
-	end
-
-	raise "Cannot find ancillary files for set #{set["name"]} for #{tm_of_data}"
+    fail "Cannot find ancillary files for set #{set['name']} for #{tm_of_data}"
   end
 
-
-#get anc for a tm
-  def get_anc_for_date(set, tm) 
-	#glob the dir with the patern, sort, and take last
-	pattern = set["location"] + "/" + tm.strftime(set["filename"])
-	Dir.glob(pattern).sort.last
+  # get anc for a tm
+  def get_anc_for_date(set, tm)
+    # glob the dir with the patern, sort, and take last
+    pattern = set['location'] + '/' + tm.strftime(set['filename'])
+    Dir.glob(pattern).sort.last
   end
 
-#possibly unknown..
+  # possibly unknown..
   def get_a_rdr(input_dir, cfg)
-	cfg["input"].each do |key,rdr_glob|
-		puts("INFO: Looking for #{rdr_glob}")
-		rdrs = Dir.glob(input_dir+"/"+rdr_glob)
-		return rdrs.first if rdrs.length > 0
-	end
+    cfg['input'].each do |_key, rdr_glob|
+      puts("INFO: Looking for #{rdr_glob}")
+      rdrs = Dir.glob(input_dir + '/' + rdr_glob)
+      return rdrs.first if rdrs.length > 0
+    end
 
-      raise "No RDRs found"
+    fail 'No RDRs found'
   end
 
-#formats the output file
-  def format_url(url, tm ) 
-	tm.strftime(url)
+  # formats the output file
+  def format_url(url, tm)
+    tm.strftime(url)
   end
 
-
-
-  #returns datetime of the pass
-  def get_time_of_data(input,cfg) 
-	#viirs_rdr = Dir.glob("#{input}/RNSCA-RVIRS*.h5").first
-	#raise "Can not locate viirs rdr (RNSCA-RVIRS*.h5)"  if !viirs_rdr
-	viirs_rdr = get_a_rdr(input, cfg)
-	DateTime.strptime(File.basename(viirs_rdr),"RNSCA-RVIRS_npp_d%Y%m%d_t%H%M%S")
+  # returns datetime of the pass
+  def get_time_of_data(input, cfg)
+    # viirs_rdr = Dir.glob("#{input}/RNSCA-RVIRS*.h5").first
+    # raise "Can not locate viirs rdr (RNSCA-RVIRS*.h5)"  if !viirs_rdr
+    viirs_rdr = get_a_rdr(input, cfg)
+    DateTime.strptime(File.basename(viirs_rdr), 'RNSCA-RVIRS_npp_d%Y%m%d_t%H%M%S')
   end
 
-  #returns a string with the data of the end of data, as taken from the rdr filename
-  #fixme - should parse date out as a DateTime
+  # returns a string with the data of the end of data, as taken from the rdr filename
+  # fixme - should parse date out as a DateTime
   def get_time_of_end_of_data(input, cfg)
-	#File.basename(Dir.glob("#{input}/RNSCA-RVIRS*.h5").first).split("_")[4]
-	viirs_rdr = get_a_rdr(input, cfg)
-	#trims off the time bit of the file name
-	#fixme - should actually parse the time
-	File.basename(viirs_rdr).split("_")[4]
+    # File.basename(Dir.glob("#{input}/RNSCA-RVIRS*.h5").first).split("_")[4]
+    viirs_rdr = get_a_rdr(input, cfg)
+    # trims off the time bit of the file name
+    # fixme - should actually parse the time
+    File.basename(viirs_rdr).split('_')[4]
   end
 
-
-  #not sure how to abstract this out..
-  #builds commandline from the cfg file. 
+  # not sure how to abstract this out..
+  # builds commandline from the cfg file.
   def build_nasa_sdr(input_rdr, cfg)
-	command = []
-	command << 
-	cfg.output.each do |x|
-		command << nasa_command_line_item(x)	
-	end
-
+    command = []
+    command <<
+      cfg.output.each do |x|
+        command << nasa_command_line_item(x)
+      end
   end
 end
 
-SnppViirsSdrClamp.run
+NasaSnppSdrClamp.run
