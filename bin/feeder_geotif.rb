@@ -38,6 +38,15 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
           puts("INFO: skipping #{rgb['title']}, bands not found. #{e.to_s}")
         end
       end
+      # specials
+      processing_cfg['extras'].each do |rgb|
+        begin
+          save_list << generate_image_extras(rgb, input, processing_cfg)
+        rescue RuntimeError => e
+          puts("INFO: skipping #{rgb['title']}, bands not found. #{e.to_s}")
+        end
+      end
+
 
       save_list.each do |geotif|
         copy_output(output, geotif)
@@ -94,6 +103,30 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
 
     ["#{final_file}.tif", "#{final_file}.small.png"]
   end
+
+  ##
+  # Generates specials
+  def generate_image_extras(image_hsh, input, cfg, basename = nil)
+    bands = image_hsh['bands']
+
+    red = get_band(input, bands['r'], cfg)
+    green = get_band(input, bands['g'], cfg)
+    blue = get_band(input, bands['b'], cfg)
+
+    unless (basename)
+      # determine the correct naming scheme... use the "Red" file to figure this out.
+      # naming format is npp_viirs_m_04_20150326_214512_alaska_300.tif like.
+      date_of_pass = get_date_of_pass(red)
+      basename = date_of_pass.strftime(image_hsh['name'])
+    end
+
+    shell_out!("#{image_hsh["tool"]} --red #{red} --green #{green} --blue #{blue} #{basename}.tif")
+    shell_out!("add_overviews.rb #{basename}.tif")
+    shell_out!("gdal_translate -of png -outsize 5% 5% #{basename}.tif #{basename}.small.png")
+
+    ["#{basename}.tif", "#{basename}.small.png"]
+  end
+
 
   ##
   # Generates singled badded images.

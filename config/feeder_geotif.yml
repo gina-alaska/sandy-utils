@@ -7,6 +7,11 @@ configs:
      i03: npp_viirs_i03*_alaska_300.tif
      i04: npp_viirs_i04*_alaska_300.tif
      i05: npp_viirs_i05*_alaska_300.tif
+     i01_float: npp_viirs_i01*_alaska_300.float.tif
+     i02_float: npp_viirs_i02*_alaska_300.float.tif
+     i03_float: npp_viirs_i03*_alaska_300.float.tif
+     i04_float: npp_viirs_i04*_alaska_300.float.tif
+     i05_float: npp_viirs_i05*_alaska_300.float.tif
      m02: npp_viirs_m02_*_alaska_600.tif
      m03: npp_viirs_m02_*_alaska_600.tif
      m04: npp_viirs_m02_*_alaska_600.tif
@@ -14,7 +19,13 @@ configs:
      m06: npp_viirs_m02_*_alaska_600.tif
      m07: npp_viirs_m02_*_alaska_600.tif
      m08: npp_viirs_m02_*_alaska_600.tif
+     m10: npp_viirs_m10_*_alaska_600.tif
+     m11: npp_viirs_m11_*_alaska_600.tif
+     m12: npp_viirs_m12_*_alaska_600.tif
      m15: npp_viirs_m02_*_alaska_600.tif
+     m10_float: npp_viirs_m10_*_alaska_600.float.tif
+     m11_float: npp_viirs_m11_*_alaska_600.float.tif
+     m12_float: npp_viirs_m12_*_alaska_600.float.tif
      true_color: npp_viirs_true_color_*_alaska_300.tif
      crefl01: npp_viirs_viirs_crefl01_*_alaska_300.tif
      crefl03: npp_viirs_viirs_crefl03_*_alaska_300.tif
@@ -37,6 +48,21 @@ configs:
        g: "i02"
        b: "i01"
      name: "npp.%Y%m%d.%H%M_I03_I02_I01"
+   extras:
+   - title: viirs_fire_temperature
+     bands:
+       r: "m12_float"
+       g: "m11_float"
+       b: "m10_float"
+     tool: "viirs_fire_stretch --blue-cap 0.75 "
+     name: "npp.%Y%m%d.%H%M_m12_m11_m10"
+   - title: viirs_fire_color
+     bands:
+       r: "i04_float"
+       g: "i02_float"
+       b: "i01_float"
+     tool: "viirs_fire_stretch --blue-cap 1.0 "
+     name: "npp.%Y%m%d.%H%M_i04_i02_i01"
   t1:
    mapper:
      "30": terra_modis_bt30_*_alaska_1000.tif
