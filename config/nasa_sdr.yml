@@ -65,4 +65,3 @@ configs:
    rdr_glob: "RNSCA-RVIRS*.h5"
 limits:
   processor: 1
-env: $CSPP_SDR_HOME/cspp_sdr_env.sh

@@ -35,12 +35,10 @@ class SnppViirsSdrClamp <  ProcessingFramework::CommandLineHelper
                      Dir.glob(File.join(input, processing_cfg['rdr_glob'])).first
                    end
 
-      puts build_sdr_command_line(processing_cfg, input)
-
-      #command = ". #{conf['env']} ; #{processing_cfg['driver']} -p #{processors} #{processing_cfg['options']}  #{input_file}"
-      #result = shell_out!(command)
-
-      #copy_output(output, '*.h5')
+      options = build_sdr_command_line(processing_cfg, input)
+      command = "#{processing_cfg['driver']} #{processing_cfg['options']} #{options}"
+      result = shell_out!(command)
+      copy_output(output, '*.h5')
     end
   end
 
@@ -48,13 +46,10 @@ class SnppViirsSdrClamp <  ProcessingFramework::CommandLineHelper
 
  def build_sdr_command_line(cfg, input) 
 
-	tm_of_data = get_time_of_data(input)
-	tm_of_end_data = get_time_of_end_of_data(input)
+	tm_of_data = get_time_of_data(input, cfg)
+	tm_of_end_data = get_time_of_end_of_data(input,cfg)
 
 	command = "" 
-	
-	#command to run
-	command += cfg["driver"] + " " 
 	
 	#get anc files
 	command += " " + get_anc_options(cfg, tm_of_data) + " " 
@@ -175,18 +170,28 @@ class SnppViirsSdrClamp <  ProcessingFramework::CommandLineHelper
   end
 
 
-  def get_time_of_data(input) 
-	viirs_rdr = Dir.glob("#{input}/RNSCA-RVIRS*.h5").first
-	raise "Can not locate viirs rdr (RNSCA-RVIRS*.h5)"  if !viirs_rdr
+
+  #returns datetime of the pass
+  def get_time_of_data(input,cfg) 
+	#viirs_rdr = Dir.glob("#{input}/RNSCA-RVIRS*.h5").first
+	#raise "Can not locate viirs rdr (RNSCA-RVIRS*.h5)"  if !viirs_rdr
+	viirs_rdr = get_a_rdr(input, cfg)
 	DateTime.strptime(File.basename(viirs_rdr),"RNSCA-RVIRS_npp_d%Y%m%d_t%H%M%S")
   end
 
-  def get_time_of_end_of_data(input)
-	File.basename(Dir.glob("#{input}/RNSCA-RVIRS*.h5").first).split("_")[4]
+  #returns a string with the data of the end of data, as taken from the rdr filename
+  #fixme - should parse date out as a DateTime
+  def get_time_of_end_of_data(input, cfg)
+	#File.basename(Dir.glob("#{input}/RNSCA-RVIRS*.h5").first).split("_")[4]
+	viirs_rdr = get_a_rdr(input, cfg)
+	#trims off the time bit of the file name
+	#fixme - should actually parse the time
+	File.basename(viirs_rdr).split("_")[4]
   end
 
 
   #not sure how to abstract this out..
+  #builds commandline from the cfg file. 
   def build_nasa_sdr(input_rdr, cfg)
 	command = []
 	command << 
