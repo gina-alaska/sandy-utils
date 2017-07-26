@@ -152,7 +152,7 @@ class FeederGeotifClamp < ProcessingFramework::CommandLineHelper
 
   def reformat_geotif(infile, outfile)
     # gdal opts
-    gdal_opts = '-co TILED=YES -co COMPRESS=DEFLATE -co ZLEVEL=9 -co PREDICTOR=2 -a_nodata "0 0 0"'
+    gdal_opts = "-co TILED=YES -co COMPRESS=DEFLATE -co ZLEVEL=9 -co NUM_THREADS=ALL_CPUS -a_nodata \"0 0 0\""
     shell_out!("gdal_translate #{gdal_opts} #{infile} #{outfile}")
     shell_out!("add_overviews.rb #{outfile}")
   end

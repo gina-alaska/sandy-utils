@@ -1,11 +1,11 @@
 configs:
-  viirs: 
+  viirs:
     p2g_args: "--tiled --compress DEFLATE"
     grid_file: "viirs_geotiff_grids.grd"
-    tasks: 
+    tasks:
      - "viirs2gtiff.sh --grid-coverage 0.002 -p 'i01 i02 i03 i04 i05' -g alaska_300 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
      - "viirs2gtiff.sh --grid-coverage 0.002 -p 'm02 m03 m04 m06 m07 m08 m10 m11 m12 m15 dnb' -g alaska_600 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
-     - "viirs2gtiff.sh --grid-coverage 0.002  -p  'i01 i02 i03 i04 i05 ' -g alaska_300"
+     - "viirs2gtiff.sh --grid-coverage 0.002 -p 'i01 i02 i03 i04 i05 ' -g alaska_300"
      - "viirs2gtiff.sh --grid-coverage 0.002 --png-quicklook -p  'm02 m03 m04 m05 m06 m07 m08 m10 m11 m12 m15 adaptive_dnb dynamic_dnb histogram_dnb' -g alaska_600"
      - "crefl2gtiff.sh --grid-coverage 0.002 --true-color -g alaska_300"
     save:
@@ -17,11 +17,11 @@ configs:
     tasks:
      - "modis2gtiff.sh --grid-coverage 0.002 -p 'ir31 ir30 bt30 bt31' -g alaska_1000 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
      - "crefl2gtiff.sh --grid-coverage 0.002 --true-color -g alaska_250"
-     - "modis2gtiff.sh --grid-coverage 0.002 -p  'vis01 vis02' -g alaska_250"
-     - "modis2gtiff.sh --grid-coverage 0.002 -p  'vis01 vis02 vis03 vis04 vis05 vis06 vis07' -g alaska_500"
+     - "modis2gtiff.sh --grid-coverage 0.002 -p 'vis01 vis02' -g alaska_250"
+     - "modis2gtiff.sh --grid-coverage 0.002 -p 'vis01 vis02 vis03 vis04 vis05 vis06 vis07' -g alaska_500"
      - "modis2gtiff.sh --png-quicklook --grid-coverage 0.02 -p 'ir30 ir31 bt30 bt31' -g alaska_1000"
     save:
      - "*.tif"
      - "*_modis_bt31_*_alaska_1000.png"
-limitsl box :
+limits:
   processor: 1
