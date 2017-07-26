@@ -23,5 +23,5 @@ configs:
     save:
      - "*.tif"
      - "*_modis_bt31_*_alaska_1000.png"
-limitsl box :
+limits:
   processor: 1
