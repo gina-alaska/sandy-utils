@@ -4,11 +4,11 @@ require 'bundler/setup'
 require 'fileutils'
 require_relative '../lib/processing_framework'
 
-class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
+class FeederGeotifClamp < ProcessingFramework::CommandLineHelper
   banner 'This tool takes MODIS and VIIRS data and makes geotifs intended for feeder.'
   default_config 'feeder_geotif'
 
-  option ['-m', '--mode'], 'mode', 'The mode to use.',  required: true
+  option ['-m', '--mode'], 'mode', 'The mode to use.', required: true
 
   parameter 'INPUT', 'The input directory'
   parameter 'OUTPUT', 'The output directory'
@@ -39,14 +39,15 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
         end
       end
       # specials
-      processing_cfg['extras'].each do |rgb|
-        begin
-          save_list << generate_image_extras(rgb, input, processing_cfg)
-        rescue RuntimeError => e
-          puts("INFO: skipping #{rgb['title']}, bands not found. #{e.to_s}")
+      if (processing_cfg['extras'])
+        processing_cfg['extras'].each do |rgb|
+          begin
+            save_list << generate_image_extras(rgb, input, processing_cfg)
+          rescue RuntimeError => e
+            puts("INFO: skipping #{rgb['title']}, bands not found. #{e.to_s}")
+          end
         end
       end
-
 
       save_list.each do |geotif|
         copy_output(output, geotif)
@@ -62,11 +63,11 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
   # should throw an exception if the file isn't found, more than one is found, or the band isn't in the mapping
   def get_band(input_dir, band, cfg)
     file_name_pattern = band_mapper(band, cfg)
-    fail "Couldn't find band mapping for #{band}" unless file_name_pattern
+    raise "Couldn't find band mapping for #{band}" unless file_name_pattern
     puts("INFO: Looking for #{file_name_pattern}")
     band_file = Dir.glob(input_dir + '/' + file_name_pattern)
-    fail "Too many bands found (#{band_file.join(',')} for band #{color}" if (band_file.length > 1)
-    fail "No bands found for band #{band}" if (band_file.length == 0)
+    raise "Too many bands found (#{band_file.join(',')} for band #{color}" if (band_file.length > 1)
+    raise "No bands found for band #{band}" if band_file.empty?
     band_file.first
   end
 
@@ -79,7 +80,7 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
     green = get_band(input, bands['g'], cfg)
     blue = get_band(input, bands['b'], cfg)
 
-    unless (basename)
+    unless basename
       # determine the correct naming scheme... use the "Red" file to figure this out.
       # naming format is npp_viirs_m_04_20150326_214512_alaska_300.tif like.
       date_of_pass = get_date_of_pass(red)
@@ -94,10 +95,10 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
     if (bands['p'])
       pan = get_band(input, bands['p'], cfg)
       shell_out!("gdal_landsat_pansharp -ndv 0 -rgb #{tmp_name} -pan #{pan} -o #{tmp_name}.pan.tif")
-      tmp_file =  "#{tmp_name}.pan.tif"
+      tmp_file = "#{tmp_name}.pan.tif"
     end
 
-    reformat_geotif("#{tmp_name}", "#{final_file}.tif")
+    reformat_geotif(tmp_name.to_s, "#{final_file}.tif")
     shell_out!("rm -vf #{tmp_name} #{tmp_name}.pan.tif")
     shell_out!("gdal_translate -of png -outsize 5% 5% #{final_file}.tif #{final_file}.small.png")
 
@@ -113,20 +114,19 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
     green = get_band(input, bands['g'], cfg)
     blue = get_band(input, bands['b'], cfg)
 
-    unless (basename)
+    unless basename
       # determine the correct naming scheme... use the "Red" file to figure this out.
       # naming format is npp_viirs_m_04_20150326_214512_alaska_300.tif like.
       date_of_pass = get_date_of_pass(red)
       basename = date_of_pass.strftime(image_hsh['name'])
     end
 
-    shell_out!("#{image_hsh["tool"]} --red #{red} --green #{green} --blue #{blue} #{basename}.tif")
+    shell_out!("#{image_hsh['tool']} --red #{red} --green #{green} --blue #{blue} #{basename}.tif")
     shell_out!("add_overviews.rb #{basename}.tif")
     shell_out!("gdal_translate -of png -outsize 5% 5% #{basename}.tif #{basename}.small.png")
 
     ["#{basename}.tif", "#{basename}.small.png"]
   end
-
 
   ##
   # Generates singled badded images.
@@ -135,7 +135,7 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
 
     band = get_band(input, image_hsh['band'], cfg)
 
-    unless (basename)
+    unless basename
       # determine the correct naming scheme... use the "Red" file to figure this out.
       # naming format is npp_viirs_m_04_20150326_214512_alaska_300.tif like.
       date_of_pass = get_date_of_pass(band)
@@ -152,7 +152,7 @@ class FeederGeotifClamp <  ProcessingFramework::CommandLineHelper
 
   def reformat_geotif(infile, outfile)
     # gdal opts
-    gdal_opts = "-co TILED=YES -co COMPRESS=DEFLATE -co ZLEVEL=9 -co PREDICTOR=2 -a_nodata \"0 0 0\""
+    gdal_opts = '-co TILED=YES -co COMPRESS=DEFLATE -co ZLEVEL=9 -co PREDICTOR=2 -a_nodata "0 0 0"'
     shell_out!("gdal_translate #{gdal_opts} #{infile} #{outfile}")
     shell_out!("add_overviews.rb #{outfile}")
   end
