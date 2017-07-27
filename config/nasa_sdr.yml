@@ -60,7 +60,8 @@ configs:
        location: /opt/drl/anc/leapsec/
        max_age: 2
        name: "leapsec"
-   options: "compress on"
+   options: "compress off"
+   options_note: "nasa tools will uncompress the data before using it, slowing things down"
    save: "*.h5"
    rdr_glob: "RNSCA-RVIRS*.h5"
 limits:
