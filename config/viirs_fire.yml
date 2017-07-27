@@ -1,0 +1,40 @@
+--- 
+configs: 
+  mband: 
+    driver: "/hub/raid/jcable/drl/SPA/VIIRS-AF/wrapper/VIIRS-AF/run"
+    input: 
+      - viirs.gmtco
+      - viirs.svm05
+      - viirs.svm07
+      - viirs.svm11
+      - viirs.svm13
+      - viirs.svm15
+      - viirs.svm16
+    options: " "
+    output_hdf: viirs.ActiveFires
+    output_name: ActiveFires
+    output_note: "The platform is pre-pended on the front of the output filrename pattern."
+    output_txt: viirs.FireLoc
+    save: 
+      - "*mod14.hdf"
+      - "*mod14.hdf.txt"
+  iband: 
+    driver: "/hub/raid/jcable/drl/SPA/VFIRE375/wrapper/VFIRE375/run"
+    input: 
+      - viirs.gitco
+      - viirs.svi01
+      - viirs.svi02
+      - viirs.svi03
+      - viirs.svi04
+      - viirs.svi05
+      - viirs.gmtco
+      - viirs.svm13
+      - viirs.ivcdb
+    options: " "
+    output_hdf: viirs.activefires375
+    output_name: VF375
+    output_note: "The platform is pre-pended on the front of the output filrename pattern."
+    output_txt: viirs.fireloc375
+    save: 
+      - "*mod14.hdf"
+      - "*mod14.hdf.txt"
