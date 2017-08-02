@@ -1,0 +1,17 @@
+configs:
+  viirs:
+    compress: "gzip"
+    tasks:
+     - "viirs2binary.sh -p 'm07 m12 m14 m15 m16 m_sat_zenith_angle m_solar_zenith_angle' --dtype real4 --grid-coverage=0.01 -g 203 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.bin"
+    save:
+     - "*.bin"
+     - "*.bin.gz"
+  modis:
+    compress: "gzip"
+    tasks:
+     - "modis2binary.sh -p vis02 bt20 bt29 bt31 bt32 satellite_zenith_angle solar_zenith_angle --dtype real4 --grid-coverage=0.01 -g 203 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.bin"
+    save:
+     - "*.bin"
+     - "*.bin.gz"
+limits:
+  processor: 1
