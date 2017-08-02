@@ -49,4 +49,4 @@ class SportSliceClamp <  ProcessingFramework::CommandLineHelper
   end
 end
 
-SportSliceCamp.run
+SportSliceClamp.run
