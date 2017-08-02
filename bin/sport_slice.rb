@@ -6,7 +6,7 @@ require_relative '../lib/processing_framework'
 
 class SportSliceClamp <  ProcessingFramework::CommandLineHelper
   banner 'This tool makes geotifs from modis and viirs data .'
-  default_config 'p2g_geotif'
+  default_config 'sport_slice'
 
   option ['-m', '--mode'], 'mode', 'The mode to use.',  required: true
   option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: 1
