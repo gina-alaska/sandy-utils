@@ -1,0 +1,20 @@
+--- 
+configs: 
+  npp: 
+    driver: "run_acspo.bash "
+    options: " -s npp -vv -x "
+    bias: /opt/cspp/bias
+    save: 
+      - "*.nc"
+  terra:   
+    driver: "run_acspo.bash "
+    options: " -s terra -vv "
+    bias: /opt/cspp/bias
+    save: 
+      - "*.nc"
+  aqua:   
+    driver: "run_acspo.bash "
+    options: " -s aqua -vv "
+    save: 
+    bias: /opt/cspp/bias
+      - "*.nc"
