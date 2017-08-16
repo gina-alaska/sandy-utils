@@ -5,7 +5,11 @@ module ProcessingFramework
     SHELL_OUT_DEFAULTS = { live_stream: STDOUT, timeout: 60 * 60 }
 
     # runs command, with opts
+    # runs command with `env -i` if :clean_env is passed as option
     def shell_out(command, opts = {})
+      if opts[:clean_env].delete do
+        command = "env -i "+ command
+      end
       opts = SHELL_OUT_DEFAULTS.merge(opts)
       cmd = ::Mixlib::ShellOut.new(command, opts)
       cmd.run_command
