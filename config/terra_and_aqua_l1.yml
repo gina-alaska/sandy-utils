@@ -21,5 +21,5 @@ processing:
    gbad_note: "touch configfile is stupid, but didn't want to clutter code with some random empty file makeing"
    pds: "P1540064*001.PDS"
    update_luts: "update_luts.py aqua -v"
-modis_tools_setup: "/opt/modis/setup.bash"
+clean_env: true
 
