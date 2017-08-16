@@ -51,7 +51,8 @@ Options:
 ```
 
 
-###Common arguments
+### Common arguments
+
   * __tempdir__
     * working or temp directory to use.  Also controlled via $PROCESSING_TEMPDIR .
   * __outdir__
@@ -76,7 +77,7 @@ Options:
 
   ```
   hab studio enter
-  ./build
+  build
   exit # if successfull
   ```
 
