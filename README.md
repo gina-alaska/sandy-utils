@@ -31,8 +31,8 @@ basic structure (ruby gem style):
     * viirs_awips.yml
 
 
-###Notes
-===========
+### Notes
+
 Each tool should provide a "--help" option showing a brief description of what it does, and how to use it.
 ```
 [jcable@spam sandy-utils]$ ./bin/rtstps.rb --help
