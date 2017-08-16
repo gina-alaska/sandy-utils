@@ -8,7 +8,7 @@ module ProcessingFramework
     # runs command, with opts
     # runs command with `env -i` if :clean_environment is passed as option
     def shell_out(command, opts = {})
-      if opts[:clean_environment].delete do
+      if opts.delete(:clean_environment)
         command = "env -i bash -l -c #{command.shellescape}"
       end
       opts = SHELL_OUT_DEFAULTS.merge(opts)
