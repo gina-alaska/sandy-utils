@@ -104,15 +104,14 @@ class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
     platform + '.' + pass_tm.strftime('%y%j.%H%M')
   end
 
-  #sources  "modis_tools_setup" before running the command to setup the environment. 
-  def shell_out_clean(cmd, cfg) 
-	if  cfg["clean_env"] 
-		shell_out!(cmd, :clean_environment => true )
-	else
-		shell_out!(cmd)
-	end
+  #sources  "modis_tools_setup" before running the command to setup the environment.
+  def shell_out_clean(cmd, cfg)
+    if cfg["clean_env"]
+      shell_out!(cmd, clean_environment: true )
+    else
+      shell_out!(cmd)
+    end
   end
-
 end
 
 ModisL1Clamp.run
