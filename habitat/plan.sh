@@ -70,6 +70,10 @@ if [[ -f \$TSCANROOT/etc/tscan.bash_profile ]]; then
   source \$TSCANROOT/etc/tscan.bash_profile
 fi
 
+if [ `basename ${1}` = dbrtn_notify_gina_alaska.sh ]; then
+  export PATH=/usr/bin/:/usr/local/bin:$PATH
+fi
+
 
 exec ${1}.real \$@
 EOF
