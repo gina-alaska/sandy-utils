@@ -71,7 +71,7 @@ if [[ -f \$TSCANROOT/etc/tscan.bash_profile ]]; then
 fi
 
 if [ `basename ${1}` = dbrtn_notify_gina_alaska.sh ]; then
-  export PATH=/usr/bin/:/usr/local/bin:$PATH
+  export PATH=/usr/bin/:/usr/local/bin:\$PATH
 fi
 
 
