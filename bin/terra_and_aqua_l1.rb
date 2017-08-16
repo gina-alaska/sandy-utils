@@ -29,10 +29,10 @@ class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
       exit_with_error("too many/not enough pds files => #{pds.join(' ')}", 11) if (pds.length != 1)
 
       # update luts
-      shell_out!(conf['processing'][platform]['update_luts']) if conf['processing'][platform]['update_luts']
+      shell_out_clean(conf['processing'][platform]['update_luts'], conf) if conf['processing'][platform]['update_luts']
 
       # To l1
-      shell_out!("#{conf['processing'][platform]['l1_driver']} #{pds.first}")
+      shell_out_clean("#{conf['processing'][platform]['l1_driver']} #{pds.first}",conf)
 
       # find L1A_LAC
       rLACs = Dir.glob('[AT]*L1A_LAC')
@@ -41,10 +41,10 @@ class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
       end
 
       # perform gbad processing, if needed
-      shell_out!(conf['processing'][platform]['gbad']) if (conf['processing'][platform]['gbad'])
+      shell_out_clean(conf['processing'][platform]['gbad'], conf) if (conf['processing'][platform]['gbad'])
 
       # geo processing
-      shell_out!("#{conf['processing'][platform]['geo_driver']} #{rLACs.first}")
+      shell_out_clean("#{conf['processing'][platform]['geo_driver']} #{rLACs.first}", conf)
 
       # find GEOs
       rGEOs = Dir.glob('[AT]*GEO')
@@ -53,7 +53,7 @@ class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
       end
 
       # L1B processing
-      shell_out!("#{conf['processing'][platform]['l1b_driver']} #{rLACs.first} #{rGEOs.first}")
+      shell_out_clean("#{conf['processing'][platform]['l1b_driver']} #{rLACs.first} #{rGEOs.first}", conf)
 
       # find  L1B_LAC
       rL1B_LACs = Dir.glob('[AT]*L1B_LAC')
@@ -62,7 +62,7 @@ class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
       end
 
       # perform destriping, if needed
-      shell_out!("#{conf['processing'][platform]['destripe']} #{rL1B_LACs.first}") if (conf['processing'][platform]['destripe'])
+      shell_out_clean("#{conf['processing'][platform]['destripe']} #{rL1B_LACs.first}", conf) if (conf['processing'][platform]['destripe'])
 
       gina_name = get_gina_name(rL1B_LACs.first, platform, get_l1_time(rGEOs.first))
 
@@ -102,6 +102,15 @@ class ModisL1Clamp <  ProcessingFramework::CommandLineHelper
     # MM is the 2 digit minute
     # MODIS crefl2awips.sh will work with this naming convention.
     platform + '.' + pass_tm.strftime('%y%j.%H%M')
+  end
+
+  #sources  "modis_tools_setup" before running the command to setup the environment. 
+  def shell_out_clean(cmd, cfg) 
+	if  cfg["clean_env"] 
+		shell_out!(cmd, :clean_environment => true )
+	else
+		shell_out!(cmd)
+	end
   end
 
 end
