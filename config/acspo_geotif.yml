@@ -3,16 +3,24 @@ configs:
     p2g_args: "--tiled --compress DEFLATE"
     grid_file: "viirs_geotiff_grids.grd"
     tasks:
-     - "acspo2gtiff.sh --grid-coverage 0.01 -p sst -g alaska_300 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
-     - "acspo2gtiff.sh --grid-coverage 0.01 -p sst -g alaska_overview --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.tif"
+     - "acspo2gtiff.sh --grid-coverage 0 -p sst -g alaska_300 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
+     - "acspo2gtiff.sh --grid-coverage 0 -p sst -g alaska_overview --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.tif"
     save:
      - "*.tif"
   modis:
     p2g_args: "--tiled --compress DEFLATE"
     grid_file: "modis_geotiff_grids.grd"
     tasks:
-     - "acspo2gtiff.sh --grid-coverage 0.01 -p sst -g alaska_500 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
-     - "acspo2gtiff.sh --grid-coverage 0.01 -p sst -g alaska_overview --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.tif"
+     - "acspo2gtiff.sh --grid-coverage 0 -p sst -g alaska_500 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
+     - "acspo2gtiff.sh --grid-coverage 0 -p sst -g alaska_overview --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.tif"
+    save:
+     - "*.tif"
+  avhrr:
+    p2g_args: "--tiled --compress DEFLATE"
+    grid_file: "avhrr_geotiff_grids.grd"
+    tasks:
+     - "acspo2gtiff.sh --grid-coverage 0 -p sst -g alaska_1000 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
+     - "acspo2gtiff.sh --grid-coverage 0 -p sst -g alaska_overview --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.tif"
     save:
      - "*.tif"
 limits:

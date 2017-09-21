@@ -1,10 +1,10 @@
 driver: acspo2awips.sh
 configs:
   default:
-   options: "--grid-coverage 0 --output-pattern UAF_AWIPS_{satellite}_{instrument}_{product_name}_{grid_name}_{begin_time} "
+   options: "--grid-coverage 0 --output-pattern UAF_AWIPS_{satellite}_{instrument}_{product_name}_{grid_name}_{begin_time} --source-name UAF "
    grid: 203
    save: 
-     - "*[0-9]"
+     - "*"
    p2g_config: "uaf_awips_backend.ini"
 limits:
   processor: 2

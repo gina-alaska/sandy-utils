@@ -15,6 +15,18 @@ configs:
   aqua:   
     driver: "run_acspo.bash "
     options: " -s aqua -vv "
-    save: 
     bias: /opt/cspp/bias
+    save:
+      - "*.nc"
+  n19:
+    driver: "run_acspo.bash "
+    options: " -s n19 -vv "
+    bias: /opt/cspp/bias
+    save:
+      - "*.nc"
+  n18:
+    driver: "run_acspo.bash "
+    options: " -s n18 -vv "
+    bias: /opt/cspp/bias
+    save:
       - "*.nc"
