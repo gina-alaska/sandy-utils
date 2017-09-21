@@ -19,11 +19,11 @@ class NOAAL0Clamp <  ProcessingFramework::CommandLineHelper
     @working_dir = "#{tempdir}/#{basename}"
 
     inside(@working_dir) do
-      get_tle
+      #get_tle
       raw_input = strip_header
       run_aapp_noaa_poes(raw_input, 'AVHRR')
+      copy_output(output, '*.l1*')
       run_aapp_noaa_poes(raw_input, 'AMSU-A AMSU-B MHS DCS')
-
       copy_output(output, '*.l1*')
     end
   end
