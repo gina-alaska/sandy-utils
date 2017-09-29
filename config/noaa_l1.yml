@@ -1,0 +1,3 @@
+---
+env:
+  PAR_NAVIGATION_TLE_URL_DOWNLOAD: http://ftp.celestrak.com/NORAD/elements/weather.txt
