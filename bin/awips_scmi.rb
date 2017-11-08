@@ -39,7 +39,7 @@ class AwipsScmiClamp <  ProcessingFramework::CommandLineHelper
     			config_options + 
     			" -p #{task["bands"]} "
 		 puts command
-		 shell_out!(command)
+		 shell_out(command)
    	end
   end
 
