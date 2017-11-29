@@ -20,7 +20,7 @@ configs:
          bands: "viirs_crefl03 viirs_crefl04"
        ibands: 
          grid: polar_alaska_300
-         bands: " modis_crefl01_250m modis_crefl02_250m modis_crefl03_1000m modis_crefl04_1000m modis_crefl06_1000m "
+         bands: " viirs_crefl08 viirs_crefl09 viirs_crefl10 "
   modis:
    options: " --sector-id Polar --letters --compress --fix-awips --output-pattern 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{begin_time:%Y%m%d_%H%M}.nc' "
    save:
