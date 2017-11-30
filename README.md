@@ -18,6 +18,8 @@ basic structure (ruby gem style):
       * _SNPP rdr -> sdr_
     * viirs_awips.rb
       * _SNPP VIIRS L1 -> AWIPS_
+    * awips_scmi.rb
+      * generates scmi tiles for awips
   * lib
     * processing_framework.rb  _(includes everything)_
     * processing_framework/
@@ -29,6 +31,7 @@ basic structure (ruby gem style):
     * snpp_edr.yml
     * snpp_sdr.yml
     * viirs_awips.yml
+    * awips_scmi.yml
 
 
 ### Notes
