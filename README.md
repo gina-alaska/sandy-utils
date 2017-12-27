@@ -18,6 +18,10 @@ basic structure (ruby gem style):
       * _SNPP rdr -> sdr_
     * viirs_awips.rb
       * _SNPP VIIRS L1 -> AWIPS_
+    * nucaps_l2.rb  
+      * nucaps l2 generation
+    * nucaps_sdr.rb 
+      * generates CRIS and ATMS sdrs bundled together for nucaps.
   * lib
     * processing_framework.rb  _(includes everything)_
     * processing_framework/

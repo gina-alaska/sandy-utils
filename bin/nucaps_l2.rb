@@ -9,10 +9,10 @@ class NucapsL2Clamp <  ProcessingFramework::CommandLineHelper
   default_config 'nucaps_l2'
 
   option ['-p', '--processors'], 'processors', 'The number of processors to use for processing.',  environment_variable: 'PROCESSING_NUMBER_OF_CPUS', default: 1
-  option ['-m', '--mode', 'mode'. 'The mode', default: 'npp']
+  option ['-m', '--mode'], 'mode', 'The mode', default: 'npp'
 
-  parameter "INPUT", "The input directory"
-  parameter "OUTPUT", "The output directory"
+  parameter 'INPUT', 'The input directory'
+  parameter 'OUTPUT', 'The output directory'
 
   def execute
     exit_with_error("Unknown/unconfigured mode #{mode}", 19) unless conf['configs'][mode]
@@ -22,11 +22,10 @@ class NucapsL2Clamp <  ProcessingFramework::CommandLineHelper
 
     working_dir = "#{tempdir}/#{basename}"
     inside(working_dir) do
-      shell_out(@processing_cfg["driver"] + " -i #{input} ")
+      shell_out(@processing_cfg['driver'] + " -i #{input} ")
       copy_output(output, @processing_cfg['save'])
     end
   end
-
 end
 
 NucapsL2Clamp.run
