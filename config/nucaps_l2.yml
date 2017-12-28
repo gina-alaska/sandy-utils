@@ -1,0 +1,9 @@
+driver: viirs2awips.sh
+driver_crefl: crefl2awips.sh
+configs:
+  npp:
+   driver: "run_nucaps.bash -s npp -f 9 --noclean -d /opt/cspp/nucaps_anc -vv"
+   save: 
+     - "*.nc"
+limits:
+  processor: 2
