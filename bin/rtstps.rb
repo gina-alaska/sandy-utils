@@ -42,14 +42,9 @@ class RtstpsClamp < ProcessingFramework::CommandLineHelper
         leapsec_source = "#{ENV['RTSTPS_HOME']}/leapsec.dat"
         FileUtils.cp(leapsec_source, '.') if File.exist?(leapsec_source)
 
-        shell_out!("#{conf['rtstps_driver']} #{conf['configs'][platform]} ../#{sourcefile}",clean_environment: true)
-
-        # This is silly.  We really should have seperate scripts for snpp, aqua and terra
-        if platform == "npp"
-          copy_output(output, '*.h5')
-        else
-          copy_output(output, "*.PDS")
-        end
+        shell_out!("#{conf['rtstps_driver']} #{conf['configs'][platform]} ../#{sourcefile}",clean_environment: true) 
+        copy_output(output, '*.h5')
+        copy_output(output, "*.PDS")
       end
     end
   end
