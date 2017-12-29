@@ -63,6 +63,70 @@ configs:
        b: "i01_float"
      tool: "viirs_fire_stretch --blue-cap 1.0 "
      name: "npp.%Y%m%d.%H%M_i04_i02_i01"
+  noaa20:
+   mapper:
+     dnb: j01_viirs_dynamic_dnb_*_alaska_600.tif
+     i01: j01_viirs_i01*_alaska_300.tif
+     i02: j01_viirs_i02*_alaska_300.tif
+     i03: j01_viirs_i03*_alaska_300.tif
+     i04: j01_viirs_i04*_alaska_300.tif
+     i05: j01_viirs_i05*_alaska_300.tif
+     i01_float: j01_viirs_i01*_alaska_300.float.tif
+     i02_float: j01_viirs_i02*_alaska_300.float.tif
+     i03_float: j01_viirs_i03*_alaska_300.float.tif
+     i04_float: j01_viirs_i04*_alaska_300.float.tif
+     i05_float: j01_viirs_i05*_alaska_300.float.tif
+     m02: j01_viirs_m02_*_alaska_600.tif
+     m03: j01_viirs_m02_*_alaska_600.tif
+     m04: j01_viirs_m02_*_alaska_600.tif
+     m05: j01_viirs_m02_*_alaska_600.tif
+     m06: j01_viirs_m02_*_alaska_600.tif
+     m07: j01_viirs_m02_*_alaska_600.tif
+     m08: j01_viirs_m02_*_alaska_600.tif
+     m10: j01_viirs_m10_*_alaska_600.tif
+     m11: j01_viirs_m11_*_alaska_600.tif
+     m12: j01_viirs_m12_*_alaska_600.tif
+     m15: j01_viirs_m02_*_alaska_600.tif
+     m10_float: j01_viirs_m10_*_alaska_600.float.tif
+     m11_float: j01_viirs_m11_*_alaska_600.float.tif
+     m12_float: j01_viirs_m12_*_alaska_600.float.tif
+     true_color: j01_viirs_true_color_*_alaska_300.tif
+     crefl01: j01_viirs_viirs_crefl01_*_alaska_300.tif
+     crefl03: j01_viirs_viirs_crefl03_*_alaska_300.tif
+     crefl04: j01_viirs_viirs_crefl04_*_alaska_300.tif
+     crefl08: j01_viirs_viirs_crefl08_*_alaska_300.tif
+   single:
+   - title: true_color
+     band: true_color
+     name: "noaa20.%Y%m%d.%H%M_true_color"
+   - title: dnb
+     band: dnb
+     name: "noaa20.%Y%m%d.%H%M_DNB"
+   - title: thermal
+     band: "i05"
+     name: "noaa20.%Y%m%d.%H%M_I05"
+   combinations:
+   - title: landcolor
+     bands:
+       r: "i03"
+       g: "i02"
+       b: "i01"
+     name: "noaa20.%Y%m%d.%H%M_I03_I02_I01"
+   extras:
+   - title: viirs_fire_temperature
+     bands:
+       r: "m12_float"
+       g: "m11_float"
+       b: "m10_float"
+     tool: "viirs_fire_stretch --blue-cap 0.75 "
+     name: "noaa20.%Y%m%d.%H%M_m12_m11_m10"
+   - title: viirs_fire_color
+     bands:
+       r: "i04_float"
+       g: "i02_float"
+       b: "i01_float"
+     tool: "viirs_fire_stretch --blue-cap 1.0 "
+     name: "noaa20.%Y%m%d.%H%M_i04_i02_i01"
   t1:
    mapper:
      "30": terra_modis_bt30_*_alaska_1000.tif
