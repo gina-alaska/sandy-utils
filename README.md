@@ -18,6 +18,8 @@ basic structure (ruby gem style):
       * _SNPP and NOAA20 rdr -> sdr_
     * viirs_awips.rb
       * _SNPP VIIRS L1 -> AWIPS_
+    * awips_scmi.rb
+      * generates scmi tiles for awips
     * nucaps_l2.rb  
       * nucaps l2 generation
     * nucaps_sdr.rb 
@@ -37,6 +39,7 @@ basic structure (ruby gem style):
     * snpp_edr.yml
     * snpp_sdr.yml
     * viirs_awips.yml
+    * awips_scmi.yml
 
 
 ### Notes
