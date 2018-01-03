@@ -11,17 +11,21 @@ basic structure (ruby gem style):
     * cris_awips.rb  
       * _SNPP CRIS L1 -> AWIPS_
     * rtstps.rb		
-      * _Does Raw -> L0/RDR processing for SNPP, TERRA, and AQUA._
+      * _Does Raw -> L0/RDR processing for SNPP, NOAA20 TERRA, and AQUA._
     * snpp_edr.rb  
       * _SNPP sdr -> edr_
     * snpp_sdr.rb  
-      * _SNPP rdr -> sdr_
+      * _SNPP and NOAA20 rdr -> sdr_
     * viirs_awips.rb
       * _SNPP VIIRS L1 -> AWIPS_
     * nucaps_l2.rb  
       * nucaps l2 generation
     * nucaps_sdr.rb 
       * generates CRIS and ATMS sdrs bundled together for nucaps.
+    * p2g_geotif.rb
+      * generates geotifs slices for each sensor (MODIS, VIIRS, etc)
+    * feeder_geotif.rb
+      * takes geotifs slices from p2g_geotif.rb and generates nice geotifs for feeder or gis clients
   * lib
     * processing_framework.rb  _(includes everything)_
     * processing_framework/
