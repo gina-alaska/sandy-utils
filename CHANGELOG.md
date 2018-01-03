@@ -1,5 +1,7 @@
-## [Unreleased] - 2017-12-28
+## [[1.5.2]] - 2017-12-28
 - added NOAA20 support to geotif generation and SDR & RDR generation. 
+- added nucaps support
+- added scmi support
 ## [[1.5.1]] - 2017-12-15
 - habitat and bundler fixes
 
