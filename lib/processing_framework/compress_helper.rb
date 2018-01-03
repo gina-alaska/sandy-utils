@@ -18,12 +18,12 @@ module ProcessingFramework
     end
 
     def gzip!(file)
-      shell_out!("gzip #{file}", live_stream: false)
+      shell_out!("gzip #{file}", live_stream: false, clean_environment: true)
       "#{file}.gz"
     end
 
     def bzip2!(file)
-      shell_out!("bzip2 #{file}", live_stream: false)
+      shell_out!("bzip2 #{file}", live_stream: false,clean_environment: true)
       "#{file}.bz2"
     end
   end
