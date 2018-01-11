@@ -69,10 +69,10 @@ class AvhrrAwipsClamp <  ProcessingFramework::CommandLineHelper
     command = "#{cfg['export'][mode]} include_vars=#{band} #{fr_file} #{fr_file}.#{band}.float.tif"
     tscan_run(command, cfg)
 
-    shell_out("#{cfg['scaling'][mode]} #{fr_file}.#{band}.float.tif #{fr_file}.#{band}.awips.tif")
-    shell_out!("gdalwarp #{cfg['awips_conversion']['warp_opts']} -te #{cfg['awips_conversion']['extents']} #{cfg['gdal']['co_opts']} -t_srs #{cfg['awips_conversion']['proj']}  #{fr_file}.#{band}.awips.tif  #{fr_file}.#{band}.302.tif")
+    shell_out("#{cfg['scaling'][mode]} #{fr_file}.#{band}.float.tif #{fr_file}.#{band}.awips.tif", clean_environment: true)
+    shell_out!("gdalwarp #{cfg['awips_conversion']['warp_opts']} -te #{cfg['awips_conversion']['extents']} #{cfg['gdal']['co_opts']} -t_srs #{cfg['awips_conversion']['proj']}  #{fr_file}.#{band}.awips.tif  #{fr_file}.#{band}.302.tif",clean_environment: true)
 
-    shell_out!("gdal_translate #{fr_file}.#{band}.302.tif -of ENVI ./noaa_avhrr_#{band}_203.uint1.8384.7239")
+    shell_out!("gdal_translate #{fr_file}.#{band}.302.tif -of ENVI ./noaa_avhrr_#{band}_203.uint1.8384.7239",clean_environment: true)
     shell_out!('rm -rfv *.xml *.hdr')
 
     command = ". #{cfg['polar2grid']['env']} ; python -m polar2grid.awips.awips_netcdf ./noaa_avhrr_#{band}_203.uint1.8384.7239  #{cfg['polar2grid']['grid']} UAF_AWIPS_#{naming['satellite_name']}-AK_1KM \"#{naming['channel']}\" #{source} #{naming['satellite_name']}"
@@ -111,10 +111,10 @@ class AvhrrAwipsClamp <  ProcessingFramework::CommandLineHelper
     vis = File.basename(tifs['vis'], '.tif')
     command = " #{cfg['awips_conversion']['vis_stretch']} #{vis}.tif #{vis}.stretched.tif"
     puts("INFO: stretching #{command}")
-    shell_out! command
+    shell_out!(command,clean_environment: true)
     command = "gdalwarp #{cfg['awips_conversion']['warp_opts']} -te #{cfg['awips_conversion']['extents']} #{cfg['gdal']['co_opts']} -t_srs #{cfg['awips_conversion']['proj']} #{vis}.stretched.tif #{vis}.302.tif"
     puts("INFO: warping to 302.. #{command}")
-    shell_out! command
+    shell_out!(command,clean_environment: true)
   end
 
   # renames the awips file to the correct naming scheme
