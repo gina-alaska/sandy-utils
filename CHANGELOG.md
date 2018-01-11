@@ -1,4 +1,4 @@
-## Unreleased - 2018-01-11
+## [[1.5.3]] - 2018-01-11
 - added clean env to problem shell_out calls for noaa poes awips and mirs. 
 
 ## [[1.5.2]] - 2017-12-28
