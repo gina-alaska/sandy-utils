@@ -1,4 +1,5 @@
 ## [[Unreleased]]
+- changed shellout calls for awips generating for mirs and sst, as they fail when run against data that is valid but doesn't work because of daylight etc. 
 
 ## [[1.5.4]] - 2018-01-16
 - added source to mirs awips generation 
