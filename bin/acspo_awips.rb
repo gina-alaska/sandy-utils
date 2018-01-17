@@ -41,7 +41,7 @@ class AcspoAwipsClamp <  ProcessingFramework::CommandLineHelper
       "-g #{@processing_cfg['grid']}",
       "--backend-configs #{get_config_item(@processing_cfg['p2g_config'])}"
     ].join(' ')
-    shell_out!(command)
+    shell_out(command)
   end
 
   def get_config_item(item)
