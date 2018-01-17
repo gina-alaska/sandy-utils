@@ -1,6 +1,13 @@
 ## [[Unreleased]]
-- added source to mirs awips generation 
 
+## [[1.5.4]] - 2018-01-16
+- added source to mirs awips generation 
+```
+   sandy-utils: Artifact: /src/results/uafgina-sandy-utils-1.5.4-20180117000705-x86_64-linux.hart
+   sandy-utils: Build Report: /src/results/last_build.env
+   sandy-utils: SHA256 Checksum: add78703852cf2125ba3ab25ba48084db4b8b0183107efbaa3a773115f389829
+   sandy-utils: Blake2b Checksum: 6f8108a7b2769399866df9537449c734181249fafb1369130718b09fba63948a
+```
 ## [[1.5.3]] - 2018-01-11
 - added clean env to problem shell_out calls for noaa poes awips and mirs. 
 ```
