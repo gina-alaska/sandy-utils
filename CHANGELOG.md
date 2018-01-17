@@ -1,4 +1,6 @@
 ## [[Unreleased]]
+
+## [[1.5.5]] - 2018-01-16
 - changed shellout calls for awips generating for mirs and sst, as they fail when run against data that is valid but doesn't work because of daylight etc. 
 ```
    sandy-utils: Artifact: /src/results/uafgina-sandy-utils-1.5.5-20180117013120-x86_64-linux.hart
