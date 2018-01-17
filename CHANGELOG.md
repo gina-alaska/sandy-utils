@@ -1,5 +1,11 @@
 ## [[Unreleased]]
 - changed shellout calls for awips generating for mirs and sst, as they fail when run against data that is valid but doesn't work because of daylight etc. 
+```
+   sandy-utils: Artifact: /src/results/uafgina-sandy-utils-1.5.5-20180117013120-x86_64-linux.hart
+   sandy-utils: Build Report: /src/results/last_build.env
+   sandy-utils: SHA256 Checksum: 3458b5e1f2ebf31689b37f036fa6cb5ba1ba8ac05232851764eb1c2cf7c9fd8d
+   sandy-utils: Blake2b Checksum: ba36229023558ea44557e4965fbba89d4a0c5438631ca1f00f8eef2e7194cf11
+```
 
 ## [[1.5.4]] - 2018-01-16
 - added source to mirs awips generation 
