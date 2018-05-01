@@ -1,0 +1,10 @@
+configs:
+  default:
+   driver: "mod14"
+   options: "-tv"
+   output_note: "The platform is pre-pended on the front of the output filrename pattern."
+   output: "%Y%m%d.%H%M.mod14.hdf"
+   txt_driver: "fireloc"
+   save: 
+     - "*mod14.hdf"
+     - "*mod14.hdf.txt"

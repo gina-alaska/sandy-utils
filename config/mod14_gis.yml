@@ -1,0 +1,7 @@
+configs:
+  default:
+   driver: "fire_to_shapefile"
+   save: 
+     - "*mod14.shp"
+     - "*mod14.dbf"
+     - "*mod14.shx"
