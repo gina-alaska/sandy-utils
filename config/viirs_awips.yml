@@ -9,7 +9,7 @@ configs:
      - "UAF_AWIPS_*_viirs_adaptive*"
      - "UAF_AWIPS_*_viirs_dynamic_dnb*"
      - "UAF_AWIPS_*_viirs_i0[1-5]*"
-     - "UAF_AWIPS_*_viirs_m0[3459]*"
+     - "UAF_AWIPS_*_viirs_m0[34589]*"
      - "UAF_AWIPS_*_viirs_m1[13456]*"
      - "UAF_AWIPS_*_viirs_viirs_crefl0[3489]*"
      - "UAF_AWIPS_*_viirs_viirs_crefl10*" 
