@@ -1,5 +1,20 @@
 ## [[Unreleased]]
 
+
+## [[1.5.6]] - 2018-05-31
+- added prefix for ldm insert
+- switched to lo for mirs poes
+- added nucaps noaa20
+- threaded scmi
+
+```
+   sandy-utils: Artifact: /src/results/uafgina-sandy-utils-1.6.0-20180531214254-x86_64-linux.hart
+   sandy-utils: Build Report: /src/results/last_build.env
+   sandy-utils: SHA256 Checksum: 73558aa43d342ee00377eafaa046999d93020b3e14b7f42d145d17d374fe0318
+   sandy-utils: Blake2b Checksum: a639caff95f8ceef51852a5ba8d34c2690b207f329f7b252905e1f080e0340a4
+```
+
+
 ## [[1.5.5]] - 2018-01-16
 - changed shellout calls for awips generating for mirs and sst, as they fail when run against data that is valid but doesn't work because of daylight etc. 
 ```
