@@ -45,6 +45,17 @@ configs:
        hkm:
          grid: polar_alaska_500
          bands: "modis_crefl03_500m modis_crefl04_500m modis_crefl05_500m modis_crefl06_500m "
+  clavrx:
+   options: " --sector-id Polar --letters --compress --fix-awips --output-pattern 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{begin_time:%Y%m%d_%H%M}.nc' "
+   save:
+     - "UAF_AII_*.nc"
+   p2g_config: "scmi_backend.ini"
+   p2g_grid: "scmi_grids.conf"
+   tasks:
+     clavrx:
+       qkm:
+         grid: polar_alaska_500
+         bands:  "cld_emiss_acha cld_height_acha cld_opd_dcomp cld_opd_nlcomp cld_reff_dcomp cld_reff_nlcomp cld_temp_acha cloud_phase cloud_type rain_rate refl_lunar_dnb_nom"
   avhrr:
     options: " --sector-id Polar --letters --compress --fix-awips --output-pattern 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{begin_time:%Y%m%d_%H%M}.nc' "
     save:

@@ -1,0 +1,29 @@
+--- 
+configs: 
+  npp: 
+    driver: "run_clavrx.sh "
+    options: " -d 3 "
+    save: 
+      - "done/*.hdf"
+      - "done/*log"
+      - "work/*log"
+  terra:   
+    driver: "run_clavrx.sh "
+    options: " 2 "
+    save: 
+      - "done/*.hdf"
+  aqua:   
+    driver: "run_clavrx.sh "
+    options: " 2 "
+    save:
+      - "*.hdf"
+  n19:
+    driver: "run_clavrx.sh "
+    options: " 1 "
+    save:
+      - "done/*.hdf"
+  n18:
+    driver: "run_clavrx.sh "
+    options: " 1 "
+    save:
+      - "done/*.hdf"
