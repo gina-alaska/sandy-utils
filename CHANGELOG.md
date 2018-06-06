@@ -1,7 +1,17 @@
 ## [[Unreleased]]
 
+## [[1.6.1]] - 2018-06-06
+- added cloud l2 and scmi processing
 
-## [[1.5.6]] - 2018-05-31
+```
+   sandy-utils: Artifact: /src/results/uafgina-sandy-utils-1.6.1-20180606231517-x86_64-linux.hart
+   sandy-utils: Build Report: /src/results/last_build.env
+   sandy-utils: SHA256 Checksum: b2f5626e811f9d667e47d5e4850597eb0a659fe9c9b9cc19e34a810bf76730a4
+   sandy-utils: Blake2b Checksum: 11312eeafa88603b4ce481f40d2f02869e2e2c4d755c516d712a9ee4b2614f9b
+```
+
+
+## [[1.6.0]] - 2018-05-31
 - added prefix for ldm insert
 - switched to lo for mirs poes
 - added nucaps noaa20
