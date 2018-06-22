@@ -1,4 +1,13 @@
 ## [[Unreleased]]
+## [[1.6.2]] - 2018-06-21
+- added avhrr geotifs and a few other small changes
+
+```
+   sandy-utils: Artifact: /src/results/uafgina-sandy-utils-1.6.2-20180622002200-x86_64-linux.hart
+   sandy-utils: Build Report: /src/results/last_build.env
+   sandy-utils: SHA256 Checksum: 52eae94fb93e5f363750cc5aa191a1934b5070db7305af02f9ceed2ef863092b
+   sandy-utils: Blake2b Checksum: b02c8bbde47f9de8859ec1f3da3c78202cbe305f6b305a8a52e3858d6d4797fb
+```
 
 ## [[1.6.1]] - 2018-06-06
 - added cloud l2 and scmi processing
