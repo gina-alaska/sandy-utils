@@ -11,6 +11,7 @@ class PqinsertClamp < ProcessingFramework::CommandLineHelper
   option ['-p', '--prefix'], 'prefex', 'Prepend this string to the name of the file when inserting'
   option ['-f', '--feed'], 'feed', 'The feed to insert into', default: 'EXP'
   option ['-q', '--queue'], 'queue', 'The queue to insert into', default: '$LDMHOME/var/queues/ldm.pq'
+  option ['-s', '--source'], 'source', 'The source', default: 'uafgina'
 
   parameter 'INPUT', 'Input file or directory'
   parameter '[FILTER]', 'GLOB to filter with, if given a directory. Must be escaped or wrapped in quotes', default: '*'
@@ -27,11 +28,21 @@ class PqinsertClamp < ProcessingFramework::CommandLineHelper
       # Probably not reasonable to recurse through directories
       next if File.directory? input_file
 
-      insert_name = [prefix, ::File.basename(input_file), suffix].compact.join('')
+      insert_name = [prefix, get_source, ::File.basename(input_file), suffix].compact.join('')
 
       command = "pqinsert -p #{insert_name} -f #{feed} -q #{queue} -i #{input_file}"
       shell_out! command
     end
+  end
+
+  def get_source()
+    case source.downcase
+    when "gilmore": "_glc_"
+    when "barrow": "_brw_"
+    when "uafgina": "_uaf_"
+    end
+
+
   end
 end
 
