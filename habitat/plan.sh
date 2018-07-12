@@ -5,24 +5,24 @@ pkg_maintainer="UAF GINA <support+habitat@gina.alaska.edu>"
 pkg_license=('MIT')
 pkg_source=nosource.tar.gz
 pkg_deps=(
-  core/bash
-  core/bundler
-  core/cacerts
-  core/glibc
-  core/libffi
-  core/libyaml
-  core/ruby
-  core/zlib
+  core/bundler/1.16.0/20180424195303
+  core/cacerts/2017.09.20/20171014212239
+  core/glibc/2.22/20170513201042
+  core/libffi/3.2.1/20180424190529
+  core/libyaml/0.1.6/20170514013335
+  core/ruby/2.5.1/20180424193230
+  core/zlib/1.2.8/20170513201911
+  core/bash/4.3.42/20170513213519
 )
 pkg_build_deps=(
-  core/coreutils
-  core/gcc
-  core/gcc-libs
+  core/coreutils/8.25/20170513213226
+  core/gcc/5.2.0/20170513202244
+  core/gcc-libs/5.2.0/20170513212920
   core/make
   core/git
-  core/ruby
-  core/bundler
-  core/libyaml
+  core/ruby/2.5.1/20180424193230
+  core/bundler/1.16.0/20180424195303
+  core/libyaml/0.1.6/20170514013335
 )
 
 pkg_bin_dirs=(bin)
