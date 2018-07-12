@@ -1,4 +1,6 @@
 ## [[Unreleased]]
+- hab pins, for libc issues, hab's update to libc 2.27 .
+
 ## [[1.6.2]] - 2018-06-21
 - added avhrr geotifs and a few other small changes
 
