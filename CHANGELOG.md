@@ -1,5 +1,15 @@
 ## [[Unreleased]]
+
+## [[1.6.3]] - 2018-07-11
 - hab pins, for libc issues, hab's update to libc 2.27 .
+- removed a few bands for viirs
+
+```
+   sandy-utils: Artifact: /src/results/uafgina-sandy-utils-1.6.3-20180713010726-x86_64-linux.hart
+   sandy-utils: SHA256 Checksum: 802cfea3820d7f377b055b9f51a5af5ec867d8bcb9becae443b9a29155b0f7b1
+   sandy-utils: Blake2b Checksum: c2df4cad9eaa091cb2bab0049a7e5a4de70e05b5cad2a00532dbce65d3039bb4
+```
+
 
 ## [[1.6.2]] - 2018-06-21
 - added avhrr geotifs and a few other small changes
