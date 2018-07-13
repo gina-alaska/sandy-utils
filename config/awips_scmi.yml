@@ -13,14 +13,11 @@ configs:
          bands:  "i01 i02 i03 i04 i05"
        mbands:
          grid: polar_alaska_700
-         bands: "m03 m04 m05 m07 m09 m10 m11 m12 m13 m14 m15 m16 dynamic_dnb dnb adaptive_dnb hncc_dnb"
+         bands: "m03 m04 m05 m08 m09 m10 m11 m13 m14 m15 m16 dynamic_dnb dnb adaptive_dnb hncc_dnb"
      crefl:
        mbands:
          grid: polar_alaska_700
          bands: "viirs_crefl03 viirs_crefl04"
-       ibands: 
-         grid: polar_alaska_300
-         bands: " viirs_crefl08 viirs_crefl09 viirs_crefl10 "
   modis:
    options: " --sector-id Polar --letters --compress --fix-awips --output-pattern 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{begin_time:%Y%m%d_%H%M}.nc' "
    save:
