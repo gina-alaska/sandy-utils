@@ -2,11 +2,11 @@ driver: viirs2awips.sh
 driver_crefl: crefl2awips.sh
 configs:
   npp:
-   driver: "run_nucaps.bash -s npp -f 9 --noclean -d /opt/cspp/nucaps_anc -vv"
+   driver: "run_nucaps.bash -s npp --noclean -d /opt/cspp/nucaps_anc -vv -m HR_IRMW -p 2 "
    save: 
      - "*.nc"
   noaa20:
-    driver: "run_nucaps.bash -s j01 -f 9 --noclean -d /opt/cspp/nucaps_anc -vv"
+    driver: "run_nucaps.bash -s j01 --noclean -d /opt/cspp/nucaps_anc -vv  -m HR_IRMW -p 2 "
     save:
       - "*.nc"
 limits:
