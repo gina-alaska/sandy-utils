@@ -1,4 +1,7 @@
 ## [[Unreleased]]
+## [[1.6.3]] - 2018-07-25
+- fixes for nucaps
+
 
 ## [[1.6.3]] - 2018-07-11
 - hab pins, for libc issues, hab's update to libc 2.27 .

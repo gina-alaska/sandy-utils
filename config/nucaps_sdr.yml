@@ -1,7 +1,7 @@
 configs:
   nucaps:
     tasks:
-      - "snpp_sdr.rb -m cris "
+      - "snpp_sdr.rb -m cris -f "
       - "snpp_sdr.rb -m atms "
 limits:
   processor: 1
