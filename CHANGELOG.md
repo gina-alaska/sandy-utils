@@ -1,6 +1,11 @@
 ## [[Unreleased]]
-## [[1.6.3]] - 2018-07-25
+## [[1.6.4]] - 2018-07-25
 - fixes for nucaps
+```
+   sandy-utils: Artifact: /src/results/uafgina-sandy-utils-1.6.4-20180725235549-x86_64-linux.hart
+   sandy-utils: SHA256 Checksum: 5f9314584446eb3f9cb46bb97e2f8767144fa5a38bf4557134708d6c76085e85
+   sandy-utils: Blake2b Checksum: c8d1d0b3276b028b2033fcdcbe3a7c379152c15b037d21b26dc4f112368c333d
+```
 
 
 ## [[1.6.3]] - 2018-07-11
