@@ -27,7 +27,7 @@ class ClavrxL2Clamp <  ProcessingFramework::CommandLineHelper
       processing_cfg = conf['configs'][mode]
 
       command = "#{processing_cfg['driver']} #{processing_cfg['options']} #{input} ./work ./done"
-      result = shell_out!(command)
+      result = shell_out!(command,  clean_environment: true ))
 
       processing_cfg['save'].each do |save_glob|
          copy_output(output, save_glob)

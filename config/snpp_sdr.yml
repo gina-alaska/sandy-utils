@@ -9,7 +9,7 @@ configs:
    rdr_glob: "RATMS-RNSCA*.h5"
   cris:
    driver: cris_sdr.sh
-   options: "-z"
+   options: "-z -f "
    rdr_glob: "RCRIS-RNSC*.h5"
 limits:
   processor: 1

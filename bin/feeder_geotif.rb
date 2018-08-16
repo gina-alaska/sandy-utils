@@ -3,6 +3,7 @@ ENV['BUNDLE_GEMFILE'] = File.join(File.expand_path('../..', __FILE__), 'Gemfile'
 require 'bundler/setup'
 require 'fileutils'
 require_relative '../lib/processing_framework'
+require 'date'
 
 class FeederGeotifClamp < ProcessingFramework::CommandLineHelper
   banner 'This tool takes MODIS and VIIRS data and makes geotifs intended for feeder.'
