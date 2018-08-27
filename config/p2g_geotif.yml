@@ -31,5 +31,15 @@ configs:
      - "polar2grid.sh avhrr gtiff -g 203_1k --grid-coverage 0.08 -p 'band1_vis band2_vis band3a_vis band3b_bt band4_bt band5_bt' "
     save:
      - "*.tif"
+  viirs_clavrx:
+    p2g_args: "--tiled --compress DEFLATE"
+    grid_file: "clavrx_geotiff_grids.grd"
+    rescale: "clavrx_rescale.ini"
+    tasks:
+     - "polar2grid.sh clavrx gtiff --grid-coverage 0.002 -g alaska_300 -p 'cld_emiss_acha cld_height_acha cld_opd_dcomp cld_opd_nlcomp cld_reff_dcomp cld_reff_nlcomp cld_temp_acha cloud_phase cloud_type rain_rate refl_lunar_dnb_nom' "
+     - "polar2grid.sh clavrx gtiff --grid-coverage 0.002 -g alaska_300 -p 'cld_emiss_acha cld_height_acha cld_opd_dcomp cld_opd_nlcomp cld_reff_dcomp cld_reff_nlcomp cld_temp_acha cloud_phase cloud_type rain_rate refl_lunar_dnb_nom' --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif "
+    save:
+     - "*.tif"
+     - "*.log"
 limits:
   processor: 1

@@ -23,6 +23,7 @@ class P2gGeotifClamp <  ProcessingFramework::CommandLineHelper
 
     inside(working_dir) do
       grid = " --grid-configs #{get_grid_path(processing_cfg)} "
+      rescale = get_rescale_path(processing_cfg)
 
 
       #run the p2g commands in threads
@@ -34,7 +35,7 @@ class P2gGeotifClamp <  ProcessingFramework::CommandLineHelper
           loop do
             task = processing_cfg['tasks'].pop
             break if (task.nil?)
-            shell_out("cd thread_#{thread_number}; #{task} #{processing_cfg['p2g_args']} #{grid} -d #{input}")
+            shell_out("cd thread_#{thread_number}; #{task} #{processing_cfg['p2g_args']} #{grid} #{rescale} -d #{input}")
           end
           processing_cfg['save'].each do |save_glob|
             copy_output(output, "thread_#{thread_number}/" + save_glob)
@@ -50,6 +51,16 @@ class P2gGeotifClamp <  ProcessingFramework::CommandLineHelper
   def get_grid_path(cfg)
     File.join(File.expand_path('../../config', __FILE__), cfg['grid_file'])
   end
+
+  def get_rescale_path(cfg)
+
+    if ( ! cfg['rescale'] )
+	return " " 
+    else 
+    	return [ "--rescale-config", File.join(File.expand_path('../../config', __FILE__), cfg['rescale'])].join(" ")
+    end 
+  end
+
 end
 
 P2gGeotifClamp.run
