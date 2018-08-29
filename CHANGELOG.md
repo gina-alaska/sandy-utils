@@ -1,4 +1,13 @@
 ## [[Unreleased]]
+## [[1.6.6]] - 2018-08-28
+- added chavrx geotif for viirs
+
+```
+   sandy-utils: Artifact: /src/results/uafgina-sandy-utils-1.6.6-20180828233436-x86_64-linux.hart
+   sandy-utils: SHA256 Checksum: c9801fdccf7b730f47a4528da94c90dbc8750f39f35762147b4998e27a2a2c69
+   sandy-utils: Blake2b Checksum: 438096cc4c15c6a17d7228972e462f19a834b983ccc49f2cd36b4be597b4592b
+```
+
 ## [[1.6.4]] - 2018-07-25
 - fixes for nucaps
 ```
