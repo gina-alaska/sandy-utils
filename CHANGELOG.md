@@ -1,10 +1,16 @@
 ## [[Unreleased]]
 
-## [[unknown]] - 2018-9-04
+## [[1.6.7]] - 2018-9-04
 - switched mirs to hi for everything
 - fixed a few typos
 - switched to clean env for geotifs generation
 - added a few extra clavrx parts.
+
+```
+   sandy-utils: Artifact: /src/results/uafgina-sandy-utils-1.6.7-20180904213425-x86_64-linux.hart
+   sandy-utils: SHA256 Checksum: 14e3e4f8c2064287b22e394356eecba4ffe3813c165c0f48a11799104f780346
+   sandy-utils: Blake2b Checksum: add7b263ad77373bfcc98e1ab360e3d9457d242a087e8beb6dc238416f365f67
+```
 
 
 
