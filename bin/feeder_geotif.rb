@@ -123,7 +123,7 @@ class FeederGeotifClamp < ProcessingFramework::CommandLineHelper
     end
 
     shell_out!("#{image_hsh['tool']} --red #{red} --green #{green} --blue #{blue} #{basename}.tif")
-    shell_out!("add_overviews.rb #{basename}.tif")
+    shell_out!("add_overviews.rb #{basename}.tif", clean_environment: true)
     shell_out!("gdal_translate -of png -outsize 5% 5% #{basename}.tif #{basename}.small.png")
 
     ["#{basename}.tif", "#{basename}.small.png"]
@@ -155,7 +155,7 @@ class FeederGeotifClamp < ProcessingFramework::CommandLineHelper
     # gdal opts
     gdal_opts = "-co TILED=YES -co COMPRESS=DEFLATE -co ZLEVEL=9 -co NUM_THREADS=ALL_CPUS -a_nodata \"0 0 0\""
     shell_out!("gdal_translate #{gdal_opts} #{infile} #{outfile}")
-    shell_out!("add_overviews.rb #{outfile}")
+    shell_out!("add_overviews.rb #{outfile}",clean_environment: true)
   end
 
   # get date of pass, from p2g style naming

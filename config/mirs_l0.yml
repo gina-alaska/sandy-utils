@@ -8,14 +8,14 @@ processing:
     save:
       - "*.nc"
       - "*.nc"
-    driver: "run_mirs.bash -res LO -v -s metopB " 
+    driver: "run_mirs.bash -res HI -v -s metopB " 
   noaa18:
     save:
       - "*.nc"
       - "*.nc"
-    driver: "run_mirs.bash -res LO -v -s n18 "
+    driver: "run_mirs.bash -res HI -v -s n18 "
   noaa19:
     save:
       - "*.nc"
       - "*.nc"
-    driver: "run_mirs.bash  -res LO -v -s n19 "
+    driver: "run_mirs.bash  -res HI -v -s n19 "
