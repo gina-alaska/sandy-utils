@@ -1,4 +1,13 @@
 ## [[Unreleased]]
+
+## [[unknown]] - 2018-9-04
+- switched mirs to hi for everything
+- fixed a few typos
+- switched to clean env for geotifs generation
+- added a few extra clavrx parts.
+
+
+
 ## [[1.6.6]] - 2018-08-28
 - added chavrx geotif for viirs
 
