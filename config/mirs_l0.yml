@@ -1,21 +1,26 @@
 processing:
-  atms: 
+  npp: 
     save:
       - "NPR-MIRS-IMG*.nc"
       - "NPR-MIRS-SND*.nc"
-    driver: "run_mirs.bash  -v -s npp "
+    driver: "run_mirs.bash  -v -f -s npp "
+  noaa20:
+    save:
+      - "NPR-MIRS-IMG*.nc"
+      - "NPR-MIRS-SND*.nc"
+    driver: "run_mirs.bash  -v -f -s n20 "
   metop-b:
     save:
       - "*.nc"
       - "*.nc"
-    driver: "run_mirs.bash -res HI -v -s metopB " 
+    driver: "run_mirs.bash -res HI -f -v -s metopB " 
   noaa18:
     save:
       - "*.nc"
       - "*.nc"
-    driver: "run_mirs.bash -res HI -v -s n18 "
+    driver: "run_mirs.bash -res HI -f -v -s n18 "
   noaa19:
     save:
       - "*.nc"
       - "*.nc"
-    driver: "run_mirs.bash  -res HI -v -s n19 "
+    driver: "run_mirs.bash  -res HI -f -v -s n19 "
