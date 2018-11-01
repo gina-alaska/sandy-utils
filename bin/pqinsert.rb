@@ -13,7 +13,7 @@ class PqinsertClamp < ProcessingFramework::CommandLineHelper
   option ['-p', '--prefix'], 'prefex', 'Prepend this string to the name of the file when inserting'
   option ['-f', '--feed'], 'feed', 'The feed to insert into', default: 'EXP'
   option ['-q', '--queue'], 'queue', 'The queue to insert into', default: '$LDMHOME/var/queues/ldm.pq'
-  option ['-s', '--source'], 'source', 'The source', default: 'uafgina'
+  option ['-s', '--source'], 'source', 'The source', default: ''
 
   parameter 'INPUT', 'Input file or directory'
   parameter '[FILTER]', 'GLOB to filter with, if given a directory. Must be escaped or wrapped in quotes', default: '*'
@@ -42,6 +42,7 @@ class PqinsertClamp < ProcessingFramework::CommandLineHelper
     when 'gilmore' then '_glc_'
     when 'barrow' then '_brw_'
     when 'uafgina' then '_uaf_'
+    when '' then '_'
     end
   end
 end
