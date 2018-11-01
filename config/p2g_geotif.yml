@@ -36,8 +36,8 @@ configs:
     grid_file: "clavrx_geotiff_grids.grd"
     rescale: "clavrx_rescale.ini"
     tasks:
-     - "polar2grid.sh clavrx gtiff --grid-coverage 0.002 -g alaska_300 -p 'cld_emiss_acha cld_height_acha cld_opd_dcomp cld_opd_nlcomp cld_reff_dcomp cld_reff_nlcomp cld_temp_acha cloud_phase cloud_type rain_rate refl_lunar_dnb_nom' "
-     - "polar2grid.sh clavrx gtiff --grid-coverage 0.002 -g alaska_300 -p 'cld_emiss_acha cld_height_acha cld_opd_dcomp cld_opd_nlcomp cld_reff_dcomp cld_reff_nlcomp cld_temp_acha cloud_phase cloud_type rain_rate refl_lunar_dnb_nom' --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif "
+     - "polar2grid.sh clavrx gtiff --grid-coverage 0.002 -g alaska_300 -p 'cld_emiss_acha cld_height_acha cld_opd_dcomp cld_reff_dcomp cld_temp_acha cloud_phase cloud_type cld_base_altitude_acha ' "
+     - "polar2grid.sh clavrx gtiff --grid-coverage 0.002 -g alaska_300 -p 'cld_emiss_acha cld_height_acha cld_opd_dcomp cld_reff_dcomp cld_temp_acha cloud_phase cloud_type cld_base_altitude_acha ccl_layer_flag ccl_1 ccl_2 ccl_3 ccl_4 ccl_5' --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif "
     save:
      - "*.tif"
      - "*.log"
