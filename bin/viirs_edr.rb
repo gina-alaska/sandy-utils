@@ -23,7 +23,7 @@ class SnppEDRClamp <  ProcessingFramework::CommandLineHelper
 
     inside(working_dir) do
       command = ". #{conf['env']} ; #{processing_cfg['driver']} -p #{processors} #{processing_cfg['options']} -i #{input}"
-      shell_out!(command)
+      shell_out!(command, clean_environment: true)
 
       copy_output(output, '*.h5')
     end
