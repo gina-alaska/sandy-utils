@@ -43,7 +43,7 @@ configs:
          grid: polar_alaska_500
          bands: "modis_crefl03_500m modis_crefl04_500m modis_crefl05_500m modis_crefl06_500m "
   clavrx:
-   options: " --sector-id Polar --letters --compress --fix-awips --output-pattern  --grid-coverage 0.0001 '{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{begin_time:%Y%m%d_%H%M}.nc' "
+   options: " --sector-id Polar --letters --compress --fix-awips --grid-coverage 0.0001 --output-pattern '{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{begin_time:%Y%m%d_%H%M}.nc' "
    save:
      - "*.nc"
    p2g_config: "scmi_backend.ini"
