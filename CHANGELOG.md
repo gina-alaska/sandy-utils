@@ -1,4 +1,12 @@
 ## [[Unreleased]]
+## [[1.6.10]] - 2019-2-05
+- switched mirs to scmi
+```
+   sandy-utils: Artifact: /src/results/uafgina-sandy-utils-1.6.10-20190208011602-x86_64-linux.hart
+   sandy-utils: SHA256 Checksum: e87b7da16520c4e29974d0c151f43884931e14d3a91fe75b90335a917f9f227b
+   sandy-utils: Blake2b Checksum: 329e656ba9e586fc7cb9b374a0d4b0925eae800b04e498c340fddb60ce5b4d2a
+```
+
 
 ## [[1.6.7]] - 2018-9-04
 - switched mirs to hi for everything
