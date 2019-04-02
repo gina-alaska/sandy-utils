@@ -220,6 +220,28 @@ configs:
          g: "2"
          b: "1"
        name: "metop-b.%Y%m%d.%H%M_3a_2_1"
+  metop-c:
+   mapper:
+     "1": '*_avhrr_band1_vis_*_203_1k.tif'
+     "2": '*_avhrr_band2_vis_*_203_1k.tif'
+     "3a": '*_avhrr_band3a_vis_*_203_1k.tif'
+     "3b": '*_avhrr_band3b_*_203_1k.tif'
+     "4": '*_avhrr_band4_bt_*_203_1k.tif'
+     "5": '*_avhrr_band5_bt_*_203_1k.tif'
+   single:
+     - title: thermal_5
+       band: "5"
+       name: "metop-c.%Y%m%d.%H%M_5"
+     - title: thermal_4
+       band: "4"
+       name: "metop-c.%Y%m%d.%H%M_4"
+   combinations:
+     - title: "321"
+       bands:
+         r: "3a"
+         g: "2"
+         b: "1"
+       name: "metop-c.%Y%m%d.%H%M_3a_2_1"
   noaa19:
    mapper:
      "1": '*_avhrr_band1_vis_*_203_1k.tif'
