@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/hab/pkgs/core/ruby/2.5.1/20180424193230/bin/ruby
 ENV['BUNDLE_GEMFILE'] = File.join(File.expand_path('../..', __FILE__), 'Gemfile')
 require 'bundler/setup'
 require 'fileutils'
