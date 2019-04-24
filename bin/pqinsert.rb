@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# frozen_string_literal: true
 
 ENV['BUNDLE_GEMFILE'] = File.join(File.expand_path('../..', __FILE__), 'Gemfile')
 require 'bundler/setup'
@@ -42,7 +41,7 @@ class PqinsertClamp < ProcessingFramework::CommandLineHelper
     when 'gilmore' then '_glc_'
     when 'barrow' then '_brw_'
     when 'uafgina' then '_uaf_'
-    when '' then '_'
+    when '' then ''
     end
   end
 end
