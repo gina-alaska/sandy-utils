@@ -1,10 +1,10 @@
 driver: "$POLAR2GRID_HOME/bin/avhrr2awips.sh"
 configs:
   default:
-   options: "--grid-coverage 0"
+   options: " --grid-coverage 0  --source-name UAF "
    grid: 203
    save:
-     - "UAF_AWIPS_metopb_avhrr_band[12345]*"
+     - "UAF_AWIPS_metop*_avhrr_band[12345]*"
    p2g_config: "uaf_awips_backend.ini"
 limits:
   processor: 2

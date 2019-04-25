@@ -41,7 +41,7 @@ class MetopL0Clamp < ProcessingFramework::CommandLineHelper
     mphr_file = create_mphr
 
     command = "ccsds_to_l0 -i #{sourcefile} --config-mphr #{mphr_file}"
-    shell_out!(command)
+    shell_out!(command, clean_environment: true)
   end
 
   def create_mphr
@@ -62,20 +62,20 @@ class MetopL0Clamp < ProcessingFramework::CommandLineHelper
   end
 
   def generate_eps_name(file)
-    cmd = shell_out!("od --skip-bytes=52 --address-radix=n --read-bytes=67 --format=a --width=67 #{file}  |sed 's/\s//g'")
+    cmd = shell_out!("od --skip-bytes=52 --address-radix=n --read-bytes=67 --format=a --width=67 #{file}  |sed 's/\s//g'", clean_environment: true)
     cmd.stdout.chomp
   end
 
   def generate_mmam_xml
     hktm = Dir.glob("HKTM*").first
-    shell_out!("mmam-main.exe -pfsl0 #{hktm} mmam.xml.bz2")
-    shell_out!("bzip2 -df mmam.xml.bz2")
+    shell_out!("mmam-main.exe -pfsl0 #{hktm} mmam.xml.bz2", clean_environment: true)
+    shell_out!("bzip2 -df mmam.xml.bz2", clean_environment: true)
   end
 
   def patch_l0_from_mmam
     obtutc = shell_out!('print-mmam-obt-utc.pl mmam.xml')
     Dir.glob("*Z").each do |file|
-      shell_out! "patch-level0-from-mmam.exe #{obtutc.stdout.chomp} #{file}"
+      shell_out!("patch-level0-from-mmam.exe #{obtutc.stdout.chomp} #{file}",clean_environment: true)
       FileUtils.rm_f "#{file}.old"
     end
   end

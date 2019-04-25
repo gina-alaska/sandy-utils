@@ -46,8 +46,11 @@ class AwipsScmiClamp < ProcessingFramework::CommandLineHelper
     options.each_pair do |_name, task|
       config_options = " --backend-configs #{get_config_item(@processing_cfg['p2g_config'])} " \
                         " --grid-configs #{get_config_item(@processing_cfg['p2g_grid'])} "
+      in_file_args = "-d #{inputdir} "
+      in_file_args = "-f #{inputdir}/*IMG* " if type.include?("mirs")
 
-      command = "cd thread_#{thread_number};  #{config['driver']} #{type} scmi -g #{task['grid']} -d #{inputdir} " \
+
+      command = "cd thread_#{thread_number};  #{config['driver']} #{type} scmi -g #{task['grid']} #{in_file_args} " \
                  " #{@processing_cfg['options']} " +
                 config_options +
                 " -p #{task['bands']} "
