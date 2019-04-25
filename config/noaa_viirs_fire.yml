@@ -1,0 +1,12 @@
+configs:
+  default:
+    m:
+      command: " cspp_active_fire_noaa.sh -M "
+      save:
+       - "AFMOD*.nc"
+       - "*.log"
+    i:
+      command: " cspp_active_fire_noaa.sh "
+      save:
+       - "AFIMG*.nc"
+       - "*.log"
