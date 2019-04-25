@@ -1,4 +1,5 @@
 ## [[Unreleased]]
+- added noaa viirs fires
 ## [[1.6.10]] - 2019-2-05
 - switched mirs to scmi
 ```
