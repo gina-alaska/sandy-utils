@@ -1,5 +1,14 @@
 ## [[Unreleased]]
+
+## [[1.6.11]] - 2019-4-25
 - added noaa viirs fires
+- random small fixes
+```
+   sandy-utils: Source Path: /hab/cache/src/sandy-utils-1.6.11
+   sandy-utils: Installed Path: /hab/pkgs/uafgina/sandy-utils/1.6.11/20190425202531
+   sandy-utils: Artifact: /src/results/uafgina-sandy-utils-1.6.11-20190425202531-x86_64-linux.hart
+```
+
 ## [[1.6.10]] - 2019-2-05
 - switched mirs to scmi
 ```
