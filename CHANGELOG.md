@@ -1,4 +1,5 @@
 ## [[Unreleased]]
+- added a few small fixes
 
 ## [[1.6.11]] - 2019-4-25
 - added noaa viirs fires
