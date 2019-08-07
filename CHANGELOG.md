@@ -1,4 +1,5 @@
 ## [[Unreleased]]
+- added a few small fixes
 
 ## [[1.6.12]] - 2019-8-6
 - random small fixes to the terascan processing

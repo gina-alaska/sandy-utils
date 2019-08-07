@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # require "time"
 # RTSPS helper..
+require "date"
 
 ENV['BUNDLE_GEMFILE'] = File.join(File.expand_path('../..', __FILE__), 'Gemfile')
 require 'bundler/setup'
