@@ -24,7 +24,7 @@ class AVHRRL0Clamp < ProcessingFramework::CommandLineHelper
 
       year = Time.now.strftime('%Y')
       command = "hrptin #{conf['opts']} tape_device=./#{sourcefile} pass_year=#{year} ."
-      shell_out!(command)
+      tscan_run(command, conf)
 
       # check date
       check_date(sourcefile)
@@ -76,6 +76,12 @@ class AVHRRL0Clamp < ProcessingFramework::CommandLineHelper
   def get_time(infile)
     DateTime.strptime(File.basename(infile).split('.')[1, 2].join('.') + '+0', '%y%j.%H%M%z')
   end
+
+  def tscan_run(command, cfg)
+    puts("INFO: Running \". #{cfg['terascan_driver']} ;  #{command}\"")
+    shell_out!(". #{cfg['terascan_driver']} ;  #{command}")
+  end
+
 end
 
 AVHRRL0Clamp.run
