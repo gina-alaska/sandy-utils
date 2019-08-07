@@ -2,6 +2,7 @@
 ENV['BUNDLE_GEMFILE'] = File.join(File.expand_path('../..', __FILE__), 'Gemfile')
 require 'bundler/setup'
 require 'fileutils'
+require "date"
 require_relative '../lib/processing_framework'
 
 class AVHRRL0Clamp < ProcessingFramework::CommandLineHelper
@@ -62,8 +63,8 @@ class AVHRRL0Clamp < ProcessingFramework::CommandLineHelper
       fail 'Processed data has a strange time'
     end
 
-    # If the date of the data is more than 2 days in the future, report as bad.
-    if ((time_of_data - DateTime.now) > 2 * 24 * 60 * 60)
+    # If the date of the data is more than 4 days in the future, report as bad.
+    if ((time_of_data - DateTime.now).to_f > 2.0 )
       puts('ERROR: Processed data is in the future')
       puts("ERROR: Source: #{source_file}, time => #{time_of_source.to_s}")
       puts("ERROR: Data:  #{avhrr_file}, time => #{time_of_data.to_s}")
