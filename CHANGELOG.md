@@ -1,5 +1,14 @@
 ## [[Unreleased]]
 
+## [[1.6.12]] - 2019-8-6
+- random small fixes to the terascan processing
+
+```
+   sandy-utils: Artifact: /src/results/uafgina-sandy-utils-1.6.12-20190807235301-x86_64-linux.hart
+   sandy-utils: SHA256 Checksum: e6b5fa90c6da1f9b7abfe75bb7edc42aabc1f88f47ef7bc59d21d8c9194cc3b8
+   sandy-utils: Blake2b Checksum: 479a9d130840ba6d45302d578df38c3225761a49b5c2e3f1b65fa7383942b5ca
+```
+
 ## [[1.6.11]] - 2019-4-25
 - added noaa viirs fires
 - random small fixes
