@@ -4,6 +4,12 @@
 - added a few small fixes
 - added stuff for sport scmi limb bias correction for modis and viirs.
 
+```
+   sandy-utils: Artifact: /src/results/uafgina-sandy-utils-1.6.14-20190919213347-x86_64-linux.hart
+   sandy-utils: SHA256 Checksum: e3ad8b686a0c366643b83a73dd51cd07d32a9b62d6f7103028a8d9b4216dbb61
+   sandy-utils: Blake2b Checksum: 89e274c752b75313a4a34c153a0a3d1924b5d11170afd35ebccbeaaeeb5aa775
+```
+
 ## [[1.6.12]] - 2019-8-6
 - random small fixes to the terascan processing
 
