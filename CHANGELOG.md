@@ -1,5 +1,8 @@
 ## [[Unreleased]]
+
+## [[1.6.14]] - 2019-9-16
 - added a few small fixes
+- added stuff for sport scmi limb bias correction for modis and viirs.
 
 ## [[1.6.12]] - 2019-8-6
 - random small fixes to the terascan processing
