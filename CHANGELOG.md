@@ -1,4 +1,5 @@
 ## [[Unreleased]]
+-- changed feeder geotifs to look for noaa20 instead of j01 for new polar2grid versions.
 
 ## [[1.6.14]] - 2019-9-16
 - added a few small fixes
