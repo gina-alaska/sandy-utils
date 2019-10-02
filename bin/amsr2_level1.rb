@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# AMSR2 processing tool..
+## AMSR2 processing tool..
 # Run like:
 # /amsr2_level1.rb --inputdir /hub/raid/jcable/sandy/source/gcomw_test/ -m amsr2 -o /hub/raid/jcable/sandy/output/test_level1 -t /hub/raid/jcable/sandy/temp/
 
@@ -32,10 +32,10 @@ class Amsr2Level1Clamp <  ProcessingFramework::CommandLineHelper
                      Dir.glob(File.join(input, processing_cfg['level0_glob'])).first
                    end
 
-      command = ". #{conf['env']} ; #{processing_cfg['driver']} -p #{processors} #{processing_cfg['options']}  #{input_file}"
-      result = shell_out!(command)
+      command = ". #{conf['env']} ; #{processing_cfg['driver']} #{processing_cfg['options']}  #{input_file}"
+      result = shell_out!(command, clean_environment: true)
 
-      copy_output(output, '*.h5')
+      copy_output(output, 'product/*.h5')
     end
   end
 end
