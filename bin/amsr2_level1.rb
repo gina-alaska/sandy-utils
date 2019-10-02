@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-## AMSR2 processing tool..
+# AMSR2 processing tool..
 # Run like:
 # /amsr2_level1.rb --inputdir /hub/raid/jcable/sandy/source/gcomw_test/ -m amsr2 -o /hub/raid/jcable/sandy/output/test_level1 -t /hub/raid/jcable/sandy/temp/
 
