@@ -1,4 +1,11 @@
 ## [[Unreleased]]
+## [[1.6.14]] - 2019-10-1
+- added gcom-w level1 processing
+```
+   sandy-utils: Artifact: /src/results/uafgina-sandy-utils-1.6.15-20191002001657-x86_64-linux.hart
+   sandy-utils: SHA256 Checksum: cd08e0dbfcbd8c596e6ef3141b98dacbe436df57f22a9a59343590946b851e17
+   sandy-utils: Blake2b Checksum: 196eecf7b499402b601340d4d524d896939b53215fd595cc6a3e81e2a0709073
+```
 
 ## [[1.6.14]] - 2019-9-16
 - added a few small fixes
