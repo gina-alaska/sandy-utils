@@ -1,4 +1,7 @@
 ## [[Unreleased]]
+##  2019-10-15
+- updated edr.
+
 ## [[1.6.14]] - 2019-10-1
 - added gcom-w level1 processing
 ```

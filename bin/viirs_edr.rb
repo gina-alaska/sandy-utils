@@ -22,10 +22,10 @@ class SnppEDRClamp <  ProcessingFramework::CommandLineHelper
     working_dir = "#{tempdir}/#{basename}"
 
     inside(working_dir) do
-      command = ". #{conf['env']} ; #{processing_cfg['driver']} -p #{processors} #{processing_cfg['options']} -i #{input}"
+      command = ". #{conf['env']} ; #{processing_cfg['driver']} -p #{processors} #{processing_cfg['options']} #{input}"
       shell_out!(command, clean_environment: true)
 
-      copy_output(output, '*.h5')
+      copy_output(output, '*.nc')
     end
   end
 end
