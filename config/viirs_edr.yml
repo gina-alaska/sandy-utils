@@ -1,7 +1,7 @@
 configs:
   viirs:
-   driver: viirs_edr.sh
-   options: "-z --alg='VCM'"
+   driver: viirs_asci.sh
+   options: " --prod all "
 limits:
-  processor: 1
-env: ${CSPP_EDR_HOME}/cspp_edr_env.sh
+  processor: 2
+env: $CSPP_VIIRS_ASCI_HOME/viirs_asci_env.sh
