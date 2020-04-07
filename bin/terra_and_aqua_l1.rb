@@ -2,6 +2,7 @@
 ENV['BUNDLE_GEMFILE'] = File.join(File.expand_path('../..', __FILE__), 'Gemfile')
 require 'bundler/setup'
 require 'fileutils'
+require 'date'
 require_relative '../lib/processing_framework'
 
 class ModisL1Clamp <  ProcessingFramework::CommandLineHelper

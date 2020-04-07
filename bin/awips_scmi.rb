@@ -48,7 +48,7 @@ class AwipsScmiClamp < ProcessingFramework::CommandLineHelper
                         " --grid-configs #{get_config_item(@processing_cfg['p2g_grid'])} "
       in_file_args = "-d #{inputdir} "
       in_file_args = "-f #{inputdir}/*IMG* " if type.include?("mirs")
-
+      in_file_args = "-f #{inputdir}/*L1DLBTBR*.h5 " if type.include?("amsr2")
 
       command = "cd thread_#{thread_number};  #{config['driver']} #{type} scmi -g #{task['grid']} #{in_file_args} " \
                  " #{@processing_cfg['options']} " +

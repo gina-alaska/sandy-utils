@@ -45,6 +45,7 @@ class RtstpsClamp < ProcessingFramework::CommandLineHelper
         shell_out!("#{conf['rtstps_driver']} #{conf['configs'][platform]} ../#{sourcefile}",clean_environment: true) 
         copy_output(output, '*.h5')
         copy_output(output, "*.PDS")
+        copy_output(output, "tp*.dat")
       end
     end
   end

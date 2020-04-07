@@ -1,0 +1,242 @@
+Version is  1.6.15
+Setting up Conda..
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /opt/gina/sandy-utils-1.6.15
+
+  added / updated specs:
+    - conda-pack
+    - gdal
+    - gxx_linux-64
+    - libffi
+    - pkg-config
+    - ruby=2.6.5
+
+
+The following NEW packages will be INSTALLED:
+
+  _libgcc_mutex      conda-forge/linux-64::_libgcc_mutex-0.1-conda_forge
+  _openmp_mutex      conda-forge/linux-64::_openmp_mutex-4.5-1_llvm
+  binutils_impl_lin~ conda-forge/linux-64::binutils_impl_linux-64-2.34-h53a641e_0
+  binutils_linux-64  conda-forge/linux-64::binutils_linux-64-2.34-hc952b39_18
+  boost-cpp          conda-forge/linux-64::boost-cpp-1.72.0-h8e57a91_0
+  bzip2              conda-forge/linux-64::bzip2-1.0.8-h516909a_2
+  ca-certificates    conda-forge/linux-64::ca-certificates-2019.11.28-hecc5488_0
+  cairo              conda-forge/linux-64::cairo-1.16.0-hcf35c78_1003
+  certifi            conda-forge/linux-64::certifi-2019.11.28-py38h32f6830_1
+  cfitsio            conda-forge/linux-64::cfitsio-3.470-hb60a0a2_2
+  conda-pack         conda-forge/noarch::conda-pack-0.4.0-py_0
+  curl               conda-forge/linux-64::curl-7.68.0-hf8cf82a_0
+  expat              conda-forge/linux-64::expat-2.2.9-he1b5a44_2
+  fontconfig         conda-forge/linux-64::fontconfig-2.13.1-h86ecdb6_1001
+  freetype           conda-forge/linux-64::freetype-2.10.1-he06d7ca_0
+  freexl             conda-forge/linux-64::freexl-1.0.5-h14c3975_1002
+  gcc_impl_linux-64  conda-forge/linux-64::gcc_impl_linux-64-7.3.0-hd420e75_5
+  gcc_linux-64       conda-forge/linux-64::gcc_linux-64-7.3.0-h553295d_18
+  gdal               conda-forge/linux-64::gdal-3.0.4-py38h172510d_3
+  gdbm               conda-forge/linux-64::gdbm-1.18-h0a1914f_1
+  geos               conda-forge/linux-64::geos-3.8.1-he1b5a44_0
+  geotiff            conda-forge/linux-64::geotiff-1.5.1-hcbe54f9_9
+  gettext            conda-forge/linux-64::gettext-0.19.8.1-hc5be6a0_1002
+  giflib             conda-forge/linux-64::giflib-5.2.1-h516909a_2
+  glib               conda-forge/linux-64::glib-2.58.3-py38h73cb85d_1003
+  gmp                conda-forge/linux-64::gmp-6.2.0-he1b5a44_2
+  gxx_impl_linux-64  conda-forge/linux-64::gxx_impl_linux-64-7.3.0-hdf63c60_5
+  gxx_linux-64       conda-forge/linux-64::gxx_linux-64-7.3.0-h553295d_18
+  hdf4               conda-forge/linux-64::hdf4-4.2.13-hf30be14_1003
+  hdf5               conda-forge/linux-64::hdf5-1.10.5-nompi_h3c11f04_1104
+  icu                conda-forge/linux-64::icu-64.2-he1b5a44_1
+  jpeg               conda-forge/linux-64::jpeg-9c-h14c3975_1001
+  json-c             conda-forge/linux-64::json-c-0.13.1-h14c3975_1001
+  kealib             conda-forge/linux-64::kealib-1.4.12-hec59c27_0
+  krb5               conda-forge/linux-64::krb5-1.16.4-h2fd8d38_0
+  ld_impl_linux-64   conda-forge/linux-64::ld_impl_linux-64-2.34-h53a641e_0
+  libblas            conda-forge/linux-64::libblas-3.8.0-16_openblas
+  libcblas           conda-forge/linux-64::libcblas-3.8.0-16_openblas
+  libcurl            conda-forge/linux-64::libcurl-7.68.0-hda55be3_0
+  libdap4            conda-forge/linux-64::libdap4-3.20.4-hd3bb157_0
+  libedit            conda-forge/linux-64::libedit-3.1.20170329-hf8c457e_1001
+  libffi             conda-forge/linux-64::libffi-3.2.1-he1b5a44_1007
+  libgcc-ng          conda-forge/linux-64::libgcc-ng-9.2.0-h24d8f2e_2
+  libgdal            conda-forge/linux-64::libgdal-3.0.4-h94bbfbd_3
+  libgfortran-ng     conda-forge/linux-64::libgfortran-ng-7.3.0-hdf63c60_5
+  libgomp            conda-forge/linux-64::libgomp-9.2.0-h24d8f2e_2
+  libiconv           conda-forge/linux-64::libiconv-1.15-h516909a_1006
+  libkml             conda-forge/linux-64::libkml-1.3.0-hb574062_1011
+  liblapack          conda-forge/linux-64::liblapack-3.8.0-16_openblas
+  libnetcdf          conda-forge/linux-64::libnetcdf-4.7.4-nompi_h9f9fd6a_101
+  libopenblas        conda-forge/linux-64::libopenblas-0.3.9-h5ec1e0e_0
+  libpng             conda-forge/linux-64::libpng-1.6.37-hed695b0_1
+  libpq              conda-forge/linux-64::libpq-12.2-hae5116b_0
+  libspatialite      conda-forge/linux-64::libspatialite-4.3.0a-heb269f5_1037
+  libssh2            conda-forge/linux-64::libssh2-1.8.2-h22169c7_2
+  libstdcxx-ng       conda-forge/linux-64::libstdcxx-ng-9.2.0-hdf63c60_2
+  libtiff            conda-forge/linux-64::libtiff-4.1.0-hc3755c2_3
+  libuuid            conda-forge/linux-64::libuuid-2.32.1-h14c3975_1000
+  libwebp            conda-forge/linux-64::libwebp-1.0.2-h56121f0_5
+  libxcb             conda-forge/linux-64::libxcb-1.13-h14c3975_1002
+  libxml2            conda-forge/linux-64::libxml2-2.9.10-hee79883_0
+  llvm-openmp        conda-forge/linux-64::llvm-openmp-9.0.1-hc9558a2_2
+  lz4-c              conda-forge/linux-64::lz4-c-1.8.3-he1b5a44_1001
+  ncurses            conda-forge/linux-64::ncurses-6.1-hf484d3e_1002
+  numpy              conda-forge/linux-64::numpy-1.18.1-py38h8854b6b_1
+  openjpeg           conda-forge/linux-64::openjpeg-2.3.1-h981e76c_3
+  openssl            conda-forge/linux-64::openssl-1.1.1f-h516909a_0
+  pcre               conda-forge/linux-64::pcre-8.44-he1b5a44_0
+  pip                conda-forge/noarch::pip-20.0.2-py_2
+  pixman             conda-forge/linux-64::pixman-0.38.0-h516909a_1003
+  pkg-config         conda-forge/linux-64::pkg-config-0.29.2-h516909a_1006
+  poppler            conda-forge/linux-64::poppler-0.67.0-h14e79db_8
+  poppler-data       conda-forge/noarch::poppler-data-0.4.9-1
+  postgresql         conda-forge/linux-64::postgresql-12.2-hf1211e9_0
+  proj               conda-forge/linux-64::proj-6.3.1-hc80f0dc_1
+  pthread-stubs      conda-forge/linux-64::pthread-stubs-0.4-h14c3975_1001
+  python             conda-forge/linux-64::python-3.8.2-h8356626_5_cpython
+  python_abi         conda-forge/linux-64::python_abi-3.8-1_cp38
+  readline           conda-forge/linux-64::readline-8.0-hf8c457e_0
+  ruby               conda-forge/linux-64::ruby-2.6.5-h305c5c1_0
+  setuptools         conda-forge/linux-64::setuptools-46.1.3-py38h32f6830_0
+  sqlite             conda-forge/linux-64::sqlite-3.30.1-hcee41ef_0
+  tbb                conda-forge/linux-64::tbb-2018.0.5-h2d50403_0
+  tiledb             conda-forge/linux-64::tiledb-1.7.0-hcde45ca_2
+  tk                 conda-forge/linux-64::tk-8.6.10-hed695b0_0
+  tzcode             conda-forge/linux-64::tzcode-2019a-h516909a_1002
+  wheel              conda-forge/noarch::wheel-0.34.2-py_1
+  xerces-c           conda-forge/linux-64::xerces-c-3.2.2-h8412b87_1004
+  xorg-kbproto       conda-forge/linux-64::xorg-kbproto-1.0.7-h14c3975_1002
+  xorg-libice        conda-forge/linux-64::xorg-libice-1.0.10-h516909a_0
+  xorg-libsm         conda-forge/linux-64::xorg-libsm-1.2.3-h84519dc_1000
+  xorg-libx11        conda-forge/linux-64::xorg-libx11-1.6.9-h516909a_0
+  xorg-libxau        conda-forge/linux-64::xorg-libxau-1.0.9-h14c3975_0
+  xorg-libxdmcp      conda-forge/linux-64::xorg-libxdmcp-1.1.3-h516909a_0
+  xorg-libxext       conda-forge/linux-64::xorg-libxext-1.3.4-h516909a_0
+  xorg-libxrender    conda-forge/linux-64::xorg-libxrender-0.9.10-h516909a_1002
+  xorg-renderproto   conda-forge/linux-64::xorg-renderproto-0.11.1-h14c3975_1002
+  xorg-xextproto     conda-forge/linux-64::xorg-xextproto-7.3.0-h14c3975_1002
+  xorg-xproto        conda-forge/linux-64::xorg-xproto-7.0.31-h14c3975_1007
+  xz                 conda-forge/linux-64::xz-5.2.4-h516909a_1002
+  yaml               conda-forge/linux-64::yaml-0.1.7-h14c3975_1001
+  zlib               conda-forge/linux-64::zlib-1.2.11-h516909a_1006
+  zstd               conda-forge/linux-64::zstd-1.4.4-h3b9ef0a_2
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.8.2
+  latest version: 4.8.3
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+#
+# To activate this environment, use
+#
+#     $ conda activate /opt/gina/sandy-utils-1.6.15
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+Installing ruby gems..
+Copying sandy-utils to build area..
+`lib/processing_framework' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework'
+`lib/processing_framework/base.rb' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework/base.rb'
+`lib/processing_framework/command_line_helper.rb' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework/command_line_helper.rb'
+`lib/processing_framework/compress_helper.rb' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework/compress_helper.rb'
+`lib/processing_framework/config_helper.rb' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework/config_helper.rb'
+`lib/processing_framework/gina_sat_utils.rb' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework/gina_sat_utils.rb'
+`lib/processing_framework/gina_sat_utils' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework/gina_sat_utils'
+`lib/processing_framework/gina_sat_utils/base.rb' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework/gina_sat_utils/base.rb'
+`lib/processing_framework/gina_sat_utils/dmsp.rb' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework/gina_sat_utils/dmsp.rb'
+`lib/processing_framework/gina_sat_utils/goes.rb' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework/gina_sat_utils/goes.rb'
+`lib/processing_framework/gina_sat_utils/landsat.rb' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework/gina_sat_utils/landsat.rb'
+`lib/processing_framework/gina_sat_utils/modis.rb' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework/gina_sat_utils/modis.rb'
+`lib/processing_framework/gina_sat_utils/noaa_poes.rb' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework/gina_sat_utils/noaa_poes.rb'
+`lib/processing_framework/gina_sat_utils/quicks.rb' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework/gina_sat_utils/quicks.rb'
+`lib/processing_framework/gina_sat_utils/snpp.rb' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework/gina_sat_utils/snpp.rb'
+`lib/processing_framework/gina_sat_utils/sv_bundle.rb' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework/gina_sat_utils/sv_bundle.rb'
+`lib/processing_framework/shell_out_helper.rb' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework/shell_out_helper.rb'
+`lib/processing_framework.rb' -> `/opt/gina/sandy-utils-1.6.15/lib/processing_framework.rb'
+`Gemfile' -> `/opt/gina/sandy-utils-1.6.15/Gemfile'
+cp: omitting directory `config'
+`README.md' -> `/opt/gina/sandy-utils-1.6.15/README.md'
+`VERSION' -> `/opt/gina/sandy-utils-1.6.15/VERSION'
+`CHANGELOG.md' -> `/opt/gina/sandy-utils-1.6.15/CHANGELOG.md'
+`notes.md' -> `/opt/gina/sandy-utils-1.6.15/notes.md'
+`LICENSE' -> `/opt/gina/sandy-utils-1.6.15/LICENSE'
+`Rakefile' -> `/opt/gina/sandy-utils-1.6.15/Rakefile'
+Done with  ruby gems..
+Installing gems required for Sandy-utils..
+Fetching gem metadata from https://rubygems.org/...........
+Fetching gem metadata from https://rubygems.org/.
+Resolving dependencies...
+Fetching rake 13.0.1
+Installing rake 13.0.1
+Fetching ast 2.4.0
+Installing ast 2.4.0
+Using bundler 1.17.2
+Fetching clamp 1.3.1
+Installing clamp 1.3.1
+Fetching coderay 1.1.2
+Installing coderay 1.1.2
+Fetching ffi 1.12.2
+Installing ffi 1.12.2 with native extensions
+Fetching formatador 0.2.5
+Installing formatador 0.2.5
+Fetching rb-fsevent 0.10.3
+Installing rb-fsevent 0.10.3
+Fetching rb-inotify 0.10.1
+Installing rb-inotify 0.10.1
+Fetching listen 3.2.1
+Installing listen 3.2.1
+Fetching lumberjack 1.2.4
+Installing lumberjack 1.2.4
+Fetching nenv 0.3.0
+Installing nenv 0.3.0
+Fetching shellany 0.0.1
+Installing shellany 0.0.1
+Fetching notiffany 0.1.3
+Installing notiffany 0.1.3
+Fetching method_source 1.0.0
+Installing method_source 1.0.0
+Fetching pry 0.13.0
+Installing pry 0.13.0
+Fetching thor 1.0.1
+Installing thor 1.0.1
+Fetching guard 2.16.2
+Installing guard 2.16.2
+Fetching jaro_winkler 1.5.4
+Installing jaro_winkler 1.5.4 with native extensions
+Fetching parallel 1.19.1
+Installing parallel 1.19.1
+Fetching parser 2.7.0.5
+Installing parser 2.7.0.5
+Fetching rainbow 3.0.0
+Installing rainbow 3.0.0
+Fetching rexml 3.2.4
+Installing rexml 3.2.4
+Fetching ruby-progressbar 1.10.1
+Installing ruby-progressbar 1.10.1
+Fetching unicode-display_width 1.6.1
+Installing unicode-display_width 1.6.1
+Fetching rubocop 0.80.1
+Installing rubocop 0.80.1
+Fetching guard-rubocop 1.3.0
+Installing guard-rubocop 1.3.0
+Fetching mixlib-shellout 3.0.9
+Installing mixlib-shellout 3.0.9
+Fetching version 1.1.1
+Installing version 1.1.1
+Bundle complete! 7 Gemfile dependencies, 29 gems now installed.
+Bundled gems are installed into `./vendor/bundle`
+Done with  ruby gems..
+Making package...

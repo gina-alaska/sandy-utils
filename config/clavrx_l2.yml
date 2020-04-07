@@ -2,11 +2,16 @@
 configs: 
   npp: 
     driver: "run_clavrx.sh "
-    options: " -d 3 "
+    options: " -x -d 3 "
     save: 
       - "done/*.hdf"
       - "done/*log"
       - "work/*log"
+  modis:
+    driver: "run_clavrx.sh "
+    options: " 2 "
+    save:
+      - "done/*.hdf"
   terra:   
     driver: "run_clavrx.sh "
     options: " 2 "
@@ -23,6 +28,11 @@ configs:
     save:
       - "done/*.hdf"
   n18:
+    driver: "run_clavrx.sh "
+    options: " 1 "
+    save:
+      - "done/*.hdf"
+  avhrr:
     driver: "run_clavrx.sh "
     options: " 1 "
     save:
