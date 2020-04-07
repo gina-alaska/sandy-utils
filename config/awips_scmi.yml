@@ -13,7 +13,7 @@ configs:
          bands:  "i01 i02 i03 i04 i05 i_solar_zenith_angle i_sat_zenith_angle"
        mbands:
          grid: polar_alaska_700
-         bands: "m03 m04 m08 m09 m10 m11 m13 m14 m15 m16 dynamic_dnb dnb adaptive_dnb hncc_dnb m_solar_zenith_angle m_sat_zenith_angle"
+         bands: "m03 m04 m08 m09 m10 m11 m12 m13 m14 m15 m16 dynamic_dnb dnb adaptive_dnb hncc_dnb m_solar_zenith_angle m_sat_zenith_angle"
      crefl:
        mbands:
          grid: polar_alaska_700
@@ -51,7 +51,7 @@ configs:
    tasks:
      clavrx:
        qkm:
-         grid: polar_alaska_500
+         grid: polar_alaska_700
          bands:  "cld_emiss_acha cld_height_acha cld_opd_dcomp cld_reff_dcomp cld_temp_acha cloud_phase cloud_type cld_height_base_acha rain_rate"
   avhrr:
     options: " --sector-id Polar --letters --compress --fix-awips --output-pattern 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{begin_time:%Y%m%d_%H%M}.nc' "
@@ -75,5 +75,16 @@ configs:
         5km:
           grid: polar_alaska_5km
           bands:  " sfr rain_rate sea_ice snow_cover tpw swe clw btemp_23v btemp_183h1 "
+  amsr2_l1b:
+    options: " --sector-id Polar --letters --compress --fix-awips --grid-coverage 0.00001 --output-pattern 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{begin_time:%Y%m%d_%H%M}.nc' "
+    save:
+     - "UAF_AII_*.nc"
+    p2g_config: "scmi_backend.ini"
+    p2g_grid: "scmi_grids.conf"
+    tasks:
+      amsr2_l1b:
+        5km:
+          grid: polar_alaska_5km
+          bands:  "btemp_10.7h btemp_10.7v btemp_18.7h btemp_18.7v btemp_23.8h btemp_23.8v btemp_36.5h btemp_36.5v btemp_6.9h btemp_6.9v btemp_7.3h btemp_7.3v btemp_89.0ah btemp_89.0av btemp_89.0bh btemp_89.0bv "
 limits:
   processor: 2
