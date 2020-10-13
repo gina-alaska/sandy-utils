@@ -26,6 +26,10 @@ configs:
      m10_float: npp_viirs_m10_*_alaska_600.float.tif
      m11_float: npp_viirs_m11_*_alaska_600.float.tif
      m12_float: npp_viirs_m12_*_alaska_600.float.tif
+     m11_300_float: npp_viirs_m11_*_alaska_300.float.tif
+     m12_300_float: npp_viirs_m12_*_alaska_300.float.tif
+     m16_300_float: npp_viirs_m16_*_alaska_300.float.tif
+     m08_300: npp_viirs_m08_*_alaska_300.tif
      true_color: npp_viirs_true_color_*_alaska_300.tif
      crefl01: npp_viirs_viirs_crefl01_*_alaska_300.tif
      crefl03: npp_viirs_viirs_crefl03_*_alaska_300.tif
@@ -63,38 +67,63 @@ configs:
        b: "i01_float"
      tool: "viirs_fire_stretch --blue-cap 1.0 "
      name: "npp.%Y%m%d.%H%M_i04_i02_i01"
+   - title: viirs_i5_colored
+     bands:
+       r: "i04_float"
+       g: "i04_float"
+       b: "i04_float"
+     tool: "color_thermal_long_wave.rb"
+     name: "npp.%Y%m%d.%H%M_i04_colored"
+   - title: night-time-microphysics
+     bands:
+       r: "i05_float"
+       g: "m16_300_float"
+       b: "i04_float"
+     tool: "night_microphysics"
+     name: "npp.%Y%m%d.%H%M_micro_physics"
+   - title: snow-melt
+     bands:
+       r: "i03"
+       g: "m08_300"
+       b: "i01"
+     tool: "snow_melt"
+     name: "npp.%Y%m%d.%H%M_i03_m08_i01"
   noaa20:
    mapper:
-     dnb: j01_viirs_dynamic_dnb_*_alaska_600.tif
-     i01: j01_viirs_i01*_alaska_300.tif
-     i02: j01_viirs_i02*_alaska_300.tif
-     i03: j01_viirs_i03*_alaska_300.tif
-     i04: j01_viirs_i04*_alaska_300.tif
-     i05: j01_viirs_i05*_alaska_300.tif
-     i01_float: j01_viirs_i01*_alaska_300.float.tif
-     i02_float: j01_viirs_i02*_alaska_300.float.tif
-     i03_float: j01_viirs_i03*_alaska_300.float.tif
-     i04_float: j01_viirs_i04*_alaska_300.float.tif
-     i05_float: j01_viirs_i05*_alaska_300.float.tif
-     m02: j01_viirs_m02_*_alaska_600.tif
-     m03: j01_viirs_m02_*_alaska_600.tif
-     m04: j01_viirs_m02_*_alaska_600.tif
-     m05: j01_viirs_m02_*_alaska_600.tif
-     m06: j01_viirs_m02_*_alaska_600.tif
-     m07: j01_viirs_m02_*_alaska_600.tif
-     m08: j01_viirs_m02_*_alaska_600.tif
-     m10: j01_viirs_m10_*_alaska_600.tif
-     m11: j01_viirs_m11_*_alaska_600.tif
-     m12: j01_viirs_m12_*_alaska_600.tif
-     m15: j01_viirs_m02_*_alaska_600.tif
-     m10_float: j01_viirs_m10_*_alaska_600.float.tif
-     m11_float: j01_viirs_m11_*_alaska_600.float.tif
-     m12_float: j01_viirs_m12_*_alaska_600.float.tif
-     true_color: j01_viirs_true_color_*_alaska_300.tif
-     crefl01: j01_viirs_viirs_crefl01_*_alaska_300.tif
-     crefl03: j01_viirs_viirs_crefl03_*_alaska_300.tif
-     crefl04: j01_viirs_viirs_crefl04_*_alaska_300.tif
-     crefl08: j01_viirs_viirs_crefl08_*_alaska_300.tif
+     dnb: noaa20_viirs_dynamic_dnb_*_alaska_600.tif
+     i01: noaa20_viirs_i01*_alaska_300.tif
+     i02: noaa20_viirs_i02*_alaska_300.tif
+     i03: noaa20_viirs_i03*_alaska_300.tif
+     i04: noaa20_viirs_i04*_alaska_300.tif
+     i05: noaa20_viirs_i05*_alaska_300.tif
+     i01_float: noaa20_viirs_i01*_alaska_300.float.tif
+     i02_float: noaa20_viirs_i02*_alaska_300.float.tif
+     i03_float: noaa20_viirs_i03*_alaska_300.float.tif
+     i04_float: noaa20_viirs_i04*_alaska_300.float.tif
+     i05_float: noaa20_viirs_i05*_alaska_300.float.tif
+     m02: noaa20_viirs_m02_*_alaska_600.tif
+     m03: noaa20_viirs_m02_*_alaska_600.tif
+     m04: noaa20_viirs_m02_*_alaska_600.tif
+     m05: noaa20_viirs_m02_*_alaska_600.tif
+     m06: noaa20_viirs_m02_*_alaska_600.tif
+     m07: noaa20_viirs_m02_*_alaska_600.tif
+     m08: noaa20_viirs_m02_*_alaska_600.tif
+     m10: noaa20_viirs_m10_*_alaska_600.tif
+     m11: noaa20_viirs_m11_*_alaska_600.tif
+     m12: noaa20_viirs_m12_*_alaska_600.tif
+     m15: noaa20_viirs_m02_*_alaska_600.tif
+     m16_300_float: noaa20_viirs_m16_*_alaska_300.float.tif
+     m10_float: noaa20_viirs_m10_*_alaska_600.float.tif
+     m11_float: noaa20_viirs_m11_*_alaska_600.float.tif
+     m12_float: noaa20_viirs_m12_*_alaska_600.float.tif
+     m11_300_float: noaa20_viirs_m11_*_alaska_300.float.tif
+     m12_300_float: noaa20_viirs_m12_*_alaska_300.float.tif
+     m08_300: noaa20_viirs_m08_*_alaska_300.tif
+     true_color: noaa20_viirs_true_color_*_alaska_300.tif
+     crefl01: noaa20_viirs_viirs_crefl01_*_alaska_300.tif
+     crefl03: noaa20_viirs_viirs_crefl03_*_alaska_300.tif
+     crefl04: noaa20_viirs_viirs_crefl04_*_alaska_300.tif
+     crefl08: noaa20_viirs_viirs_crefl08_*_alaska_300.tif
    single:
    - title: true_color
      band: true_color
@@ -127,6 +156,27 @@ configs:
        b: "i01_float"
      tool: "viirs_fire_stretch --blue-cap 1.0 "
      name: "noaa20.%Y%m%d.%H%M_i04_i02_i01"
+   - title: viirs_i5_colored
+     bands:
+       r: "i04_float"
+       g: "i04_float"
+       b: "i04_float"
+     tool: "color_thermal_long_wave.rb"
+     name: "noaa20.%Y%m%d.%H%M_i04_colored"
+   - title: night-time-microphysics
+     bands:
+       r: "i05_float"
+       g: "m16_300_float"
+       b: "i04_float"
+     tool: "night_microphysics"
+     name: "noaa20.%Y%m%d.%H%M_micro_physics"
+   - title: snow-melt
+     bands:
+       r: "i03"
+       g: "m08_300"
+       b: "i01"
+     tool: "snow_melt"
+     name: "noaa20.%Y%m%d.%H%M_i03_m08_i01"
   t1:
    mapper:
      "30": terra_modis_bt30_*_alaska_1000.tif
@@ -308,5 +358,103 @@ configs:
          g: "2"
          b: "1"
        name: "noaa18.%Y%m%d.%H%M_3a_2_1"
+  amsr2_level2:
+   mapper:
+     snow: gcom-w.*.Snow_Cover.tif
+     wspd: gcom-w.*.AMSR2-OCEAN.WSPD.tif
+     ice_conc: gcom-w.*.AMSR2-SEAICE.NASA_Team_2_Ice_Concentration.tif 
+     rain_rate: gcom-w.*.AMSR2-PRECIP.Rain_Rate.tif
+     swe: gcom-w.*.AMSR2-SNOW.SWE.tif
+     snow_depth: gcom-w.*.AMSR2-SNOW.Snow_Depth.tif
+     sst: gcom-w.*.AMSR2-OCEAN.SST.tif
+   single: []
+   combinations: []
+   extras:
+   - title: wind_speed
+     bands:
+       r: "wspd"
+       g: "wspd"
+       b: "wspd"
+     tool: "colorize.rb -c wind_speed.m_per_s.cmap "
+     name: "gcom-w.%Y%m%d.%H%M_wind_speed"
+   - title: ice_concentration
+     bands:
+       r: "ice_conc"
+       g: "ice_conc"
+       b: "ice_conc"
+     tool: "colorize.rb -c precent.cmap "
+     name: "gcom-w.%Y%m%d.%H%M_ice_conc"
+   - title: snow_cover_amsr2
+     bands:
+       r: "snow"
+       g: "snow"
+       b: "snow"
+     tool: "colorize.rb -c snow_cover_amsr2.cmap "
+     name: "gcom-w.%Y%m%d.%H%M_snow_cover"
+   - title: snow_cover_amsr2
+     bands:
+       r: "rain_rate"
+       g: "rain_rate"
+       b: "rain_rate"
+     tool: "colorize.rb -c precip.cmap "
+     name: "gcom-w.%Y%m%d.%H%M_rain_rate"
+   - title: swe
+     bands:
+       r: "swe"
+       g: "swe"
+       b: "swe"
+     tool: "colorize.rb -c swe.cmap "
+     name: "gcom-w.%Y%m%d.%H%M_swe"
+   - title: snow_depth
+     bands:
+       r: "snow_depth"
+       g: "snow_depth"
+       b: "snow_depth"
+     tool: "colorize.rb -c snow_depth.cmap "
+     name: "gcom-w.%Y%m%d.%H%M_snow_depth"
+   - title: sst
+     bands:
+       r: "sst"
+       g: "sst"
+       b: "sst"
+     tool: "colorize.rb -c sst.k.cmap "
+     name: "gcom-w.%Y%m%d.%H%M_rgb_sst"
+  sst:
+   mapper:
+     sst_npp: npp*sst*.float.tif
+     sst_aqua: aqua*sst*.float.tif
+     sst_terra: terra*sst*.float.tif
+     sst_noaa20: noaa20*sst*.float.tif
+   single: []
+   combinations: []
+   extras:
+   - title: sst_npp
+     bands:
+       r: "sst_npp"
+       g: "sst_npp"
+       b: "sst_npp"
+     tool: "colorize.rb -c sst.k.cmap "
+     name: "npp.%Y%m%d.%H%M_rgb_sst"
+   - title: sst_noaa20
+     bands:
+       r: "sst_noaa20"
+       g: "sst_noaa20"
+       b: "sst_noaa20"
+     tool: "colorize.rb -c sst.k.cmap "
+     name: "noaa20.%Y%m%d.%H%M_rgb_sst"
+   - title: sst_aqua
+     bands:
+       r: "sst_aqua"
+       g: "sst_aqua"
+       b: "sst_aqua"
+     tool: "colorize.rb -c sst.k.cmap "
+     name: "aqua-1.%Y%m%d.%H%M_rgb_sst"
+   - title: sst_terra
+     bands:
+       r: "sst_terra"
+       g: "sst_terra"
+       b: "sst_terra"
+     tool: "colorize.rb -c sst.k.cmap "
+     name: "terra-1.%Y%m%d.%H%M_rgb_sst"
 limits:
   processor: 1
