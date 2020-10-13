@@ -19,6 +19,7 @@ export GEM_PATH="/opt/gina/sandy-utils-$VERSION:/opt/gina/sandy-utils-$VERSION/v
 echo "Copying sandy-utils to build area.."
 cd ~/build
 cp -rv lib/processing_framework* /opt/gina/sandy-utils-$VERSION/lib/
+cp -rv config /opt/gina/sandy-utils-$VERSION/config
 cp -v  Gemfile Gemfile.lock config README.md VERSION CHANGELOG.md  notes.md LICENSE Rakefile /opt/gina/sandy-utils-$VERSION
 mkdir -p /opt/gina/sandy-utils-$VERSION/tools
 ./build_bin_stubs.rb bin/*
