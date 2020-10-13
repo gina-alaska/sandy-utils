@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/hab/pkgs/core/ruby/2.5.1/20180424193230/bin/ruby
 ENV['BUNDLE_GEMFILE'] = File.join(File.expand_path('../..', __FILE__), 'Gemfile')
 require 'bundler/setup'
 require 'fileutils'
@@ -35,7 +35,12 @@ class P2gGeotifClamp <  ProcessingFramework::CommandLineHelper
           loop do
             task = processing_cfg['tasks'].pop
             break if (task.nil?)
-            shell_out("cd thread_#{thread_number}; #{task} #{processing_cfg['p2g_args']} #{grid} #{rescale} -d #{input}")
+
+            in_file_args = "-d #{input} "
+            in_file_args = "-f #{input}/*IMG* " if mode.include?("mirs")
+            in_file_args = "-f #{input}/*L1DLBTBR*.h5 " if mode.include?("amsr2")
+
+            shell_out("cd thread_#{thread_number}; #{task} #{processing_cfg['p2g_args']} #{grid} #{rescale} #{in_file_args}")
           end
           processing_cfg['save'].each do |save_glob|
             copy_output(output, "thread_#{thread_number}/" + save_glob)

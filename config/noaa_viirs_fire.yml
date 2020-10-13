@@ -9,4 +9,5 @@ configs:
       command: " cspp_active_fire_noaa.sh "
       save:
        - "AFIMG*.nc"
+       - "*.txt"
        - "*.log"
