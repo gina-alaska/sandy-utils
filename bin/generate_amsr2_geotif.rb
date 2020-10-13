@@ -1,4 +1,4 @@
-#!/hab/pkgs/core/ruby/2.5.1/20180424193230/bin/ruby
+#!/usr/bin/env ruby
 # acspo processing for sst etc
 # Run like:
 # acspo_l2.rb -t temp -m viirs in out

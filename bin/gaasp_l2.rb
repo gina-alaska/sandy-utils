@@ -1,5 +1,5 @@
-#!/hab/pkgs/core/ruby/2.5.1/20180424193230/bin/ruby
-# acspo processing for sst etc
+#!/usr/bin/env ruby
+## acspo processing for sst etc
 # Run like:
 # gaasp_l2.rb -t temp in out
 
