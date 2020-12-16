@@ -57,7 +57,7 @@ echo source /opt/gina/sandy-utils-$VERSION/bin/activate >> /opt/gina/sandy-utils
 echo export GEM_HOME="/opt/gina/sandy-utils-$VERSION/vendor/bundle" >> /opt/gina/sandy-utils-$VERSION/env.sh 
 echo export GEM_PATH="/opt/gina/sandy-utils-$VERSION:/opt/gina/sandy-utils-$VERSION/vendor/bundle"  >> /opt/gina/sandy-utils-$VERSION/env.sh
 echo export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/opt/gina/sandy-utils-$VERSION/lib >> /opt/gina/sandy-utils-$VERSION/env.sh
-echo export PATH=\$PATH:/opt/gina/sandy-utils-$VERSION/processing_utils/bin >> /opt/gina/sandy-utils-$VERSION/env.sh
+echo export PATH=\$PATH:/opt/gina/sandy-utils-$VERSION/processing-utils/bin >> /opt/gina/sandy-utils-$VERSION/env.sh
 
 
 echo "Making package..."

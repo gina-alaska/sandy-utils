@@ -15,15 +15,16 @@ def generate_bin_stub(path, version)
 
  	lines = []
 	lines << "#!/bin/bash"
- 	lines << "export GEM_HOME=\"/opt/gina/sandy-utils-#{version}/vendor/bundle\""
-	lines << "export GEM_PATH=\"/opt/gina/sandy-utils-#{version}:/opt/gina/sandy-utils-$VERSION/vendor/bundle\""
+ 	#lines << "export GEM_HOME=\"/opt/gina/sandy-utils-#{version}/vendor/bundle\""
+	#lines << "export GEM_PATH=\"/opt/gina/sandy-utils-#{version}:/opt/gina/sandy-utils-$VERSION/vendor/bundle\""
 	#lines << "export PATH=/opt/gina/sandy-utils-#{version}/bin"
         #lines << "export LD_LIBRARY_PATH=/opt/gina/sandy-utils-#{version}/lib64:/opt/gina/sandy-utils-#{version}/lib"
-        lines << "source /opt/gina/sandy-utils-#{version}/bin/activate"
+        #lines << "source /opt/gina/sandy-utils-#{version}/bin/activate"
+        lines << "source /opt/gina/sandy-utils-#{version}/env.sh"
 	lines << "if [[ -f $TSCANROOT/etc/tscan.bash_profile ]]; then"
 	lines << "    source $TSCANROOT/etc/tscan.bash_profile"
 	lines << "fi"
-	lines << "exec #{script_name}.real"
+	lines << "exec #{script_name}.real $@"
 	
 	File.open(script_name, "w") do |fd|
 		fd.puts(lines.join("\n"))
