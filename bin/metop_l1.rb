@@ -22,17 +22,14 @@ class MetopL0Clamp <  ProcessingFramework::CommandLineHelper
     inside(@working_dir) do
       get_tle
       run_aapp_metop('AVHRR')
-      run_aapp_metop('HIRS AMSU-A MHS', 'HIRS')
-      run_aapp_metop('IASI', 'IASI')
-
-      # Not necessary for AWIPS at this point but I already did the work
-      # Comment out and leave here in case we want to use it
-      # %w(AMSU-A HIRS IASI MHS).each do |sensor|
-      #   convert_bufr(sensor)
-      # end
-      # convert_hdf5('*.l1b')
-      # convert_hdf5('*.l1c')
+      if (spacecraft_id == 'M03')
+        run_aapp_metop('AMSU-A MHS', '')
+      else
+        run_aapp_metop('HIRS AMSU-A MHS', 'HIRS')
+      end
+      run_aapp_metop('IASI AVHRR', 'IASI')
       copy_output(output, '*.l1*')
+      copy_output(output, 'IASI*')
     end
   end
 
