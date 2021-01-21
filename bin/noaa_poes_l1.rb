@@ -42,9 +42,16 @@ class NOAAL0Clamp <  ProcessingFramework::CommandLineHelper
 
   def strip_header
     sourcefile = File.basename(input)
-    FileUtils.cp(input, sourcefile)
-    sourcefile = uncompress(sourcefile)
-    shell_out!("dd bs=2176 if=#{sourcefile} of=#{sourcefile}.hrp skip=1")
+    if sourcefile.downcase.include?("noaa")
+        puts "INFO: File from EOS FES.."
+        FileUtils.cp(input, sourcefile)
+        sourcefile = uncompress(sourcefile)
+        FileUtils.mv(sourcefile, "#{sourcefile}.hrp")
+    else
+        FileUtils.cp(input, sourcefile)
+        sourcefile = uncompress(sourcefile)
+        shell_out!("dd bs=2176 if=#{sourcefile} of=#{sourcefile}.hrp skip=1")
+    end
     "#{sourcefile}.hrp"
   end
 
