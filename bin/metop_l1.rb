@@ -28,6 +28,14 @@ class MetopL0Clamp <  ProcessingFramework::CommandLineHelper
         run_aapp_metop('HIRS AMSU-A MHS', 'HIRS')
       end
       run_aapp_metop('IASI AVHRR', 'IASI')
+
+      # Not necessary for AWIPS at this point but I already did the work
+      # Comment out and leave here in case we want to use it
+      # %w(AMSU-A HIRS IASI MHS).each do |sensor|
+      #   convert_bufr(sensor)
+      # end
+      # convert_hdf5('*.l1b')
+      # convert_hdf5('*.l1c')
       copy_output(output, '*.l1*')
       copy_output(output, 'IASI*')
     end
@@ -43,23 +51,23 @@ class MetopL0Clamp <  ProcessingFramework::CommandLineHelper
     command = "AAPP_RUN_METOP -i '#{sensors}' -g '#{g}' -d #{input} -o #{@working_dir}"
     shell_out(command, env: {"TLE" => "1",
                               "PAR_NAVIGATION_DEFAULT_LISTESAT" => spacecraft_id,
-                              "WRK" => "#{@working_dir}/WRK"}.merge(conf['env']))
+                              "WRK" => "#{@working_dir}/WRK"}.merge(conf['env']),  clean_environment: true)
   end
 
   def convert_bufr(sensor)
     sensor_filename = sensor.downcase.gsub(%r{\W}, '')
     command = "aapp_encodebufr_1c -i #{@working_dir}/#{sensor_filename}*.l1c '#{sensor}'"
-    shell_out!(command)
+    shell_out!(command, clean_environment: true)
   end
 
   def convert_hdf5(file)
     command = "convert_to_hdf5 -c #{@working_dir}/#{file}"
-    shell_out!(command)
+    shell_out!(command, clean_environment: true)
   end
 
   def get_tle
     command = 'get_tle'
-    shell_out!(command)
+    shell_out!(command, clean_environment: true)
   end
 
 end
