@@ -91,17 +91,17 @@ class FeederGeotifClamp < ProcessingFramework::CommandLineHelper
     tmp_name = basename + '.tmp.vrt'
 
     # make vrt
-    shell_out!("gdalbuildvrt -resolution highest -separate #{tmp_name} #{red} #{green} #{blue}",clean_environment: true)
+    shell_out!("gdalbuildvrt -resolution highest -separate #{tmp_name} #{red} #{green} #{blue}",clean_environment: false)
 
     if (bands['p'])
       pan = get_band(input, bands['p'], cfg)
-      shell_out!("gdal_landsat_pansharp -ndv 0 -rgb #{tmp_name} -pan #{pan} -o #{tmp_name}.pan.tif",clean_environment: true)
+      shell_out!("gdal_landsat_pansharp -ndv 0 -rgb #{tmp_name} -pan #{pan} -o #{tmp_name}.pan.tif",clean_environment: false)
       tmp_file = "#{tmp_name}.pan.tif"
     end
 
     reformat_geotif(tmp_name.to_s, "#{final_file}.tif")
     shell_out!("rm -vf #{tmp_name} #{tmp_name}.pan.tif")
-    shell_out!("gdal_translate -of png -outsize 5% 5% #{final_file}.tif #{final_file}.small.png",clean_environment: true)
+    shell_out!("gdal_translate -of png -outsize 5% 5% #{final_file}.tif #{final_file}.small.png",clean_environment: false)
 
     ["#{final_file}.tif", "#{final_file}.small.png"]
   end
@@ -122,9 +122,9 @@ class FeederGeotifClamp < ProcessingFramework::CommandLineHelper
       basename = date_of_pass.strftime(image_hsh['name'])
     end
 
-    shell_out!("#{image_hsh['tool']} --red #{red} --green #{green} --blue #{blue} #{basename}.tif", clean_environment: true)
-    shell_out!("add_overviews.rb #{basename}.tif", clean_environment: true)
-    shell_out!("gdal_translate -of png -outsize 5% 5% #{basename}.tif #{basename}.small.png", clean_environment: true)
+    shell_out!("#{image_hsh['tool']} --red #{red} --green #{green} --blue #{blue} #{basename}.tif", clean_environment: false)
+    shell_out!("add_overviews.rb #{basename}.tif", clean_environment: false)
+    shell_out!("gdal_translate -of png -outsize 5% 5% #{basename}.tif #{basename}.small.png", clean_environment: false)
 
     ["#{basename}.tif", "#{basename}.small.png"]
   end
@@ -147,15 +147,15 @@ class FeederGeotifClamp < ProcessingFramework::CommandLineHelper
     tmp_name = basename + '.tmp'
 
     reformat_geotif(band, final_file + '.tif')
-    shell_out!("gdal_translate -of png -outsize 5% 5% #{final_file}.tif #{final_file}.small.png",clean_environment: true)
+    shell_out!("gdal_translate -of png -outsize 5% 5% #{final_file}.tif #{final_file}.small.png",clean_environment: false)
     [final_file + '.tif', final_file + '.small.png']
   end
 
   def reformat_geotif(infile, outfile)
     # gdal opts
     gdal_opts = "-co TILED=YES -co COMPRESS=DEFLATE -co ZLEVEL=9 -co NUM_THREADS=ALL_CPUS -a_nodata \"0 0 0\""
-    shell_out!("gdal_translate #{gdal_opts} #{infile} #{outfile}",clean_environment: true)
-    shell_out!("add_overviews.rb #{outfile}",clean_environment: true)
+    shell_out!("gdal_translate #{gdal_opts} #{infile} #{outfile}",clean_environment: false)
+    shell_out!("add_overviews.rb #{outfile}",clean_environment: false)
   end
 
   # get date of pass, from p2g style naming
