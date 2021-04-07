@@ -37,15 +37,17 @@ class NOAAL0Clamp <  ProcessingFramework::CommandLineHelper
 
   def run_aapp_noaa_poes(input_file, sensors, g = ' ')
     command = "AAPP_RUN_NOAA -i '#{sensors}' -g '#{g}' -o #{@working_dir} #{input_file}"
-    shell_out(command, env: conf['env'])
+    shell_out(command, env: conf['env'],  clean_environment: true)
   end
 
   def strip_header
     sourcefile = File.basename(input)
     FileUtils.cp(input, sourcefile)
     sourcefile = uncompress(sourcefile)
-    shell_out!("dd bs=2176 if=#{sourcefile} of=#{sourcefile}.hrp skip=1")
-    "#{sourcefile}.hrp"
+    #required for data from barrow.
+    #shell_out!("dd bs=2176 if=#{sourcefile} of=#{sourcefile}.hrp skip=1")
+    #"#{sourcefile}.hrp"
+    sourcefile
   end
 
   #don't fetch a tle each time run
