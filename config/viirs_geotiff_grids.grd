@@ -3,4 +3,8 @@ alaska_300,                 proj4, +proj=aea +lat_1=55 +lat_2=65 +lat_0=50 +lon_
 alaska_overview,             proj4, +proj=aea +lat_1=55 +lat_2=65 +lat_0=50 +lon_0=-154 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs, 1000, 1000, 6000,-6000,  -1502676.640, 3467676.360
 alaska_gm_300,         proj4, +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs, 22000, 17000, 300,-300, -20037507.23, 11753184.62
 alaska_gm_600,         proj4, +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs, 11000, 8500, 600,-600, -20037507.23, 11753184.62
-
+polar_6km,            proj4, +proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs,  900, 650, 6000,-6000, -2589330, 1000000
+polar_600,            proj4, +proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs,  9000, 6500, 600,-600, -2589330, 1000000
+polar_300,            proj4, +proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs,  18000, 13000, 300,-300, -2589330, 1000000
+alaska_gm_300,         proj4, +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs, 22000, 17000, 300,-300, -20037507.23, 11753184.62
+alaska_gm_600,         proj4, +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs, 11000, 8500, 600,-600, -20037507.23, 11753184.62
