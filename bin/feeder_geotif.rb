@@ -122,7 +122,7 @@ class FeederGeotifClamp < ProcessingFramework::CommandLineHelper
       basename = date_of_pass.strftime(image_hsh['name'])
     end
 
-    shell_out!("#{image_hsh['tool']} --red #{red} --green #{green} --blue #{blue} #{basename}.tif", clean_environment: true)
+    shell_out!("#{image_hsh['tool']} --red #{red} --green #{green} --blue #{blue} #{basename}.tif", clean_environment: false)
     shell_out!("add_overviews.rb #{basename}.tif", clean_environment: true)
     shell_out!("gdal_translate -of png -outsize 5% 5% #{basename}.tif #{basename}.small.png", clean_environment: false)
 
