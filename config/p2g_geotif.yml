@@ -21,6 +21,17 @@ configs:
     save:
      - "*.tif"
      - "npp_viirs_dynamic_dnb_*_alaska_600.png"
+  viirs_polar:
+    p2g_args: "--tiled --compress DEFLATE"
+    grid_file: "viirs_geotiff_grids.grd"
+    tasks:
+     - "viirs2gtiff.sh --grid-coverage 0.002 -p 'i01 i02 i03 i04 i05' -g polar_300"
+     - "viirs2gtiff.sh --grid-coverage 0.002 --png-quicklook -p  'adaptive_dnb dynamic_dnb histogram_dnb' -g alaska_600"
+     - "viirs2gtiff.sh --grid-coverage 0.002 -p 'i01 i02 i04 ' -g polar_300 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
+     - "crefl2gtiff.sh --grid-coverage 0.002 --true-color -g polar_300"
+    save:
+     - "*.tif"
+     - "npp_viirs_dynamic_dnb_*_polar_600.png"
   modis:
     p2g_args: "--tiled --compress DEFLATE"
     grid_file: "modis_geotiff_grids.grd"
