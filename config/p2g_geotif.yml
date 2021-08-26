@@ -44,6 +44,18 @@ configs:
     save:
      - "*.tif"
      - "*_modis_bt31_*_alaska_1000.png"
+  modis_polar:
+    p2g_args: "--tiled --compress DEFLATE"
+    grid_file: "modis_geotiff_grids.grd"
+    tasks:
+     - "modis2gtiff.sh --grid-coverage 0.002 -p 'ir31 ir30 bt30 bt31' -g polar_1km --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
+     - "crefl2gtiff.sh --grid-coverage 0.002 --true-color -g polar_250"
+     - "modis2gtiff.sh --grid-coverage 0.002 -p 'vis01 vis02' -g polar_250"
+     - "modis2gtiff.sh --grid-coverage 0.002 -p 'vis01 vis02 vis03 vis04 vis05 vis06 vis07' -g polar_500"
+     - "modis2gtiff.sh --png-quicklook --grid-coverage 0.02 -p 'ir30 ir31 bt30 bt31' -g polar_1km"
+    save:
+     - "*.tif"
+     - "*_modis_bt31_*_polar_500.png"
   avhrr:
     p2g_args: "--tiled --compress DEFLATE"
     grid_file: "avhrr_geotiff_grids.grd"
