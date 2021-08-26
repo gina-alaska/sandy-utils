@@ -427,6 +427,49 @@ configs:
        b: "7"
        p: "1"
      name: "t1.%Y%m%d.%H%M_3_6_7"
+  t1-polar:
+   mapper:
+     "30": terra_modis_bt30_*_polar_1km.tif
+     "31": terra_modis_bt31_*_polar_1km.tif
+     true_color: terra_modis_true_color_*_polar_250.tif
+     "1": terra_modis_vis01_*_polar_250.tif
+     "1_500": terra_modis_vis01_*_polar_500.tif
+     "2": terra_modis_vis02_*_polar_250.tif
+     "2_500": terra_modis_vis02_*_polar_500.tif
+     "3": terra_modis_vis03_*_polar_500.tif
+     "4": terra_modis_vis04_*_polar_500.tif
+     "5": terra_modis_vis05_*_polar_500.tif
+     "6": terra_modis_vis06_*_polar_500.tif
+     "7": terra_modis_vis07_*_polar_500.tif
+   single:
+   - title: true_color
+     band: true_color
+     name: "t1.%Y%m%d.%H%M_true_color.polar"
+   - title: thermal
+     band: "31"
+     name: "t1.%Y%m%d.%H%M_31.polar"
+   combinations:
+   - title: 261
+     bands:
+       r: "2_500"
+       g: "6"
+       b: "1_500"
+       p: "1"
+     name: "t1.%Y%m%d.%H%M_2_6_1_1.polar"
+   - title: 721
+     bands:
+       r: "7"
+       g: "2_500"
+       b: "1_500"
+       p: "1"
+     name: "t1.%Y%m%d.%H%M_7_2_1_1.polar"
+   - title: 367
+     bands:
+       r: "3"
+       g: "6"
+       b: "7"
+       p: "1"
+     name: "t1.%Y%m%d.%H%M_3_6_7.polar"  
   a1:
    mapper:
      "30": aqua_modis_bt30_*_alaska_1000.tif
@@ -455,6 +498,34 @@ configs:
        b: "1_500"
        p: "1"
      name: "a1.%Y%m%d.%H%M_7_2_1_1"
+  a1-polar:
+   mapper:
+     "30": aqua_modis_bt30_*_polar_1km.tif
+     "31": aqua_modis_bt31_*_polar_1km.tif
+     "true_color": aqua_modis_true_color_*_polar_250.tif
+     "1": aqua_modis_vis01_*_polar_250.tif
+     "1_500": aqua_modis_vis01_*_polar_500.tif
+     "2": aqua_modis_vis02_*_polar_250.tif
+     "2_500": aqua_modis_vis02_*_polar_500.tif
+     "3": aqua_modis_vis03_*_polar_500.tif
+     "4": aqua_modis_vis04_*_polar_500.tif
+     "5": aqua_modis_vis05_*_polar_500.tif
+     "7": aqua_modis_vis07_*_polar_500.tif
+   single:
+   - title: true_color
+     band: true_color
+     name: "a1.%Y%m%d.%H%M_true_color.polar"
+   - title: thermal
+     band: "31"
+     name: "a1.%Y%m%d.%H%M_31.polar"
+   combinations:
+   - title: "721"
+     bands:
+       r: "7"
+       g: "2_500"
+       b: "1_500"
+       p: "1"
+     name: "a1.%Y%m%d.%H%M_7_2_1_1.polar"
   metop-b:
    mapper:
      "1": '*_avhrr_band1_vis_*_203_1k.tif'
