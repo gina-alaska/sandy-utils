@@ -444,10 +444,10 @@ configs:
    single:
    - title: true_color
      band: true_color
-     name: "t1.%Y%m%d.%H%M_true_color.polar"
+     name: "t1.%Y%m%d.%H%M_true_color_polar"
    - title: thermal
      band: "31"
-     name: "t1.%Y%m%d.%H%M_31.polar"
+     name: "t1.%Y%m%d.%H%M_31_polar"
    combinations:
    - title: 261
      bands:
@@ -455,21 +455,21 @@ configs:
        g: "6"
        b: "1_500"
        p: "1"
-     name: "t1.%Y%m%d.%H%M_2_6_1_1.polar"
+     name: "t1.%Y%m%d.%H%M_2_6_1_1_polar"
    - title: 721
      bands:
        r: "7"
        g: "2_500"
        b: "1_500"
        p: "1"
-     name: "t1.%Y%m%d.%H%M_7_2_1_1.polar"
+     name: "t1.%Y%m%d.%H%M_7_2_1_1_polar"
    - title: 367
      bands:
        r: "3"
        g: "6"
        b: "7"
        p: "1"
-     name: "t1.%Y%m%d.%H%M_3_6_7.polar"  
+     name: "t1.%Y%m%d.%H%M_3_6_7_polar"  
   a1:
    mapper:
      "30": aqua_modis_bt30_*_alaska_1000.tif
@@ -514,10 +514,10 @@ configs:
    single:
    - title: true_color
      band: true_color
-     name: "a1.%Y%m%d.%H%M_true_color.polar"
+     name: "a1.%Y%m%d.%H%M_true_color_polar"
    - title: thermal
      band: "31"
-     name: "a1.%Y%m%d.%H%M_31.polar"
+     name: "a1.%Y%m%d.%H%M_31_polar"
    combinations:
    - title: "721"
      bands:
@@ -525,7 +525,7 @@ configs:
        g: "2_500"
        b: "1_500"
        p: "1"
-     name: "a1.%Y%m%d.%H%M_7_2_1_1.polar"
+     name: "a1.%Y%m%d.%H%M_7_2_1_1_polar"
   metop-b:
    mapper:
      "1": '*_avhrr_band1_vis_*_203_1k.tif'
