@@ -427,49 +427,6 @@ configs:
        b: "7"
        p: "1"
      name: "t1.%Y%m%d.%H%M_3_6_7"
-  t1-polar:
-   mapper:
-     "30": terra_modis_bt30_*_polar_1km.tif
-     "31": terra_modis_bt31_*_polar_1km.tif
-     true_color: terra_modis_true_color_*_polar_250.tif
-     "1": terra_modis_vis01_*_polar_250.tif
-     "1_500": terra_modis_vis01_*_polar_500.tif
-     "2": terra_modis_vis02_*_polar_250.tif
-     "2_500": terra_modis_vis02_*_polar_500.tif
-     "3": terra_modis_vis03_*_polar_500.tif
-     "4": terra_modis_vis04_*_polar_500.tif
-     "5": terra_modis_vis05_*_polar_500.tif
-     "6": terra_modis_vis06_*_polar_500.tif
-     "7": terra_modis_vis07_*_polar_500.tif
-   single:
-   - title: true_color
-     band: true_color
-     name: "t1.%Y%m%d.%H%M_true_color_polar"
-   - title: thermal
-     band: "31"
-     name: "t1.%Y%m%d.%H%M_31_polar"
-   combinations:
-   - title: 261
-     bands:
-       r: "2_500"
-       g: "6"
-       b: "1_500"
-       p: "1"
-     name: "t1.%Y%m%d.%H%M_2_6_1_1_polar"
-   - title: 721
-     bands:
-       r: "7"
-       g: "2_500"
-       b: "1_500"
-       p: "1"
-     name: "t1.%Y%m%d.%H%M_7_2_1_1_polar"
-   - title: 367
-     bands:
-       r: "3"
-       g: "6"
-       b: "7"
-       p: "1"
-     name: "t1.%Y%m%d.%H%M_3_6_7_polar"  
   a1:
    mapper:
      "30": aqua_modis_bt30_*_alaska_1000.tif
@@ -498,34 +455,6 @@ configs:
        b: "1_500"
        p: "1"
      name: "a1.%Y%m%d.%H%M_7_2_1_1"
-  a1-polar:
-   mapper:
-     "30": aqua_modis_bt30_*_polar_1km.tif
-     "31": aqua_modis_bt31_*_polar_1km.tif
-     "true_color": aqua_modis_true_color_*_polar_250.tif
-     "1": aqua_modis_vis01_*_polar_250.tif
-     "1_500": aqua_modis_vis01_*_polar_500.tif
-     "2": aqua_modis_vis02_*_polar_250.tif
-     "2_500": aqua_modis_vis02_*_polar_500.tif
-     "3": aqua_modis_vis03_*_polar_500.tif
-     "4": aqua_modis_vis04_*_polar_500.tif
-     "5": aqua_modis_vis05_*_polar_500.tif
-     "7": aqua_modis_vis07_*_polar_500.tif
-   single:
-   - title: true_color
-     band: true_color
-     name: "a1.%Y%m%d.%H%M_true_color_polar"
-   - title: thermal
-     band: "31"
-     name: "a1.%Y%m%d.%H%M_31_polar"
-   combinations:
-   - title: "721"
-     bands:
-       r: "7"
-       g: "2_500"
-       b: "1_500"
-       p: "1"
-     name: "a1.%Y%m%d.%H%M_7_2_1_1_polar"
   metop-b:
    mapper:
      "1": '*_avhrr_band1_vis_*_203_1k.tif'
@@ -745,6 +674,7 @@ configs:
   noaa20polar:
    mapper:
      dnb: noaa20_viirs_dynamic_dnb_*_polar_600.tif
+     adaptive_dnb: noaa20_viirs_adaptive_dnb_*_polar_600.tif
      i01: noaa20_viirs_i01*_polar_300.tif
      i02: noaa20_viirs_i02*_polar_300.tif
      i03: noaa20_viirs_i03*_polar_300.tif
@@ -781,14 +711,20 @@ configs:
    single:
    - title: true_color
      band: true_color
-     name: "noaa20.%Y%m%d.%H%M_true_color_gm"
+     name: "noaa20.%Y%m%d.%H%M_true_color_polar"
+   - title: dnb
+     band: dnb
+     name: "noaa20.%Y%m%d.%H%M_DNB_dynamic_polar"
+   - title: adaptive_dnb
+     band: adaptive_dnb
+     name: "noaa20.%Y%m%d.%H%M_DNB_adaptive_polar"
    combinations:
    - title: landcolor
      bands:
        r: "i03"
        g: "i02"
        b: "i01"
-     name: "noaa20.%Y%m%d.%H%M_I03_I02_I01_gm"
+     name: "noaa20.%Y%m%d.%H%M_I03_I02_I01_polar"
    extras:
    - title: viirs_fire_temperature
      bands:
@@ -796,24 +732,25 @@ configs:
        g: "m11_float"
        b: "m10_float"
      tool: "viirs_fire_stretch --blue-cap 0.75 "
-     name: "noaa20.%Y%m%d.%H%M_m12_m11_m10_gm"
+     name: "noaa20.%Y%m%d.%H%M_m12_m11_m10_polar"
    - title: viirs_fire_color
      bands:
        r: "i04_float"
        g: "i02_float"
        b: "i01_float"
      tool: "viirs_fire_stretch --blue-cap 1.0 "
-     name: "noaa20.%Y%m%d.%H%M_i04_i02_i01_gm"
+     name: "noaa20.%Y%m%d.%H%M_i04_i02_i01_polar"
    - title: viirs_i4_colored
      bands:
        r: "i04_float"
        g: "i04_float"
        b: "i04_float"
      tool: "color_thermal_long_wave.rb"
-     name: "noaa20.%Y%m%d.%H%M_i04_colored_gm"
+     name: "noaa20.%Y%m%d.%H%M_i04_colored_polar"
   snpp20polar:
    mapper:
      dnb: npp_viirs_dynamic_dnb_*_polar_600.tif
+     adaptive_dnb: npp_viirs_adaptive_dnb_*_polar_600.tif
      i01: npp_viirs_i01*_polar_300.tif
      i02: npp_viirs_i02*_polar_300.tif
      i03: npp_viirs_i03*_polar_300.tif
@@ -850,14 +787,20 @@ configs:
    single:
    - title: true_color
      band: true_color
-     name: "npp.%Y%m%d.%H%M_true_color_gm"
+     name: "npp.%Y%m%d.%H%M_true_color_polar"
+   - title: dnb
+     band: dnb
+     name: "npp.%Y%m%d.%H%M_DNB_dynamic_polar"
+   - title: adaptive_dnb
+     band: adaptive_dnb
+     name: "npp.%Y%m%d.%H%M_DNB_adaptive_polar"
    combinations:
    - title: landcolor
      bands:
        r: "i03"
        g: "i02"
        b: "i01"
-     name: "npp.%Y%m%d.%H%M_I03_I02_I01_gm"
+     name: "npp.%Y%m%d.%H%M_I03_I02_I01_polar"
    extras:
    - title: viirs_fire_temperature
      bands:
@@ -865,21 +808,20 @@ configs:
        g: "m11_float"
        b: "m10_float"
      tool: "viirs_fire_stretch --blue-cap 0.75 "
-     name: "npp.%Y%m%d.%H%M_m12_m11_m10_gm"
+     name: "npp.%Y%m%d.%H%M_m12_m11_m10_polar"
    - title: viirs_fire_color
      bands:
        r: "i04_float"
        g: "i02_float"
        b: "i01_float"
      tool: "viirs_fire_stretch --blue-cap 1.0 "
-     name: "npp.%Y%m%d.%H%M_i04_i02_i01_gm"
+     name: "npp.%Y%m%d.%H%M_i04_i02_i01_polar"
    - title: viirs_i5_colored
      bands:
        r: "i04_float"
        g: "i04_float"
        b: "i04_float"
      tool: "color_thermal_long_wave.rb"
-     name: "npp.%Y%m%d.%H%M_i04_colored_gm"
+     name: "npp.%Y%m%d.%H%M_i04_colored_polar"
 limits:
   processor: 1
-
