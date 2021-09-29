@@ -26,7 +26,7 @@ configs:
     grid_file: "viirs_geotiff_grids.grd"
     tasks:
      - "viirs2gtiff.sh --grid-coverage 0.002 -p 'i01 i02 i03 i04 i05' -g polar_300"
-     - "viirs2gtiff.sh --grid-coverage 0.002 --png-quicklook -p  'adaptive_dnb dynamic_dnb histogram_dnb hncc_dnb dnb' -g alaska_600"
+     - "viirs2gtiff.sh --grid-coverage 0.002 --png-quicklook -p  'adaptive_dnb dynamic_dnb histogram_dnb hncc_dnb dnb' -g polar_600"
      - "viirs2gtiff.sh --grid-coverage 0.002 -p 'i01 i02 i04 ' -g polar_300 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
      - "crefl2gtiff.sh --grid-coverage 0.002 --true-color -g polar_300"
     save:
