@@ -60,8 +60,8 @@ configs:
     p2g_args: "--tiled --compress DEFLATE"
     grid_file: "avhrr_geotiff_grids.grd"
     tasks:
-     - "polar2grid.sh avhrr gtiff -g 203_1k --grid-coverage 0.08 -p 'band3b_bt band4_bt band5_bt' --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
-     - "polar2grid.sh avhrr gtiff -g 203_1k --grid-coverage 0.08 -p 'band1_vis band2_vis band3a_vis band3b_bt band4_bt band5_bt' "
+     - "polar2grid.sh avhrr gtiff -g 203_1k --grid-coverage 0.001 -p 'band3b_bt band4_bt band5_bt' --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
+     - "polar2grid.sh avhrr gtiff -g 203_1k --grid-coverage 0.001 -p 'band1_vis band2_vis band3a_vis band3b_bt band4_bt band5_bt' "
     save:
      - "*.tif"
   amsr2:
