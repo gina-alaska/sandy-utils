@@ -819,6 +819,9 @@ configs:
    - title: hncc_dnb
      band: hncc_dnb
      name: "noaa20.%Y%m%d.%H%M_DNB_hncc_polar"
+   - title: thermal
+     band: "i05"
+     name: "noaa20.%Y%m%d.%H%M_I05_polar"
    combinations:
    - title: landcolor
      bands:
@@ -907,6 +910,9 @@ configs:
    - title: hncc_dnb
      band: hncc_dnb
      name: "npp.%Y%m%d.%H%M_DNB_hncc_polar"
+   - title: thermal
+     band: "i05"
+     name: "npp.%Y%m%d.%H%M_I05_polar"
    combinations:
    - title: landcolor
      bands:
