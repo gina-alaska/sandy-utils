@@ -2,6 +2,7 @@ configs:
   npp: 
    mapper:
      dnb: npp_viirs_dynamic_dnb_*_alaska_600.tif
+     dnb_adaptive: npp_viirs_adaptive_dnb_*_alaska_600.tif
      i01: npp_viirs_i01*_alaska_300.tif
      i02: npp_viirs_i02*_alaska_300.tif
      i03: npp_viirs_i03*_alaska_300.tif
@@ -42,6 +43,9 @@ configs:
    - title: dnb
      band: dnb
      name: "npp.%Y%m%d.%H%M_DNB"
+   - title: dnb-adaptive
+     band: dnb_adaptive
+     name: "npp.%Y%m%d.%H%M_DNB_adaptive"
    - title: thermal
      band: "i05"
      name: "npp.%Y%m%d.%H%M_I05"
@@ -229,6 +233,7 @@ configs:
   noaa20:
    mapper:
      dnb: noaa20_viirs_dynamic_dnb_*_alaska_600.tif
+     dnb_adaptive: noaa20_viirs_adaptive_dnb_*_alaska_600.tif
      i01: noaa20_viirs_i01*_alaska_300.tif
      i02: noaa20_viirs_i02*_alaska_300.tif
      i03: noaa20_viirs_i03*_alaska_300.tif
@@ -269,6 +274,9 @@ configs:
    - title: dnb
      band: dnb
      name: "noaa20.%Y%m%d.%H%M_DNB"
+   - title: dnb_adaptive
+     band: dnb_adaptive
+     name: "noaa20.%Y%m%d.%H%M_DNB_adaptive"
    - title: thermal
      band: "i05"
      name: "noaa20.%Y%m%d.%H%M_I05"
@@ -406,27 +414,13 @@ configs:
      band: "31"
      name: "t1.%Y%m%d.%H%M_31"
    combinations:
-   - title: 261
+   - title: 621
      bands:
-       r: "2_500"
-       g: "6"
-       b: "1_500"
-       p: "1"
-     name: "t1.%Y%m%d.%H%M_2_6_1_1"
-   - title: 721
-     bands:
-       r: "7"
        g: "2_500"
+       r: "6"
        b: "1_500"
        p: "1"
-     name: "t1.%Y%m%d.%H%M_7_2_1_1"
-   - title: 367
-     bands:
-       r: "3"
-       g: "6"
-       b: "7"
-       p: "1"
-     name: "t1.%Y%m%d.%H%M_3_6_7"
+     name: "t1.%Y%m%d.%H%M_6_2_1_1"
   t1-polar:
    mapper:
      "30": terra_modis_bt30_*_polar_1km.tif
@@ -449,55 +443,32 @@ configs:
      band: "31"
      name: "t1.%Y%m%d.%H%M_31_polar"
    combinations:
-   - title: 261
+   - title: 621_pan
      bands:
-       r: "2_500"
-       g: "6"
+       g: "2_500"
+       r: "6"
        b: "1_500"
        p: "1"
-     name: "t1.%Y%m%d.%H%M_2_6_1_1_polar"
-   - title: 721
+     name: "t1.%Y%m%d.%H%M_6_2_1_1_polar"
+   - title: 621
+     bands:
+       g: "2"
+       r: "6"
+       b: "1"
+     name: "t1.%Y%m%d.%H%M_6_2_1_polar"
+   - title: 721-pan
      bands:
        r: "7"
        g: "2_500"
        b: "1_500"
        p: "1"
      name: "t1.%Y%m%d.%H%M_7_2_1_1_polar"
-   - title: 367
-     bands:
-       r: "3"
-       g: "6"
-       b: "7"
-       p: "1"
-     name: "t1.%Y%m%d.%H%M_3_6_7_polar"  
-  a1-polar:
-   mapper:
-     "30": aqua_modis_bt30_*_polar_1km.tif
-     "31": aqua_modis_bt31_*_polar_1km.tif
-     "true_color": aqua_modis_true_color_*_polar_250.tif
-     "1": aqua_modis_vis01_*_polar_250.tif
-     "1_500": aqua_modis_vis01_*_polar_500.tif
-     "2": aqua_modis_vis02_*_polar_250.tif
-     "2_500": aqua_modis_vis02_*_polar_500.tif
-     "3": aqua_modis_vis03_*_polar_500.tif
-     "4": aqua_modis_vis04_*_polar_500.tif
-     "5": aqua_modis_vis05_*_polar_500.tif
-     "7": aqua_modis_vis07_*_polar_500.tif
-   single:
-   - title: true_color
-     band: true_color
-     name: "a1.%Y%m%d.%H%M_true_color_polar"
-   - title: thermal
-     band: "31"
-     name: "a1.%Y%m%d.%H%M_31_polar"
-   combinations:
-   - title: "721"
+   - title: 721
      bands:
        r: "7"
-       g: "2_500"
-       b: "1_500"
-       p: "1"
-     name: "a1.%Y%m%d.%H%M_7_2_1_1_polar"
+       g: "2"
+       b: "1"
+     name: "t1.%Y%m%d.%H%M_7_2_1_polar"
   a1:
    mapper:
      "30": aqua_modis_bt30_*_alaska_1000.tif
@@ -519,13 +490,60 @@ configs:
      band: "31"
      name: "a1.%Y%m%d.%H%M_31"
    combinations:
-   - title: "721"
+   - title: 621
+     bands:
+       g: "2_500"
+       r: "6"
+       b: "1_500"
+       p: "1"
+     name: "a1.%Y%m%d.%H%M_6_2_1_1"
+  a1-polar:
+   mapper:
+     "30": aqua_modis_bt30_*_polar_1km.tif
+     "31": aqua_modis_bt31_*_polar_1km.tif
+     "true_color": aqua_modis_true_color_*_polar_250.tif
+     "1": aqua_modis_vis01_*_polar_250.tif
+     "1_500": aqua_modis_vis01_*_polar_500.tif
+     "2": aqua_modis_vis02_*_polar_250.tif
+     "2_500": aqua_modis_vis02_*_polar_500.tif
+     "3": aqua_modis_vis03_*_polar_500.tif
+     "4": aqua_modis_vis04_*_polar_500.tif
+     "5": aqua_modis_vis05_*_polar_500.tif
+     "7": aqua_modis_vis07_*_polar_500.tif
+   single:
+   - title: true_color
+     band: true_color
+     name: "a1.%Y%m%d.%H%M_true_color_polar"
+   - title: thermal
+     band: "31"
+     name: "a1.%Y%m%d.%H%M_31_polar"
+   combinations:
+   - title: 621_pan
+     bands:
+       g: "2_500"
+       r: "6"
+       b: "1_500"
+       p: "1"
+     name: "a1.%Y%m%d.%H%M_6_2_1_1_polar"
+   - title: 621
+     bands:
+       g: "2"
+       r: "6"
+       b: "1"
+     name: "a1.%Y%m%d.%H%M_6_2_1_polar"
+   - title: 721-pan
      bands:
        r: "7"
        g: "2_500"
        b: "1_500"
        p: "1"
-     name: "a1.%Y%m%d.%H%M_7_2_1_1"
+     name: "a1.%Y%m%d.%H%M_7_2_1_1_polar"
+   - title: 721
+     bands:
+       r: "7"
+       g: "2"
+       b: "1"
+     name: "a1.%Y%m%d.%H%M_7_2_1_polar"
   metop-b:
    mapper:
      "1": '*_avhrr_band1_vis_*_203_1k.tif'
@@ -746,6 +764,9 @@ configs:
    mapper:
      dnb: noaa20_viirs_dynamic_dnb_*_polar_600.tif
      adaptive_dnb: noaa20_viirs_adaptive_dnb_*_polar_600.tif
+     dynamic_dnb: noaa20_viirs_dynamic_dnb_*_polar_600.tif
+     histogram_dnb: noaa20_viirs_histogram_dnb_*_polar_600.tif
+     hncc_dnb: noaa20_viirs_hncc_dnb_*_polar_600.tif
      i01: noaa20_viirs_i01*_polar_300.tif
      i02: noaa20_viirs_i02*_polar_300.tif
      i03: noaa20_viirs_i03*_polar_300.tif
@@ -789,6 +810,15 @@ configs:
    - title: adaptive_dnb
      band: adaptive_dnb
      name: "noaa20.%Y%m%d.%H%M_DNB_adaptive_polar"
+   - title: histogram_dnb
+     band: histogram_dnb
+     name: "noaa20.%Y%m%d.%H%M_DNB_histogram_polar"
+   - title: dynamic_dnb
+     band: dynamic_dnb
+     name: "noaa20.%Y%m%d.%H%M_DNB_dynamic_polar"
+   - title: hncc_dnb
+     band: hncc_dnb
+     name: "noaa20.%Y%m%d.%H%M_DNB_hncc_polar"
    combinations:
    - title: landcolor
      bands:
@@ -822,6 +852,9 @@ configs:
    mapper:
      dnb: npp_viirs_dynamic_dnb_*_polar_600.tif
      adaptive_dnb: npp_viirs_adaptive_dnb_*_polar_600.tif
+     dynamic_dnb: npp_viirs_dynamic_dnb_*_polar_600.tif
+     histogram_dnb: npp_viirs_histogram_dnb_*_polar_600.tif
+     hncc_dnb: npp_viirs_hncc_dnb_*_polar_600.tif
      i01: npp_viirs_i01*_polar_300.tif
      i02: npp_viirs_i02*_polar_300.tif
      i03: npp_viirs_i03*_polar_300.tif
@@ -865,6 +898,15 @@ configs:
    - title: adaptive_dnb
      band: adaptive_dnb
      name: "npp.%Y%m%d.%H%M_DNB_adaptive_polar"
+   - title: histogram_dnb
+     band: histogram_dnb
+     name: "npp.%Y%m%d.%H%M_DNB_histogram_polar"
+   - title: dynamic_dnb
+     band: dynamic_dnb
+     name: "npp.%Y%m%d.%H%M_DNB_dynamic_polar"
+   - title: hncc_dnb
+     band: hncc_dnb
+     name: "npp.%Y%m%d.%H%M_DNB_hncc_polar"
    combinations:
    - title: landcolor
      bands:
@@ -896,3 +938,4 @@ configs:
      name: "npp.%Y%m%d.%H%M_i04_colored_polar"
 limits:
   processor: 1
+
