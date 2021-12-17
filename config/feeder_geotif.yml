@@ -309,13 +309,27 @@ configs:
        b: "i01_float"
      tool: "viirs_fire_stretch --blue-cap 1.0 "
      name: "noaa20.%Y%m%d.%H%M_i04_i02_i01"
-   - title: viirs_i5_colored
+   - title: viirs_i4_colored
      bands:
        r: "i04_float"
        g: "i04_float"
        b: "i04_float"
      tool: "color_thermal_long_wave.rb"
      name: "noaa20.%Y%m%d.%H%M_i04_colored"
+   - title: viirs_i5_colored
+     bands:
+       r: "i05_float"
+       g: "i05_float"
+       b: "i05_float"
+     tool: "color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap "
+     name: "noaa20.%Y%m%d.%H%M_i05_colored"
+    - title: viirs_i5_colored
+     bands:
+       r: "i05_float"
+       g: "i05_float"
+       b: "i05_float"
+     tool: "color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap "
+     name: "noaa20.%Y%m%d.%H%M_i05_colored"
    - title: night-time-microphysics
      bands:
        r: "i05_float"
@@ -858,6 +872,13 @@ configs:
        b: "i04_float"
      tool: "color_thermal_long_wave.rb"
      name: "noaa20.%Y%m%d.%H%M_i04_colored_polar"
+   - title: viirs_i5_colored
+     bands:
+       r: "i05_float"
+       g: "i05_float"
+       b: "i05_float"
+     tool: "color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap "
+     name: "noaa20.%Y%m%d.%H%M_i05_colored_polar"
   snpp20polar:
    mapper:
      dnb: npp_viirs_dynamic_dnb_*_polar_600.tif
@@ -942,13 +963,20 @@ configs:
        b: "i01_float"
      tool: "viirs_fire_stretch --blue-cap 1.0 "
      name: "npp.%Y%m%d.%H%M_i04_i02_i01_polar"
-   - title: viirs_i5_colored
+   - title: viirs_i4_colored
      bands:
        r: "i04_float"
        g: "i04_float"
        b: "i04_float"
      tool: "color_thermal_long_wave.rb"
      name: "npp.%Y%m%d.%H%M_i04_colored_polar"
+   - title: viirs_i5_colored
+     bands:
+       r: "i05_float"
+       g: "i05_float"
+       b: "i05_float"
+     tool: "color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap "
+     name: "npp.%Y%m%d.%H%M_i05_colored_polar"
 limits:
   processor: 1
 
