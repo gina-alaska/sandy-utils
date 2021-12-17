@@ -323,13 +323,6 @@ configs:
        b: "i05_float"
      tool: "color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap "
      name: "noaa20.%Y%m%d.%H%M_i05_colored"
-    - title: viirs_i5_colored
-     bands:
-       r: "i05_float"
-       g: "i05_float"
-       b: "i05_float"
-     tool: "color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap "
-     name: "noaa20.%Y%m%d.%H%M_i05_colored"
    - title: night-time-microphysics
      bands:
        r: "i05_float"
