@@ -10,11 +10,11 @@ configs:
      viirs_sdr: 
        ibands:
          grid: polar_alaska_300
-         bands:  "i01 i02 i03 i04 i05 i_solar_zenith_angle i_sat_zenith_angle"
+         bands:  "i01 i02 i03 i04 i05 "
      'viirs_sdr ':
        mbands:
          grid: polar_alaska_700
-         bands: "m03 m04 m08 m09 m10 m11 m12 m13 m14 m15 m16 dynamic_dnb dnb adaptive_dnb hncc_dnb m_solar_zenith_angle m_sat_zenith_angle"
+         bands: "m03 m04 m08 m09 m10 m11 m12 m13 m14 m15 m16 dynamic_dnb adaptive_dnb hncc_dnb "
      crefl:
        mbands:
          grid: polar_alaska_700
@@ -35,7 +35,7 @@ configs:
          bands: "vis03 vis04 vis05 vis06 vis07"
        km:
          grid: polar_alaska_1km
-         bands: "vis26 bt20 bt27 bt23 bt28 bt29 bt30 bt31 bt32 satellite_zenith_angle solar_zenith_angle"
+         bands: "vis26 bt20 bt27 bt23 bt28 bt29 bt30 bt31 bt32 "
      crefl:
        qkm:
          grid: polar_alaska_250
