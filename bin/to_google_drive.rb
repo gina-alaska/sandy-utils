@@ -24,7 +24,7 @@ class GoogleDriveClamp < ProcessingFramework::CommandLineHelper
     input_files.each do |input_file|
       next if File.directory? input_file
 
-      FileUtils.cd('/home/jecable/drive') do
+      FileUtils.cd('/mnt/scratch/drive') do
         basename = File.basename(input_file)
         path_clean = File.dirname(input_file)
         path_clean['/gluster/cache'] = ''
