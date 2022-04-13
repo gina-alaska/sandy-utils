@@ -4,7 +4,7 @@ require "fileutils"
 
 
 def get_version() 
-	File.readlines(File.dirname(__FILE__)+"/VERSION").join().chomp
+	File.readlines(File.dirname(__FILE__)+"/VERSION.tmp").join().chomp
 end
 
 

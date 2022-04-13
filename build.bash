@@ -1,9 +1,11 @@
 #!/bin/bash -l
 cd 
 
-VERSION=$(cat ~/build/VERSION)
+VERSION=$(cat ~/build/VERSION)-$(date +"%Y%m%d%H%M%S")
 
 echo "Version is " $VERSION
+
+echo $VERSION > ~/build/VERSION.tmp
 
 echo "Setting up Conda.."
 rm -rf /opt/gina/sandy-utils-$VERSION
@@ -28,6 +30,7 @@ cp -rv config /opt/gina/sandy-utils-$VERSION/config
 cp -v  Gemfile Gemfile.lock config README.md VERSION CHANGELOG.md  notes.md LICENSE Rakefile /opt/gina/sandy-utils-$VERSION
 mkdir -p /opt/gina/sandy-utils-$VERSION/tools
 ./build_bin_stubs.rb bin/*
+chmod a+rx /opt/gina/sandy-utils-$VERSION/tools/*
 
 echo "Installing gems required for Sandy-utils.."
 cd /opt/gina/sandy-utils-$VERSION
