@@ -28,7 +28,7 @@ class NoaaViirsFireClamp < ProcessingFramework::CommandLineHelper
 
       processing_cfg.each do |key,set|
         command = "#{set['command']} #{input}"
-        result = shell_out!(command)
+        result = shell_out!(command,clean_environment: true)
         copy_output(output, set['save'])
       end
     end
