@@ -11,6 +11,11 @@ no_git*
 *bak
 test_*
 .bundle
-
 .kitchen
 results
+.vagrant
+gina_builds
+gina_test_builds
+*.tar.bz2
+sandy-utils-*
+vendor
