@@ -7,7 +7,7 @@
 
 # Offense count: 5
 # Cop supports --auto-correct.
-Lint/StringConversionInInterpolation:
+Lint/RedundantStringCoercion:
   Enabled: false
 
 # Offense count: 2

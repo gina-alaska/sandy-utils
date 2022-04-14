@@ -8,16 +8,22 @@ module ProcessingFramework
     # runs command, with opts
     # runs command with `env -i` if :clean_environment is passed as option
     def shell_out(command, opts = {})
-      if opts.delete(:clean_environment)
+      # default to clean_environment
+      if opts[:clean_environment] == false
+        puts('INFO: shell_out WITHOUT clean environment')
+      # do not do clean_environment - not sure if anything needs to do here.
+      else
+        puts('INFO: shell_out with clean environment')
         command = "env -i bash -l -c #{command.shellescape}"
       end
+
+      opts.delete(:clean_environment)
+
       opts = SHELL_OUT_DEFAULTS.merge(opts)
       cmd = ::Mixlib::ShellOut.new(command, opts)
       cmd.run_command
 
-      if (cmd.error?)
-        puts("WARNING: the command \"#{command}\" returned an error")
-      end
+      puts("WARNING: the command \"#{command}\" returned an error") if cmd.error?
 
       cmd
     end
@@ -30,11 +36,9 @@ module ProcessingFramework
       cmd
     end
 
-    def inside(directory)
+    def inside(directory, &block)
       create_workdir(directory)
-      FileUtils.cd(directory) do
-        yield
-      end
+      FileUtils.cd(directory, &block)
     rescue RuntimeError => e
       exit_with_error(e.to_s, 10)
     ensure
@@ -45,7 +49,7 @@ module ProcessingFramework
       # add trailing slash, if needed
       output += '/' if output[-1] != '/'
 
-      FileUtils.mkdir_p(output) unless (File.exist?(output))
+      FileUtils.mkdir_p(output) unless File.exist?(output)
       Dir.glob(save_glob).each do |x|
         if (File.file?(x) || copy_dirs)
           puts("INFO: Copying #{x} to #{output}")
