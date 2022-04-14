@@ -10,7 +10,7 @@ echo $VERSION > ~/build/VERSION.tmp
 echo "Setting up Conda.."
 rm -rf /opt/gina/sandy-utils-$VERSION
 conda config --add channels conda-forge
-conda create -y -p /opt/gina/sandy-utils-$VERSION gdal ruby=2.6.5 libffi pkg-config gxx_linux-64 conda-pack git
+conda create -y -p /opt/gina/sandy-utils-$VERSION gdal ruby=2.6.5 libffi pkg-config gxx_linux-64 conda-pack git lftp
 conda activate /opt/gina/sandy-utils-$VERSION
 
 #echo "Conda setup."
