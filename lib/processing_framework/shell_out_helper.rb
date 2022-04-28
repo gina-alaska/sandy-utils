@@ -60,6 +60,34 @@ module ProcessingFramework
       end
     end
 
+    def copy_output(output, save_glob = '*', copy_dirs = false)
+
+      size = 0;
+      start_time = Time.now
+      # add trailing slash, if needed
+      output += '/' if output[-1] != '/'
+
+      FileUtils.mkdir_p(output) unless (File.exist?(output))
+      Dir.glob(save_glob).each do |x|
+        if (File.file?(x) || copy_dirs)
+          puts("INFO: Copying #{x} to #{output}")
+          FileUtils.cp_r(x, output)
+	  if File.size?(x)
+          	size += File.size?(x)
+	  end
+        else
+          puts("INFO: Not a file, skipping #{x} to #{output}")
+        end
+      end
+
+      time_diff = Time.now - start_time
+      speed = ((size/(1024.0*1024.0))/time_diff).round
+      size_in_mb = sprintf("%.2f", size/(1024.0*1024.0))
+      puts("INFO: Copy to shared storage took #{(time_diff/60).round} minutes or #{(time_diff).round} seconds")
+      puts("INFO: Size of data copied is #{size_in_mb} Mbytes")
+      puts("INFO: Rate ~#{speed} Mbytes/sec")
+    end
+
     private
 
     def create_workdir(directory)
