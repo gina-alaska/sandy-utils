@@ -6,6 +6,7 @@ configs:
    day_cover: "0.10"
    grid: 203
    save: 
+     - "UAF_AWIPS_*"
      - "UAF_AWIPS_*_viirs_adaptive*"
      - "UAF_AWIPS_*_viirs_dynamic_dnb*"
      - "UAF_AWIPS_*_viirs_i0[1-5]*"
