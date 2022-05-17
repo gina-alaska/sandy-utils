@@ -7,14 +7,6 @@ configs:
    grid: 203
    save: 
      - "UAF_AWIPS_*"
-     - "UAF_AWIPS_*_viirs_adaptive*"
-     - "UAF_AWIPS_*_viirs_dynamic_dnb*"
-     - "UAF_AWIPS_*_viirs_i0[1-5]*"
-     - "UAF_AWIPS_*_viirs_m0[34589]*"
-     - "UAF_AWIPS_*_viirs_m1[123456]*"
-     - "UAF_AWIPS_*_viirs_viirs_crefl0[3489]*"
-     - "UAF_AWIPS_*_viirs_viirs_crefl10*" 
-     - "UAF_AWIPS_*_viirs_ifog*"
    p2g_config: "uaf_awips_backend.ini"
    crefl_bands: " viirs_crefl03 viirs_crefl04  viirs_crefl08 viirs_crefl09 viirs_crefl10 "
 limits:
