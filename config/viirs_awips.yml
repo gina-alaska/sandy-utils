@@ -2,7 +2,7 @@ driver: viirs2awips.sh
 driver_crefl_old: crefl2awips.sh
 configs:
   default:
-   options: "--grid-coverage 0 --source-name UAF --output-pattern \"UAF_AWIPS_{satellite}_{instrument}_{product_name}_{grid_name}_{begin_time}\" -p m15 "
+   options: "--grid-coverage 0 --source-name UAF --output-pattern \"UAF_AWIPS_{satellite}_{instrument}_{product_name}_{grid_name}_{begin_time}\" -p m03 m15 "
    day_cover: "0.10"
    grid: 203
    save: 
