@@ -1,10 +1,11 @@
 #!/usr/bin/env ruby
-# frozen_string_literal: true
+
 
 ENV['BUNDLE_GEMFILE'] = File.join(File.expand_path('..', __dir__), 'Gemfile')
 require 'bundler/setup'
 require 'clamp'
 require_relative '../lib/processing_framework'
+
 require 'benchmark'
 
 class SsecPushClamp < ProcessingFramework::CommandLineHelper
