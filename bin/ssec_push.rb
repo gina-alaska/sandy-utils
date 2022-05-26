@@ -31,7 +31,7 @@ class SsecPushClamp < ProcessingFramework::CommandLineHelper
 
         next if File.directory? input_file
 
-        command = "ncftpput -T INPROGRESS_ -C #{cfg['ftp']['host']} #{input_file} #{cfg['ftp']['dir']}/#{basename}"
+        command = "ncftpput  #{cfg['ftp']['options']} -T INPROGRESS_ -C #{cfg['ftp']['host']} #{input_file} #{cfg['ftp']['dir']}/#{basename}"
         time = Benchmark.realtime { shell_out!(command) }
         puts("INFO: #{basename},size #{((File.size(input_file) / (1024 * 1024.0)) * 10.0).to_i / 10.0}Mb, took #{time}s")
       end
