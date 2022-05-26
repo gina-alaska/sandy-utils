@@ -3,6 +3,7 @@ uafgina-test:
   ftp:
     host: 192.168.56.31
     dir:  /dbingest/fairbanks/
+    options: "-F -B 12582912"
   glob:
     - RNCSA*h5
     - RCRIS*h5
@@ -11,6 +12,7 @@ uafgina:
   ftp:
     host: ftp.ssec.wisc.edu
     dir:  /dbingest/fairbanks/
+    options: "-F -B 12582912"
   glob:
     - RNCSA*h5
     - RCRIS*h5
