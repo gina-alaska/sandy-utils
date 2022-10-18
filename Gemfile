@@ -6,6 +6,7 @@ gem 'mixlib-shellout'
 gem 'version'
 gem 'rake'
 gem 'trollop'
+gem 'aws-sdk', '~> 3'
 
 group :development do
   gem 'rubocop'
