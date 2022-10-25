@@ -53,7 +53,7 @@ module ProcessingFramework
       if output =~ %r{^s3://.*}
         # maybe should support this format as well
         # || output =~ /^arn:aws:s3\.*/
-        s3, s3_prefix = %r{^s3://([a-zA-Z0-9\-.]+)([/a-zA-Z0-9\-.\\_]*)}.match(output)[1, 2]
+        s3, s3_prefix = %r{^s3://([a-zA-Z0-9\-._]+)([/a-zA-Z0-9\-.\\_]*)}.match(output)[1, 2]
         if !s3_prefix || s3_prefix == '' || s3_prefix == '/' # catch odd values, make sure they are empty
           s3_prefix = ''
         elsif s3_prefix[-1] != '/'
