@@ -71,7 +71,7 @@ module ProcessingFramework
           if s3
             begin
               s3_object = Aws::S3::Object.new(
-                s3, s3_prefix += File.basename(x)
+                s3, s3_prefix + File.basename(x)
               )
               s3_object.upload_file(x)
             rescue Aws::Errors::ServiceError => e
