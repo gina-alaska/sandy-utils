@@ -75,7 +75,7 @@ module ProcessingFramework
               )
               s3_object.upload_file(x)
             rescue Aws::Errors::ServiceError => e
-              puts "ERROR: Couldn't upload file #{file_path} to #{s3_object.key}. Here's why: #{e.message}"
+              puts "ERROR: Couldn't upload file #{x} to #{s3_object.key}. Here's why: #{e.message}"
               exit_with_error(
                 e.to_s, 10
               )
