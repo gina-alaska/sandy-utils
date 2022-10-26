@@ -53,7 +53,7 @@ module ProcessingFramework
       if output =~ %r{^s3://.*}
         # maybe should support this format as well
         # || output =~ /^arn:aws:s3\.*/
-        s3, s3_prefix = %r{^s3://([a-zA-Z0-9\-.]+)([/a-zA-Z0-9\-.]*)}.match(output)[1, 2]
+        s3, s3_prefix = %r{^s3://([a-zA-Z0-9\-._]+)([/a-zA-Z0-9\-.\\_]*)}.match(output)[1, 2]
         if !s3_prefix || s3_prefix == '' || s3_prefix == '/' # catch odd values, make sure they are empty
           s3_prefix = ''
         elsif s3_prefix[-1] != '/'
@@ -75,7 +75,7 @@ module ProcessingFramework
               )
               s3_object.upload_file(x)
             rescue Aws::Errors::ServiceError => e
-              puts "ERROR: Couldn't upload file #{file_path} to #{s3_object.key}. Here's why: #{e.message}"
+              puts "ERROR: Couldn't upload file #{x} to #{s3_object.key}. Here's why: #{e.message}"
               exit_with_error(
                 e.to_s, 10
               )
