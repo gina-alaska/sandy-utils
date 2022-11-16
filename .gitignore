@@ -19,3 +19,4 @@ gina_test_builds
 *.tar.bz2
 sandy-utils-*
 vendor
+verify/nrt*

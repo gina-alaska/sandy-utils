@@ -14,6 +14,11 @@ processing:
       - "*.nc"
       - "*.nc"
     driver: "run_mirs.bash -res HI -f -v -s metopB " 
+  metop-c:
+    save:
+      - "*.nc"
+      - "*.nc"
+    driver: "run_mirs.bash -res HI -f -v -s metopC "
   noaa18:
     save:
       - "*.nc"
