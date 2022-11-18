@@ -1,0 +1,9 @@
+---
+configs:
+  default:
+    driver: "ncConvertVAF.py"
+    options: "  "
+    to_process_glob:
+      - "AFIMG*.nc"
+    save:
+      - "UAF*"
