@@ -1,7 +1,7 @@
 configs:
   viirs:
    driver: viirs_sdr.sh
-   options: "-z"
+   options: " -g -z"
    rdr_glob: "RNSCA-RVIRS*.h5"
   atms:
    driver: atms_sdr.sh
