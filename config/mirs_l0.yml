@@ -3,24 +3,29 @@ processing:
     save:
       - "NPR-MIRS-IMG*.nc"
       - "NPR-MIRS-SND*.nc"
-    driver: "run_mirs.bash  -v -f -s npp "
+    driver: "run_mirs.bash  -v -f --dynanc=/opt/dyno/mirs -s npp "
   noaa20:
     save:
       - "NPR-MIRS-IMG*.nc"
       - "NPR-MIRS-SND*.nc"
-    driver: "run_mirs.bash  -v -f -s n20 "
+    driver: "run_mirs.bash  -v -f --dynanc=/opt/dyno/mirs -s n20 "
   metop-b:
     save:
       - "*.nc"
       - "*.nc"
-    driver: "run_mirs.bash -res HI -f -v -s metopB " 
+    driver: "run_mirs.bash -res HI --dynanc=/opt/dyno/mirs -f -v -s metopB " 
+  metop-c:
+    save:
+      - "*.nc"
+      - "*.nc"
+    driver: "run_mirs.bash -res HI --dynanc=/opt/dyno/mirs -f -v -s metopC " 
   noaa18:
     save:
       - "*.nc"
       - "*.nc"
-    driver: "run_mirs.bash -res HI -f -v -s n18 "
+    driver: "run_mirs.bash -res HI --dynanc=/opt/dyno/mirs  -f -v -s n18 "
   noaa19:
     save:
       - "*.nc"
       - "*.nc"
-    driver: "run_mirs.bash  -res HI -f -v -s n19 "
+    driver: "run_mirs.bash  -res HI --dynanc=/opt/dyno/mirs -f -v -s n19 "
