@@ -9,5 +9,13 @@ configs:
     driver: "run_nucaps.bash -s j01 --noclean -d /opt/cspp/dyno/nucaps_anc -vv  -m HR_IRMW -p 2 "
     save:
       - "*.nc"
+  metop-b:
+   driver: "run_nucaps.bash -s mo2 --noclean -d /opt/cspp/dyno/nucaps_anc -vv -p 2 "
+   save: 
+     - "*.nc"
+  metop-c:
+    driver: "run_nucaps.bash -s m03 --noclean -d /opt/cspp/dyno/nucaps_anc -vv -p 2 "
+    save:
+      - "*.nc"     
 limits:
   processor: 2
