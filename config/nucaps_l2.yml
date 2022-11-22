@@ -10,9 +10,9 @@ configs:
     save:
       - "*.nc"
   metop-b:
-   driver: "run_nucaps.bash -s m01 --noclean -d /opt/cspp/dyno/nucaps_anc -vv -p 2 "
-   save: 
-     - "*.nc"
+    driver: "run_nucaps.bash -s m01 --noclean -d /opt/cspp/dyno/nucaps_anc -vv -p 2 "
+    save: 
+      - "*.nc"
   metop-c:
     driver: "run_nucaps.bash -s m03 --noclean -d /opt/cspp/dyno/nucaps_anc -vv -p 2 "
     save:
