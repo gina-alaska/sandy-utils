@@ -2,7 +2,7 @@
 configs: 
   npp: 
     driver: "run_acspo.bash "
-    options: " -s npp -vv -x --dynanc=/cspp/dyno/sst "
+    options: " -s npp --dynanc=/cspp/dyno/sst "
     bias: /opt/cspp/bias
     save: 
       - "*.nc"
