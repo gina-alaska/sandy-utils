@@ -32,7 +32,7 @@ class PqinsertClamp < ProcessingFramework::CommandLineHelper
       insert_name = [prefix, get_source, ::File.basename(input_file), suffix].compact.join('')
 
       command = "pqinsert -p #{insert_name} -f #{feed} -q #{queue} -i #{input_file}"
-      shell_out! command
+      shell_out(command,clean_environment: true)
     end
   end
 
