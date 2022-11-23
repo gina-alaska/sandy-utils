@@ -1,31 +1,31 @@
 --- 
 configs: 
   npp: 
-    driver: "run_acspo.bash "
+    driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash  "
     options: " -s npp --dynanc=/cspp/dyno/sst "
     bias: /opt/cspp/bias
     save: 
       - "*.nc"
   terra:   
-    driver: "run_acspo.bash --dynanc=/cspp/dyno/sst "
+    driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash --dynanc=/cspp/dyno/sst "
     options: " -s terra -vv "
     bias: /opt/cspp/bias
     save: 
       - "*.nc"
   aqua:   
-    driver: "run_acspo.bash --dynanc=/cspp/dyno/sst "
+    driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash --dynanc=/cspp/dyno/sst "
     options: " -s aqua -vv "
     bias: /opt/cspp/bias
     save:
       - "*.nc"
   n19:
-    driver: "run_acspo.bash --dynanc=/cspp/dyno/sst "
+    driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash --dynanc=/cspp/dyno/sst "
     options: " -s n19 -vv "
     bias: /opt/cspp/bias
     save:
       - "*.nc"
   n18:
-    driver: "run_acspo.bash --dynanc=/cspp/dyno/sst "
+    driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash --dynanc=/cspp/dyno/sst "
     options: " -s n18 -vv "
     bias: /opt/cspp/bias
     save:
