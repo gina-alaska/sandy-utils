@@ -6,6 +6,24 @@ configs:
     bias: /opt/cspp/bias
     save: 
       - "*.nc"
+  noaa20: 
+    driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash  "
+    options: " -p 2 -s n20 --dynanc=/cspp/dyno/sst "
+    bias: /opt/cspp/bias
+    save: 
+      - "*.nc"
+  metopb: 
+    driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash  "
+    options: " -p 2 -s metopb --dynanc=/cspp/dyno/sst "
+    bias: /opt/cspp/bias
+    save: 
+      - "*.nc"
+  metopc: 
+    driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash  "
+    options: " -p 2 -s metopc --dynanc=/cspp/dyno/sst "
+    bias: /opt/cspp/bias
+    save: 
+      - "*.nc"  
   terra:   
     driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash --dynanc=/cspp/dyno/sst "
     options: " -p 2 -s terra -vv "
