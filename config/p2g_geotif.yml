@@ -97,7 +97,7 @@ configs:
     p2g_args: "--tiled --compress DEFLATE"
     grid_file: "avhrr_geotiff_grids.grd"
     tasks:
-     - "polar2grid.sh mirs gtiff -g 203_1k --grid-coverage 0.005 -p 'rain_rate sea_ice sfr' --dtype real4 --output-pattern {satellite}_{product_name}_{begin_time}_{grid_name}.float.tif "
+     - "polar2grid.sh mirs gtiff -g 203_1k --grid-coverage 0.00001 -p 'rain_rate sea_ice sfr' --dtype real4 --output-pattern {satellite}_{product_name}_{begin_time}_{grid_name}.float.tif "
     save:
      - "*.tif"
      - "*.log"
