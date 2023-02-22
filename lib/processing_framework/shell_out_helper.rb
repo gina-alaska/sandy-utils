@@ -47,6 +47,10 @@ module ProcessingFramework
     end
 
     def copy_output(output, save_glob = '*', copy_dirs = false)
+      #Start with size 0
+      size = 0;
+      start_time = Time.now
+
       # check to see if output dir is a s3 url..
       s3 = false
       s3_prefix = ''
@@ -68,6 +72,7 @@ module ProcessingFramework
       FileUtils.mkdir_p(output) unless !s3 && File.exist?(output)
       Dir.glob(save_glob).each do |x|
         if (File.file?(x) || copy_dirs)
+          size += File.size?(x)
           if s3
             begin
               s3_object = Aws::S3::Object.new(
@@ -90,6 +95,16 @@ module ProcessingFramework
           puts("INFO: Not a file, skipping #{x} to #{output}")
         end
       end
+      
+      #calculate copy speed.  
+      time_diff = Time.now - start_time
+      speed = ((size/(1024.0*1024.0))/time_diff).round
+      size_in_mb = sprintf("%.2f", size/(1024.0*1024.0))
+      puts("INFO: Copy to shared storage took #{(time_diff/60).round} minutes or #{(time_diff).round} seconds")
+      puts("INFO: Size of data copied is #{size_in_mb} Mbytes")
+      puts("INFO: Rate ~#{speed} Mbytes/sec")
+
+
     end
 
     private
