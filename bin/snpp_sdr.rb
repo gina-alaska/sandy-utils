@@ -32,6 +32,11 @@ class SnppViirsSdrClamp <  ProcessingFramework::CommandLineHelper
                    else
                      Dir.glob(File.join(input, processing_cfg['rdr_glob'])).first
                    end
+    
+      unless input_file
+        puts("ERROR: RDR is missing for #{processing_cfg['rdr_glob']}!")
+        return
+      end
 
       command = ". #{conf['env']} ; #{processing_cfg['driver']} -p #{processors} #{processing_cfg['options']}  #{input_file}"
       result = shell_out!(command)
