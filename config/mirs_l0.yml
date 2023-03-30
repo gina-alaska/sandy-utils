@@ -3,29 +3,29 @@ processing:
     save:
       - "NPR-MIRS-IMG*.nc"
       - "NPR-MIRS-SND*.nc"
-    driver: "run_mirs.bash  -v -f --dynanc=/cspp/dyno/mirs -p 2 -s npp "
+    driver: "run_mirs.bash  -v -f --dynanc=/cspp/dyno/mirs -p 6 -s npp "
   noaa20:
     save:
       - "NPR-MIRS-IMG*.nc"
       - "NPR-MIRS-SND*.nc"
-    driver: "run_mirs.bash  -v -f --dynanc=/cspp/dyno/mirs -p 2 -s n20 "
+    driver: "run_mirs.bash  -v -f --dynanc=/cspp/dyno/mirs -p 6 -s n20 "
   metop-b:
     save:
       - "*.nc"
       - "*.nc"
-    driver: "run_mirs.bash -res HI --dynanc=/cspp/dyno/mirs -p 2 -f -v -s metopB " 
+    driver: "run_mirs.bash -res HI --dynanc=/cspp/dyno/mirs -p 6 -f -v -s metopB " 
   metop-c:
     save:
       - "*.nc"
       - "*.nc"
-    driver: "run_mirs.bash -res HI --dynanc=/cspp/dyno/mirs -p 2 -f -v -s metopC " 
+    driver: "run_mirs.bash -res HI --dynanc=/cspp/dyno/mirs -p 6 -f -v -s metopC " 
   noaa18:
     save:
       - "*.nc"
       - "*.nc"
-    driver: "run_mirs.bash -res HI --dynanc=/cspp/dyno/mirs -p 2 -f -v -s n18 "
+    driver: "run_mirs.bash -res HI --dynanc=/cspp/dyno/mirs -p 6 -f -v -s n18 "
   noaa19:
     save:
       - "*.nc"
       - "*.nc"
-    driver: "run_mirs.bash  -res HI --dynanc=/cspp/dyno/mirs -p 2 -f -v -s n19 "
+    driver: "run_mirs.bash  -res HI --dynanc=/cspp/dyno/mirs -p 6 -f -v -s n19 "
