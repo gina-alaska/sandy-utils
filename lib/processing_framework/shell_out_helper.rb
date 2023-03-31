@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'mixlib/shellout'
 require 'shellwords'
 require 'aws-sdk-s3'
 
 module ProcessingFramework
   module ShellOutHelper
-    SHELL_OUT_DEFAULTS = { live_stream: STDOUT, timeout: 60 * 60 }
+    SHELL_OUT_DEFAULTS = { live_stream: $stdout, timeout: 60 * 60 }.freeze
 
     # runs command, with opts
     # runs command with `env -i` if :clean_environment is passed as option
@@ -47,8 +49,8 @@ module ProcessingFramework
     end
 
     def copy_output(output, save_glob = '*', copy_dirs = false)
-      #Start with size 0
-      size = 0;
+      # Start with size 0
+      size = 0
       start_time = Time.now
 
       # check to see if output dir is a s3 url..
@@ -85,26 +87,26 @@ module ProcessingFramework
                 e.to_s, 10
               )
             end
+          elsif File.size?(x) > 1024 * 1024 * 4
+            # if bigger than 4m, shell out
+            puts("INFO: Copying via system #{x} to #{output}")
+            system('/bin/cp', x, output)
           else
             puts("INFO: Copying #{x} to #{output}")
-            FileUtils.cp_r(
-              x, output
-            )
+            FileUtils.cp_r(x, output)
           end
         else
           puts("INFO: Not a file, skipping #{x} to #{output}")
         end
       end
-      
-      #calculate copy speed.  
+
+      # calculate copy speed.
       time_diff = Time.now - start_time
-      speed = ((size/(1024.0*1024.0))/time_diff).round
-      size_in_mb = sprintf("%.2f", size/(1024.0*1024.0))
-      puts("INFO: Copy to shared storage took #{(time_diff/60).round} minutes or #{(time_diff).round} seconds")
+      speed = ((size / (1024.0 * 1024.0)) / time_diff).round
+      size_in_mb = format('%.2f', size / (1024.0 * 1024.0))
+      puts("INFO: Copy to shared storage took #{(time_diff / 60).round} minutes or #{time_diff.round} seconds")
       puts("INFO: Size of data copied is #{size_in_mb} Mbytes")
       puts("INFO: Rate ~#{speed} Mbytes/sec")
-
-
     end
 
     private
