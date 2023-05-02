@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 
 require 'mixlib/shellout'
 require 'shellwords'
@@ -55,13 +55,13 @@ module ProcessingFramework
 
       # check to see if output dir is a s3 url..
       s3 = false
-      s3_prefix = ''
+      s3_prefix = +''
       if output =~ %r{^s3://.*}
         # maybe should support this format as well
         # || output =~ /^arn:aws:s3\.*/
         s3, s3_prefix = %r{^s3://([a-zA-Z0-9\-._]+)([/a-zA-Z0-9\-.\\_]*)}.match(output)[1, 2]
         if !s3_prefix || s3_prefix == '' || s3_prefix == '/' # catch odd values, make sure they are empty
-          s3_prefix = ''
+          s3_prefix = +''
         elsif s3_prefix[-1] != '/'
           s3_prefix += '/'
         end
