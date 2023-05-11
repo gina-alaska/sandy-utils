@@ -274,6 +274,13 @@ configs:
        b: "i04_float"
      tool: "color_thermal_long_wave.rb"
      name: "npp.%Y%m%d.%H%M_i04_colored_gm"
+   - title: viirs_i5_colored
+     bands:
+       r: "i05_float"
+       g: "i05_float"
+       b: "i05_float"
+     tool: "color_thermal_long_wave.rb"
+     name: "npp.%Y%m%d.%H%M_i05_colored_gm"  
   snpp20gm:
    mapper:
      dnb: npp_viirs_dynamic_dnb_*_alaska_gm_600.tif
@@ -512,6 +519,13 @@ configs:
        b: "i04_float"
      tool: "color_thermal_long_wave.rb"
      name: "noaa20.%Y%m%d.%H%M_i04_colored_gm"
+   - title: viirs_i5_colored
+     bands:
+       r: "i05_float"
+       g: "i05_float"
+       b: "i05_float"
+     tool: "color_thermal_long_wave.rb"
+     name: "noaa20.%Y%m%d.%H%M_i05_colored_gm"
   t1:
    mapper:
      "30": terra_modis_bt30_*_alaska_1000.tif
