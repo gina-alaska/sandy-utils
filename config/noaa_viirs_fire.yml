@@ -1,7 +1,7 @@
 configs:
   default:
     i:
-      command: " cspp_active_fire_noaa.sh "
+      command: " cspp_active_fire_noaa.sh --num-cpu 6 "
       save:
        - "AFIMG*.nc"
        - "*.txt"
