@@ -3,5 +3,6 @@ configs:
   t1: "/opt/rt-stps/config/terra.xml"
   a1: "/opt/rt-stps/config/aqua.xml"
   noaa20: "/opt/rt-stps/config/jpss1.xml"
-  gcomw:  "/opt/rt-stps/config/GCOM-W1.xml"
+  noaa21: "/opt/rt-stps/config/jpss2.xml"
+  gcomw: "/opt/rt-stps/config/GCOM-W1.xml"
 rtstps_driver: "/opt/rt-stps/bin/batch.sh"
