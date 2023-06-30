@@ -1,20 +1,18 @@
 #!/usr/bin/env python
 """Converts a CSP netcdf VAF heat points file to an AWIPS netcdf file
-   that can be read with the dmw plug-in. Ver: 1.0"""
+   that can be read with the dmw plug-in. Ver: 2.0"""
 
 import argparse
 import shutil
 from shutil import copy, copyfileobj
 import os
 import netCDF4
-#import h5py
 import sys
 import random
 import datetime
 from datetime import datetime, timedelta
 from time import strftime,strptime
 import numpy as np
-# import numpy
 
 ##############################################################
 # read command line arguments and sets 
@@ -43,7 +41,7 @@ def _process_command_line():
 
 def getnewpath(filepath):
 
-    sat_dict = {'j01':'NOAA-20','npp':'S-NPP'}
+    sat_dict = {'j02':'NOAA-21','j01':'NOAA-20','npp':'S-NPP'}
     #
     filename = os.path.basename(filepath)
     dirname = os.path.dirname(filepath)
@@ -78,7 +76,7 @@ def getnewpath(filepath):
 ###############################################################
 # read all the numpy data to a netcdf file and return the arrays
 
-def read_vaf_ncfile(filepath,lat,lon,frp,conf):
+def read_vaf_ncfile(filepath,lat,lon,frp,conf,PA):
 
     try:
        ncfh = netCDF4.Dataset(filepath, 'r')
@@ -91,32 +89,43 @@ def read_vaf_ncfile(filepath,lat,lon,frp,conf):
 
     # read dimensions
     nc_dims = ncfh.dimensions
+    nc_dims = ncfh.groups['Fire Pixels'].dimensions
     #print "NetCDF dimension information:"
     num_dim = 0
+    numpts = 0
     for dim in nc_dims:
-        #print "\tName:", dim 
-        if dim == 'phony_dim_0':
-           numpts = len(ncfh.dimensions[dim])
-    #print "num pts: {}".format(numpts)
+        print ("\tName:", dim)
+        #if dim == 'phony_dim_0':
+        if dim == 'nfire':
+           numpts = len(ncfh.groups['Fire Pixels'].dimensions[dim])
+    print ("num pts: {}".format(numpts))
+    if numpts > 0:
+       lat = ncfh.groups['Fire Pixels'].variables['FP_latitude'][:]
+       lon = ncfh.groups['Fire Pixels'].variables['FP_longitude'][:]
+       frp = ncfh.groups['Fire Pixels'].variables['FP_power'][:]
+       conf = ncfh.groups['Fire Pixels'].variables['FP_confidence'][:]
+       PA = ncfh.groups['Fire Pixels'].variables['FP_PersistentAnomalyCategory'][:]
+    else:
+       lat=-999.
+       lon=-999.
+       frp=-999.
+       conf=-999.
+       PA=-999.
 
-    lat = ncfh.variables['FP_latitude'][:]
-    lon = ncfh.variables['FP_longitude'][:]
-    frp = ncfh.variables['FP_power'][:]
-    conf = ncfh.variables['FP_confidence'][:]
     ncfh.close()
     #for i in range(0,numpts):
     #   print "{}/{} frp={}  conf={}".format(lat[i],lon[i],frp[i],conf[i])
 
-    return(numpts,lat,lon,frp,conf)
+    return(numpts,lat,lon,frp,conf,PA)
     #
 
 ###############################################################
 # write all the numpy data to a netcdf file and add the needed
 # global and variable attributes
 
-def write_viirsfires_ncfile(filepath,sdate,edate,satname,numpts,lat,lon,frp,conf):
+def write_viirsfires_ncfile(filepath,sdate,edate,satname,numpts,lat,lon,frp,conf,PA):
 
-    sat_dict = {'j01':'NOAA-20','npp':'S-NPP'}
+    sat_dict = {'j02':'NOAA-21','j01':'NOAA-20','npp':'S-NPP'}
     try:
        ncfh = netCDF4.Dataset(filepath, 'w', format='NETCDF4')
     except IOError:
@@ -165,7 +174,7 @@ def write_viirsfires_ncfile(filepath,sdate,edate,satname,numpts,lat,lon,frp,conf
     DQFvar = ncfh.createVariable('DQF','f8','nfire')
     DQFvar.units = '1'
     DQFvar.long_name = 'Delineator of zero vs non zero FP_Confidence'
-    #DQFvar.flag_values = 0L, 1L
+    DQFvar.flag_values = 0, 1
     DQFvar.flag_meanings = 'FP_confidence is gt zero, FP_confidence is eq to zero"'
     dmwvar = ncfh.createVariable('band_id','b','dmw_band')
     dmwvar.longname = 'Generic band identifier for use in AWIPS dmw plugin'
@@ -176,6 +185,7 @@ def write_viirsfires_ncfile(filepath,sdate,edate,satname,numpts,lat,lon,frp,conf
     lonvar[:] = lon
     frpvar[:] = frp
     confvar[:] = conf
+    PAvar[:] = PA
 
     #set time in unix secs...dqf flags...persistent anomalies
     secs = []
@@ -201,7 +211,6 @@ def main():
     """Call to run script."""
     args = _process_command_line()
     if not os.path.exists(args.filepath):
-        #print 'File not found: {}'.format(args.filepath)
         print ("File not found: {}").format(args.filepath)
         raise SystemExit
    
@@ -210,10 +219,11 @@ def main():
     lon = []
     frp = []
     conf = []
+    PA = []
 
     # read the CSPP i-band netcdf file
     filepath = args.filepath
-    numpts,lat,lon,frp,conf = read_vaf_ncfile(filepath,lat,lon,frp,conf)
+    numpts,lat,lon,frp,conf,PA = read_vaf_ncfile(filepath,lat,lon,frp,conf,PA)
     if numpts == 0:
        print ("No points found")
        return   
@@ -240,6 +250,7 @@ def main():
        lonnan = np.where(lon < -900, np.nan, lon)
        frpnan = np.where(frp < 0, np.nan, frp) 
        confnan = np.where(conf < 0, np.nan, conf) 
+       PAnan = np.where(conf < 0, np.nan, PA) 
        # define the max/min variables
        latmin = np.nanmin(latnan)
        latmax = np.nanmax(latnan)
@@ -249,13 +260,16 @@ def main():
        frpmax = np.nanmax(frpnan)
        confmin = np.nanmin(confnan)
        confmax = np.nanmax(confnan)
+       PAmin = np.nanmin(PAnan)
+       PAmax = np.nanmax(PAnan)
        print ("Lat max={}  min={}".format(latmax, latmin))
        print ("Lon max={}  min={}".format(lonmax, lonmin))
        print ("FRP max={}  min={}".format(frpmax, frpmin))
-       print ("Conf max={}  min={}".format(confmax, confmin))
+       print ("Conf max={}  min={}".format(PAmax, PAmin))
+       print ("Panom max={}  min={}".format(PAmax, PAmin))
     else:
        # write to the new file
-       write_viirsfires_ncfile(newfilepath,sdate,edate,satname,numpts,lat,lon,frp,conf)
+       write_viirsfires_ncfile(newfilepath,sdate,edate,satname,numpts,lat,lon,frp,conf,PA)
        #print ("Converted file: {}").format(newfilepath)
        print ("Converted file: {}".format(newfilepath))
        if args.verbose:
