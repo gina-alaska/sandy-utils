@@ -57,7 +57,7 @@ def getnewpath(filepath):
     sdate = datetime.strptime(sdatestr,"%Y%m%d%H%M%S")
     edate = datetime.strptime(edatestr,"%Y%m%d%H%M%S")
     if sdate > edate:
-       edate = edate - timedelta(day=1)
+       edate = edate - timedelta(days=1)
 
     ## next determine the file date format 
     filedtstring = sdate.strftime("%Y%m%dT%H%M%S")
