@@ -42,10 +42,18 @@ class NOAAL0Clamp <  ProcessingFramework::CommandLineHelper
 
   def strip_header
     sourcefile = File.basename(input)
+    puts "INFO: File from EOS FES.."
     FileUtils.cp(input, sourcefile)
     sourcefile = uncompress(sourcefile)
-    shell_out!("dd bs=2176 if=#{sourcefile} of=#{sourcefile}.hrp skip=1")
+    FileUtils.mv(sourcefile, "#{sourcefile}.hrp")
+
+    #This is needed for barrow data, if we ever get that again
+    #FileUtils.cp(input, sourcefile)
+    #sourcefile = uncompress(sourcefile)
+    #shell_out!("dd bs=2176 if=#{sourcefile} of=#{sourcefile}.hrp skip=1")
     "#{sourcefile}.hrp"
+  end
+
   end
 
   #don't fetch a tle each time run
