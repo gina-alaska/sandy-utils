@@ -662,7 +662,7 @@ templates:
 
       # AVHRR Products
       avhrr_band1_vis:
-        name: "band1_vis"
+        name: "1"
         sensor: "avhrr"
         var_name: data
         attributes:
@@ -670,7 +670,7 @@ templates:
             raw_value: 0.63 um refl
           units: {}
       avhrr_band2_vis:
-        name: "band2_vis"
+        name: "2"
         sensor: "avhrr"
         var_name: data
         attributes:
@@ -678,7 +678,7 @@ templates:
             raw_value: 0.86 um refl
           units: {}
       avhrr_band3a_vis:
-        name: "band3a_vis"
+        name: "3a"
         sensor: "avhrr"
         var_name: data
         attributes:
@@ -686,7 +686,7 @@ templates:
             raw_value: 1.61 um refl
           units: {}
       avhrr_band3b_bt:
-        name: "band3b_bt"
+        name: "3b"
         sensor: "avhrr"
         var_name: data
         attributes:
@@ -694,7 +694,7 @@ templates:
             raw_value: 3.74 um BT (C)
           units: {}
       avhrr_band4_bt:
-        name: "band4_bt"
+        name: "4"
         sensor: "avhrr"
         var_name: data
         attributes:
@@ -702,7 +702,7 @@ templates:
             raw_value: 10.8 um BT (C)
           units: {}
       avhrr_band5_bt:
-        name: "band5_bt"
+        name: "5"
         sensor: "avhrr"
         var_name: data
         attributes:
