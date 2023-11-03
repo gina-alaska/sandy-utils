@@ -1020,15 +1020,9 @@ configs:
    - title: adaptive_dnb
      band: adaptive_dnb
      name: "noaa20.%Y%m%d.%H%M_DNB_adaptive_polar"
-   - title: histogram_dnb
-     band: histogram_dnb
-     name: "noaa20.%Y%m%d.%H%M_DNB_histogram_polar"
    - title: dynamic_dnb
      band: dynamic_dnb
      name: "noaa20.%Y%m%d.%H%M_DNB_dynamic_polar"
-   - title: hncc_dnb
-     band: hncc_dnb
-     name: "noaa20.%Y%m%d.%H%M_DNB_hncc_polar"
    - title: thermal
      band: "i05"
      name: "noaa20.%Y%m%d.%H%M_I05_polar"
@@ -1040,20 +1034,6 @@ configs:
        b: "i01"
      name: "noaa20.%Y%m%d.%H%M_I03_I02_I01_polar"
    extras:
-   - title: viirs_fire_temperature
-     bands:
-       r: "m12_float"
-       g: "m11_float"
-       b: "m10_float"
-     tool: "viirs_fire_stretch --blue-cap 0.75 "
-     name: "noaa20.%Y%m%d.%H%M_m12_m11_m10_polar"
-   - title: viirs_fire_color
-     bands:
-       r: "i04_float"
-       g: "i02_float"
-       b: "i01_float"
-     tool: "viirs_fire_stretch --blue-cap 1.0 "
-     name: "noaa20.%Y%m%d.%H%M_i04_i02_i01_polar"
    - title: viirs_i4_colored
      bands:
        r: "i04_float"
@@ -1118,15 +1098,9 @@ configs:
    - title: adaptive_dnb
      band: adaptive_dnb
      name: "npp.%Y%m%d.%H%M_DNB_adaptive_polar"
-   - title: histogram_dnb
-     band: histogram_dnb
-     name: "npp.%Y%m%d.%H%M_DNB_histogram_polar"
    - title: dynamic_dnb
      band: dynamic_dnb
      name: "npp.%Y%m%d.%H%M_DNB_dynamic_polar"
-   - title: hncc_dnb
-     band: hncc_dnb
-     name: "npp.%Y%m%d.%H%M_DNB_hncc_polar"
    - title: thermal
      band: "i05"
      name: "npp.%Y%m%d.%H%M_I05_polar"
@@ -1138,20 +1112,6 @@ configs:
        b: "i01"
      name: "npp.%Y%m%d.%H%M_I03_I02_I01_polar"
    extras:
-   - title: viirs_fire_temperature
-     bands:
-       r: "m12_float"
-       g: "m11_float"
-       b: "m10_float"
-     tool: "viirs_fire_stretch --blue-cap 0.75 "
-     name: "npp.%Y%m%d.%H%M_m12_m11_m10_polar"
-   - title: viirs_fire_color
-     bands:
-       r: "i04_float"
-       g: "i02_float"
-       b: "i01_float"
-     tool: "viirs_fire_stretch --blue-cap 1.0 "
-     name: "npp.%Y%m%d.%H%M_i04_i02_i01_polar"
    - title: viirs_i4_colored
      bands:
        r: "i04_float"
@@ -1216,15 +1176,9 @@ configs:
    - title: adaptive_dnb
      band: adaptive_dnb
      name: "noaa21.%Y%m%d.%H%M_DNB_adaptive_polar"
-   - title: histogram_dnb
-     band: histogram_dnb
-     name: "noaa21.%Y%m%d.%H%M_DNB_histogram_polar"
    - title: dynamic_dnb
      band: dynamic_dnb
      name: "noaa21.%Y%m%d.%H%M_DNB_dynamic_polar"
-   - title: hncc_dnb
-     band: hncc_dnb
-     name: "noaa21.%Y%m%d.%H%M_DNB_hncc_polar"
    - title: thermal
      band: "i05"
      name: "noaa21.%Y%m%d.%H%M_I05_polar"
@@ -1236,21 +1190,7 @@ configs:
        b: "i01"
      name: "noaa21.%Y%m%d.%H%M_I03_I02_I01_polar"
    extras:
-   - title: viirs_fire_temperature
-     bands:
-       r: "m12_float"
-       g: "m11_float"
-       b: "m10_float"
-     tool: "viirs_fire_stretch --blue-cap 0.75 "
-     name: "noaa21.%Y%m%d.%H%M_m12_m11_m10_polar"
-   - title: viirs_fire_color
-     bands:
-       r: "i04_float"
-       g: "i02_float"
-       b: "i01_float"
-     tool: "viirs_fire_stretch --blue-cap 1.0 "
-     name: "noaa21.%Y%m%d.%H%M_i04_i02_i01_polar"
-   - title: viirs_i4_colored
+    - title: viirs_i4_colored
      bands:
        r: "i04_float"
        g: "i04_float"
