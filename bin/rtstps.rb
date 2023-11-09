@@ -163,8 +163,8 @@ class RtstpsClamp < ProcessingFramework::CommandLineHelper
     if facility
       rdr_list = Dir.glob(conf['source'][facility] + '/*.h5')
       rdrs = RtstpsSet.new(rdr_list).find(pass_date, platform)
-      # Need at least 4 files rdrs, anything less then there is likely a problem
-      if rdrs.length > 3
+      # Need at least 3 files rdrs, anything less then there is likely a problem
+      if rdrs.length >= 3
         system('mkdir', '-p', output)
         puts('INFO: Using pre-generated RDRs')
         rdrs.each do |rdr|
