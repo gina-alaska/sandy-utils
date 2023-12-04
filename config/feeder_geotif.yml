@@ -653,26 +653,12 @@ configs:
      band: "31"
      name: "t1.%Y%m%d.%H%M_31_polar"
    combinations:
-   - title: 621_pan
-     bands:
-       g: "2_500"
-       r: "6"
-       b: "1_500"
-       p: "1"
-     name: "t1.%Y%m%d.%H%M_6_2_1_1_polar"
    - title: 621
      bands:
        g: "2"
        r: "6"
        b: "1"
      name: "t1.%Y%m%d.%H%M_6_2_1_polar"
-   - title: 721-pan
-     bands:
-       r: "7"
-       g: "2_500"
-       b: "1_500"
-       p: "1"
-     name: "t1.%Y%m%d.%H%M_7_2_1_1_polar"
    - title: 721
      bands:
        r: "7"
@@ -728,26 +714,12 @@ configs:
      band: "31"
      name: "a1.%Y%m%d.%H%M_31_polar"
    combinations:
-   - title: 621_pan
-     bands:
-       g: "2_500"
-       r: "6"
-       b: "1_500"
-       p: "1"
-     name: "a1.%Y%m%d.%H%M_6_2_1_1_polar"
    - title: 621
      bands:
        g: "2"
        r: "6"
        b: "1"
      name: "a1.%Y%m%d.%H%M_6_2_1_polar"
-   - title: 721-pan
-     bands:
-       r: "7"
-       g: "2_500"
-       b: "1_500"
-       p: "1"
-     name: "a1.%Y%m%d.%H%M_7_2_1_1_polar"
    - title: 721
      bands:
        r: "7"
