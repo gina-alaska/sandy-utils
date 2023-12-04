@@ -1162,7 +1162,7 @@ configs:
        b: "i01"
      name: "noaa21.%Y%m%d.%H%M_I03_I02_I01_polar"
    extras:
-    - title: viirs_i4_colored
+   - title: viirs_i4_colored
      bands:
        r: "i04_float"
        g: "i04_float"
