@@ -44,13 +44,15 @@ class AwipsScmiClamp < ProcessingFramework::CommandLineHelper
 
   def scmi_gen(type, options, config, inputdir, thread_number)
     options.each_pair do |_name, task|
-      config_options = " --backend-configs #{get_config_item(@processing_cfg['p2g_config'])} " \
-                        " --grid-configs #{get_config_item(@processing_cfg['p2g_grid'])} "
-      in_file_args = "-d #{inputdir} "
+      #config_options = " --backend-configs #{get_config_item(@processing_cfg['p2g_config'])} " \
+                        #" --grid-configs #{get_config_item(@processing_cfg['p2g_grid'])} "
+      config_options = " --grid-configs #{get_config_item(@processing_cfg['p2g_grid'])} " 
+      config_options += " --extra-config-path " + get_config_item("/p2g/") + " " 
+      in_file_args = "-f #{inputdir} "
       in_file_args = "-f #{inputdir}/*IMG* " if type.include?("mirs")
       in_file_args = "-f #{inputdir}/*L1DLBTBR*.h5 " if type.include?("amsr2")
 
-      command = "cd thread_#{thread_number};  #{config['driver']} #{type} scmi -g #{task['grid']} #{in_file_args} " \
+      command = "cd thread_#{thread_number};  #{config['driver']} -r #{type} -w awips_tiled -g #{task['grid']} #{in_file_args} " \
                  " #{@processing_cfg['options']} " +
                 config_options +
                 " -p #{task['bands']} "
