@@ -28,7 +28,7 @@ configs:
          bands:  "vis01 vis02 modis_crefl01_250m modis_crefl02_250m"
        hkm:
          grid: polar_alaska_500
-         bands: "vis03 vis04 vis05 vis06 vis07 modis_crefl03_500m modis_crefl04_500m modis_crefl05_500m modis_crefl06_500m "
+         bands: "vis03 vis04 vis05 vis06 vis07 modis_crefl03_500m modis_crefl04_500m "
        km:
          grid: polar_alaska_1km
          bands: "vis26 bt20 bt27 bt23 bt28 bt29 bt30 bt31 bt32 "
