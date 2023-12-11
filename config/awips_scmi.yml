@@ -1,10 +1,10 @@
-driver: polar2grid.sh
+driver:  /opt/cspp/polar2grid_v_3_0/bin/polar2grid.sh
 configs:
   viirs:
-   options: " --sector-id Polar --letters --compress --fix-awips --output-pattern 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{begin_time:%Y%m%d_%H%M}.nc' "
+   options: " --num-workers 4 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
    save: 
      - "UAF_AII_*.nc"
-   p2g_config: "scmi_backend.ini"
+   p2g_config: "awips_tiled.yaml"
    p2g_grid: "scmi_grids.conf"
    tasks:
      viirs_sdr: 
@@ -14,40 +14,29 @@ configs:
      'viirs_sdr ':
        mbands:
          grid: polar_alaska_700
-         bands: "m03 m04 m08 m09 m10 m11 m12 m13 m14 m15 m16 dynamic_dnb adaptive_dnb hncc_dnb "
-     crefl:
-       mbands:
-         grid: polar_alaska_700
-         bands: "viirs_crefl03 viirs_crefl04"
+         bands: "m03 m04 m08 m09 m10 m11 m12 m13 m14 m15 m16 dynamic_dnb adaptive_dnb hncc_dnb viirs_crefl03 viirs_crefl04"
   modis:
-   options: " --sector-id Polar --letters --compress --fix-awips --output-pattern 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{begin_time:%Y%m%d_%H%M}.nc' "
+   options: " --num-workers 4 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
    save:
      - "UAF_AII_*.nc"
-   p2g_config: "scmi_backend.ini"
+   p2g_config: "awips_tiled.yaml"
    p2g_grid: "scmi_grids.conf"
    tasks:
-     modis:
+     modis_l1b:
        qkm:
          grid: polar_alaska_250
-         bands:  "vis01 vis02"
+         bands:  "vis01 vis02 modis_crefl01_250m modis_crefl02_250m"
        hkm:
          grid: polar_alaska_500
-         bands: "vis03 vis04 vis05 vis06 vis07"
+         bands: "vis03 vis04 vis05 vis06 vis07 modis_crefl03_500m modis_crefl04_500m modis_crefl05_500m modis_crefl06_500m "
        km:
          grid: polar_alaska_1km
          bands: "vis26 bt20 bt27 bt23 bt28 bt29 bt30 bt31 bt32 "
-     crefl:
-       qkm:
-         grid: polar_alaska_250
-         bands: "modis_crefl01_250m modis_crefl02_250m"
-       hkm:
-         grid: polar_alaska_500
-         bands: "modis_crefl03_500m modis_crefl04_500m modis_crefl05_500m modis_crefl06_500m "
   clavrx:
-   options: " --sector-id Polar --letters --compress --fix-awips --grid-coverage 0.0001 --output-pattern '{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{begin_time:%Y%m%d_%H%M}.nc' "
+   options: " --sector-id Polar --letters --compress --fix-awips --grid-coverage 0.0001 --output-filename '{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
    save:
      - "*.nc"
-   p2g_config: "scmi_backend.ini"
+   p2g_config: "awips_tiled.yaml"
    p2g_grid: "scmi_grids.conf"
    tasks:
      clavrx:
@@ -55,10 +44,10 @@ configs:
          grid: polar_alaska_700
          bands:  "cld_emiss_acha cld_height_acha cld_opd_dcomp cld_reff_dcomp cld_temp_acha cloud_phase cloud_type cld_height_base_acha rain_rate"
   acspo:
-   options: " --sector-id Polar --letters --compress --fix-awips --grid-coverage 0.0001 --output-pattern '{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{begin_time:%Y%m%d_%H%M}.nc' "
+   options: " --sector-id Polar --letters --compress --fix-awips --grid-coverage 0.0001 --output-filename '{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
    save:
      - "*.nc"
-   p2g_config: "scmi_backend.ini"
+   p2g_config: "awips_tiled.yaml"
    p2g_grid: "scmi_grids.conf"
    tasks:
      acspo:
@@ -66,21 +55,21 @@ configs:
          grid: polar_alaska_500
          bands:  "sst"
   avhrr:
-    options: " --sector-id Polar --letters --compress --fix-awips --output-pattern 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{begin_time:%Y%m%d_%H%M}.nc' "
+    options: " --num-workers 8 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
     save:
      - "UAF_AII_*.nc"
-    p2g_config: "scmi_backend.ini"
+    p2g_config: "awips_tiled.yaml"
     p2g_grid: "scmi_grids.conf"
     tasks:
-      avhrr:
+      avhrr_l1b_aapp:
         qkm:
           grid: polar_alaska_1km
           bands:  "band1_vis band2_vis band3a_vis band3b_bt band4_bt band5_bt "
   mirs:
-    options: " --sector-id Polar --letters --compress --fix-awips --grid-coverage 0.00001 --output-pattern 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{begin_time:%Y%m%d_%H%M}.nc' "
+    options: " --sector-id Polar --letters --compress --fix-awips --grid-coverage 0.00001 --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
     save:
      - "UAF_AII_*.nc"
-    p2g_config: "scmi_backend.ini"
+    p2g_config: "awips_tiled.yaml"
     p2g_grid: "scmi_grids.conf"
     tasks:
       mirs:
@@ -88,10 +77,10 @@ configs:
           grid: polar_alaska_5km
           bands:  " sfr rain_rate sea_ice snow_cover tpw swe clw btemp_23v btemp_183h1 "
   amsr2_l1b:
-    options: " --sector-id Polar --letters --compress --fix-awips --grid-coverage 0.00001 --output-pattern 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{begin_time:%Y%m%d_%H%M}.nc' "
+    options: " --sector-id Polar --letters --compress --fix-awips --grid-coverage 0.00001 --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
     save:
      - "UAF_AII_*.nc"
-    p2g_config: "scmi_backend.ini"
+    p2g_config: "awips_tiled.yaml"
     p2g_grid: "scmi_grids.conf"
     tasks:
       amsr2_l1b:
