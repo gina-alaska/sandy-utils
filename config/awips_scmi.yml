@@ -10,7 +10,7 @@ configs:
      viirs_sdr: 
        ibands:
          grid: polar_alaska_300
-         bands:  "i01 i02 i03 i04 i05 "
+         bands:  "i01 i02 i03 i04 i05 viirs_crefl08 "
      'viirs_sdr ':
        mbands:
          grid: polar_alaska_700
