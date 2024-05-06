@@ -1,15 +1,15 @@
 configs:
   viirs:
    driver: viirs_sdr.sh
-   options: " -g -z"
+   options: " -g -l "
    rdr_glob: "RNSCA-RVIRS*.h5"
   atms:
    driver: atms_sdr.sh
-   options: "-z"
+   options: "-l -z "
    rdr_glob: "RATMS-RNSCA*.h5"
   cris:
    driver: cris_sdr.sh
-   options: "-z -f "
+   options: "-l -z -f "
    rdr_glob: "RCRIS-RNSC*.h5"
 limits:
   processor: 1
