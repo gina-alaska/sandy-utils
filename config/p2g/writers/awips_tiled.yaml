@@ -991,3 +991,11 @@ templates:
           physical_element:
             raw_value: MIRS Skin Temperature
           units: {}
+      clavrx_cld_height_base_acha:
+        reader: clavrx
+        name: cld_height_base_acha
+        var_name: data
+        attributes:
+          units: {}
+          physical_element:
+            raw_value: CLAVR-x Cloud Base Height (ACHA)
