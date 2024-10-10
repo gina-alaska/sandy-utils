@@ -31,7 +31,7 @@ class AMSR2_Geotiff_L2Clamp <  ProcessingFramework::CommandLineHelper
 def runner ( s )
   puts("Runner running \"#{s}\"")
   start_time = Time.now.to_f
-  system(". /opt/cspp/polar2grid_v_2_3/bin/env.sh; #{s}")
+  system("#{s}")
   end_time = Time.now.to_f
 
   run_time = (end_time-start_time)
