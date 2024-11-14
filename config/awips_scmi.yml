@@ -1,13 +1,13 @@
-driver:  /opt/cspp/polar2grid_v_3_0/bin/polar2grid.sh
+driver:  /opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh
 configs:
   viirs:
    options: " --num-workers 4 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
-   save: 
+   save:
      - "UAF_AII_*.nc"
    p2g_config: "awips_tiled.yaml"
    p2g_grid: "scmi_grids.conf"
    tasks:
-     viirs_sdr: 
+     viirs_sdr:
        ibands:
          grid: polar_alaska_300
          bands:  "i01 i02 i03 i04 i05 viirs_crefl08 "
@@ -15,6 +15,17 @@ configs:
        mbands:
          grid: polar_alaska_700
          bands: "m03 m04 m08 m09 m10 m11 m12 m13 m14 m15 m16 dynamic_dnb adaptive_dnb hncc_dnb viirs_crefl01 viirs_crefl03 viirs_crefl04"
+  edr:
+   options: " --num-workers 4 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
+   save:
+     - "*.nc"
+   p2g_config: "awips_tiled.yaml"
+   p2g_grid: "scmi_grids.conf"
+   tasks:
+     viirs_edr:
+       ibands:
+         grid: polar_alaska_700
+         bands:  " AOD550 "
   modis:
    options: " --num-workers 4 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
    save:
