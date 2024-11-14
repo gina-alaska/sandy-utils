@@ -23,7 +23,7 @@ class MirsL0Clamp <  ProcessingFramework::CommandLineHelper
 
     working_dir = "#{tempdir}/#{basename}"
     inside(working_dir) do
-      command = "#{conf['processing'][sensor]['driver']} -i #{input}"
+      command = "#{conf['processing'][sensor]['driver']} #{input}"
       result = shell_out(command, clean_environment: true )
       conf['processing'][sensor]['save'].each do |glob|
         copy_output(output, glob)
