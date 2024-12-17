@@ -163,6 +163,18 @@ class RtstpsClamp < ProcessingFramework::CommandLineHelper
     if facility
       rdr_list = Dir.glob(conf['source'][facility] + '/*.h5')
       rdrs = RtstpsSet.new(rdr_list).find(pass_date, platform)
+      #validate rdrs - check to make sure they didn't get corrupted on the way to us
+      
+      rdrs.each do |rdr|
+        puts("INFO: Checking #{rdr.path}")
+        if (system("h5dump -H #{rdr.path} &> /dev/null"))
+                puts("INFO: Good")
+        else
+                puts("INFO: BAD: #{rdr.path}")
+                rdrs.delete(rdr)
+        end
+      end
+  
       # Need at least 3 files rdrs, anything less then there is likely a problem
       if rdrs.length >= 3
         system('mkdir', '-p', output)
