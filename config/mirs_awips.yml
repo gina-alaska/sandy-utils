@@ -1,14 +1,16 @@
+---
 processing:
-  atms: 
+  atms:
     save:
-      - "*.nc"
-      - "*.nc.gz" 
-    driver: "mirs2awips.sh -g 203_10km --grid-coverage 0 --source-name UAF -p sfr rain_rate sea_ice snow_cover tpw swe clw btemp_23v btemp_183h1"
-    p2g_backend: "mirs_awips_backend.ini"
+    - "*.nc"
+    - "*.nc.gz"
+    driver: mirs2awips.sh -g 203_10km --grid-coverage 0 --source-name UAF -p sfr rain_rate
+      sea_ice snow_cover tpw swe clw btemp_23v btemp_183h1
+    p2g_backend: mirs_awips_backend.ini
   amsu:
     save:
-      - "*.nc"
-      - "*.nc.gz"
-    driver: "mirs2awips.sh -g 203_10km --grid-coverage 0 --source-name UAF -p sfr rain_rate sea_ice snow_cover tpw swe clw btemp_23v btemp_183h1"
-    p2g_backend: "mirs_awips_backend.ini"
-
+    - "*.nc"
+    - "*.nc.gz"
+    driver: mirs2awips.sh -g 203_10km --grid-coverage 0 --source-name UAF -p sfr rain_rate
+      sea_ice snow_cover tpw swe clw btemp_23v btemp_183h1
+    p2g_backend: mirs_awips_backend.ini

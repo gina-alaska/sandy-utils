@@ -1,4 +1,8 @@
+---
 terascan_driver: "/opt/terascan/pass/tscan.bash_profile"
 save:
-  - "*.avhrr"
-opts: "which_ch3=both hrpt_format=lac hrpt_types=avhrr on_pass_disk=no channels=\"1 2 3 4 5\" fix_missing=yes sharpen=no calibrate=yes temp_units=kelvin byte_output=no full_report=no solar_corr=no geo_correct=no delta_line=1 delta_sample=1 use_master=no start_time= num_lines= start_sample=1 num_samples= "
+- "*.avhrr"
+opts: 'which_ch3=both hrpt_format=lac hrpt_types=avhrr on_pass_disk=no channels="1
+  2 3 4 5" fix_missing=yes sharpen=no calibrate=yes temp_units=kelvin byte_output=no
+  full_report=no solar_corr=no geo_correct=no delta_line=1 delta_sample=1 use_master=no
+  start_time= num_lines= start_sample=1 num_samples= '

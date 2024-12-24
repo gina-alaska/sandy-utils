@@ -1,50 +1,50 @@
---- 
-configs: 
-  npp: 
+---
+configs:
+  npp:
     driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash  "
     options: " -p 2 -s npp --dynanc=/cspp/dyno/sst "
-    bias: /opt/cspp/bias
-    save: 
-      - "*.nc"
-  noaa20: 
+    bias: "/opt/cspp/bias"
+    save:
+    - "*.nc"
+  noaa20:
     driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash  "
     options: " -p 2 -s n20 --dynanc=/cspp/dyno/sst "
-    bias: /opt/cspp/bias
-    save: 
-      - "*.nc"
-  metopb: 
+    bias: "/opt/cspp/bias"
+    save:
+    - "*.nc"
+  metopb:
     driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash  "
     options: " -p 2 -s metopb --dynanc=/cspp/dyno/sst "
-    bias: /opt/cspp/bias
-    save: 
-      - "*.nc"
-  metopc: 
+    bias: "/opt/cspp/bias"
+    save:
+    - "*.nc"
+  metopc:
     driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash  "
     options: " -p 2 -s metopc --dynanc=/cspp/dyno/sst "
-    bias: /opt/cspp/bias
-    save: 
-      - "*.nc"  
-  terra:   
+    bias: "/opt/cspp/bias"
+    save:
+    - "*.nc"
+  terra:
     driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash --dynanc=/cspp/dyno/sst "
     options: " -p 2 -s terra -vv "
-    bias: /opt/cspp/bias
-    save: 
-      - "*.nc"
-  aqua:   
+    bias: "/opt/cspp/bias"
+    save:
+    - "*.nc"
+  aqua:
     driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash --dynanc=/cspp/dyno/sst "
     options: "-p 2 -s aqua -vv "
-    bias: /opt/cspp/bias
+    bias: "/opt/cspp/bias"
     save:
-      - "*.nc"
+    - "*.nc"
   n19:
     driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash --dynanc=/cspp/dyno/sst "
     options: " -p 2 -s n19 -vv "
-    bias: /opt/cspp/bias
+    bias: "/opt/cspp/bias"
     save:
-      - "*.nc"
+    - "*.nc"
   n18:
     driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash --dynanc=/cspp/dyno/sst "
     options: "-p 2 -s n18 -vv "
-    bias: /opt/cspp/bias
+    bias: "/opt/cspp/bias"
     save:
-      - "*.nc"
+    - "*.nc"
