@@ -24,6 +24,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Set up Ruby
-      run: dnf -y update && dnf -y install ruby
+      run: dnf -y update && dnf -y install ruby python && pip install --user yamllint
     - name: Run tests
       run: ruby -c bin/*.rb
+    - name: Yaml Check
+      run: yamllint config/*.yml
