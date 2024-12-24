@@ -1,7 +1,8 @@
+---
 configs:
   amsr2:
-   driver: "$AMSR2_HOME/singularity_run_amsr_level1.bash"
-   options: " "
-   level0_glob: "tp*.GCOM-W1.AMSR2.dat"
+    driver: "$AMSR2_HOME/singularity_run_amsr_level1.bash"
+    options: " "
+    level0_glob: tp*.GCOM-W1.AMSR2.dat
 limits:
   processor: 1

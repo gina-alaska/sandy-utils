@@ -1,9 +1,9 @@
---- 
-configs: 
-  default: 
-    driver: "heap4awips_nc.py"
+---
+configs:
+  default:
+    driver: heap4awips_nc.py
     options: "  "
-    to_process_glob: 
-      - "NUCAPS-EDR_v3r0*"
-    save: 
-      - "UAF_IUTN*"
+    to_process_glob:
+    - NUCAPS-EDR_v3r0*
+    save:
+    - UAF_IUTN*

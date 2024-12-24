@@ -1,7 +1,7 @@
---- 
-configs: 
-  default: 
-    driver: "cspp_gaasp.sh"
+---
+configs:
+  default:
+    driver: cspp_gaasp.sh
     options: "  "
-    save: 
-      - "*.nc"
+    save:
+    - "*.nc"

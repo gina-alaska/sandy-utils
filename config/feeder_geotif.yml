@@ -1,1181 +1,1181 @@
+---
 configs:
   noaa21gm:
-   mapper:
-     dnb: noaa21_viirs_dynamic_dnb_*_alaska_gm_600.tif
-     i01: noaa21_viirs_i01*_alaska_gm_300.tif
-     i02: noaa21_viirs_i02*_alaska_gm_300.tif
-     i03: noaa21_viirs_i03*_alaska_gm_300.tif
-     i04: noaa21_viirs_i04*_alaska_gm_300.tif
-     i05: noaa21_viirs_i05*_alaska_gm_300.tif
-     i01_float: noaa21_viirs_i01*_alaska_gm_300.float.tif
-     i02_float: noaa21_viirs_i02*_alaska_gm_300.float.tif
-     i03_float: noaa21_viirs_i03*_alaska_gm_300.float.tif
-     i04_float: noaa21_viirs_i04*_alaska_gm_300.float.tif
-     i05_float: noaa21_viirs_i05*_alaska_gm_300.float.tif
-     m02: noaa21_viirs_m02_*_alaska_gm_600.tif
-     m03: noaa21_viirs_m02_*_alaska_gm_600.tif
-     m04: noaa21_viirs_m02_*_alaska_gm_600.tif
-     m05: noaa21_viirs_m02_*_alaska_gm_600.tif
-     m06: noaa21_viirs_m02_*_alaska_gm_600.tif
-     m07: noaa21_viirs_m02_*_alaska_gm_600.tif
-     m08: noaa21_viirs_m02_*_alaska_gm_600.tif
-     m10: noaa21_viirs_m10_*_alaska_gm_600.tif
-     m11: noaa21_viirs_m11_*_alaska_gm_600.tif
-     m12: noaa21_viirs_m12_*_alaska_gm_600.tif
-     m15: noaa21_viirs_m02_*_alaska_gm_600.tif
-     m16_300_float: noaa21_viirs_m16_*_alaska_gm_300.float.tif
-     m10_float: noaa21_viirs_m10_*_alaska_gm_600.float.tif
-     m11_float: noaa21_viirs_m11_*_alaska_gm_600.float.tif
-     m12_float: noaa21_viirs_m12_*_alaska_gm_600.float.tif
-     m11_300_float: noaa21_viirs_m11_*_alaska_gm_300.float.tif
-     m12_300_float: noaa21_viirs_m12_*_alaska_gm_300.float.tif
-     m08_300: noaa21_viirs_m08_*_alaska_gm_300.tif
-     true_color: noaa21_viirs_true_color_*_alaska_gm_300.tif
-     crefl01: noaa21_viirs_viirs_crefl01_*_alaska_gm_300.tif
-     crefl03: noaa21_viirs_viirs_crefl03_*_alaska_gm_300.tif
-     crefl04: noaa21_viirs_viirs_crefl04_*_alaska_gm_300.tif
-     crefl08: noaa21_viirs_viirs_crefl08_*_alaska_gm_300.tif
-   single:
-   - title: true_color
-     band: true_color
-     name: "noaa21.%Y%m%d.%H%M_true_color_gm"
-   combinations:
-   - title: landcolor
-     bands:
-       r: "i03"
-       g: "i02"
-       b: "i01"
-     name: "noaa21.%Y%m%d.%H%M_I03_I02_I01_gm"
-   extras:
-   - title: viirs_fire_temperature
-     bands:
-       r: "m12_float"
-       g: "m11_float"
-       b: "m10_float"
-     tool: "viirs_fire_stretch --blue-cap 0.75 "
-     name: "noaa21.%Y%m%d.%H%M_m12_m11_m10_gm"
-   - title: viirs_fire_color
-     bands:
-       r: "i04_float"
-       g: "i02_float"
-       b: "i01_float"
-     tool: "viirs_fire_stretch --blue-cap 1.0 "
-     name: "noaa21.%Y%m%d.%H%M_i04_i02_i01_gm"
-   - title: viirs_i4_colored
-     bands:
-       r: "i04_float"
-       g: "i04_float"
-       b: "i04_float"
-     tool: "color_thermal_long_wave.rb"
-     name: "noaa21.%Y%m%d.%H%M_i04_colored_gm"
-   - title: viirs_i5_colored
-     bands:
-       r: "i05_float"
-       g: "i05_float"
-       b: "i05_float"
-     tool: "color_thermal_long_wave.rb"
-     name: "noaa21.%Y%m%d.%H%M_i05_colored_gm"
+    mapper:
+      dnb: noaa21_viirs_dynamic_dnb_*_alaska_gm_600.tif
+      i01: noaa21_viirs_i01*_alaska_gm_300.tif
+      i02: noaa21_viirs_i02*_alaska_gm_300.tif
+      i03: noaa21_viirs_i03*_alaska_gm_300.tif
+      i04: noaa21_viirs_i04*_alaska_gm_300.tif
+      i05: noaa21_viirs_i05*_alaska_gm_300.tif
+      i01_float: noaa21_viirs_i01*_alaska_gm_300.float.tif
+      i02_float: noaa21_viirs_i02*_alaska_gm_300.float.tif
+      i03_float: noaa21_viirs_i03*_alaska_gm_300.float.tif
+      i04_float: noaa21_viirs_i04*_alaska_gm_300.float.tif
+      i05_float: noaa21_viirs_i05*_alaska_gm_300.float.tif
+      m02: noaa21_viirs_m02_*_alaska_gm_600.tif
+      m03: noaa21_viirs_m02_*_alaska_gm_600.tif
+      m04: noaa21_viirs_m02_*_alaska_gm_600.tif
+      m05: noaa21_viirs_m02_*_alaska_gm_600.tif
+      m06: noaa21_viirs_m02_*_alaska_gm_600.tif
+      m07: noaa21_viirs_m02_*_alaska_gm_600.tif
+      m08: noaa21_viirs_m02_*_alaska_gm_600.tif
+      m10: noaa21_viirs_m10_*_alaska_gm_600.tif
+      m11: noaa21_viirs_m11_*_alaska_gm_600.tif
+      m12: noaa21_viirs_m12_*_alaska_gm_600.tif
+      m15: noaa21_viirs_m02_*_alaska_gm_600.tif
+      m16_300_float: noaa21_viirs_m16_*_alaska_gm_300.float.tif
+      m10_float: noaa21_viirs_m10_*_alaska_gm_600.float.tif
+      m11_float: noaa21_viirs_m11_*_alaska_gm_600.float.tif
+      m12_float: noaa21_viirs_m12_*_alaska_gm_600.float.tif
+      m11_300_float: noaa21_viirs_m11_*_alaska_gm_300.float.tif
+      m12_300_float: noaa21_viirs_m12_*_alaska_gm_300.float.tif
+      m08_300: noaa21_viirs_m08_*_alaska_gm_300.tif
+      true_color: noaa21_viirs_true_color_*_alaska_gm_300.tif
+      crefl01: noaa21_viirs_viirs_crefl01_*_alaska_gm_300.tif
+      crefl03: noaa21_viirs_viirs_crefl03_*_alaska_gm_300.tif
+      crefl04: noaa21_viirs_viirs_crefl04_*_alaska_gm_300.tif
+      crefl08: noaa21_viirs_viirs_crefl08_*_alaska_gm_300.tif
+    single:
+    - title: true_color
+      band: true_color
+      name: noaa21.%Y%m%d.%H%M_true_color_gm
+    combinations:
+    - title: landcolor
+      bands:
+        r: i03
+        g: i02
+        b: i01
+      name: noaa21.%Y%m%d.%H%M_I03_I02_I01_gm
+    extras:
+    - title: viirs_fire_temperature
+      bands:
+        r: m12_float
+        g: m11_float
+        b: m10_float
+      tool: 'viirs_fire_stretch --blue-cap 0.75 '
+      name: noaa21.%Y%m%d.%H%M_m12_m11_m10_gm
+    - title: viirs_fire_color
+      bands:
+        r: i04_float
+        g: i02_float
+        b: i01_float
+      tool: 'viirs_fire_stretch --blue-cap 1.0 '
+      name: noaa21.%Y%m%d.%H%M_i04_i02_i01_gm
+    - title: viirs_i4_colored
+      bands:
+        r: i04_float
+        g: i04_float
+        b: i04_float
+      tool: color_thermal_long_wave.rb
+      name: noaa21.%Y%m%d.%H%M_i04_colored_gm
+    - title: viirs_i5_colored
+      bands:
+        r: i05_float
+        g: i05_float
+        b: i05_float
+      tool: color_thermal_long_wave.rb
+      name: noaa21.%Y%m%d.%H%M_i05_colored_gm
   noaa21:
-   mapper:
-     dnb: noaa21_viirs_dynamic_dnb_*_alaska_600.tif
-     dnb_adaptive: noaa21_viirs_adaptive_dnb_*_alaska_600.tif
-     i01: noaa21_viirs_i01*_alaska_300.tif
-     i02: noaa21_viirs_i02*_alaska_300.tif
-     i03: noaa21_viirs_i03*_alaska_300.tif
-     i04: noaa21_viirs_i04*_alaska_300.tif
-     i05: noaa21_viirs_i05*_alaska_300.tif
-     i01_float: noaa21_viirs_i01*_alaska_300.float.tif
-     i02_float: noaa21_viirs_i02*_alaska_300.float.tif
-     i03_float: noaa21_viirs_i03*_alaska_300.float.tif
-     i04_float: noaa21_viirs_i04*_alaska_300.float.tif
-     i05_float: noaa21_viirs_i05*_alaska_300.float.tif
-     m02: noaa21_viirs_m02_*_alaska_600.tif
-     m03: noaa21_viirs_m02_*_alaska_600.tif
-     m04: noaa21_viirs_m02_*_alaska_600.tif
-     m05: noaa21_viirs_m02_*_alaska_600.tif
-     m06: noaa21_viirs_m02_*_alaska_600.tif
-     m07: noaa21_viirs_m02_*_alaska_600.tif
-     m08: noaa21_viirs_m02_*_alaska_600.tif
-     m10: noaa21_viirs_m10_*_alaska_600.tif
-     m11: noaa21_viirs_m11_*_alaska_600.tif
-     m12: noaa21_viirs_m12_*_alaska_600.tif
-     m15: noaa21_viirs_m02_*_alaska_600.tif
-     m10_float: noaa21_viirs_m10_*_alaska_600.float.tif
-     m11_float: noaa21_viirs_m11_*_alaska_600.float.tif
-     m12_float: noaa21_viirs_m12_*_alaska_600.float.tif
-     m11_300_float: noaa21_viirs_m11_*_alaska_300.float.tif
-     m12_300_float: noaa21_viirs_m12_*_alaska_300.float.tif
-     m16_300_float: noaa21_viirs_m16_*_alaska_300.float.tif
-     m08_300: noaa21_viirs_m08_*_alaska_300.tif
-     true_color: noaa21_viirs_true_color_*_alaska_300.tif
-     crefl01: noaa21_viirs_viirs_crefl01_*_alaska_300.tif
-     crefl03: noaa21_viirs_viirs_crefl03_*_alaska_300.tif
-     crefl04: noaa21_viirs_viirs_crefl04_*_alaska_300.tif
-     crefl08: noaa21_viirs_viirs_crefl08_*_alaska_300.tif
-   single:
-   - title: true_color
-     band: true_color
-     name: "noaa21.%Y%m%d.%H%M_true_color"
-   - title: dnb
-     band: dnb
-     name: "noaa21.%Y%m%d.%H%M_DNB"
-   - title: dnb-adaptive
-     band: dnb_adaptive
-     name: "noaa21.%Y%m%d.%H%M_DNB_adaptive"
-   - title: thermal
-     band: "i05"
-     name: "noaa21.%Y%m%d.%H%M_I05"
-   - title: "i03"
-     band: "i03"
-     name: "noaa21.%Y%m%d.%H%M_I03"
-   - title: "i04"
-     band: "i04"
-     name: "noaa21.%Y%m%d.%H%M_I04"
-   combinations:
-   - title: landcolor
-     bands:
-       r: "i03"
-       g: "i02"
-       b: "i01"
-     name: "noaa21.%Y%m%d.%H%M_I03_I02_I01"
-   extras:
-   - title: viirs_fire_temperature
-     bands:
-       r: "m12_float"
-       g: "m11_float"
-       b: "m10_float"
-     tool: "viirs_fire_stretch --blue-cap 0.75 "
-     name: "noaa21.%Y%m%d.%H%M_m12_m11_m10"
-   - title: viirs_fire_color
-     bands:
-       r: "i04_float"
-       g: "i02_float"
-       b: "i01_float"
-     tool: "viirs_fire_stretch --blue-cap 1.0 "
-     name: "noaa21.%Y%m%d.%H%M_i04_i02_i01"
-   - title: viirs_i4_colored
-     bands:
-       r: "i04_float"
-       g: "i04_float"
-       b: "i04_float"
-     tool: "color_thermal_long_wave.rb"
-     name: "noaa21.%Y%m%d.%H%M_i04_colored"
-   - title: viirs_i5_colored
-     bands:
-       r: "i05_float"
-       g: "i05_float"
-       b: "i05_float"
-     tool: "color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap "
-     name: "noaa21.%Y%m%d.%H%M_i05_colored"
-   - title: night-time-microphysics
-     bands:
-       r: "i05_float"
-       g: "m16_300_float"
-       b: "i04_float"
-     tool: "night_microphysics"
-     name: "noaa21.%Y%m%d.%H%M_micro_physics"
-   - title: snow-melt
-     bands:
-       r: "i03"
-       g: "m08_300"
-       b: "i01"
-     tool: "snow_melt"
-     name: "noaa21.%Y%m%d.%H%M_i03_m08_i01"
-  npp: 
-   mapper:
-     dnb: npp_viirs_dynamic_dnb_*_alaska_600.tif
-     dnb_adaptive: npp_viirs_adaptive_dnb_*_alaska_600.tif
-     i01: npp_viirs_i01*_alaska_300.tif
-     i02: npp_viirs_i02*_alaska_300.tif
-     i03: npp_viirs_i03*_alaska_300.tif
-     i04: npp_viirs_i04*_alaska_300.tif
-     i05: npp_viirs_i05*_alaska_300.tif
-     i01_float: npp_viirs_i01*_alaska_300.float.tif
-     i02_float: npp_viirs_i02*_alaska_300.float.tif
-     i03_float: npp_viirs_i03*_alaska_300.float.tif
-     i04_float: npp_viirs_i04*_alaska_300.float.tif
-     i05_float: npp_viirs_i05*_alaska_300.float.tif
-     m02: npp_viirs_m02_*_alaska_600.tif
-     m03: npp_viirs_m02_*_alaska_600.tif
-     m04: npp_viirs_m02_*_alaska_600.tif
-     m05: npp_viirs_m02_*_alaska_600.tif
-     m06: npp_viirs_m02_*_alaska_600.tif
-     m07: npp_viirs_m02_*_alaska_600.tif
-     m08: npp_viirs_m02_*_alaska_600.tif
-     m10: npp_viirs_m10_*_alaska_600.tif
-     m11: npp_viirs_m11_*_alaska_600.tif
-     m12: npp_viirs_m12_*_alaska_600.tif
-     m15: npp_viirs_m02_*_alaska_600.tif
-     m10_float: npp_viirs_m10_*_alaska_600.float.tif
-     m11_float: npp_viirs_m11_*_alaska_600.float.tif
-     m12_float: npp_viirs_m12_*_alaska_600.float.tif
-     m11_300_float: npp_viirs_m11_*_alaska_300.float.tif
-     m12_300_float: npp_viirs_m12_*_alaska_300.float.tif
-     m16_300_float: npp_viirs_m16_*_alaska_300.float.tif
-     m08_300: npp_viirs_m08_*_alaska_300.tif
-     true_color: npp_viirs_true_color_*_alaska_300.tif
-     crefl01: npp_viirs_viirs_crefl01_*_alaska_300.tif
-     crefl03: npp_viirs_viirs_crefl03_*_alaska_300.tif
-     crefl04: npp_viirs_viirs_crefl04_*_alaska_300.tif
-     crefl08: npp_viirs_viirs_crefl08_*_alaska_300.tif
-   single:
-   - title: true_color
-     band: true_color
-     name: "npp.%Y%m%d.%H%M_true_color"
-   - title: dnb
-     band: dnb
-     name: "npp.%Y%m%d.%H%M_DNB"
-   - title: dnb-adaptive
-     band: dnb_adaptive
-     name: "npp.%Y%m%d.%H%M_DNB_adaptive"
-   - title: thermal
-     band: "i05"
-     name: "npp.%Y%m%d.%H%M_I05"
-   combinations:
-   - title: landcolor
-     bands:
-       r: "i03"
-       g: "i02"
-       b: "i01"
-     name: "npp.%Y%m%d.%H%M_I03_I02_I01"
-   extras:
-   - title: viirs_fire_temperature
-     bands:
-       r: "m12_float"
-       g: "m11_float"
-       b: "m10_float"
-     tool: "viirs_fire_stretch --blue-cap 0.75 "
-     name: "npp.%Y%m%d.%H%M_m12_m11_m10"
-   - title: viirs_fire_color
-     bands:
-       r: "i04_float"
-       g: "i02_float"
-       b: "i01_float"
-     tool: "viirs_fire_stretch --blue-cap 1.0 "
-     name: "npp.%Y%m%d.%H%M_i04_i02_i01"
-   - title: viirs_i4_colored
-     bands:
-       r: "i04_float"
-       g: "i04_float"
-       b: "i04_float"
-     tool: "color_thermal_long_wave.rb"
-     name: "npp.%Y%m%d.%H%M_i04_colored"
-   - title: viirs_i5_colored
-     bands:
-       r: "i05_float"
-       g: "i05_float"
-       b: "i05_float"
-     tool: "color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap "
-     name: "npp.%Y%m%d.%H%M_i05_colored"
-   - title: night-time-microphysics
-     bands:
-       r: "i05_float"
-       g: "m16_300_float"
-       b: "i04_float"
-     tool: "night_microphysics"
-     name: "npp.%Y%m%d.%H%M_micro_physics"
-   - title: snow-melt
-     bands:
-       r: "i03"
-       g: "m08_300"
-       b: "i01"
-     tool: "snow_melt"
-     name: "npp.%Y%m%d.%H%M_i03_m08_i01"
+    mapper:
+      dnb: noaa21_viirs_dynamic_dnb_*_alaska_600.tif
+      dnb_adaptive: noaa21_viirs_adaptive_dnb_*_alaska_600.tif
+      i01: noaa21_viirs_i01*_alaska_300.tif
+      i02: noaa21_viirs_i02*_alaska_300.tif
+      i03: noaa21_viirs_i03*_alaska_300.tif
+      i04: noaa21_viirs_i04*_alaska_300.tif
+      i05: noaa21_viirs_i05*_alaska_300.tif
+      i01_float: noaa21_viirs_i01*_alaska_300.float.tif
+      i02_float: noaa21_viirs_i02*_alaska_300.float.tif
+      i03_float: noaa21_viirs_i03*_alaska_300.float.tif
+      i04_float: noaa21_viirs_i04*_alaska_300.float.tif
+      i05_float: noaa21_viirs_i05*_alaska_300.float.tif
+      m02: noaa21_viirs_m02_*_alaska_600.tif
+      m03: noaa21_viirs_m02_*_alaska_600.tif
+      m04: noaa21_viirs_m02_*_alaska_600.tif
+      m05: noaa21_viirs_m02_*_alaska_600.tif
+      m06: noaa21_viirs_m02_*_alaska_600.tif
+      m07: noaa21_viirs_m02_*_alaska_600.tif
+      m08: noaa21_viirs_m02_*_alaska_600.tif
+      m10: noaa21_viirs_m10_*_alaska_600.tif
+      m11: noaa21_viirs_m11_*_alaska_600.tif
+      m12: noaa21_viirs_m12_*_alaska_600.tif
+      m15: noaa21_viirs_m02_*_alaska_600.tif
+      m10_float: noaa21_viirs_m10_*_alaska_600.float.tif
+      m11_float: noaa21_viirs_m11_*_alaska_600.float.tif
+      m12_float: noaa21_viirs_m12_*_alaska_600.float.tif
+      m11_300_float: noaa21_viirs_m11_*_alaska_300.float.tif
+      m12_300_float: noaa21_viirs_m12_*_alaska_300.float.tif
+      m16_300_float: noaa21_viirs_m16_*_alaska_300.float.tif
+      m08_300: noaa21_viirs_m08_*_alaska_300.tif
+      true_color: noaa21_viirs_true_color_*_alaska_300.tif
+      crefl01: noaa21_viirs_viirs_crefl01_*_alaska_300.tif
+      crefl03: noaa21_viirs_viirs_crefl03_*_alaska_300.tif
+      crefl04: noaa21_viirs_viirs_crefl04_*_alaska_300.tif
+      crefl08: noaa21_viirs_viirs_crefl08_*_alaska_300.tif
+    single:
+    - title: true_color
+      band: true_color
+      name: noaa21.%Y%m%d.%H%M_true_color
+    - title: dnb
+      band: dnb
+      name: noaa21.%Y%m%d.%H%M_DNB
+    - title: dnb-adaptive
+      band: dnb_adaptive
+      name: noaa21.%Y%m%d.%H%M_DNB_adaptive
+    - title: thermal
+      band: i05
+      name: noaa21.%Y%m%d.%H%M_I05
+    - title: i03
+      band: i03
+      name: noaa21.%Y%m%d.%H%M_I03
+    - title: i04
+      band: i04
+      name: noaa21.%Y%m%d.%H%M_I04
+    combinations:
+    - title: landcolor
+      bands:
+        r: i03
+        g: i02
+        b: i01
+      name: noaa21.%Y%m%d.%H%M_I03_I02_I01
+    extras:
+    - title: viirs_fire_temperature
+      bands:
+        r: m12_float
+        g: m11_float
+        b: m10_float
+      tool: 'viirs_fire_stretch --blue-cap 0.75 '
+      name: noaa21.%Y%m%d.%H%M_m12_m11_m10
+    - title: viirs_fire_color
+      bands:
+        r: i04_float
+        g: i02_float
+        b: i01_float
+      tool: 'viirs_fire_stretch --blue-cap 1.0 '
+      name: noaa21.%Y%m%d.%H%M_i04_i02_i01
+    - title: viirs_i4_colored
+      bands:
+        r: i04_float
+        g: i04_float
+        b: i04_float
+      tool: color_thermal_long_wave.rb
+      name: noaa21.%Y%m%d.%H%M_i04_colored
+    - title: viirs_i5_colored
+      bands:
+        r: i05_float
+        g: i05_float
+        b: i05_float
+      tool: 'color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap '
+      name: noaa21.%Y%m%d.%H%M_i05_colored
+    - title: night-time-microphysics
+      bands:
+        r: i05_float
+        g: m16_300_float
+        b: i04_float
+      tool: night_microphysics
+      name: noaa21.%Y%m%d.%H%M_micro_physics
+    - title: snow-melt
+      bands:
+        r: i03
+        g: m08_300
+        b: i01
+      tool: snow_melt
+      name: noaa21.%Y%m%d.%H%M_i03_m08_i01
+  npp:
+    mapper:
+      dnb: npp_viirs_dynamic_dnb_*_alaska_600.tif
+      dnb_adaptive: npp_viirs_adaptive_dnb_*_alaska_600.tif
+      i01: npp_viirs_i01*_alaska_300.tif
+      i02: npp_viirs_i02*_alaska_300.tif
+      i03: npp_viirs_i03*_alaska_300.tif
+      i04: npp_viirs_i04*_alaska_300.tif
+      i05: npp_viirs_i05*_alaska_300.tif
+      i01_float: npp_viirs_i01*_alaska_300.float.tif
+      i02_float: npp_viirs_i02*_alaska_300.float.tif
+      i03_float: npp_viirs_i03*_alaska_300.float.tif
+      i04_float: npp_viirs_i04*_alaska_300.float.tif
+      i05_float: npp_viirs_i05*_alaska_300.float.tif
+      m02: npp_viirs_m02_*_alaska_600.tif
+      m03: npp_viirs_m02_*_alaska_600.tif
+      m04: npp_viirs_m02_*_alaska_600.tif
+      m05: npp_viirs_m02_*_alaska_600.tif
+      m06: npp_viirs_m02_*_alaska_600.tif
+      m07: npp_viirs_m02_*_alaska_600.tif
+      m08: npp_viirs_m02_*_alaska_600.tif
+      m10: npp_viirs_m10_*_alaska_600.tif
+      m11: npp_viirs_m11_*_alaska_600.tif
+      m12: npp_viirs_m12_*_alaska_600.tif
+      m15: npp_viirs_m02_*_alaska_600.tif
+      m10_float: npp_viirs_m10_*_alaska_600.float.tif
+      m11_float: npp_viirs_m11_*_alaska_600.float.tif
+      m12_float: npp_viirs_m12_*_alaska_600.float.tif
+      m11_300_float: npp_viirs_m11_*_alaska_300.float.tif
+      m12_300_float: npp_viirs_m12_*_alaska_300.float.tif
+      m16_300_float: npp_viirs_m16_*_alaska_300.float.tif
+      m08_300: npp_viirs_m08_*_alaska_300.tif
+      true_color: npp_viirs_true_color_*_alaska_300.tif
+      crefl01: npp_viirs_viirs_crefl01_*_alaska_300.tif
+      crefl03: npp_viirs_viirs_crefl03_*_alaska_300.tif
+      crefl04: npp_viirs_viirs_crefl04_*_alaska_300.tif
+      crefl08: npp_viirs_viirs_crefl08_*_alaska_300.tif
+    single:
+    - title: true_color
+      band: true_color
+      name: npp.%Y%m%d.%H%M_true_color
+    - title: dnb
+      band: dnb
+      name: npp.%Y%m%d.%H%M_DNB
+    - title: dnb-adaptive
+      band: dnb_adaptive
+      name: npp.%Y%m%d.%H%M_DNB_adaptive
+    - title: thermal
+      band: i05
+      name: npp.%Y%m%d.%H%M_I05
+    combinations:
+    - title: landcolor
+      bands:
+        r: i03
+        g: i02
+        b: i01
+      name: npp.%Y%m%d.%H%M_I03_I02_I01
+    extras:
+    - title: viirs_fire_temperature
+      bands:
+        r: m12_float
+        g: m11_float
+        b: m10_float
+      tool: 'viirs_fire_stretch --blue-cap 0.75 '
+      name: npp.%Y%m%d.%H%M_m12_m11_m10
+    - title: viirs_fire_color
+      bands:
+        r: i04_float
+        g: i02_float
+        b: i01_float
+      tool: 'viirs_fire_stretch --blue-cap 1.0 '
+      name: npp.%Y%m%d.%H%M_i04_i02_i01
+    - title: viirs_i4_colored
+      bands:
+        r: i04_float
+        g: i04_float
+        b: i04_float
+      tool: color_thermal_long_wave.rb
+      name: npp.%Y%m%d.%H%M_i04_colored
+    - title: viirs_i5_colored
+      bands:
+        r: i05_float
+        g: i05_float
+        b: i05_float
+      tool: 'color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap '
+      name: npp.%Y%m%d.%H%M_i05_colored
+    - title: night-time-microphysics
+      bands:
+        r: i05_float
+        g: m16_300_float
+        b: i04_float
+      tool: night_microphysics
+      name: npp.%Y%m%d.%H%M_micro_physics
+    - title: snow-melt
+      bands:
+        r: i03
+        g: m08_300
+        b: i01
+      tool: snow_melt
+      name: npp.%Y%m%d.%H%M_i03_m08_i01
   nppgm:
-   mapper:
-     dnb: npp_viirs_dynamic_dnb_*_alaska_gm_600.tif
-     i01: npp_viirs_i01*_alaska_gm_300.tif
-     i02: npp_viirs_i02*_alaska_gm_300.tif
-     i03: npp_viirs_i03*_alaska_gm_300.tif
-     i04: npp_viirs_i04*_alaska_gm_300.tif
-     i05: npp_viirs_i05*_alaska_gm_300.tif
-     i01_float: npp_viirs_i01*_alaska_gm_300.float.tif
-     i02_float: npp_viirs_i02*_alaska_gm_300.float.tif
-     i03_float: npp_viirs_i03*_alaska_gm_300.float.tif
-     i04_float: npp_viirs_i04*_alaska_gm_300.float.tif
-     i05_float: npp_viirs_i05*_alaska_gm_300.float.tif
-     m02: npp_viirs_m02_*_alaska_gm_600.tif
-     m03: npp_viirs_m02_*_alaska_gm_600.tif
-     m04: npp_viirs_m02_*_alaska_gm_600.tif
-     m05: npp_viirs_m02_*_alaska_gm_600.tif
-     m06: npp_viirs_m02_*_alaska_gm_600.tif
-     m07: npp_viirs_m02_*_alaska_gm_600.tif
-     m08: npp_viirs_m02_*_alaska_gm_600.tif
-     m10: npp_viirs_m10_*_alaska_gm_600.tif
-     m11: npp_viirs_m11_*_alaska_gm_600.tif
-     m12: npp_viirs_m12_*_alaska_gm_600.tif
-     m15: npp_viirs_m02_*_alaska_gm_600.tif
-     m10_float: npp_viirs_m10_*_alaska_gm_600.float.tif
-     m11_float: npp_viirs_m11_*_alaska_gm_600.float.tif
-     m12_float: npp_viirs_m12_*_alaska_gm_600.float.tif
-     m11_300_float: npp_viirs_m11_*_alaska_gm_300.float.tif
-     m12_300_float: npp_viirs_m12_*_alaska_gm_300.float.tif
-     m16_300_float: npp_viirs_m16_*_alaska_gm_300.float.tif
-     m08_300: npp_viirs_m08_*_alaska_gm_300.tif
-     true_color: npp_viirs_true_color_*_alaska_gm_300.tif
-     crefl01: npp_viirs_viirs_crefl01_*_alaska_gm_300.tif
-     crefl03: npp_viirs_viirs_crefl03_*_alaska_gm_300.tif
-     crefl04: npp_viirs_viirs_crefl04_*_alaska_gm_300.tif
-     crefl08: npp_viirs_viirs_crefl08_*_alaska_gm_300.tif
-   single:
-   - title: true_color
-     band: true_color
-     name: "npp.%Y%m%d.%H%M_true_color_gm"
-   combinations:
-   - title: landcolor
-     bands:
-       r: "i03"
-       g: "i02"
-       b: "i01"
-     name: "npp.%Y%m%d.%H%M_I03_I02_I01_gm"
-   extras:
-   - title: viirs_fire_temperature
-     bands:
-       r: "m12_float"
-       g: "m11_float"
-       b: "m10_float"
-     tool: "viirs_fire_stretch --blue-cap 0.75 "
-     name: "npp.%Y%m%d.%H%M_m12_m11_m10_gm"
-   - title: viirs_fire_color
-     bands:
-       r: "i04_float"
-       g: "i02_float"
-       b: "i01_float"
-     tool: "viirs_fire_stretch --blue-cap 1.0 "
-     name: "npp.%Y%m%d.%H%M_i04_i02_i01_gm"
-   - title: viirs_i5_colored
-     bands:
-       r: "i04_float"
-       g: "i04_float"
-       b: "i04_float"
-     tool: "color_thermal_long_wave.rb"
-     name: "npp.%Y%m%d.%H%M_i04_colored_gm"
-   - title: viirs_i5_colored
-     bands:
-       r: "i05_float"
-       g: "i05_float"
-       b: "i05_float"
-     tool: "color_thermal_long_wave.rb"
-     name: "npp.%Y%m%d.%H%M_i05_colored_gm"  
+    mapper:
+      dnb: npp_viirs_dynamic_dnb_*_alaska_gm_600.tif
+      i01: npp_viirs_i01*_alaska_gm_300.tif
+      i02: npp_viirs_i02*_alaska_gm_300.tif
+      i03: npp_viirs_i03*_alaska_gm_300.tif
+      i04: npp_viirs_i04*_alaska_gm_300.tif
+      i05: npp_viirs_i05*_alaska_gm_300.tif
+      i01_float: npp_viirs_i01*_alaska_gm_300.float.tif
+      i02_float: npp_viirs_i02*_alaska_gm_300.float.tif
+      i03_float: npp_viirs_i03*_alaska_gm_300.float.tif
+      i04_float: npp_viirs_i04*_alaska_gm_300.float.tif
+      i05_float: npp_viirs_i05*_alaska_gm_300.float.tif
+      m02: npp_viirs_m02_*_alaska_gm_600.tif
+      m03: npp_viirs_m02_*_alaska_gm_600.tif
+      m04: npp_viirs_m02_*_alaska_gm_600.tif
+      m05: npp_viirs_m02_*_alaska_gm_600.tif
+      m06: npp_viirs_m02_*_alaska_gm_600.tif
+      m07: npp_viirs_m02_*_alaska_gm_600.tif
+      m08: npp_viirs_m02_*_alaska_gm_600.tif
+      m10: npp_viirs_m10_*_alaska_gm_600.tif
+      m11: npp_viirs_m11_*_alaska_gm_600.tif
+      m12: npp_viirs_m12_*_alaska_gm_600.tif
+      m15: npp_viirs_m02_*_alaska_gm_600.tif
+      m10_float: npp_viirs_m10_*_alaska_gm_600.float.tif
+      m11_float: npp_viirs_m11_*_alaska_gm_600.float.tif
+      m12_float: npp_viirs_m12_*_alaska_gm_600.float.tif
+      m11_300_float: npp_viirs_m11_*_alaska_gm_300.float.tif
+      m12_300_float: npp_viirs_m12_*_alaska_gm_300.float.tif
+      m16_300_float: npp_viirs_m16_*_alaska_gm_300.float.tif
+      m08_300: npp_viirs_m08_*_alaska_gm_300.tif
+      true_color: npp_viirs_true_color_*_alaska_gm_300.tif
+      crefl01: npp_viirs_viirs_crefl01_*_alaska_gm_300.tif
+      crefl03: npp_viirs_viirs_crefl03_*_alaska_gm_300.tif
+      crefl04: npp_viirs_viirs_crefl04_*_alaska_gm_300.tif
+      crefl08: npp_viirs_viirs_crefl08_*_alaska_gm_300.tif
+    single:
+    - title: true_color
+      band: true_color
+      name: npp.%Y%m%d.%H%M_true_color_gm
+    combinations:
+    - title: landcolor
+      bands:
+        r: i03
+        g: i02
+        b: i01
+      name: npp.%Y%m%d.%H%M_I03_I02_I01_gm
+    extras:
+    - title: viirs_fire_temperature
+      bands:
+        r: m12_float
+        g: m11_float
+        b: m10_float
+      tool: 'viirs_fire_stretch --blue-cap 0.75 '
+      name: npp.%Y%m%d.%H%M_m12_m11_m10_gm
+    - title: viirs_fire_color
+      bands:
+        r: i04_float
+        g: i02_float
+        b: i01_float
+      tool: 'viirs_fire_stretch --blue-cap 1.0 '
+      name: npp.%Y%m%d.%H%M_i04_i02_i01_gm
+    - title: viirs_i5_colored
+      bands:
+        r: i04_float
+        g: i04_float
+        b: i04_float
+      tool: color_thermal_long_wave.rb
+      name: npp.%Y%m%d.%H%M_i04_colored_gm
+    - title: viirs_i5_colored
+      bands:
+        r: i05_float
+        g: i05_float
+        b: i05_float
+      tool: color_thermal_long_wave.rb
+      name: npp.%Y%m%d.%H%M_i05_colored_gm
   snpp20gm:
-   mapper:
-     dnb: npp_viirs_dynamic_dnb_*_alaska_gm_600.tif
-     i01: npp_viirs_i01*_alaska_gm_300.tif
-     i02: npp_viirs_i02*_alaska_gm_300.tif
-     i03: npp_viirs_i03*_alaska_gm_300.tif
-     i04: npp_viirs_i04*_alaska_gm_300.tif
-     i05: npp_viirs_i05*_alaska_gm_300.tif
-     i01_float: npp_viirs_i01*_alaska_gm_300.float.tif
-     i02_float: npp_viirs_i02*_alaska_gm_300.float.tif
-     i03_float: npp_viirs_i03*_alaska_gm_300.float.tif
-     i04_float: npp_viirs_i04*_alaska_gm_300.float.tif
-     i05_float: npp_viirs_i05*_alaska_gm_300.float.tif
-     m02: npp_viirs_m02_*_alaska_gm_600.tif
-     m03: npp_viirs_m02_*_alaska_gm_600.tif
-     m04: npp_viirs_m02_*_alaska_gm_600.tif
-     m05: npp_viirs_m02_*_alaska_gm_600.tif
-     m06: npp_viirs_m02_*_alaska_gm_600.tif
-     m07: npp_viirs_m02_*_alaska_gm_600.tif
-     m08: npp_viirs_m02_*_alaska_gm_600.tif
-     m10: npp_viirs_m10_*_alaska_gm_600.tif
-     m11: npp_viirs_m11_*_alaska_gm_600.tif
-     m12: npp_viirs_m12_*_alaska_gm_600.tif
-     m15: npp_viirs_m02_*_alaska_gm_600.tif
-     m10_float: npp_viirs_m10_*_alaska_gm_600.float.tif
-     m11_float: npp_viirs_m11_*_alaska_gm_600.float.tif
-     m12_float: npp_viirs_m12_*_alaska_gm_600.float.tif
-     m11_300_float: npp_viirs_m11_*_alaska_gm_300.float.tif
-     m12_300_float: npp_viirs_m12_*_alaska_gm_300.float.tif
-     m16_300_float: npp_viirs_m16_*_alaska_gm_300.float.tif
-     m08_300: npp_viirs_m08_*_alaska_gm_300.tif
-     true_color: npp_viirs_true_color_*_alaska_gm_300.tif
-     crefl01: npp_viirs_viirs_crefl01_*_alaska_gm_300.tif
-     crefl03: npp_viirs_viirs_crefl03_*_alaska_gm_300.tif
-     crefl04: npp_viirs_viirs_crefl04_*_alaska_gm_300.tif
-     crefl08: npp_viirs_viirs_crefl08_*_alaska_gm_300.tif
-   single:
-   - title: true_color
-     band: true_color
-     name: "npp.%Y%m%d.%H%M_true_color_gm"
-   combinations:
-   - title: landcolor
-     bands:
-       r: "i03"
-       g: "i02"
-       b: "i01"
-     name: "npp.%Y%m%d.%H%M_I03_I02_I01_gm"
-   extras:
-   - title: viirs_fire_temperature
-     bands:
-       r: "m12_float"
-       g: "m11_float"
-       b: "m10_float"
-     tool: "viirs_fire_stretch --blue-cap 0.75 "
-     name: "npp.%Y%m%d.%H%M_m12_m11_m10_gm"
-   - title: viirs_fire_color
-     bands:
-       r: "i04_float"
-       g: "i02_float"
-       b: "i01_float"
-     tool: "viirs_fire_stretch --blue-cap 1.0 "
-     name: "npp.%Y%m%d.%H%M_i04_i02_i01_gm"
-   - title: viirs_i5_colored
-     bands:
-       r: "i04_float"
-       g: "i04_float"
-       b: "i04_float"
-     tool: "color_thermal_long_wave.rb"
-     name: "npp.%Y%m%d.%H%M_i04_colored_gm"
+    mapper:
+      dnb: npp_viirs_dynamic_dnb_*_alaska_gm_600.tif
+      i01: npp_viirs_i01*_alaska_gm_300.tif
+      i02: npp_viirs_i02*_alaska_gm_300.tif
+      i03: npp_viirs_i03*_alaska_gm_300.tif
+      i04: npp_viirs_i04*_alaska_gm_300.tif
+      i05: npp_viirs_i05*_alaska_gm_300.tif
+      i01_float: npp_viirs_i01*_alaska_gm_300.float.tif
+      i02_float: npp_viirs_i02*_alaska_gm_300.float.tif
+      i03_float: npp_viirs_i03*_alaska_gm_300.float.tif
+      i04_float: npp_viirs_i04*_alaska_gm_300.float.tif
+      i05_float: npp_viirs_i05*_alaska_gm_300.float.tif
+      m02: npp_viirs_m02_*_alaska_gm_600.tif
+      m03: npp_viirs_m02_*_alaska_gm_600.tif
+      m04: npp_viirs_m02_*_alaska_gm_600.tif
+      m05: npp_viirs_m02_*_alaska_gm_600.tif
+      m06: npp_viirs_m02_*_alaska_gm_600.tif
+      m07: npp_viirs_m02_*_alaska_gm_600.tif
+      m08: npp_viirs_m02_*_alaska_gm_600.tif
+      m10: npp_viirs_m10_*_alaska_gm_600.tif
+      m11: npp_viirs_m11_*_alaska_gm_600.tif
+      m12: npp_viirs_m12_*_alaska_gm_600.tif
+      m15: npp_viirs_m02_*_alaska_gm_600.tif
+      m10_float: npp_viirs_m10_*_alaska_gm_600.float.tif
+      m11_float: npp_viirs_m11_*_alaska_gm_600.float.tif
+      m12_float: npp_viirs_m12_*_alaska_gm_600.float.tif
+      m11_300_float: npp_viirs_m11_*_alaska_gm_300.float.tif
+      m12_300_float: npp_viirs_m12_*_alaska_gm_300.float.tif
+      m16_300_float: npp_viirs_m16_*_alaska_gm_300.float.tif
+      m08_300: npp_viirs_m08_*_alaska_gm_300.tif
+      true_color: npp_viirs_true_color_*_alaska_gm_300.tif
+      crefl01: npp_viirs_viirs_crefl01_*_alaska_gm_300.tif
+      crefl03: npp_viirs_viirs_crefl03_*_alaska_gm_300.tif
+      crefl04: npp_viirs_viirs_crefl04_*_alaska_gm_300.tif
+      crefl08: npp_viirs_viirs_crefl08_*_alaska_gm_300.tif
+    single:
+    - title: true_color
+      band: true_color
+      name: npp.%Y%m%d.%H%M_true_color_gm
+    combinations:
+    - title: landcolor
+      bands:
+        r: i03
+        g: i02
+        b: i01
+      name: npp.%Y%m%d.%H%M_I03_I02_I01_gm
+    extras:
+    - title: viirs_fire_temperature
+      bands:
+        r: m12_float
+        g: m11_float
+        b: m10_float
+      tool: 'viirs_fire_stretch --blue-cap 0.75 '
+      name: npp.%Y%m%d.%H%M_m12_m11_m10_gm
+    - title: viirs_fire_color
+      bands:
+        r: i04_float
+        g: i02_float
+        b: i01_float
+      tool: 'viirs_fire_stretch --blue-cap 1.0 '
+      name: npp.%Y%m%d.%H%M_i04_i02_i01_gm
+    - title: viirs_i5_colored
+      bands:
+        r: i04_float
+        g: i04_float
+        b: i04_float
+      tool: color_thermal_long_wave.rb
+      name: npp.%Y%m%d.%H%M_i04_colored_gm
   noaa20:
-   mapper:
-     dnb: noaa20_viirs_dynamic_dnb_*_alaska_600.tif
-     dnb_adaptive: noaa20_viirs_adaptive_dnb_*_alaska_600.tif
-     i01: noaa20_viirs_i01*_alaska_300.tif
-     i02: noaa20_viirs_i02*_alaska_300.tif
-     i03: noaa20_viirs_i03*_alaska_300.tif
-     i04: noaa20_viirs_i04*_alaska_300.tif
-     i05: noaa20_viirs_i05*_alaska_300.tif
-     i01_float: noaa20_viirs_i01*_alaska_300.float.tif
-     i02_float: noaa20_viirs_i02*_alaska_300.float.tif
-     i03_float: noaa20_viirs_i03*_alaska_300.float.tif
-     i04_float: noaa20_viirs_i04*_alaska_300.float.tif
-     i05_float: noaa20_viirs_i05*_alaska_300.float.tif
-     m02: noaa20_viirs_m02_*_alaska_600.tif
-     m03: noaa20_viirs_m02_*_alaska_600.tif
-     m04: noaa20_viirs_m02_*_alaska_600.tif
-     m05: noaa20_viirs_m02_*_alaska_600.tif
-     m06: noaa20_viirs_m02_*_alaska_600.tif
-     m07: noaa20_viirs_m02_*_alaska_600.tif
-     m08: noaa20_viirs_m02_*_alaska_600.tif
-     m10: noaa20_viirs_m10_*_alaska_600.tif
-     m11: noaa20_viirs_m11_*_alaska_600.tif
-     m12: noaa20_viirs_m12_*_alaska_600.tif
-     m15: noaa20_viirs_m02_*_alaska_600.tif
-     m16_300_float: noaa20_viirs_m16_*_alaska_300.float.tif
-     m10_float: noaa20_viirs_m10_*_alaska_600.float.tif
-     m11_float: noaa20_viirs_m11_*_alaska_600.float.tif
-     m12_float: noaa20_viirs_m12_*_alaska_600.float.tif
-     m11_300_float: noaa20_viirs_m11_*_alaska_300.float.tif
-     m12_300_float: noaa20_viirs_m12_*_alaska_300.float.tif
-     m08_300: noaa20_viirs_m08_*_alaska_300.tif
-     true_color: noaa20_viirs_true_color_*_alaska_300.tif
-     crefl01: noaa20_viirs_viirs_crefl01_*_alaska_300.tif
-     crefl03: noaa20_viirs_viirs_crefl03_*_alaska_300.tif
-     crefl04: noaa20_viirs_viirs_crefl04_*_alaska_300.tif
-     crefl08: noaa20_viirs_viirs_crefl08_*_alaska_300.tif
-   single:
-   - title: true_color
-     band: true_color
-     name: "noaa20.%Y%m%d.%H%M_true_color"
-   - title: dnb
-     band: dnb
-     name: "noaa20.%Y%m%d.%H%M_DNB"
-   - title: dnb_adaptive
-     band: dnb_adaptive
-     name: "noaa20.%Y%m%d.%H%M_DNB_adaptive"
-   - title: thermal
-     band: "i05"
-     name: "noaa20.%Y%m%d.%H%M_I05"
-   combinations:
-   - title: landcolor
-     bands:
-       r: "i03"
-       g: "i02"
-       b: "i01"
-     name: "noaa20.%Y%m%d.%H%M_I03_I02_I01"
-   extras:
-   - title: viirs_fire_temperature
-     bands:
-       r: "m12_float"
-       g: "m11_float"
-       b: "m10_float"
-     tool: "viirs_fire_stretch --blue-cap 0.75 "
-     name: "noaa20.%Y%m%d.%H%M_m12_m11_m10"
-   - title: viirs_fire_color
-     bands:
-       r: "i04_float"
-       g: "i02_float"
-       b: "i01_float"
-     tool: "viirs_fire_stretch --blue-cap 1.0 "
-     name: "noaa20.%Y%m%d.%H%M_i04_i02_i01"
-   - title: viirs_i4_colored
-     bands:
-       r: "i04_float"
-       g: "i04_float"
-       b: "i04_float"
-     tool: "color_thermal_long_wave.rb"
-     name: "noaa20.%Y%m%d.%H%M_i04_colored"
-   - title: viirs_i5_colored
-     bands:
-       r: "i05_float"
-       g: "i05_float"
-       b: "i05_float"
-     tool: "color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap "
-     name: "noaa20.%Y%m%d.%H%M_i05_colored"
-   - title: night-time-microphysics
-     bands:
-       r: "i05_float"
-       g: "m16_300_float"
-       b: "i04_float"
-     tool: "night_microphysics"
-     name: "noaa20.%Y%m%d.%H%M_micro_physics"
-   - title: snow-melt
-     bands:
-       r: "i03"
-       g: "m08_300"
-       b: "i01"
-     tool: "snow_melt"
-     name: "noaa20.%Y%m%d.%H%M_i03_m08_i01"
+    mapper:
+      dnb: noaa20_viirs_dynamic_dnb_*_alaska_600.tif
+      dnb_adaptive: noaa20_viirs_adaptive_dnb_*_alaska_600.tif
+      i01: noaa20_viirs_i01*_alaska_300.tif
+      i02: noaa20_viirs_i02*_alaska_300.tif
+      i03: noaa20_viirs_i03*_alaska_300.tif
+      i04: noaa20_viirs_i04*_alaska_300.tif
+      i05: noaa20_viirs_i05*_alaska_300.tif
+      i01_float: noaa20_viirs_i01*_alaska_300.float.tif
+      i02_float: noaa20_viirs_i02*_alaska_300.float.tif
+      i03_float: noaa20_viirs_i03*_alaska_300.float.tif
+      i04_float: noaa20_viirs_i04*_alaska_300.float.tif
+      i05_float: noaa20_viirs_i05*_alaska_300.float.tif
+      m02: noaa20_viirs_m02_*_alaska_600.tif
+      m03: noaa20_viirs_m02_*_alaska_600.tif
+      m04: noaa20_viirs_m02_*_alaska_600.tif
+      m05: noaa20_viirs_m02_*_alaska_600.tif
+      m06: noaa20_viirs_m02_*_alaska_600.tif
+      m07: noaa20_viirs_m02_*_alaska_600.tif
+      m08: noaa20_viirs_m02_*_alaska_600.tif
+      m10: noaa20_viirs_m10_*_alaska_600.tif
+      m11: noaa20_viirs_m11_*_alaska_600.tif
+      m12: noaa20_viirs_m12_*_alaska_600.tif
+      m15: noaa20_viirs_m02_*_alaska_600.tif
+      m16_300_float: noaa20_viirs_m16_*_alaska_300.float.tif
+      m10_float: noaa20_viirs_m10_*_alaska_600.float.tif
+      m11_float: noaa20_viirs_m11_*_alaska_600.float.tif
+      m12_float: noaa20_viirs_m12_*_alaska_600.float.tif
+      m11_300_float: noaa20_viirs_m11_*_alaska_300.float.tif
+      m12_300_float: noaa20_viirs_m12_*_alaska_300.float.tif
+      m08_300: noaa20_viirs_m08_*_alaska_300.tif
+      true_color: noaa20_viirs_true_color_*_alaska_300.tif
+      crefl01: noaa20_viirs_viirs_crefl01_*_alaska_300.tif
+      crefl03: noaa20_viirs_viirs_crefl03_*_alaska_300.tif
+      crefl04: noaa20_viirs_viirs_crefl04_*_alaska_300.tif
+      crefl08: noaa20_viirs_viirs_crefl08_*_alaska_300.tif
+    single:
+    - title: true_color
+      band: true_color
+      name: noaa20.%Y%m%d.%H%M_true_color
+    - title: dnb
+      band: dnb
+      name: noaa20.%Y%m%d.%H%M_DNB
+    - title: dnb_adaptive
+      band: dnb_adaptive
+      name: noaa20.%Y%m%d.%H%M_DNB_adaptive
+    - title: thermal
+      band: i05
+      name: noaa20.%Y%m%d.%H%M_I05
+    combinations:
+    - title: landcolor
+      bands:
+        r: i03
+        g: i02
+        b: i01
+      name: noaa20.%Y%m%d.%H%M_I03_I02_I01
+    extras:
+    - title: viirs_fire_temperature
+      bands:
+        r: m12_float
+        g: m11_float
+        b: m10_float
+      tool: 'viirs_fire_stretch --blue-cap 0.75 '
+      name: noaa20.%Y%m%d.%H%M_m12_m11_m10
+    - title: viirs_fire_color
+      bands:
+        r: i04_float
+        g: i02_float
+        b: i01_float
+      tool: 'viirs_fire_stretch --blue-cap 1.0 '
+      name: noaa20.%Y%m%d.%H%M_i04_i02_i01
+    - title: viirs_i4_colored
+      bands:
+        r: i04_float
+        g: i04_float
+        b: i04_float
+      tool: color_thermal_long_wave.rb
+      name: noaa20.%Y%m%d.%H%M_i04_colored
+    - title: viirs_i5_colored
+      bands:
+        r: i05_float
+        g: i05_float
+        b: i05_float
+      tool: 'color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap '
+      name: noaa20.%Y%m%d.%H%M_i05_colored
+    - title: night-time-microphysics
+      bands:
+        r: i05_float
+        g: m16_300_float
+        b: i04_float
+      tool: night_microphysics
+      name: noaa20.%Y%m%d.%H%M_micro_physics
+    - title: snow-melt
+      bands:
+        r: i03
+        g: m08_300
+        b: i01
+      tool: snow_melt
+      name: noaa20.%Y%m%d.%H%M_i03_m08_i01
   noaa20gm:
-   mapper:
-     dnb: noaa20_viirs_dynamic_dnb_*_alaska_gm_600.tif
-     i01: noaa20_viirs_i01*_alaska_gm_300.tif
-     i02: noaa20_viirs_i02*_alaska_gm_300.tif
-     i03: noaa20_viirs_i03*_alaska_gm_300.tif
-     i04: noaa20_viirs_i04*_alaska_gm_300.tif
-     i05: noaa20_viirs_i05*_alaska_gm_300.tif
-     i01_float: noaa20_viirs_i01*_alaska_gm_300.float.tif
-     i02_float: noaa20_viirs_i02*_alaska_gm_300.float.tif
-     i03_float: noaa20_viirs_i03*_alaska_gm_300.float.tif
-     i04_float: noaa20_viirs_i04*_alaska_gm_300.float.tif
-     i05_float: noaa20_viirs_i05*_alaska_gm_300.float.tif
-     m02: noaa20_viirs_m02_*_alaska_gm_600.tif
-     m03: noaa20_viirs_m02_*_alaska_gm_600.tif
-     m04: noaa20_viirs_m02_*_alaska_gm_600.tif
-     m05: noaa20_viirs_m02_*_alaska_gm_600.tif
-     m06: noaa20_viirs_m02_*_alaska_gm_600.tif
-     m07: noaa20_viirs_m02_*_alaska_gm_600.tif
-     m08: noaa20_viirs_m02_*_alaska_gm_600.tif
-     m10: noaa20_viirs_m10_*_alaska_gm_600.tif
-     m11: noaa20_viirs_m11_*_alaska_gm_600.tif
-     m12: noaa20_viirs_m12_*_alaska_gm_600.tif
-     m15: noaa20_viirs_m02_*_alaska_gm_600.tif
-     m16_300_float: noaa20_viirs_m16_*_alaska_gm_300.float.tif
-     m10_float: noaa20_viirs_m10_*_alaska_gm_600.float.tif
-     m11_float: noaa20_viirs_m11_*_alaska_gm_600.float.tif
-     m12_float: noaa20_viirs_m12_*_alaska_gm_600.float.tif
-     m11_300_float: noaa20_viirs_m11_*_alaska_gm_300.float.tif
-     m12_300_float: noaa20_viirs_m12_*_alaska_gm_300.float.tif
-     m08_300: noaa20_viirs_m08_*_alaska_gm_300.tif
-     true_color: noaa20_viirs_true_color_*_alaska_gm_300.tif
-     crefl01: noaa20_viirs_viirs_crefl01_*_alaska_gm_300.tif
-     crefl03: noaa20_viirs_viirs_crefl03_*_alaska_gm_300.tif
-     crefl04: noaa20_viirs_viirs_crefl04_*_alaska_gm_300.tif
-     crefl08: noaa20_viirs_viirs_crefl08_*_alaska_gm_300.tif
-   single:
-   - title: true_color
-     band: true_color
-     name: "noaa20.%Y%m%d.%H%M_true_color_gm"
-   combinations:
-   - title: landcolor
-     bands:
-       r: "i03"
-       g: "i02"
-       b: "i01"
-     name: "noaa20.%Y%m%d.%H%M_I03_I02_I01_gm"
-   extras:
-   - title: viirs_fire_temperature
-     bands:
-       r: "m12_float"
-       g: "m11_float"
-       b: "m10_float"
-     tool: "viirs_fire_stretch --blue-cap 0.75 "
-     name: "noaa20.%Y%m%d.%H%M_m12_m11_m10_gm"
-   - title: viirs_fire_color
-     bands:
-       r: "i04_float"
-       g: "i02_float"
-       b: "i01_float"
-     tool: "viirs_fire_stretch --blue-cap 1.0 "
-     name: "noaa20.%Y%m%d.%H%M_i04_i02_i01_gm"
-   - title: viirs_i4_colored
-     bands:
-       r: "i04_float"
-       g: "i04_float"
-       b: "i04_float"
-     tool: "color_thermal_long_wave.rb"
-     name: "noaa20.%Y%m%d.%H%M_i04_colored_gm"
-   - title: viirs_i5_colored
-     bands:
-       r: "i05_float"
-       g: "i05_float"
-       b: "i05_float"
-     tool: "color_thermal_long_wave.rb"
-     name: "noaa20.%Y%m%d.%H%M_i05_colored_gm"
+    mapper:
+      dnb: noaa20_viirs_dynamic_dnb_*_alaska_gm_600.tif
+      i01: noaa20_viirs_i01*_alaska_gm_300.tif
+      i02: noaa20_viirs_i02*_alaska_gm_300.tif
+      i03: noaa20_viirs_i03*_alaska_gm_300.tif
+      i04: noaa20_viirs_i04*_alaska_gm_300.tif
+      i05: noaa20_viirs_i05*_alaska_gm_300.tif
+      i01_float: noaa20_viirs_i01*_alaska_gm_300.float.tif
+      i02_float: noaa20_viirs_i02*_alaska_gm_300.float.tif
+      i03_float: noaa20_viirs_i03*_alaska_gm_300.float.tif
+      i04_float: noaa20_viirs_i04*_alaska_gm_300.float.tif
+      i05_float: noaa20_viirs_i05*_alaska_gm_300.float.tif
+      m02: noaa20_viirs_m02_*_alaska_gm_600.tif
+      m03: noaa20_viirs_m02_*_alaska_gm_600.tif
+      m04: noaa20_viirs_m02_*_alaska_gm_600.tif
+      m05: noaa20_viirs_m02_*_alaska_gm_600.tif
+      m06: noaa20_viirs_m02_*_alaska_gm_600.tif
+      m07: noaa20_viirs_m02_*_alaska_gm_600.tif
+      m08: noaa20_viirs_m02_*_alaska_gm_600.tif
+      m10: noaa20_viirs_m10_*_alaska_gm_600.tif
+      m11: noaa20_viirs_m11_*_alaska_gm_600.tif
+      m12: noaa20_viirs_m12_*_alaska_gm_600.tif
+      m15: noaa20_viirs_m02_*_alaska_gm_600.tif
+      m16_300_float: noaa20_viirs_m16_*_alaska_gm_300.float.tif
+      m10_float: noaa20_viirs_m10_*_alaska_gm_600.float.tif
+      m11_float: noaa20_viirs_m11_*_alaska_gm_600.float.tif
+      m12_float: noaa20_viirs_m12_*_alaska_gm_600.float.tif
+      m11_300_float: noaa20_viirs_m11_*_alaska_gm_300.float.tif
+      m12_300_float: noaa20_viirs_m12_*_alaska_gm_300.float.tif
+      m08_300: noaa20_viirs_m08_*_alaska_gm_300.tif
+      true_color: noaa20_viirs_true_color_*_alaska_gm_300.tif
+      crefl01: noaa20_viirs_viirs_crefl01_*_alaska_gm_300.tif
+      crefl03: noaa20_viirs_viirs_crefl03_*_alaska_gm_300.tif
+      crefl04: noaa20_viirs_viirs_crefl04_*_alaska_gm_300.tif
+      crefl08: noaa20_viirs_viirs_crefl08_*_alaska_gm_300.tif
+    single:
+    - title: true_color
+      band: true_color
+      name: noaa20.%Y%m%d.%H%M_true_color_gm
+    combinations:
+    - title: landcolor
+      bands:
+        r: i03
+        g: i02
+        b: i01
+      name: noaa20.%Y%m%d.%H%M_I03_I02_I01_gm
+    extras:
+    - title: viirs_fire_temperature
+      bands:
+        r: m12_float
+        g: m11_float
+        b: m10_float
+      tool: 'viirs_fire_stretch --blue-cap 0.75 '
+      name: noaa20.%Y%m%d.%H%M_m12_m11_m10_gm
+    - title: viirs_fire_color
+      bands:
+        r: i04_float
+        g: i02_float
+        b: i01_float
+      tool: 'viirs_fire_stretch --blue-cap 1.0 '
+      name: noaa20.%Y%m%d.%H%M_i04_i02_i01_gm
+    - title: viirs_i4_colored
+      bands:
+        r: i04_float
+        g: i04_float
+        b: i04_float
+      tool: color_thermal_long_wave.rb
+      name: noaa20.%Y%m%d.%H%M_i04_colored_gm
+    - title: viirs_i5_colored
+      bands:
+        r: i05_float
+        g: i05_float
+        b: i05_float
+      tool: color_thermal_long_wave.rb
+      name: noaa20.%Y%m%d.%H%M_i05_colored_gm
   t1:
-   mapper:
-     "30": terra_modis_bt30_*_alaska_1000.tif
-     "31": terra_modis_bt31_*_alaska_1000.tif
-     true_color: terra_modis_true_color_*_alaska_250.tif
-     "1": terra_modis_vis01_*_alaska_250.tif
-     "1_500": terra_modis_vis01_*_alaska_500.tif
-     "2": terra_modis_vis02_*_alaska_250.tif
-     "2_500": terra_modis_vis02_*_alaska_500.tif
-     "3": terra_modis_vis03_*_alaska_500.tif
-     "4": terra_modis_vis04_*_alaska_500.tif
-     "5": terra_modis_vis05_*_alaska_500.tif
-     "6": terra_modis_vis06_*_alaska_500.tif
-     "7": terra_modis_vis07_*_alaska_500.tif
-   single:
-   - title: true_color
-     band: true_color
-     name: "t1.%Y%m%d.%H%M_true_color"
-   - title: thermal
-     band: "31"
-     name: "t1.%Y%m%d.%H%M_31"
-   combinations:
-   - title: 621
-     bands:
-       g: "2_500"
-       r: "6"
-       b: "1_500"
-       p: "1"
-     name: "t1.%Y%m%d.%H%M_6_2_1_1"
+    mapper:
+      '30': terra_modis_bt30_*_alaska_1000.tif
+      '31': terra_modis_bt31_*_alaska_1000.tif
+      true_color: terra_modis_true_color_*_alaska_250.tif
+      '1': terra_modis_vis01_*_alaska_250.tif
+      '1_500': terra_modis_vis01_*_alaska_500.tif
+      '2': terra_modis_vis02_*_alaska_250.tif
+      '2_500': terra_modis_vis02_*_alaska_500.tif
+      '3': terra_modis_vis03_*_alaska_500.tif
+      '4': terra_modis_vis04_*_alaska_500.tif
+      '5': terra_modis_vis05_*_alaska_500.tif
+      '6': terra_modis_vis06_*_alaska_500.tif
+      '7': terra_modis_vis07_*_alaska_500.tif
+    single:
+    - title: true_color
+      band: true_color
+      name: t1.%Y%m%d.%H%M_true_color
+    - title: thermal
+      band: '31'
+      name: t1.%Y%m%d.%H%M_31
+    combinations:
+    - title: 621
+      bands:
+        g: '2_500'
+        r: '6'
+        b: '1_500'
+        p: '1'
+      name: t1.%Y%m%d.%H%M_6_2_1_1
   t1-polar:
-   mapper:
-     "30": terra_modis_bt30_*_polar_1km.tif
-     "31": terra_modis_bt31_*_polar_1km.tif
-     true_color: terra_modis_true_color_*_polar_250.tif
-     "1": terra_modis_vis01_*_polar_250.tif
-     "1_500": terra_modis_vis01_*_polar_500.tif
-     "2": terra_modis_vis02_*_polar_250.tif
-     "2_500": terra_modis_vis02_*_polar_500.tif
-     "3": terra_modis_vis03_*_polar_500.tif
-     "4": terra_modis_vis04_*_polar_500.tif
-     "5": terra_modis_vis05_*_polar_500.tif
-     "6": terra_modis_vis06_*_polar_500.tif
-     "7": terra_modis_vis07_*_polar_500.tif
-   single:
-   - title: true_color
-     band: true_color
-     name: "t1.%Y%m%d.%H%M_true_color_polar"
-   - title: thermal
-     band: "31"
-     name: "t1.%Y%m%d.%H%M_31_polar"
-   combinations:
-   - title: 621
-     bands:
-       g: "2"
-       r: "6"
-       b: "1"
-     name: "t1.%Y%m%d.%H%M_6_2_1_polar"
-   - title: 721
-     bands:
-       r: "7"
-       g: "2"
-       b: "1"
-     name: "t1.%Y%m%d.%H%M_7_2_1_polar"
+    mapper:
+      '30': terra_modis_bt30_*_polar_1km.tif
+      '31': terra_modis_bt31_*_polar_1km.tif
+      true_color: terra_modis_true_color_*_polar_250.tif
+      '1': terra_modis_vis01_*_polar_250.tif
+      '1_500': terra_modis_vis01_*_polar_500.tif
+      '2': terra_modis_vis02_*_polar_250.tif
+      '2_500': terra_modis_vis02_*_polar_500.tif
+      '3': terra_modis_vis03_*_polar_500.tif
+      '4': terra_modis_vis04_*_polar_500.tif
+      '5': terra_modis_vis05_*_polar_500.tif
+      '6': terra_modis_vis06_*_polar_500.tif
+      '7': terra_modis_vis07_*_polar_500.tif
+    single:
+    - title: true_color
+      band: true_color
+      name: t1.%Y%m%d.%H%M_true_color_polar
+    - title: thermal
+      band: '31'
+      name: t1.%Y%m%d.%H%M_31_polar
+    combinations:
+    - title: 621
+      bands:
+        g: '2'
+        r: '6'
+        b: '1'
+      name: t1.%Y%m%d.%H%M_6_2_1_polar
+    - title: 721
+      bands:
+        r: '7'
+        g: '2'
+        b: '1'
+      name: t1.%Y%m%d.%H%M_7_2_1_polar
   a1:
-   mapper:
-     "30": aqua_modis_bt30_*_alaska_1000.tif
-     "31": aqua_modis_bt31_*_alaska_1000.tif
-     "true_color": aqua_modis_true_color_*_alaska_250.tif
-     "1": aqua_modis_vis01_*_alaska_250.tif
-     "1_500": aqua_modis_vis01_*_alaska_500.tif
-     "2": aqua_modis_vis02_*_alaska_250.tif
-     "2_500": aqua_modis_vis02_*_alaska_500.tif
-     "3": aqua_modis_vis03_*_alaska_500.tif
-     "4": aqua_modis_vis04_*_alaska_500.tif
-     "5": aqua_modis_vis05_*_alaska_500.tif
-     "7": aqua_modis_vis07_*_alaska_500.tif
-   single:
-   - title: true_color
-     band: true_color
-     name: "a1.%Y%m%d.%H%M_true_color"
-   - title: thermal
-     band: "31"
-     name: "a1.%Y%m%d.%H%M_31"
-   combinations:
-   - title: 621
-     bands:
-       g: "2_500"
-       r: "6"
-       b: "1_500"
-       p: "1"
-     name: "a1.%Y%m%d.%H%M_6_2_1_1"
+    mapper:
+      '30': aqua_modis_bt30_*_alaska_1000.tif
+      '31': aqua_modis_bt31_*_alaska_1000.tif
+      true_color: aqua_modis_true_color_*_alaska_250.tif
+      '1': aqua_modis_vis01_*_alaska_250.tif
+      '1_500': aqua_modis_vis01_*_alaska_500.tif
+      '2': aqua_modis_vis02_*_alaska_250.tif
+      '2_500': aqua_modis_vis02_*_alaska_500.tif
+      '3': aqua_modis_vis03_*_alaska_500.tif
+      '4': aqua_modis_vis04_*_alaska_500.tif
+      '5': aqua_modis_vis05_*_alaska_500.tif
+      '7': aqua_modis_vis07_*_alaska_500.tif
+    single:
+    - title: true_color
+      band: true_color
+      name: a1.%Y%m%d.%H%M_true_color
+    - title: thermal
+      band: '31'
+      name: a1.%Y%m%d.%H%M_31
+    combinations:
+    - title: 621
+      bands:
+        g: '2_500'
+        r: '6'
+        b: '1_500'
+        p: '1'
+      name: a1.%Y%m%d.%H%M_6_2_1_1
   a1-polar:
-   mapper:
-     "30": aqua_modis_bt30_*_polar_1km.tif
-     "31": aqua_modis_bt31_*_polar_1km.tif
-     "true_color": aqua_modis_true_color_*_polar_250.tif
-     "1": aqua_modis_vis01_*_polar_250.tif
-     "1_500": aqua_modis_vis01_*_polar_500.tif
-     "2": aqua_modis_vis02_*_polar_250.tif
-     "2_500": aqua_modis_vis02_*_polar_500.tif
-     "3": aqua_modis_vis03_*_polar_500.tif
-     "4": aqua_modis_vis04_*_polar_500.tif
-     "5": aqua_modis_vis05_*_polar_500.tif
-     "7": aqua_modis_vis07_*_polar_500.tif
-   single:
-   - title: true_color
-     band: true_color
-     name: "a1.%Y%m%d.%H%M_true_color_polar"
-   - title: thermal
-     band: "31"
-     name: "a1.%Y%m%d.%H%M_31_polar"
-   combinations:
-   - title: 621
-     bands:
-       g: "2"
-       r: "6"
-       b: "1"
-     name: "a1.%Y%m%d.%H%M_6_2_1_polar"
-   - title: 721
-     bands:
-       r: "7"
-       g: "2"
-       b: "1"
-     name: "a1.%Y%m%d.%H%M_7_2_1_polar"
+    mapper:
+      '30': aqua_modis_bt30_*_polar_1km.tif
+      '31': aqua_modis_bt31_*_polar_1km.tif
+      true_color: aqua_modis_true_color_*_polar_250.tif
+      '1': aqua_modis_vis01_*_polar_250.tif
+      '1_500': aqua_modis_vis01_*_polar_500.tif
+      '2': aqua_modis_vis02_*_polar_250.tif
+      '2_500': aqua_modis_vis02_*_polar_500.tif
+      '3': aqua_modis_vis03_*_polar_500.tif
+      '4': aqua_modis_vis04_*_polar_500.tif
+      '5': aqua_modis_vis05_*_polar_500.tif
+      '7': aqua_modis_vis07_*_polar_500.tif
+    single:
+    - title: true_color
+      band: true_color
+      name: a1.%Y%m%d.%H%M_true_color_polar
+    - title: thermal
+      band: '31'
+      name: a1.%Y%m%d.%H%M_31_polar
+    combinations:
+    - title: 621
+      bands:
+        g: '2'
+        r: '6'
+        b: '1'
+      name: a1.%Y%m%d.%H%M_6_2_1_polar
+    - title: 721
+      bands:
+        r: '7'
+        g: '2'
+        b: '1'
+      name: a1.%Y%m%d.%H%M_7_2_1_polar
   metop-b:
-   mapper:
-     "1": '*_avhrr_band1_vis_*_203_1k.tif'
-     "2": '*_avhrr_band2_vis_*_203_1k.tif'
-     "3a": '*_avhrr_band3a_vis_*_203_1k.tif'
-     "3b": '*_avhrr_band3b_*_203_1k.tif'
-     "4": '*_avhrr_band4_bt_*_203_1k.tif'
-     "5": '*_avhrr_band5_bt_*_203_1k.tif'
-   single:
-     - title: thermal_5
-       band: "5"
-       name: "metop-b.%Y%m%d.%H%M_5"
-     - title: thermal_4
-       band: "4"
-       name: "metop-b.%Y%m%d.%H%M_4"
-   combinations:
-     - title: "321"
-       bands:
-         r: "3a"
-         g: "2"
-         b: "1"
-       name: "metop-b.%Y%m%d.%H%M_3a_2_1"
+    mapper:
+      '1': "*_avhrr_band1_vis_*_203_1k.tif"
+      '2': "*_avhrr_band2_vis_*_203_1k.tif"
+      3a: "*_avhrr_band3a_vis_*_203_1k.tif"
+      3b: "*_avhrr_band3b_*_203_1k.tif"
+      '4': "*_avhrr_band4_bt_*_203_1k.tif"
+      '5': "*_avhrr_band5_bt_*_203_1k.tif"
+    single:
+    - title: thermal_5
+      band: '5'
+      name: metop-b.%Y%m%d.%H%M_5
+    - title: thermal_4
+      band: '4'
+      name: metop-b.%Y%m%d.%H%M_4
+    combinations:
+    - title: '321'
+      bands:
+        r: 3a
+        g: '2'
+        b: '1'
+      name: metop-b.%Y%m%d.%H%M_3a_2_1
   metop-c:
-   mapper:
-     "1": '*_avhrr_band1_vis_*_203_1k.tif'
-     "2": '*_avhrr_band2_vis_*_203_1k.tif'
-     "3a": '*_avhrr_band3a_vis_*_203_1k.tif'
-     "3b": '*_avhrr_band3b_*_203_1k.tif'
-     "4": '*_avhrr_band4_bt_*_203_1k.tif'
-     "5": '*_avhrr_band5_bt_*_203_1k.tif'
-   single:
-     - title: thermal_5
-       band: "5"
-       name: "metop-c.%Y%m%d.%H%M_5"
-     - title: thermal_4
-       band: "4"
-       name: "metop-c.%Y%m%d.%H%M_4"
-   combinations:
-     - title: "321"
-       bands:
-         r: "3a"
-         g: "2"
-         b: "1"
-       name: "metop-c.%Y%m%d.%H%M_3a_2_1"
+    mapper:
+      '1': "*_avhrr_band1_vis_*_203_1k.tif"
+      '2': "*_avhrr_band2_vis_*_203_1k.tif"
+      3a: "*_avhrr_band3a_vis_*_203_1k.tif"
+      3b: "*_avhrr_band3b_*_203_1k.tif"
+      '4': "*_avhrr_band4_bt_*_203_1k.tif"
+      '5': "*_avhrr_band5_bt_*_203_1k.tif"
+    single:
+    - title: thermal_5
+      band: '5'
+      name: metop-c.%Y%m%d.%H%M_5
+    - title: thermal_4
+      band: '4'
+      name: metop-c.%Y%m%d.%H%M_4
+    combinations:
+    - title: '321'
+      bands:
+        r: 3a
+        g: '2'
+        b: '1'
+      name: metop-c.%Y%m%d.%H%M_3a_2_1
   noaa19:
-   mapper:
-     "1": '*_avhrr_band1_vis_*_203_1k.tif'
-     "2": '*_avhrr_band2_vis_*_203_1k.tif'
-     "3a": '*_avhrr_band3a_vis_*_203_1k.tif'
-     "3b": '*_avhrr_band3b_*_203_1k.tif'
-     "4": '*_avhrr_band4_bt_*_203_1k.tif'
-     "5": '*_avhrr_band5_bt_*_203_1k.tif'
-   single:
-     - title: thermal_5
-       band: "5"
-       name: "noaa19.%Y%m%d.%H%M_5"
-     - title: thermal_4
-       band: "4"
-       name: "noaa19.%Y%m%d.%H%M_4"
-   combinations:
-     - title: "321"
-       bands:
-         r: "3a"
-         g: "2"
-         b: "1"
-       name: "noaa19.%Y%m%d.%H%M_3a_2_1"
+    mapper:
+      '1': "*_avhrr_band1_vis_*_203_1k.tif"
+      '2': "*_avhrr_band2_vis_*_203_1k.tif"
+      3a: "*_avhrr_band3a_vis_*_203_1k.tif"
+      3b: "*_avhrr_band3b_*_203_1k.tif"
+      '4': "*_avhrr_band4_bt_*_203_1k.tif"
+      '5': "*_avhrr_band5_bt_*_203_1k.tif"
+    single:
+    - title: thermal_5
+      band: '5'
+      name: noaa19.%Y%m%d.%H%M_5
+    - title: thermal_4
+      band: '4'
+      name: noaa19.%Y%m%d.%H%M_4
+    combinations:
+    - title: '321'
+      bands:
+        r: 3a
+        g: '2'
+        b: '1'
+      name: noaa19.%Y%m%d.%H%M_3a_2_1
   noaa15:
-   mapper:
-     "1": '*_avhrr_band1_vis_*_203_1k.tif'
-     "2": '*_avhrr_band2_vis_*_203_1k.tif'
-     "3a": '*_avhrr_band3a_vis_*_203_1k.tif'
-     "3b": '*_avhrr_band3b_*_203_1k.tif'
-     "4": '*_avhrr_band4_bt_*_203_1k.tif'
-     "5": '*_avhrr_band5_bt_*_203_1k.tif'
-   single:
-     - title: thermal_5
-       band: "5"
-       name: "noaa15.%Y%m%d.%H%M_5"
-     - title: thermal_4
-       band: "4"
-       name: "noaa15.%Y%m%d.%H%M_4"
-   combinations:
-     - title: "321"
-       bands:
-         r: "3a"
-         g: "2"
-         b: "1"
-       name: "noaa15.%Y%m%d.%H%M_3a_2_1"
+    mapper:
+      '1': "*_avhrr_band1_vis_*_203_1k.tif"
+      '2': "*_avhrr_band2_vis_*_203_1k.tif"
+      3a: "*_avhrr_band3a_vis_*_203_1k.tif"
+      3b: "*_avhrr_band3b_*_203_1k.tif"
+      '4': "*_avhrr_band4_bt_*_203_1k.tif"
+      '5': "*_avhrr_band5_bt_*_203_1k.tif"
+    single:
+    - title: thermal_5
+      band: '5'
+      name: noaa15.%Y%m%d.%H%M_5
+    - title: thermal_4
+      band: '4'
+      name: noaa15.%Y%m%d.%H%M_4
+    combinations:
+    - title: '321'
+      bands:
+        r: 3a
+        g: '2'
+        b: '1'
+      name: noaa15.%Y%m%d.%H%M_3a_2_1
   noaa18:
-   mapper:
-     "1": '*_avhrr_band1_vis_*_203_1k.tif'
-     "2": '*_avhrr_band2_vis_*_203_1k.tif'
-     "3a": '*_avhrr_band3a_vis_*_203_1k.tif'
-     "3b": '*_avhrr_band3b_*_203_1k.tif'
-     "4": '*_avhrr_band4_bt_*_203_1k.tif'
-     "5": '*_avhrr_band5_bt_*_203_1k.tif'
-   single:
-     - title: thermal_5
-       band: "5"
-       name: "noaa18.%Y%m%d.%H%M_5"
-     - title: thermal_4
-       band: "4"
-       name: "noaa18.%Y%m%d.%H%M_4"
-   combinations:
-     - title: "321"
-       bands:
-         r: "3a"
-         g: "2"
-         b: "1"
-       name: "noaa18.%Y%m%d.%H%M_3a_2_1"
+    mapper:
+      '1': "*_avhrr_band1_vis_*_203_1k.tif"
+      '2': "*_avhrr_band2_vis_*_203_1k.tif"
+      3a: "*_avhrr_band3a_vis_*_203_1k.tif"
+      3b: "*_avhrr_band3b_*_203_1k.tif"
+      '4': "*_avhrr_band4_bt_*_203_1k.tif"
+      '5': "*_avhrr_band5_bt_*_203_1k.tif"
+    single:
+    - title: thermal_5
+      band: '5'
+      name: noaa18.%Y%m%d.%H%M_5
+    - title: thermal_4
+      band: '4'
+      name: noaa18.%Y%m%d.%H%M_4
+    combinations:
+    - title: '321'
+      bands:
+        r: 3a
+        g: '2'
+        b: '1'
+      name: noaa18.%Y%m%d.%H%M_3a_2_1
   amsr2_level2:
-   mapper:
-     snow: gcom-w.*.Snow_Cover.tif
-     wspd: gcom-w.*.AMSR2-OCEAN.WSPD.tif
-     ice_conc: gcom-w.*.AMSR2-SEAICE.NASA_Team_2_Ice_Concentration.tif 
-     ice_age: gcom-w.*.AMSR2-SEAICE.NASA_Team_2_Multiyear_Ice.tif
-     rain_rate: gcom-w.*.AMSR2-PRECIP.Rain_Rate.tif
-     swe: gcom-w.*.AMSR2-SNOW.SWE.tif
-     snow_depth: gcom-w.*.AMSR2-SNOW.Snow_Depth.tif
-     sst: gcom-w.*.AMSR2-OCEAN.SST.tif
-   single: []
-   combinations: []
-   extras:
-   - title: wind_speed
-     bands:
-       r: "wspd"
-       g: "wspd"
-       b: "wspd"
-     tool: "colorize.rb -c wind_speed.m_per_s.cmap "
-     name: "gcom-w.%Y%m%d.%H%M_wind_speed"
-   - title: ice_concentration
-     bands:
-       r: "ice_conc"
-       g: "ice_conc"
-       b: "ice_conc"
-     tool: "colorize.rb -c precent.cmap "
-     name: "gcom-w.%Y%m%d.%H%M_ice_conc"
-   - title: ice_age
-     bands:
-       r: "ice_age"
-       g: "ice_age"
-       b: "ice_age"
-     tool: "colorize.rb -c precent.cmap "
-     name: "gcom-w.%Y%m%d.%H%M_age"
-   - title: snow_cover_amsr2
-     bands:
-       r: "snow"
-       g: "snow"
-       b: "snow"
-     tool: "colorize.rb -c snow_cover_amsr2.cmap "
-     name: "gcom-w.%Y%m%d.%H%M_snow_cover"
-   - title: snow_cover_amsr2
-     bands:
-       r: "rain_rate"
-       g: "rain_rate"
-       b: "rain_rate"
-     tool: "colorize.rb -c precip.cmap "
-     name: "gcom-w.%Y%m%d.%H%M_rain_rate"
-   - title: swe
-     bands:
-       r: "swe"
-       g: "swe"
-       b: "swe"
-     tool: "colorize.rb -c swe.cmap "
-     name: "gcom-w.%Y%m%d.%H%M_swe"
-   - title: snow_depth
-     bands:
-       r: "snow_depth"
-       g: "snow_depth"
-       b: "snow_depth"
-     tool: "colorize.rb -c snow_depth.cmap "
-     name: "gcom-w.%Y%m%d.%H%M_snow_depth"
-   - title: sst
-     bands:
-       r: "sst"
-       g: "sst"
-       b: "sst"
-     tool: "colorize.rb -c sst.k.cmap "
-     name: "gcom-w.%Y%m%d.%H%M_rgb_sst"
+    mapper:
+      snow: gcom-w.*.Snow_Cover.tif
+      wspd: gcom-w.*.AMSR2-OCEAN.WSPD.tif
+      ice_conc: gcom-w.*.AMSR2-SEAICE.NASA_Team_2_Ice_Concentration.tif
+      ice_age: gcom-w.*.AMSR2-SEAICE.NASA_Team_2_Multiyear_Ice.tif
+      rain_rate: gcom-w.*.AMSR2-PRECIP.Rain_Rate.tif
+      swe: gcom-w.*.AMSR2-SNOW.SWE.tif
+      snow_depth: gcom-w.*.AMSR2-SNOW.Snow_Depth.tif
+      sst: gcom-w.*.AMSR2-OCEAN.SST.tif
+    single: []
+    combinations: []
+    extras:
+    - title: wind_speed
+      bands:
+        r: wspd
+        g: wspd
+        b: wspd
+      tool: 'colorize.rb -c wind_speed.m_per_s.cmap '
+      name: gcom-w.%Y%m%d.%H%M_wind_speed
+    - title: ice_concentration
+      bands:
+        r: ice_conc
+        g: ice_conc
+        b: ice_conc
+      tool: 'colorize.rb -c precent.cmap '
+      name: gcom-w.%Y%m%d.%H%M_ice_conc
+    - title: ice_age
+      bands:
+        r: ice_age
+        g: ice_age
+        b: ice_age
+      tool: 'colorize.rb -c precent.cmap '
+      name: gcom-w.%Y%m%d.%H%M_age
+    - title: snow_cover_amsr2
+      bands:
+        r: snow
+        g: snow
+        b: snow
+      tool: 'colorize.rb -c snow_cover_amsr2.cmap '
+      name: gcom-w.%Y%m%d.%H%M_snow_cover
+    - title: snow_cover_amsr2
+      bands:
+        r: rain_rate
+        g: rain_rate
+        b: rain_rate
+      tool: 'colorize.rb -c precip.cmap '
+      name: gcom-w.%Y%m%d.%H%M_rain_rate
+    - title: swe
+      bands:
+        r: swe
+        g: swe
+        b: swe
+      tool: 'colorize.rb -c swe.cmap '
+      name: gcom-w.%Y%m%d.%H%M_swe
+    - title: snow_depth
+      bands:
+        r: snow_depth
+        g: snow_depth
+        b: snow_depth
+      tool: 'colorize.rb -c snow_depth.cmap '
+      name: gcom-w.%Y%m%d.%H%M_snow_depth
+    - title: sst
+      bands:
+        r: sst
+        g: sst
+        b: sst
+      tool: 'colorize.rb -c sst.k.cmap '
+      name: gcom-w.%Y%m%d.%H%M_rgb_sst
   sst:
-   mapper:
-     sst_npp: npp*sst*.float.tif
-     sst_aqua: aqua*sst*.float.tif
-     sst_terra: terra*sst*.float.tif
-     sst_noaa20: noaa20*sst*.float.tif
-   single: []
-   combinations: []
-   extras:
-   - title: sst_npp
-     bands:
-       r: "sst_npp"
-       g: "sst_npp"
-       b: "sst_npp"
-     tool: "colorize.rb -c sst.k.cmap "
-     name: "npp.%Y%m%d.%H%M_rgb_sst"
-   - title: sst_noaa20
-     bands:
-       r: "sst_noaa20"
-       g: "sst_noaa20"
-       b: "sst_noaa20"
-     tool: "colorize.rb -c sst.k.cmap "
-     name: "noaa20.%Y%m%d.%H%M_rgb_sst"
-   - title: sst_aqua
-     bands:
-       r: "sst_aqua"
-       g: "sst_aqua"
-       b: "sst_aqua"
-     tool: "colorize.rb -c sst.k.cmap "
-     name: "aqua-1.%Y%m%d.%H%M_rgb_sst"
-   - title: sst_terra
-     bands:
-       r: "sst_terra"
-       g: "sst_terra"
-       b: "sst_terra"
-     tool: "colorize.rb -c sst.k.cmap "
-     name: "terra-1.%Y%m%d.%H%M_rgb_sst"
+    mapper:
+      sst_npp: npp*sst*.float.tif
+      sst_aqua: aqua*sst*.float.tif
+      sst_terra: terra*sst*.float.tif
+      sst_noaa20: noaa20*sst*.float.tif
+    single: []
+    combinations: []
+    extras:
+    - title: sst_npp
+      bands:
+        r: sst_npp
+        g: sst_npp
+        b: sst_npp
+      tool: 'colorize.rb -c sst.k.cmap '
+      name: npp.%Y%m%d.%H%M_rgb_sst
+    - title: sst_noaa20
+      bands:
+        r: sst_noaa20
+        g: sst_noaa20
+        b: sst_noaa20
+      tool: 'colorize.rb -c sst.k.cmap '
+      name: noaa20.%Y%m%d.%H%M_rgb_sst
+    - title: sst_aqua
+      bands:
+        r: sst_aqua
+        g: sst_aqua
+        b: sst_aqua
+      tool: 'colorize.rb -c sst.k.cmap '
+      name: aqua-1.%Y%m%d.%H%M_rgb_sst
+    - title: sst_terra
+      bands:
+        r: sst_terra
+        g: sst_terra
+        b: sst_terra
+      tool: 'colorize.rb -c sst.k.cmap '
+      name: terra-1.%Y%m%d.%H%M_rgb_sst
   noaa20polar:
-   mapper:
-     dnb: noaa20_viirs_dynamic_dnb_*_polar_600.tif
-     adaptive_dnb: noaa20_viirs_adaptive_dnb_*_polar_600.tif
-     dynamic_dnb: noaa20_viirs_dynamic_dnb_*_polar_600.tif
-     histogram_dnb: noaa20_viirs_histogram_dnb_*_polar_600.tif
-     hncc_dnb: noaa20_viirs_hncc_dnb_*_polar_600.tif
-     i01: noaa20_viirs_i01*_polar_300.tif
-     i02: noaa20_viirs_i02*_polar_300.tif
-     i03: noaa20_viirs_i03*_polar_300.tif
-     i04: noaa20_viirs_i04*_polar_300.tif
-     i05: noaa20_viirs_i05*_polar_300.tif
-     i01_float: noaa20_viirs_i01*_polar_300.float.tif
-     i02_float: noaa20_viirs_i02*_polar_300.float.tif
-     i03_float: noaa20_viirs_i03*_polar_300.float.tif
-     i04_float: noaa20_viirs_i04*_polar_300.float.tif
-     i05_float: noaa20_viirs_i05*_polar_300.float.tif
-     m02: noaa20_viirs_m02_*_polar_600.tif
-     m03: noaa20_viirs_m02_*_polar_600.tif
-     m04: noaa20_viirs_m02_*_polar_600.tif
-     m05: noaa20_viirs_m02_*_polar_600.tif
-     m06: noaa20_viirs_m02_*_polar_600.tif
-     m07: noaa20_viirs_m02_*_polar_600.tif
-     m08: noaa20_viirs_m02_*_polar_600.tif
-     m10: noaa20_viirs_m10_*_polar_600.tif
-     m11: noaa20_viirs_m11_*_polar_600.tif
-     m12: noaa20_viirs_m12_*_polar_600.tif
-     m15: noaa20_viirs_m02_*_polar_600.tif
-     m16_300_float: noaa20_viirs_m16_*_polar_300.float.tif
-     m10_float: noaa20_viirs_m10_*_polar_600.float.tif
-     m11_float: noaa20_viirs_m11_*_polar_600.float.tif
-     m12_float: noaa20_viirs_m12_*_polar_600.float.tif
-     m11_300_float: noaa20_viirs_m11_*_polar_300.float.tif
-     m12_300_float: noaa20_viirs_m12_*_polar_300.float.tif
-     m08_300: noaa20_viirs_m08_*_polar_300.tif
-     true_color: noaa20_viirs_true_color_*_polar_300.tif
-     crefl01: noaa20_viirs_viirs_crefl01_*_polar_300.tif
-     crefl03: noaa20_viirs_viirs_crefl03_*_polar_300.tif
-     crefl04: noaa20_viirs_viirs_crefl04_*_polar_300.tif
-     crefl08: noaa20_viirs_viirs_crefl08_*_polar_300.tif
-   single:
-   - title: true_color
-     band: true_color
-     name: "noaa20.%Y%m%d.%H%M_true_color_polar"
-   - title: dnb
-     band: dnb
-     name: "noaa20.%Y%m%d.%H%M_DNB_dynamic_polar"
-   - title: adaptive_dnb
-     band: adaptive_dnb
-     name: "noaa20.%Y%m%d.%H%M_DNB_adaptive_polar"
-   - title: dynamic_dnb
-     band: dynamic_dnb
-     name: "noaa20.%Y%m%d.%H%M_DNB_dynamic_polar"
-   - title: thermal
-     band: "i05"
-     name: "noaa20.%Y%m%d.%H%M_I05_polar"
-   combinations:
-   - title: landcolor
-     bands:
-       r: "i03"
-       g: "i02"
-       b: "i01"
-     name: "noaa20.%Y%m%d.%H%M_I03_I02_I01_polar"
-   extras:
-   - title: viirs_i4_colored
-     bands:
-       r: "i04_float"
-       g: "i04_float"
-       b: "i04_float"
-     tool: "color_thermal_long_wave.rb"
-     name: "noaa20.%Y%m%d.%H%M_i04_colored_polar"
-   - title: viirs_i5_colored
-     bands:
-       r: "i05_float"
-       g: "i05_float"
-       b: "i05_float"
-     tool: "color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap "
-     name: "noaa20.%Y%m%d.%H%M_i05_colored_polar"
+    mapper:
+      dnb: noaa20_viirs_dynamic_dnb_*_polar_600.tif
+      adaptive_dnb: noaa20_viirs_adaptive_dnb_*_polar_600.tif
+      dynamic_dnb: noaa20_viirs_dynamic_dnb_*_polar_600.tif
+      histogram_dnb: noaa20_viirs_histogram_dnb_*_polar_600.tif
+      hncc_dnb: noaa20_viirs_hncc_dnb_*_polar_600.tif
+      i01: noaa20_viirs_i01*_polar_300.tif
+      i02: noaa20_viirs_i02*_polar_300.tif
+      i03: noaa20_viirs_i03*_polar_300.tif
+      i04: noaa20_viirs_i04*_polar_300.tif
+      i05: noaa20_viirs_i05*_polar_300.tif
+      i01_float: noaa20_viirs_i01*_polar_300.float.tif
+      i02_float: noaa20_viirs_i02*_polar_300.float.tif
+      i03_float: noaa20_viirs_i03*_polar_300.float.tif
+      i04_float: noaa20_viirs_i04*_polar_300.float.tif
+      i05_float: noaa20_viirs_i05*_polar_300.float.tif
+      m02: noaa20_viirs_m02_*_polar_600.tif
+      m03: noaa20_viirs_m02_*_polar_600.tif
+      m04: noaa20_viirs_m02_*_polar_600.tif
+      m05: noaa20_viirs_m02_*_polar_600.tif
+      m06: noaa20_viirs_m02_*_polar_600.tif
+      m07: noaa20_viirs_m02_*_polar_600.tif
+      m08: noaa20_viirs_m02_*_polar_600.tif
+      m10: noaa20_viirs_m10_*_polar_600.tif
+      m11: noaa20_viirs_m11_*_polar_600.tif
+      m12: noaa20_viirs_m12_*_polar_600.tif
+      m15: noaa20_viirs_m02_*_polar_600.tif
+      m16_300_float: noaa20_viirs_m16_*_polar_300.float.tif
+      m10_float: noaa20_viirs_m10_*_polar_600.float.tif
+      m11_float: noaa20_viirs_m11_*_polar_600.float.tif
+      m12_float: noaa20_viirs_m12_*_polar_600.float.tif
+      m11_300_float: noaa20_viirs_m11_*_polar_300.float.tif
+      m12_300_float: noaa20_viirs_m12_*_polar_300.float.tif
+      m08_300: noaa20_viirs_m08_*_polar_300.tif
+      true_color: noaa20_viirs_true_color_*_polar_300.tif
+      crefl01: noaa20_viirs_viirs_crefl01_*_polar_300.tif
+      crefl03: noaa20_viirs_viirs_crefl03_*_polar_300.tif
+      crefl04: noaa20_viirs_viirs_crefl04_*_polar_300.tif
+      crefl08: noaa20_viirs_viirs_crefl08_*_polar_300.tif
+    single:
+    - title: true_color
+      band: true_color
+      name: noaa20.%Y%m%d.%H%M_true_color_polar
+    - title: dnb
+      band: dnb
+      name: noaa20.%Y%m%d.%H%M_DNB_dynamic_polar
+    - title: adaptive_dnb
+      band: adaptive_dnb
+      name: noaa20.%Y%m%d.%H%M_DNB_adaptive_polar
+    - title: dynamic_dnb
+      band: dynamic_dnb
+      name: noaa20.%Y%m%d.%H%M_DNB_dynamic_polar
+    - title: thermal
+      band: i05
+      name: noaa20.%Y%m%d.%H%M_I05_polar
+    combinations:
+    - title: landcolor
+      bands:
+        r: i03
+        g: i02
+        b: i01
+      name: noaa20.%Y%m%d.%H%M_I03_I02_I01_polar
+    extras:
+    - title: viirs_i4_colored
+      bands:
+        r: i04_float
+        g: i04_float
+        b: i04_float
+      tool: color_thermal_long_wave.rb
+      name: noaa20.%Y%m%d.%H%M_i04_colored_polar
+    - title: viirs_i5_colored
+      bands:
+        r: i05_float
+        g: i05_float
+        b: i05_float
+      tool: 'color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap '
+      name: noaa20.%Y%m%d.%H%M_i05_colored_polar
   snpp20polar:
-   mapper:
-     dnb: npp_viirs_dynamic_dnb_*_polar_600.tif
-     adaptive_dnb: npp_viirs_adaptive_dnb_*_polar_600.tif
-     dynamic_dnb: npp_viirs_dynamic_dnb_*_polar_600.tif
-     histogram_dnb: npp_viirs_histogram_dnb_*_polar_600.tif
-     hncc_dnb: npp_viirs_hncc_dnb_*_polar_600.tif
-     i01: npp_viirs_i01*_polar_300.tif
-     i02: npp_viirs_i02*_polar_300.tif
-     i03: npp_viirs_i03*_polar_300.tif
-     i04: npp_viirs_i04*_polar_300.tif
-     i05: npp_viirs_i05*_polar_300.tif
-     i01_float: npp_viirs_i01*_polar_300.float.tif
-     i02_float: npp_viirs_i02*_polar_300.float.tif
-     i03_float: npp_viirs_i03*_polar_300.float.tif
-     i04_float: npp_viirs_i04*_polar_300.float.tif
-     i05_float: npp_viirs_i05*_polar_300.float.tif
-     m02: npp_viirs_m02_*_polar_600.tif
-     m03: npp_viirs_m02_*_polar_600.tif
-     m04: npp_viirs_m02_*_polar_600.tif
-     m05: npp_viirs_m02_*_polar_600.tif
-     m06: npp_viirs_m02_*_polar_600.tif
-     m07: npp_viirs_m02_*_polar_600.tif
-     m08: npp_viirs_m02_*_polar_600.tif
-     m10: npp_viirs_m10_*_polar_600.tif
-     m11: npp_viirs_m11_*_polar_600.tif
-     m12: npp_viirs_m12_*_polar_600.tif
-     m15: npp_viirs_m02_*_polar_600.tif
-     m10_float: npp_viirs_m10_*_polar_600.float.tif
-     m11_float: npp_viirs_m11_*_polar_600.float.tif
-     m12_float: npp_viirs_m12_*_polar_600.float.tif
-     m11_300_float: npp_viirs_m11_*_polar_300.float.tif
-     m12_300_float: npp_viirs_m12_*_polar_300.float.tif
-     m16_300_float: npp_viirs_m16_*_polar_300.float.tif
-     m08_300: npp_viirs_m08_*_polar_300.tif
-     true_color: npp_viirs_true_color_*_polar_300.tif
-     crefl01: npp_viirs_viirs_crefl01_*_polar_300.tif
-     crefl03: npp_viirs_viirs_crefl03_*_polar_300.tif
-     crefl04: npp_viirs_viirs_crefl04_*_polar_300.tif
-     crefl08: npp_viirs_viirs_crefl08_*_polar_300.tif
-   single:
-   - title: true_color
-     band: true_color
-     name: "npp.%Y%m%d.%H%M_true_color_polar"
-   - title: dnb
-     band: dnb
-     name: "npp.%Y%m%d.%H%M_DNB_dynamic_polar"
-   - title: adaptive_dnb
-     band: adaptive_dnb
-     name: "npp.%Y%m%d.%H%M_DNB_adaptive_polar"
-   - title: dynamic_dnb
-     band: dynamic_dnb
-     name: "npp.%Y%m%d.%H%M_DNB_dynamic_polar"
-   - title: thermal
-     band: "i05"
-     name: "npp.%Y%m%d.%H%M_I05_polar"
-   combinations:
-   - title: landcolor
-     bands:
-       r: "i03"
-       g: "i02"
-       b: "i01"
-     name: "npp.%Y%m%d.%H%M_I03_I02_I01_polar"
-   extras:
-   - title: viirs_i4_colored
-     bands:
-       r: "i04_float"
-       g: "i04_float"
-       b: "i04_float"
-     tool: "color_thermal_long_wave.rb"
-     name: "npp.%Y%m%d.%H%M_i04_colored_polar"
-   - title: viirs_i5_colored
-     bands:
-       r: "i05_float"
-       g: "i05_float"
-       b: "i05_float"
-     tool: "color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap "
-     name: "npp.%Y%m%d.%H%M_i05_colored_polar"
+    mapper:
+      dnb: npp_viirs_dynamic_dnb_*_polar_600.tif
+      adaptive_dnb: npp_viirs_adaptive_dnb_*_polar_600.tif
+      dynamic_dnb: npp_viirs_dynamic_dnb_*_polar_600.tif
+      histogram_dnb: npp_viirs_histogram_dnb_*_polar_600.tif
+      hncc_dnb: npp_viirs_hncc_dnb_*_polar_600.tif
+      i01: npp_viirs_i01*_polar_300.tif
+      i02: npp_viirs_i02*_polar_300.tif
+      i03: npp_viirs_i03*_polar_300.tif
+      i04: npp_viirs_i04*_polar_300.tif
+      i05: npp_viirs_i05*_polar_300.tif
+      i01_float: npp_viirs_i01*_polar_300.float.tif
+      i02_float: npp_viirs_i02*_polar_300.float.tif
+      i03_float: npp_viirs_i03*_polar_300.float.tif
+      i04_float: npp_viirs_i04*_polar_300.float.tif
+      i05_float: npp_viirs_i05*_polar_300.float.tif
+      m02: npp_viirs_m02_*_polar_600.tif
+      m03: npp_viirs_m02_*_polar_600.tif
+      m04: npp_viirs_m02_*_polar_600.tif
+      m05: npp_viirs_m02_*_polar_600.tif
+      m06: npp_viirs_m02_*_polar_600.tif
+      m07: npp_viirs_m02_*_polar_600.tif
+      m08: npp_viirs_m02_*_polar_600.tif
+      m10: npp_viirs_m10_*_polar_600.tif
+      m11: npp_viirs_m11_*_polar_600.tif
+      m12: npp_viirs_m12_*_polar_600.tif
+      m15: npp_viirs_m02_*_polar_600.tif
+      m10_float: npp_viirs_m10_*_polar_600.float.tif
+      m11_float: npp_viirs_m11_*_polar_600.float.tif
+      m12_float: npp_viirs_m12_*_polar_600.float.tif
+      m11_300_float: npp_viirs_m11_*_polar_300.float.tif
+      m12_300_float: npp_viirs_m12_*_polar_300.float.tif
+      m16_300_float: npp_viirs_m16_*_polar_300.float.tif
+      m08_300: npp_viirs_m08_*_polar_300.tif
+      true_color: npp_viirs_true_color_*_polar_300.tif
+      crefl01: npp_viirs_viirs_crefl01_*_polar_300.tif
+      crefl03: npp_viirs_viirs_crefl03_*_polar_300.tif
+      crefl04: npp_viirs_viirs_crefl04_*_polar_300.tif
+      crefl08: npp_viirs_viirs_crefl08_*_polar_300.tif
+    single:
+    - title: true_color
+      band: true_color
+      name: npp.%Y%m%d.%H%M_true_color_polar
+    - title: dnb
+      band: dnb
+      name: npp.%Y%m%d.%H%M_DNB_dynamic_polar
+    - title: adaptive_dnb
+      band: adaptive_dnb
+      name: npp.%Y%m%d.%H%M_DNB_adaptive_polar
+    - title: dynamic_dnb
+      band: dynamic_dnb
+      name: npp.%Y%m%d.%H%M_DNB_dynamic_polar
+    - title: thermal
+      band: i05
+      name: npp.%Y%m%d.%H%M_I05_polar
+    combinations:
+    - title: landcolor
+      bands:
+        r: i03
+        g: i02
+        b: i01
+      name: npp.%Y%m%d.%H%M_I03_I02_I01_polar
+    extras:
+    - title: viirs_i4_colored
+      bands:
+        r: i04_float
+        g: i04_float
+        b: i04_float
+      tool: color_thermal_long_wave.rb
+      name: npp.%Y%m%d.%H%M_i04_colored_polar
+    - title: viirs_i5_colored
+      bands:
+        r: i05_float
+        g: i05_float
+        b: i05_float
+      tool: 'color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap '
+      name: npp.%Y%m%d.%H%M_i05_colored_polar
   noaa21polar:
-   mapper:
-     dnb: noaa21_viirs_dynamic_dnb_*_polar_600.tif
-     adaptive_dnb: noaa21_viirs_adaptive_dnb_*_polar_600.tif
-     dynamic_dnb: noaa21_viirs_dynamic_dnb_*_polar_600.tif
-     histogram_dnb: noaa21_viirs_histogram_dnb_*_polar_600.tif
-     hncc_dnb: noaa21_viirs_hncc_dnb_*_polar_600.tif
-     i01: noaa21_viirs_i01*_polar_300.tif
-     i02: noaa21_viirs_i02*_polar_300.tif
-     i03: noaa21_viirs_i03*_polar_300.tif
-     i04: noaa21_viirs_i04*_polar_300.tif
-     i05: noaa21_viirs_i05*_polar_300.tif
-     i01_float: noaa21_viirs_i01*_polar_300.float.tif
-     i02_float: noaa21_viirs_i02*_polar_300.float.tif
-     i03_float: noaa21_viirs_i03*_polar_300.float.tif
-     i04_float: noaa21_viirs_i04*_polar_300.float.tif
-     i05_float: noaa21_viirs_i05*_polar_300.float.tif
-     m02: noaa21_viirs_m02_*_polar_600.tif
-     m03: noaa21_viirs_m02_*_polar_600.tif
-     m04: noaa21_viirs_m02_*_polar_600.tif
-     m05: noaa21_viirs_m02_*_polar_600.tif
-     m06: noaa21_viirs_m02_*_polar_600.tif
-     m07: noaa21_viirs_m02_*_polar_600.tif
-     m08: noaa21_viirs_m02_*_polar_600.tif
-     m10: noaa21_viirs_m10_*_polar_600.tif
-     m11: noaa21_viirs_m11_*_polar_600.tif
-     m12: noaa21_viirs_m12_*_polar_600.tif
-     m15: noaa21_viirs_m02_*_polar_600.tif
-     m16_300_float: noaa21_viirs_m16_*_polar_300.float.tif
-     m10_float: noaa21_viirs_m10_*_polar_600.float.tif
-     m11_float: noaa21_viirs_m11_*_polar_600.float.tif
-     m12_float: noaa21_viirs_m12_*_polar_600.float.tif
-     m11_300_float: noaa21_viirs_m11_*_polar_300.float.tif
-     m12_300_float: noaa21_viirs_m12_*_polar_300.float.tif
-     m08_300: noaa21_viirs_m08_*_polar_300.tif
-     true_color: noaa21_viirs_true_color_*_polar_300.tif
-     crefl01: noaa21_viirs_viirs_crefl01_*_polar_300.tif
-     crefl03: noaa21_viirs_viirs_crefl03_*_polar_300.tif
-     crefl04: noaa21_viirs_viirs_crefl04_*_polar_300.tif
-     crefl08: noaa21_viirs_viirs_crefl08_*_polar_300.tif
-   single:
-   - title: true_color
-     band: true_color
-     name: "noaa21.%Y%m%d.%H%M_true_color_polar"
-   - title: dnb
-     band: dnb
-     name: "noaa21.%Y%m%d.%H%M_DNB_dynamic_polar"
-   - title: adaptive_dnb
-     band: adaptive_dnb
-     name: "noaa21.%Y%m%d.%H%M_DNB_adaptive_polar"
-   - title: dynamic_dnb
-     band: dynamic_dnb
-     name: "noaa21.%Y%m%d.%H%M_DNB_dynamic_polar"
-   - title: thermal
-     band: "i05"
-     name: "noaa21.%Y%m%d.%H%M_I05_polar"
-   combinations:
-   - title: landcolor
-     bands:
-       r: "i03"
-       g: "i02"
-       b: "i01"
-     name: "noaa21.%Y%m%d.%H%M_I03_I02_I01_polar"
-   extras:
-   - title: viirs_i4_colored
-     bands:
-       r: "i04_float"
-       g: "i04_float"
-       b: "i04_float"
-     tool: "color_thermal_long_wave.rb"
-     name: "noaa21.%Y%m%d.%H%M_i04_colored_polar"
-   - title: viirs_i5_colored
-     bands:
-       r: "i05_float"
-       g: "i05_float"
-       b: "i05_float"
-     tool: "color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap "
-     name: "noaa21.%Y%m%d.%H%M_i05_colored_polar"
+    mapper:
+      dnb: noaa21_viirs_dynamic_dnb_*_polar_600.tif
+      adaptive_dnb: noaa21_viirs_adaptive_dnb_*_polar_600.tif
+      dynamic_dnb: noaa21_viirs_dynamic_dnb_*_polar_600.tif
+      histogram_dnb: noaa21_viirs_histogram_dnb_*_polar_600.tif
+      hncc_dnb: noaa21_viirs_hncc_dnb_*_polar_600.tif
+      i01: noaa21_viirs_i01*_polar_300.tif
+      i02: noaa21_viirs_i02*_polar_300.tif
+      i03: noaa21_viirs_i03*_polar_300.tif
+      i04: noaa21_viirs_i04*_polar_300.tif
+      i05: noaa21_viirs_i05*_polar_300.tif
+      i01_float: noaa21_viirs_i01*_polar_300.float.tif
+      i02_float: noaa21_viirs_i02*_polar_300.float.tif
+      i03_float: noaa21_viirs_i03*_polar_300.float.tif
+      i04_float: noaa21_viirs_i04*_polar_300.float.tif
+      i05_float: noaa21_viirs_i05*_polar_300.float.tif
+      m02: noaa21_viirs_m02_*_polar_600.tif
+      m03: noaa21_viirs_m02_*_polar_600.tif
+      m04: noaa21_viirs_m02_*_polar_600.tif
+      m05: noaa21_viirs_m02_*_polar_600.tif
+      m06: noaa21_viirs_m02_*_polar_600.tif
+      m07: noaa21_viirs_m02_*_polar_600.tif
+      m08: noaa21_viirs_m02_*_polar_600.tif
+      m10: noaa21_viirs_m10_*_polar_600.tif
+      m11: noaa21_viirs_m11_*_polar_600.tif
+      m12: noaa21_viirs_m12_*_polar_600.tif
+      m15: noaa21_viirs_m02_*_polar_600.tif
+      m16_300_float: noaa21_viirs_m16_*_polar_300.float.tif
+      m10_float: noaa21_viirs_m10_*_polar_600.float.tif
+      m11_float: noaa21_viirs_m11_*_polar_600.float.tif
+      m12_float: noaa21_viirs_m12_*_polar_600.float.tif
+      m11_300_float: noaa21_viirs_m11_*_polar_300.float.tif
+      m12_300_float: noaa21_viirs_m12_*_polar_300.float.tif
+      m08_300: noaa21_viirs_m08_*_polar_300.tif
+      true_color: noaa21_viirs_true_color_*_polar_300.tif
+      crefl01: noaa21_viirs_viirs_crefl01_*_polar_300.tif
+      crefl03: noaa21_viirs_viirs_crefl03_*_polar_300.tif
+      crefl04: noaa21_viirs_viirs_crefl04_*_polar_300.tif
+      crefl08: noaa21_viirs_viirs_crefl08_*_polar_300.tif
+    single:
+    - title: true_color
+      band: true_color
+      name: noaa21.%Y%m%d.%H%M_true_color_polar
+    - title: dnb
+      band: dnb
+      name: noaa21.%Y%m%d.%H%M_DNB_dynamic_polar
+    - title: adaptive_dnb
+      band: adaptive_dnb
+      name: noaa21.%Y%m%d.%H%M_DNB_adaptive_polar
+    - title: dynamic_dnb
+      band: dynamic_dnb
+      name: noaa21.%Y%m%d.%H%M_DNB_dynamic_polar
+    - title: thermal
+      band: i05
+      name: noaa21.%Y%m%d.%H%M_I05_polar
+    combinations:
+    - title: landcolor
+      bands:
+        r: i03
+        g: i02
+        b: i01
+      name: noaa21.%Y%m%d.%H%M_I03_I02_I01_polar
+    extras:
+    - title: viirs_i4_colored
+      bands:
+        r: i04_float
+        g: i04_float
+        b: i04_float
+      tool: color_thermal_long_wave.rb
+      name: noaa21.%Y%m%d.%H%M_i04_colored_polar
+    - title: viirs_i5_colored
+      bands:
+        r: i05_float
+        g: i05_float
+        b: i05_float
+      tool: 'color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap '
+      name: noaa21.%Y%m%d.%H%M_i05_colored_polar
 limits:
   processor: 1
-

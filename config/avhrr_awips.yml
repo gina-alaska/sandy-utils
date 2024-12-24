@@ -1,27 +1,32 @@
+---
 terascan_driver: "/opt/terascan/pass/tscan.bash_profile"
 save:
-  - "unused"
+- unused
 griding:
-  opts: "master_var=master brute_force=no off_protect=no add_to_output=no include_vars=\\* poly_size=100 interpolate=nn whole_input=yes apply_scaling=yes"
-  master: "Master_3752"
+  opts: master_var=master brute_force=no off_protect=no add_to_output=no include_vars=\*
+    poly_size=100 interpolate=nn whole_input=yes apply_scaling=yes
+  master: Master_3752
 scaling:
   visible: sqrt_stretch
   thermal: awips_thermal_stretch
 export:
-  visible: "expgeotiff add_offset=0  sort_by_line=no sort_by_var=no apply_scaling=yes reverse_bytes=no trans_matrix=no"
-  thermal: "expgeotiff sort_by_line=no apply_scaling=yes add_offset= trans_matrix= force_unsigned= "
+  visible: expgeotiff add_offset=0  sort_by_line=no sort_by_var=no apply_scaling=yes
+    reverse_bytes=no trans_matrix=no
+  thermal: 'expgeotiff sort_by_line=no apply_scaling=yes add_offset= trans_matrix=
+    force_unsigned= '
 bands:
   visible:
-    - avhrr_ch1
-    - avhrr_ch2
-    - avhrr_ch3a
+  - avhrr_ch1
+  - avhrr_ch2
+  - avhrr_ch3a
   thermal:
-    - avhrr_ch3
-    - avhrr_ch4
-    - avhrr_ch5
+  - avhrr_ch3
+  - avhrr_ch4
+  - avhrr_ch5
 awips_conversion:
   extents: " -4952960.856 -6857977.390 3431039.144 381022.610 "
-  proj: "'+proj=stere +lat_0=90 +lat_ts=60 +lon_0=-150 +k=1 +x_0=0 +y_0=0 +a=6371200 +b=6371200 +units=m +no_defs'"
+  proj: "'+proj=stere +lat_0=90 +lat_ts=60 +lon_0=-150 +k=1 +x_0=0 +y_0=0 +a=6371200
+    +b=6371200 +units=m +no_defs'"
   warp_opts: "-tr 1000 1000 -rb"
 gdal:
   co_opts: "-co COMPRESS=DEFLATE -co TILED=YES -co TILED=YES"
@@ -31,26 +36,26 @@ polar2grid:
 awips:
   naming:
     avhrr_ch1:
-      satellite_name: "AVHRR"
-      channel: "0.63 um"
-      name: "ch1"
+      satellite_name: AVHRR
+      channel: 0.63 um
+      name: ch1
     avhrr_ch2:
-      satellite_name: "AVHRR"
-      channel: "0.86 um"
-      name: "ch2"
+      satellite_name: AVHRR
+      channel: 0.86 um
+      name: ch2
     avhrr_ch3a:
-      satellite_name: "AVHRR"
-      channel: "1.6 um"
-      name: "ch3a"
+      satellite_name: AVHRR
+      channel: 1.6 um
+      name: ch3a
     avhrr_ch3:
-      satellite_name: "AVHRR"
-      channel: "3.7 um"
-      name: "ch3b"
+      satellite_name: AVHRR
+      channel: 3.7 um
+      name: ch3b
     avhrr_ch4:
-      satellite_name: "AVHRR"
-      channel: "10.8 um"
-      name: "ch4"
+      satellite_name: AVHRR
+      channel: 10.8 um
+      name: ch4
     avhrr_ch5:
-      satellite_name: "AVHRR"
-      channel: "12.0 um"
-      name: "ch5"
+      satellite_name: AVHRR
+      channel: 12.0 um
+      name: ch5

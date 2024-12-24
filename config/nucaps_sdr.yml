@@ -1,8 +1,9 @@
+---
 configs:
   nucaps:
     tasks:
-      - "snpp_sdr.rb -p 8 -m cris  "
-      - "snpp_sdr.rb -p 8 -m atms "
+    - 'snpp_sdr.rb -p 8 -m cris  '
+    - 'snpp_sdr.rb -p 8 -m atms '
 limits:
   processor: 1
-env: $CSPP_SDR_HOME/cspp_sdr_env.sh
+env: "$CSPP_SDR_HOME/cspp_sdr_env.sh"
