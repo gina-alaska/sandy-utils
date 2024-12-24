@@ -174,17 +174,27 @@ class RtstpsClamp < ProcessingFramework::CommandLineHelper
                 rdrs.delete(rdr)
         end
       end
-  
-      # Need at least 3 files rdrs, anything less then there is likely a problem
-      if rdrs.length >= 3
-        system('mkdir', '-p', output)
-        puts('INFO: Using pre-generated RDRs')
-        rdrs.each do |rdr|
-          puts("INFO: Using #{rdr.path}")
-          system('/usr/bin/cp', rdr.path, output + '/')
-        end
-        return
+
+      #age of pass
+      age = Time.now - pass_date.to_time
+
+      # Need at least 4 files rdrs, anything less then there is likely a problem
+      if rdrs.length >= 4
+        puts("INFO: Pass is #{age} seconds old")
+        #check age of pass - if older than an hour, run rtstps. 
+        if age < 60*60
+          system('mkdir', '-p', output)
+          puts('INFO: Using pre-generated RDRs')
+          rdrs.each do |rdr|
+            puts("INFO: Using #{rdr.path}")
+            system('/usr/bin/cp', rdr.path, output + '/')
+          end
+          return
+         else
+            puts("INFO: Pass older than an hour, run RTSTPS.")
+         end
       end
+
     end
 
     ##
