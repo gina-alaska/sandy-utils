@@ -28,4 +28,4 @@ jobs:
     - name: Run tests
       run: ruby -c bin/*.rb
     - name: Yaml Check
-      run: /root/.local/bin/yamllint config/*.yml
+      run: $HOME/.local/bin/yamllint config/*.yml
