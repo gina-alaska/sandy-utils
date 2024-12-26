@@ -3,7 +3,7 @@ mphr:
   product_type: hrp
   instrument_model: 1
   processing_center: RUSx
-  processing_mode: N
+  processing_mode: "N"
   disposition_mode: O
   processing_major_version: 2
   processing_minor_version: 0
