@@ -1,18 +1,17 @@
----
-uafgina-test:
+uafgina:
   ftp:
-    host: 192.168.56.31
-    dir: "/dbingest/fairbanks/"
-    options: "-F -B 12582912"
+    dir: /dbingest/fairbanks/
+    host: ftp.ssec.wisc.edu
+    options: -F -B 12582912
   glob:
   - RNCSA*h5
   - RCRIS*h5
   - RATMS*h5
-uafgina:
+uafgina-test:
   ftp:
-    host: ftp.ssec.wisc.edu
-    dir: "/dbingest/fairbanks/"
-    options: "-F -B 12582912"
+    dir: /dbingest/fairbanks/
+    host: 192.168.56.31
+    options: -F -B 12582912
   glob:
   - RNCSA*h5
   - RCRIS*h5

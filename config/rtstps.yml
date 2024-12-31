@@ -1,12 +1,11 @@
----
 configs:
-  npp: "/opt/rt-stps/config/npp.xml"
-  t1: "/opt/rt-stps/config/terra.xml"
-  a1: "/opt/rt-stps/config/aqua.xml"
-  noaa20: "/opt/rt-stps/config/jpss1.xml"
-  noaa21: "/opt/rt-stps/config/jpss2.xml"
-  gcomw: "/opt/rt-stps/config/GCOM-W1.xml"
-rtstps_driver: "/opt/rt-stps/bin/batch.sh"
+  a1: /opt/rt-stps/config/aqua.xml
+  gcomw: /opt/rt-stps/config/GCOM-W1.xml
+  noaa20: /opt/rt-stps/config/jpss1.xml
+  noaa21: /opt/rt-stps/config/jpss2.xml
+  npp: /opt/rt-stps/config/npp.xml
+  t1: /opt/rt-stps/config/terra.xml
+rtstps_driver: /opt/rt-stps/bin/batch.sh
 source:
-  uafgina: "/gluster/cache/antenna/uafgina"
-  gilmore: "/gluster/cache/antenna/gilmore"
+  gilmore: /gluster/cache/antenna/gilmore
+  uafgina: /gluster/cache/antenna/uafgina

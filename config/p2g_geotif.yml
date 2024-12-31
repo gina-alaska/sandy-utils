@@ -1,146 +1,146 @@
----
 configs:
-  viirs:
-    p2g_args: "--tiled --compress DEFLATE"
-    grid_file: viirs_geotiff_grids.grd
-    tasks:
-    - “/opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p 'i01
-      i02 i03 i04 i05 m11 m12 m16' -g alaska_300 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
-    - "/opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p 'm02
-      m03 m04 m06 m07 m08 m10 m11 m12 m15 dnb' -g alaska_600 --dtype real4 --output-pattern
-      {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
-    - "/opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p 'i01
-      i02 i03 i04 i05 m08' -g alaska_300"
-    - "/opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 --png-quicklook
-      -p  'm02 m03 m04 m05 m06 m07 m08 m10 m11 m12 m15 adaptive_dnb dynamic_dnb histogram_dnb'
-      -g alaska_600"
-    - "/opt/cspp/polar2grid_v_2_3/bin/crefl2gtiff.sh --grid-coverage 0.002 --true-color
-      -g alaska_300"
-    save:
-    - "*.tif"
-    - npp_viirs_dynamic_dnb_*_alaska_600.png
-  viirs_gm:
-    p2g_args: "--tiled --compress DEFLATE"
-    grid_file: viirs_geotiff_grids.grd
-    tasks:
-    - "/opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p 'i01
-      i02 i04 i05' -g alaska_gm_300 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
-    - "/opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p 'm10
-      m11 m12 ' -g alaska_gm_600 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
-    - "/opt/cspp/polar2grid_v_2_3/bin/crefl2gtiff.sh --grid-coverage 0.002 --true-color
-      -g alaska_gm_300"
-    - "/opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p 'i01
-      i02 i03' -g alaska_gm_300"
-    save:
-    - "*.tif"
-    - npp_viirs_dynamic_dnb_*_alaska_600.png
-  viirs_polar:
-    p2g_args: "--tiled --compress DEFLATE"
-    grid_file: viirs_geotiff_grids.grd
-    tasks:
-    - "/opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p 'i01
-      i02 i03 i04 i05' -g polar_300"
-    - "/opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 --png-quicklook
-      -p  'adaptive_dnb dynamic_dnb histogram_dnb hncc_dnb dnb' -g polar_600"
-    - "/opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p 'i01
-      i02 i04 i05 ' -g polar_300 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
-    - "/opt/cspp/polar2grid_v_2_3/bin/crefl2gtiff.sh --grid-coverage 0.002 --true-color
-      -g polar_300"
-    save:
-    - "*.tif"
-    - npp_viirs_dynamic_dnb_*_polar_600.png
-  modis:
-    p2g_args: "--tiled --compress DEFLATE"
-    grid_file: modis_geotiff_grids.grd
-    tasks:
-    - "/opt/cspp/polar2grid_v_2_3/bin/modis2gtiff.sh --grid-coverage 0.002 -p 'ir31
-      ir30 bt30 bt31' -g alaska_1000 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
-    - "/opt/cspp/polar2grid_v_2_3/bin/crefl2gtiff.sh --grid-coverage 0.002 --true-color
-      -g alaska_250"
-    - "/opt/cspp/polar2grid_v_2_3/bin/modis2gtiff.sh --grid-coverage 0.002 -p 'vis01
-      vis02' -g alaska_250"
-    - "/opt/cspp/polar2grid_v_2_3/bin/modis2gtiff.sh --grid-coverage 0.002 -p 'vis01
-      vis02 vis03 vis04 vis05 vis06 vis07' -g alaska_500"
-    - "/opt/cspp/polar2grid_v_2_3/bin/modis2gtiff.sh --png-quicklook --grid-coverage
-      0.02 -p 'ir30 ir31 bt30 bt31' -g alaska_1000"
-    save:
-    - "*.tif"
-    - "*_modis_bt31_*_alaska_1000.png"
-  modis_polar:
-    p2g_args: "--tiled --compress DEFLATE"
-    grid_file: modis_geotiff_grids.grd
-    tasks:
-    - "/opt/cspp/polar2grid_v_2_3/bin/modis2gtiff.sh --grid-coverage 0.002 -p 'ir31
-      ir30 bt30 bt31' -g polar_1km --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
-    - "/opt/cspp/polar2grid_v_2_3/bin/crefl2gtiff.sh --grid-coverage 0.002 --true-color
-      -g polar_250"
-    - "/opt/cspp/polar2grid_v_2_3/bin/modis2gtiff.sh --grid-coverage 0.002 -p 'vis01
-      vis02' -g polar_250"
-    - "/opt/cspp/polar2grid_v_2_3/bin/modis2gtiff.sh --grid-coverage 0.002 -p 'vis01
-      vis02 vis03 vis04 vis05 vis06 vis07' -g polar_500"
-    - "/opt/cspp/polar2grid_v_2_3/bin/modis2gtiff.sh --png-quicklook --grid-coverage
-      0.02 -p 'ir30 ir31 bt30 bt31' -g polar_1km"
-    save:
-    - "*.tif"
-    - "*_modis_bt31_*_polar_500.png"
-  avhrr:
-    p2g_args: "--tiled --compress DEFLATE"
-    grid_file: avhrr_geotiff_grids.grd
-    tasks:
-    - "/opt/cspp/polar2grid_v_2_3/bin/polar2grid.sh avhrr gtiff -g 203_1k --grid-coverage
-      0.001 -p 'band3b_bt band4_bt band5_bt' --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
-    - "/opt/cspp/polar2grid_v_2_3/bin/polar2grid.sh avhrr gtiff -g 203_1k --grid-coverage
-      0.001 -p 'band1_vis band2_vis band3a_vis band3b_bt band4_bt band5_bt' "
-    save:
-    - "*.tif"
   amsr2:
-    p2g_args: "--tiled --compress DEFLATE"
     grid_file: avhrr_geotiff_grids.grd
+    p2g_args: --tiled --compress DEFLATE
     rescale: clavrx_rescale.ini
-    tasks:
-    - "/opt/cspp/polar2grid_v_2_3/bin/polar2grid.sh amsr2_l1b gtiff --grid-coverage
-      0.002 -g 203_10km -p 'rgb_color' "
     save:
-    - "*.tif"
-    - "*.log"
-  viirs_clavrx:
-    p2g_args: "--tiled --compress DEFLATE"
-    grid_file: clavrx_geotiff_grids.grd
-    rescale: clavrx_rescale.ini
+    - '*.tif'
+    - '*.log'
     tasks:
-    - "/opt/cspp/polar2grid_v_2_3/bin/polar2grid.sh clavrx gtiff --grid-coverage 0.002
-      -g alaska_300 -p 'cld_emiss_acha cld_height_acha cld_opd_dcomp cld_reff_dcomp
-      cld_temp_acha cloud_phase cloud_type cld_base_altitude_acha ' "
-    - "/opt/cspp/polar2grid_v_2_3/bin/polar2grid.sh clavrx gtiff --grid-coverage 0.002
-      -g alaska_300 -p 'cld_emiss_acha cld_height_acha cld_opd_dcomp cld_reff_dcomp
-      cld_temp_acha cloud_phase cloud_type cld_base_altitude_acha ccl_layer_flag ccl_1
-      ccl_2 ccl_3 ccl_4 ccl_5' --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif "
+    - '/opt/cspp/polar2grid_v_2_3/bin/polar2grid.sh amsr2_l1b gtiff --grid-coverage
+      0.002 -g 203_10km -p ''rgb_color'' '
+  avhrr:
+    grid_file: avhrr_geotiff_grids.grd
+    p2g_args: --tiled --compress DEFLATE
     save:
-    - "*.tif"
-    - "*.log"
+    - '*.tif'
+    tasks:
+    - /opt/cspp/polar2grid_v_2_3/bin/polar2grid.sh avhrr gtiff -g 203_1k --grid-coverage
+      0.001 -p 'band3b_bt band4_bt band5_bt' --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif
+    - '/opt/cspp/polar2grid_v_2_3/bin/polar2grid.sh avhrr gtiff -g 203_1k --grid-coverage
+      0.001 -p ''band1_vis band2_vis band3a_vis band3b_bt band4_bt band5_bt'' '
   avhrr_clavrx:
-    p2g_args: "--tiled --compress DEFLATE"
     grid_file: clavrx_geotiff_grids.grd
+    p2g_args: --tiled --compress DEFLATE
     rescale: clavrx_rescale.ini
+    save:
+    - '*.tif'
+    - '*.log'
     tasks:
-    - "/opt/cspp/polar2grid_v_2_3/bin/polar2grid.sh clavrx gtiff --grid-coverage 0.002
-      -g alaska_1000 -p 'cld_emiss_acha cld_height_acha cld_opd_dcomp cld_reff_dcomp
-      cld_temp_acha cloud_phase cloud_type cld_base_altitude_acha ' "
-    - "/opt/cspp/polar2grid_v_2_3/bin/polar2grid.sh clavrx gtiff --grid-coverage 0.002
-      -g alaska_1000 -p 'cld_emiss_acha cld_height_acha cld_opd_dcomp cld_reff_dcomp
+    - '/opt/cspp/polar2grid_v_2_3/bin/polar2grid.sh clavrx gtiff --grid-coverage 0.002
+      -g alaska_1000 -p ''cld_emiss_acha cld_height_acha cld_opd_dcomp cld_reff_dcomp
+      cld_temp_acha cloud_phase cloud_type cld_base_altitude_acha '' '
+    - '/opt/cspp/polar2grid_v_2_3/bin/polar2grid.sh clavrx gtiff --grid-coverage 0.002
+      -g alaska_1000 -p ''cld_emiss_acha cld_height_acha cld_opd_dcomp cld_reff_dcomp
       cld_temp_acha cloud_phase cloud_type cld_base_altitude_acha ccl_layer_flag ccl_1
-      ccl_2 ccl_3 ccl_4 ccl_5' --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif "
-    save:
-    - "*.tif"
-    - "*.log"
+      ccl_2 ccl_3 ccl_4 ccl_5'' --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif '
   mirs:
-    p2g_args: "--tiled --compress DEFLATE"
     grid_file: avhrr_geotiff_grids.grd
-    tasks:
-    - "/opt/cspp/polar2grid_v_2_3/bin/polar2grid.sh mirs gtiff -g 203_1k --grid-coverage
-      0.00001 -p 'rain_rate sea_ice sfr' --dtype real4 --output-pattern {satellite}_{product_name}_{begin_time}_{grid_name}.float.tif "
+    p2g_args: --tiled --compress DEFLATE
     save:
-    - "*.tif"
-    - "*.log"
+    - '*.tif'
+    - '*.log'
+    tasks:
+    - '/opt/cspp/polar2grid_v_2_3/bin/polar2grid.sh mirs gtiff -g 203_1k --grid-coverage
+      0.00001 -p ''rain_rate sea_ice sfr'' --dtype real4 --output-pattern {satellite}_{product_name}_{begin_time}_{grid_name}.float.tif '
+  modis:
+    grid_file: modis_geotiff_grids.grd
+    p2g_args: --tiled --compress DEFLATE
+    save:
+    - '*.tif'
+    - '*_modis_bt31_*_alaska_1000.png'
+    tasks:
+    - /opt/cspp/polar2grid_v_2_3/bin/modis2gtiff.sh --grid-coverage 0.002 -p 'ir31
+      ir30 bt30 bt31' -g alaska_1000 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif
+    - /opt/cspp/polar2grid_v_2_3/bin/crefl2gtiff.sh --grid-coverage 0.002 --true-color
+      -g alaska_250
+    - /opt/cspp/polar2grid_v_2_3/bin/modis2gtiff.sh --grid-coverage 0.002 -p 'vis01
+      vis02' -g alaska_250
+    - /opt/cspp/polar2grid_v_2_3/bin/modis2gtiff.sh --grid-coverage 0.002 -p 'vis01
+      vis02 vis03 vis04 vis05 vis06 vis07' -g alaska_500
+    - /opt/cspp/polar2grid_v_2_3/bin/modis2gtiff.sh --png-quicklook --grid-coverage
+      0.02 -p 'ir30 ir31 bt30 bt31' -g alaska_1000
+  modis_polar:
+    grid_file: modis_geotiff_grids.grd
+    p2g_args: --tiled --compress DEFLATE
+    save:
+    - '*.tif'
+    - '*_modis_bt31_*_polar_500.png'
+    tasks:
+    - /opt/cspp/polar2grid_v_2_3/bin/modis2gtiff.sh --grid-coverage 0.002 -p 'ir31
+      ir30 bt30 bt31' -g polar_1km --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif
+    - /opt/cspp/polar2grid_v_2_3/bin/crefl2gtiff.sh --grid-coverage 0.002 --true-color
+      -g polar_250
+    - /opt/cspp/polar2grid_v_2_3/bin/modis2gtiff.sh --grid-coverage 0.002 -p 'vis01
+      vis02' -g polar_250
+    - /opt/cspp/polar2grid_v_2_3/bin/modis2gtiff.sh --grid-coverage 0.002 -p 'vis01
+      vis02 vis03 vis04 vis05 vis06 vis07' -g polar_500
+    - /opt/cspp/polar2grid_v_2_3/bin/modis2gtiff.sh --png-quicklook --grid-coverage
+      0.02 -p 'ir30 ir31 bt30 bt31' -g polar_1km
+  viirs:
+    grid_file: viirs_geotiff_grids.grd
+    p2g_args: --tiled --compress DEFLATE
+    save:
+    - '*.tif'
+    - npp_viirs_dynamic_dnb_*_alaska_600.png
+    tasks:
+    - "\u201C/opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p\
+      \ 'i01 i02 i03 i04 i05 m11 m12 m16' -g alaska_300 --dtype real4 --output-pattern\
+      \ {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif\""
+    - /opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p 'm02
+      m03 m04 m06 m07 m08 m10 m11 m12 m15 dnb' -g alaska_600 --dtype real4 --output-pattern
+      {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif
+    - /opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p 'i01
+      i02 i03 i04 i05 m08' -g alaska_300
+    - /opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 --png-quicklook
+      -p  'm02 m03 m04 m05 m06 m07 m08 m10 m11 m12 m15 adaptive_dnb dynamic_dnb histogram_dnb'
+      -g alaska_600
+    - /opt/cspp/polar2grid_v_2_3/bin/crefl2gtiff.sh --grid-coverage 0.002 --true-color
+      -g alaska_300
+  viirs_clavrx:
+    grid_file: clavrx_geotiff_grids.grd
+    p2g_args: --tiled --compress DEFLATE
+    rescale: clavrx_rescale.ini
+    save:
+    - '*.tif'
+    - '*.log'
+    tasks:
+    - '/opt/cspp/polar2grid_v_2_3/bin/polar2grid.sh clavrx gtiff --grid-coverage 0.002
+      -g alaska_300 -p ''cld_emiss_acha cld_height_acha cld_opd_dcomp cld_reff_dcomp
+      cld_temp_acha cloud_phase cloud_type cld_base_altitude_acha '' '
+    - '/opt/cspp/polar2grid_v_2_3/bin/polar2grid.sh clavrx gtiff --grid-coverage 0.002
+      -g alaska_300 -p ''cld_emiss_acha cld_height_acha cld_opd_dcomp cld_reff_dcomp
+      cld_temp_acha cloud_phase cloud_type cld_base_altitude_acha ccl_layer_flag ccl_1
+      ccl_2 ccl_3 ccl_4 ccl_5'' --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif '
+  viirs_gm:
+    grid_file: viirs_geotiff_grids.grd
+    p2g_args: --tiled --compress DEFLATE
+    save:
+    - '*.tif'
+    - npp_viirs_dynamic_dnb_*_alaska_600.png
+    tasks:
+    - /opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p 'i01
+      i02 i04 i05' -g alaska_gm_300 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif
+    - /opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p 'm10
+      m11 m12 ' -g alaska_gm_600 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif
+    - /opt/cspp/polar2grid_v_2_3/bin/crefl2gtiff.sh --grid-coverage 0.002 --true-color
+      -g alaska_gm_300
+    - /opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p 'i01
+      i02 i03' -g alaska_gm_300
+  viirs_polar:
+    grid_file: viirs_geotiff_grids.grd
+    p2g_args: --tiled --compress DEFLATE
+    save:
+    - '*.tif'
+    - npp_viirs_dynamic_dnb_*_polar_600.png
+    tasks:
+    - /opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p 'i01
+      i02 i03 i04 i05' -g polar_300
+    - /opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 --png-quicklook
+      -p  'adaptive_dnb dynamic_dnb histogram_dnb hncc_dnb dnb' -g polar_600
+    - /opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p 'i01
+      i02 i04 i05 ' -g polar_300 --dtype real4 --output-pattern {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif
+    - /opt/cspp/polar2grid_v_2_3/bin/crefl2gtiff.sh --grid-coverage 0.002 --true-color
+      -g polar_300
 limits:
   processor: 1

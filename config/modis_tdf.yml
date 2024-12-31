@@ -1,8 +1,7 @@
----
-terascan:
-  night_tdf: SEDAS_MODIS_RADIANCE_daac.night.sh
-  day_tdf: SEDAS_MODIS_RADIANCE_daac.sh
-  modis_bt_channels: 1^36
-  driver: "/opt/terascan/pass/tscan.bash_profile"
 save:
-- "*.tdf"
+- '*.tdf'
+terascan:
+  day_tdf: SEDAS_MODIS_RADIANCE_daac.sh
+  driver: /opt/terascan/pass/tscan.bash_profile
+  modis_bt_channels: 1^36
+  night_tdf: SEDAS_MODIS_RADIANCE_daac.night.sh
