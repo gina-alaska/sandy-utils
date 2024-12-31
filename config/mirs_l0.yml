@@ -1,37 +1,36 @@
----
 processing:
-  npp:
-    save:
-    - NPR-MIRS-IMG*.nc
-    - NPR-MIRS-SND*.nc
-    driver: 'run_mirs.bash  -v -d /cspp/dyno/mirs -p 6  '
-  noaa20:
-    save:
-    - NPR-MIRS-IMG*.nc
-    - NPR-MIRS-SND*.nc
-    driver: 'run_mirs.bash  -v -d /cspp/dyno/mirs -p 6 '
-  noaa21:
-    save:
-    - NPR-MIRS-IMG*.nc
-    - NPR-MIRS-SND*.nc
-    driver: 'run_mirs.bash  -v -d /cspp/dyno/mirs -p 6 '
   metop-b:
-    save:
-    - "*.nc"
-    - "*.nc"
     driver: 'run_mirs.bash -r HI -d /cspp/dyno/mirs -p 6 -v  '
+    save:
+    - '*.nc'
+    - '*.nc'
   metop-c:
-    save:
-    - "*.nc"
-    - "*.nc"
     driver: 'run_mirs.bash -r HI -d /cspp/dyno/mirs -p 6 -v  '
+    save:
+    - '*.nc'
+    - '*.nc'
   noaa18:
-    save:
-    - "*.nc"
-    - "*.nc"
     driver: 'run_mirs.bash -r HI -d /cspp/dyno/mirs -p 6 -v  '
-  noaa19:
     save:
-    - "*.nc"
-    - "*.nc"
+    - '*.nc'
+    - '*.nc'
+  noaa19:
     driver: 'run_mirs.bash  -r HI -d /cspp/dyno/mirs -p 6 -v  '
+    save:
+    - '*.nc'
+    - '*.nc'
+  noaa20:
+    driver: 'run_mirs.bash  -v -d /cspp/dyno/mirs -p 6 '
+    save:
+    - NPR-MIRS-IMG*.nc
+    - NPR-MIRS-SND*.nc
+  noaa21:
+    driver: 'run_mirs.bash  -v -d /cspp/dyno/mirs -p 6 '
+    save:
+    - NPR-MIRS-IMG*.nc
+    - NPR-MIRS-SND*.nc
+  npp:
+    driver: 'run_mirs.bash  -v -d /cspp/dyno/mirs -p 6  '
+    save:
+    - NPR-MIRS-IMG*.nc
+    - NPR-MIRS-SND*.nc

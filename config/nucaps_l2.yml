@@ -1,24 +1,23 @@
----
-driver: viirs2awips.sh
-driver_crefl: crefl2awips.sh
 configs:
-  npp:
-    driver: 'run_heap.bash -s npp --noclean -d /cspp/dyno/nucaps_anc -vv -m HR_IRMW
-      -p 6 '
+  metop-b:
+    driver: 'run_heap.bash -s m01 --noclean -d /cspp/dyno/nucaps_anc -vv -p 6 '
     save:
-    - "*.nc"
+    - '*.nc'
+  metop-c:
+    driver: 'run_heap.bash -s m03 --noclean -d /cspp/dyno/nucaps_anc -vv -p 6 '
+    save:
+    - '*.nc'
   noaa20:
     driver: 'run_heap.bash -s j01 --noclean -d /cspp/dyno/nucaps_anc -vv  -m HR_IRMW
       -p 6 '
     save:
-    - "*.nc"
-  metop-b:
-    driver: 'run_heap.bash -s m01 --noclean -d /cspp/dyno/nucaps_anc -vv -p 6 '
+    - '*.nc'
+  npp:
+    driver: 'run_heap.bash -s npp --noclean -d /cspp/dyno/nucaps_anc -vv -m HR_IRMW
+      -p 6 '
     save:
-    - "*.nc"
-  metop-c:
-    driver: 'run_heap.bash -s m03 --noclean -d /cspp/dyno/nucaps_anc -vv -p 6 '
-    save:
-    - "*.nc"
+    - '*.nc'
+driver: viirs2awips.sh
+driver_crefl: crefl2awips.sh
 limits:
   processor: 2

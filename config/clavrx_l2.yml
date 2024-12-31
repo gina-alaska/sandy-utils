@@ -1,39 +1,38 @@
----
 configs:
-  npp:
-    driver: 'run_clavrx.sh '
-    options: " -x -d 3 "
-    save:
-    - done/*.hdf
-    - done/*log
-    - work/*log
-  modis:
-    driver: 'run_clavrx.sh '
-    options: " 2 "
-    save:
-    - done/*.hdf
-  terra:
-    driver: 'run_clavrx.sh '
-    options: " 2 "
-    save:
-    - done/*.hdf
   aqua:
     driver: 'run_clavrx.sh '
-    options: " 2 "
+    options: ' 2 '
     save:
-    - "*.hdf"
-  n19:
+    - '*.hdf'
+  avhrr:
     driver: 'run_clavrx.sh '
-    options: " 1 "
+    options: ' 1 '
+    save:
+    - done/*.hdf
+  modis:
+    driver: 'run_clavrx.sh '
+    options: ' 2 '
     save:
     - done/*.hdf
   n18:
     driver: 'run_clavrx.sh '
-    options: " 1 "
+    options: ' 1 '
     save:
     - done/*.hdf
-  avhrr:
+  n19:
     driver: 'run_clavrx.sh '
-    options: " 1 "
+    options: ' 1 '
+    save:
+    - done/*.hdf
+  npp:
+    driver: 'run_clavrx.sh '
+    options: ' -x -d 3 '
+    save:
+    - done/*.hdf
+    - done/*log
+    - work/*log
+  terra:
+    driver: 'run_clavrx.sh '
+    options: ' 2 '
     save:
     - done/*.hdf

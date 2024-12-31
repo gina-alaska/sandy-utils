@@ -1,7 +1,6 @@
----
 configs:
   default:
     driver: cspp_gaasp.sh
-    options: "  "
+    options: '  '
     save:
-    - "*.nc"
+    - '*.nc'
