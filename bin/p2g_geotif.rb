@@ -39,6 +39,7 @@ class P2gGeotifClamp <  ProcessingFramework::CommandLineHelper
             in_file_args = "-d #{input} "
             in_file_args = "-f #{input}/*IMG* " if mode.include?("mirs")
             in_file_args = "-f #{input}/*L1DLBTBR*.h5 " if mode.include?("amsr2")
+	    in_file_args = "-f #{input} " if task.include?("polar2grid_v_3_1")
 
             shell_out("cd thread_#{thread_number}; #{task} #{processing_cfg['p2g_args']} #{grid} #{rescale} #{in_file_args}")
           end
