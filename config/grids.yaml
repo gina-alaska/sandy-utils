@@ -1,0 +1,9 @@
+# Dynamic Grids - These grids do not provide all necessary information.
+# This information will be filled in at runtime using the input geolocation data.
+alaska_polar_fit:
+  description: 'ESPG:3572'
+  projection:
+    EPSG: 3572
+  resolution:
+    dy: 250.0
+    dx: 250.0
