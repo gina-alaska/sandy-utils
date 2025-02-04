@@ -19,6 +19,13 @@ configs:
     save:
     - "*.tif"
     - npp_viirs_dynamic_dnb_*_alaska_600.png
+  viirs_ngfs:
+    p2g_args: "--gdal-driver COG --extra-config-path /opt/gina/sandy-utils-1.7.4-20221116002627/config/p2g-ngfs "
+    grid_file: grids.yaml
+    tasks:
+    - “/opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh -r viirs_sdr -w geotiff -p i04 true_color ngfs_day_fire_rgb ngfs_fire_temp_rgb ngfs_microphysics_iband --method nearest -g alaska_polar_fit "
+    save:
+    - "*.tif"
   viirs_gm:
     p2g_args: "--tiled --compress DEFLATE"
     grid_file: viirs_geotiff_grids.grd
