@@ -1,0 +1,84 @@
+sensor_name: visir/viirs
+
+composites:
+
+  ngfs_day_fire_rgb_m:
+    # https://rammb.cira.colostate.edu/training/visit/quick_guides/VIIRS_Day_Land_Cloud_Fire_RGB_Quick_Guide_10182018.pdf
+    standard_name: ngfs_day_fire_rgb_m
+    name: ngfs_day_fire_rgb_m
+    compositor: !!python/name:satpy.composites.GenericCompositor
+    prerequisites:
+    - name: M11
+      calibration: radiance
+    - name: M07
+      modifiers: [sunz_corrected]
+    - name: I01
+      modifiers: [sunz_corrected_iband, rayleigh_corrected_iband]
+
+  ngfs_day_fire_rgb:
+    # From Curtis:
+    # blue (I-1), max=125%, min=0., gamma=2
+    # green (1-2), max=125%, min=0., gamma=2
+    # red (I-4), max=50%, min=0., gamma=1 (+solar reflectance calculation)
+    standard_name: ngfs_day_fire_rgb
+    name: ngfs_day_fire_rgb
+    compositor: !!python/name:satpy.composites.GenericCompositor
+    prerequisites:
+    - name: I04
+      modifiers: [nir_reflectance_hires]
+    - name: I02
+      modifiers: [sunz_corrected_iband]
+    - name: I01
+      modifiers: [sunz_corrected_iband]
+
+  ngfs_fire_temp_rgb:
+    # From Curtis:
+    # red (M12), max=3.5, min=0., gamma=1
+    # green (M11), max=35., min=0., gamma=1
+    # blue (M10) max=85., min=0., gamma=1
+    standard_name: ngfs_fire_temp_rgb
+    name: ngfs_fire_temp_rgb
+    compositor: !!python/name:satpy.composites.GenericCompositor
+    prerequisites:
+    - name: M12
+      calibration: radiance
+    - name: M11
+      calibration: radiance
+    - name: M10
+      calibration: radiance
+
+  ngfs_microphysics:
+    # Red: M15 - M16, [-2.0K, 4.0K], flipped
+    # Green: M13 - M15, [-5.0K, 30.0K], flipped
+    # Blue: M15, [243.0K, 293.0K]
+    standard_name: ngfs_microphysics
+    name: ngfs_microphysics
+    compositor: !!python/name:satpy.composites.GenericCompositor
+    prerequisites:
+      - compositor: !!python/name:satpy.composites.DifferenceCompositor
+        prerequisites:
+          - name: M15
+          - name: M16
+      - compositor: !!python/name:satpy.composites.DifferenceCompositor
+        prerequisites:
+          - name: M13
+          - name: M15
+      - name: M15
+
+  ngfs_microphysics_iband:
+    # Red: M15 - M16, [-2.0K, 4.0K], flipped
+    # Green: I04 - I05, [5.0K, 40.0K], flipped
+    # Blue: I05, [243.0K, 293.0K]
+    standard_name: ngfs_microphysics_iband
+    name: ngfs_microphysics_iband
+    compositor: !!python/name:satpy.composites.GenericCompositor
+    prerequisites:
+      - compositor: !!python/name:satpy.composites.DifferenceCompositor
+        prerequisites:
+          - name: M15
+          - name: M16
+      - compositor: !!python/name:satpy.composites.DifferenceCompositor
+        prerequisites:
+          - name: I04
+          - name: I05
+      - name: I05
