@@ -1,8 +1,8 @@
 ---
 configs:
   viirs:
-    driver: viirs_asci.sh
-    options: " --prod all "
+    driver: viirs_atmos.sh
+    options: " -vv "
 limits:
   processor: 2
-env: "$CSPP_VIIRS_ASCI_HOME/viirs_asci_env.sh"
+env: " "
