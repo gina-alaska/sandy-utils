@@ -1,0 +1,87 @@
+sensor_name: visir/viirs
+
+enhancements:
+
+  ngfs_day_fire_rgb_m:
+    # https://rammb.cira.colostate.edu/training/visit/quick_guides/VIIRS_Day_Land_Cloud_Fire_RGB_Quick_Guide_10182018.pdf
+    standard_name: ngfs_day_fire_rgb_m
+    name: ngfs_day_fire_rgb_m
+    operations:
+    - name: stretch
+      method: !!python/name:satpy.enhancements.stretch
+      kwargs:
+        stretch: crude
+        min_stretch: [273.15, 0, 0]
+        max_stretch: [333.15, 100., 100.]
+    - name: gamma
+      method: !!python/name:satpy.enhancements.gamma
+      kwargs: {gamma: [0.4, 1.0, 1.0]}
+
+  ngfs_day_fire_rgb:
+    # From Curtis:
+    #  blue (I-1), max=125%, min=0., gamma=2
+    # green (1-2), max=125%, min=0., gamma=2
+    # red (I-4), max=50%, min=0., gamma=1 (+solar reflectance calculation)
+    standard_name: ngfs_day_fire_rgb
+    name: ngfs_day_fire_rgb
+    operations:
+    - name: stretch
+      method: !!python/name:satpy.enhancements.stretch
+      kwargs:
+        stretch: crude
+        min_stretch: [0, 0, 0]
+        max_stretch: [50., 125., 125.]
+    - name: gamma
+      method: !!python/name:satpy.enhancements.gamma
+      kwargs: {gamma: [1.0, 2.0, 2.0]}
+
+  ngfs_fire_temp_rgb:
+    # From Curtis:
+    # red (M12), max=3.5, min=0., gamma=1
+    # green (M11), max=35., min=0., gamma=1
+    # blue (M10) max=85., min=0., gamma=1
+    standard_name: ngfs_fire_temp_rgb
+    name: ngfs_fire_temp_rgb
+    operations:
+    - name: stretch
+      method: !!python/name:satpy.enhancements.stretch
+      kwargs:
+        stretch: crude
+        min_stretch: [0, 0, 0]
+        max_stretch: [3.5, 35., 85.]
+
+  ngfs_microphysics:
+    # Red: M15 - M16, [-2.0K, 4.0K], flipped
+    # Green: M13 - M15, [-5.0K, 30.0K], flipped
+    # Blue: M15, [243.0K, 293.0K]
+    standard_name: ngfs_microphysics
+    name: ngfs_microphysics
+    operations:
+    - name: stretch
+      method: !!python/name:satpy.enhancements.stretch
+      kwargs:
+        stretch: crude
+        min_stretch: [-2., -5., 243]
+        max_stretch: [4., 30., 293]
+    - name: invert
+      method: !!python/name:satpy.enhancements.invert
+      args:
+      - [True, True, False]
+
+  ngfs_microphysics_iband:
+    # Red: M15 - M16, [-2.0K, 4.0K], flipped
+    # Green: I04 - I05, [5.0K, 40.0K], flipped
+    # Blue: I05, [243.0K, 293.0K]
+    standard_name: ngfs_microphysics_iband
+    name: ngfs_microphysics_iband
+    operations:
+    - name: stretch
+      method: !!python/name:satpy.enhancements.stretch
+      kwargs:
+        stretch: crude
+        min_stretch: [-2., 5., 243]
+        max_stretch: [4., 40., 293]
+    - name: invert
+      method: !!python/name:satpy.enhancements.invert
+      args:
+      - [True, True, False]
