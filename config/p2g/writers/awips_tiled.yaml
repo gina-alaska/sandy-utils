@@ -221,7 +221,7 @@ templates:
         var_name: data
         attributes:
           physical_element:
-            raw_value: 1.61 um refl
+            raw_value: 1.62 um refl
           units: {}
       viirs_m11:
         name: M11
