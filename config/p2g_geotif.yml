@@ -24,7 +24,7 @@ configs:
     tasks:
     - "/opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh -r viirs_edr -w geotiff -p AOD550 -g alaska_polar_fit "
     save:
-    - "*.tif"   
+    - "*.tif"
   viirs_gm:
     p2g_args: "--tiled --compress DEFLATE"
     grid_file: "viirs_geotiff_grids.grd"
