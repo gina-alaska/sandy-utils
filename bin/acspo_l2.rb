@@ -27,6 +27,10 @@ class AcspoL2Clamp <  ProcessingFramework::CommandLineHelper
       processing_cfg = conf['configs'][mode]
 
       command = "#{processing_cfg['driver']} #{processing_cfg['options']} -b #{processing_cfg['bias']} -i #{input}"
+      unless processing_cfg['bias']
+        command = "#{processing_cfg['driver']} #{processing_cfg['options']} #{input}"
+      end
+      
       result = shell_out!(command)
 
       copy_output(output, processing_cfg['save'])
