@@ -1,17 +1,20 @@
 ---
 configs:
   npp:
-    driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash  "
-    options: " -p 2 -s npp --dynanc=/cspp/dyno/sst "
-    bias: "/opt/cspp/bias"
+    driver: "/cspp/acspo_sst_v3/run_acspo_viirs_v3.sh  "
+    options: " -d /cspp/dyno/sst -p 6 "
     save:
-    - "*.nc"
+      - "*.nc"
   noaa20:
-    driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash  "
-    options: " -p 2 -s n20 --dynanc=/cspp/dyno/sst "
-    bias: "/opt/cspp/bias"
+    driver: "/cspp/acspo_sst_v3/run_acspo_viirs_v3.sh  "
+    options: " -d /cspp/dyno/sst -p 6 "
     save:
-    - "*.nc"
+      - "*.nc"
+  noaa21:
+    driver: "/cspp/acspo_sst_v3/run_acspo_viirs_v3.sh  "
+    options: " -d /cspp/dyno/sst -p 6 "
+    save:
+      - "*.nc"    
   metopb:
     driver: "/cspp/CSPP_ACSPO_2_0/scripts/run_acspo.bash  "
     options: " -p 2 -s metopb --dynanc=/cspp/dyno/sst "
