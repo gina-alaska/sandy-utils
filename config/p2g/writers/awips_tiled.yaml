@@ -11,6 +11,22 @@ templates:
     variables:
       # Custom VIIRS
       # Hacky composite to support --dnb-saturation-correction
+      jrr_icetemp:
+        name: IceSrfTemp
+        var_name: data
+        attributes:
+          physical_element:
+            raw_value: IceSrfTemp
+          units:
+            raw_value: kelvin
+      jrr_icethick:
+        name: IceThickness
+        var_name: data
+        attributes:
+          physical_element:
+            raw_value: IceThickness
+          units:
+            raw_value: meters
       viirs_dynamic_dnb_saturation:
         name: dynamic_dnb_saturation
         var_name: data
