@@ -53,7 +53,7 @@ configs:
      clavrx:
        qkm:
          grid: polar_alaska_700
-         bands:  "cld_emiss_acha cld_height_acha cld_opd_dcomp cld_reff_dcomp cld_temp_acha cloud_phase cld_height_base_acha rain_rate"
+         bands:  "cld_emiss_acha cld_height_acha cld_opd_dcomp cld_reff_dcomp cld_temp_acha cld_height_base_acha rain_rate"
   acspo:
    options: " --sector-id Polar --letters --compress --fix-awips --grid-coverage 0.0001 --output-filename '{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
    save:
