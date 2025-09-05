@@ -16,6 +16,18 @@ file_types:
         file_reader: !!python/name:satpy.readers.viirs_edr.VIIRSJRRFileHandler
         file_patterns:
             - 'JRR-CloudMask_{version}_{platform_shortname}_s{start_time:%Y%m%d%H%M%S%f}_e{end_time:%Y%m%d%H%M%S%f}_c{creation_time}.nc'
+    jrr_cloudbase:
+        file_reader: !!python/name:satpy.readers.viirs_edr.VIIRSJRRFileHandler
+        file_patterns:
+            - 'JRR-CloudBase{version}{platform_shortname}_s{start_time:%Y%m%d%H%M%S%f}e{end_time:%Y%m%d%H%M%S%f}c{creation_time}.nc'
+    jrr_cloudphase:
+        file_reader: !!python/name:satpy.readers.viirs_edr.VIIRSJRRFileHandler
+        file_patterns:
+            - 'JRR-CloudPhase{version}{platform_shortname}_s{start_time:%Y%m%d%H%M%S%f}e{end_time:%Y%m%d%H%M%S%f}c{creation_time}.nc'
+    jrr_ash:
+        file_reader: !!python/name:satpy.readers.viirs_edr.VIIRSJRRFileHandler
+        file_patterns:
+            - 'JRR-VolcanicAsh{version}{platform_shortname}_s{start_time:%Y%m%d%H%M%S%f}_e{end_time:%Y%m%d%H%M%S%f}_c{creation_time}.nc'
     jrr_aerosol:
         file_reader: !!python/name:satpy.readers.viirs_edr.VIIRSJRRFileHandler
         file_patterns:
@@ -43,7 +55,13 @@ file_types:
     jrr_iceage:
         file_reader: !!python/name:satpy.readers.viirs_edr.VIIRSJRRFileHandler
         file_patterns:
-            - 'JRR-IceAge_{version}_{platform_shortname}_s{start_time:%Y%m%d%H%M%S%f}_e{end_time:%Y%m%d%H%M%S%f}_c{creation_time}.nc'
+            - 'JRR-IceAge_{version}_{platform_shortname}_s{start_time:%Y%m%d%H%M%S%f}_e{end_time:%Y%m%d%H%M%S%f}_c{creation_time}.nc'   
+    jrr_volcanicash:
+        file_reader: !!python/name:satpy.readers.viirs_edr.VIIRSJRRFileHandler
+        drop_variables:
+          - Det_QF_Size
+        file_patterns:
+            - 'JRR-VolcanicAsh_{version}_{platform_shortname}_s{start_time:%Y%m%d%H%M%S%f}_e{end_time:%Y%m%d%H%M%S%f}_c{creation_time}.nc'        
 
 datasets:
     # NOTE: All non-surface reflectance file variables are dynamically loaded
