@@ -16,7 +16,7 @@ configs:
          grid: polar_alaska_700
          bands: "m03 m04 m08 m09 m10 m11 m12 m13 m14 m15 m16 dynamic_dnb adaptive_dnb hncc_dnb viirs_crefl01 viirs_crefl03 viirs_crefl04"
   edr:
-   options: " --num-workers 4 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
+   options: " --num-workers 8 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
    save:
      - "*.nc"
    p2g_config: "awips_tiled.yaml"
@@ -25,7 +25,7 @@ configs:
      viirs_edr:
        ibands:
          grid: polar_alaska_700
-         bands:  " AOD550 IceSrfTemp IceConc IceAge IceThickness "
+         bands:  " AOD550 IceSrfTemp IceConc IceAge IceThickness  AshMassLoading AshEffRad AshTopHeight CldTopTemp CldTopHght "
   modis:
    options: " --num-workers 4 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
    save:
