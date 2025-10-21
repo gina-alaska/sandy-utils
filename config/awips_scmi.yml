@@ -86,7 +86,7 @@ configs:
       mirs:
         5km:
           grid: polar_alaska_5km
-          bands:  " sfr rain_rate sea_ice snow_cover tpw swe clw btemp_23v btemp_183h1 "
+          bands:  " rain_rate sea_ice snow_cover tpw swe clw btemp_23v btemp_183h1 "
   amsr2_l1b:
     options: " --sector-id Polar --letters --compress --fix-awips --grid-coverage 0.00001 --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
     save:
