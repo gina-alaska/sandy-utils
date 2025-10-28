@@ -25,7 +25,7 @@ configs:
      viirs_edr:
        ibands:
          grid: polar_alaska_700
-         bands:  " AOD550 IceSrfTemp IceConc IceAge IceThickness  AshMassLoading AshEffRad AshTopHeight CldTopTemp CldTopHght "
+         bands:  " AOD550 IceSrfTemp IceConc IceAge IceThickness  AshMassLoading AshEffRad AshTopHeight CldTopTemp CldTopHght AshConfidence "
   modis:
    options: " --num-workers 4 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
    save:
