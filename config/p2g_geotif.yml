@@ -22,7 +22,7 @@ configs:
     p2g_args: " --gdal-driver COG --compress DEFLATE "
     grid_file: grids.yaml
     tasks:
-    - "/opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh -r viirs_edr -w geotiff -p AOD550 IceSrfTemp IceConc IceAge IceThickness -g alaska_polar_fit "
+    - "/opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh -r viirs_edr -w geotiff -p AOD550 IceSrfTemp IceConc IceAge IceThickness  --extra-config-path /opt/gina/sandy-utils-1.7.4-20221116002627/config/p2g -g alaska_polar_fit "
     save:
     - "*.tif"
   viirs_gm:
