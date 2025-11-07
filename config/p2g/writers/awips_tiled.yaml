@@ -27,6 +27,14 @@ templates:
             raw_value: IceThickness
           units:
             raw_value: meters
+     jrr_ashmassloading:
+        name: AshMassLoading
+        var_name: data
+        attributes:
+          physical_element:
+            raw_value: AshMassLoading
+          units:
+            raw_value: g/m^2 
       viirs_dynamic_dnb_saturation:
         name: dynamic_dnb_saturation
         var_name: data
