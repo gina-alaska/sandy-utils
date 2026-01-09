@@ -1,0 +1,4 @@
+driver: run_HSRTV.scr
+options: " 3 "
+save:
+  - "CrIS*atm_prof_rtv.h5"
