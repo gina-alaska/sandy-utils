@@ -8,16 +8,16 @@ configs:
     save:
     - "*.nc"
   noaa20:
-    driver: 'run_heap.bash -s j01 --noclean -d /cspp/dyno/nucaps_anc -vv  -m HR_IRMW
+    driver: 'run_heap.bash -s n20 --noclean -d /cspp/dyno/nucaps_anc -vv  -m HR_IRMW
       -p 6 '
     save:
     - "*.nc"
   metop-b:
-    driver: 'run_heap.bash -s m01 --noclean -d /cspp/dyno/nucaps_anc -vv -p 6 '
+    driver: '/cspp/CSPP_HEAP_2_0/scripts/run_heap.bash -s m01 --noclean -d /cspp/dyno/nucaps_anc -vv -p 6 '
     save:
     - "*.nc"
   metop-c:
-    driver: 'run_heap.bash -s m03 --noclean -d /cspp/dyno/nucaps_anc -vv -p 6 '
+    driver: '/cspp/CSPP_HEAP_2_0/scripts/run_heap.bash -s m03 --noclean -d /cspp/dyno/nucaps_anc -vv -p 6 '
     save:
     - "*.nc"
 limits:
