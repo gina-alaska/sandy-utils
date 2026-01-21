@@ -8,7 +8,7 @@ configs:
     save:
     - "*.nc"
   noaa20:
-    driver: 'run_heap.bash -s n20 --noclean -d /cspp/dyno/nucaps_anc -vv  -m HR_IRMW
+    driver: 'run_heap.bash -s j01 --noclean -d /cspp/dyno/nucaps_anc -vv  -m HR_IRMW
       -p 6 '
     save:
     - "*.nc"
