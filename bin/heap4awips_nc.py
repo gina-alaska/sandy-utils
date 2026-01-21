@@ -70,6 +70,8 @@ def fix_nucaps_file(filepath):
     nodice = 2
     if "_j01_" in filepath:
        nodice = 1
+    elif "_n21_" in filepath:
+       nodice = 1
     elif "_npp_" in filepath:
        nodice = 1
     elif "_m01_" in filepath:
