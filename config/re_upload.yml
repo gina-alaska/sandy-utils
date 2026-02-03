@@ -1,0 +1,38 @@
+---
+sets:
+  noaa20-GINA-DayFire:
+    glob: "noaa20_viirs_ngfs_day_fire_rgb_*.tif"
+  noaa20-GINA-FireTemp:
+    glob: "noaa20_viirs_ngfs_fire_temp_rgb_*.tif"
+  noaa20-GINA-GeoColor:
+    glob: "noaa20_viirs_true_color_*.tif"
+  noaa20-GINA-I04:
+    glob: "noaa20_viirs_i04_*.tif"
+  noaa20-GINA-NGFSMicrophysics:
+    glob: "noaa20_viirs_ngfs_microphysics_iband_*.tif"
+  noaa21-GINA-DayFire:
+    glob: "noaa21_viirs_ngfs_day_fire_rgb_*.tif"
+  noaa21-GINA-FireTemp:
+    glob: "noaa21_viirs_ngfs_fire_temp_rgb_*.tif"
+  noaa21-GINA-GeoColor:
+    glob: "noaa21_viirs_true_color_*.tif"
+  noaa21-GINA-I04:
+    glob: "noaa21_viirs_i04_*.tif"
+  noaa21-GINA-NGFSMicrophysics:
+    glob: "noaa21_viirs_ngfs_microphysics_iband_*.tif"
+  snpp-GINA-DayFire:
+    glob: "npp_viirs_ngfs_day_fire_rgb_*.tif"
+  snpp-GINA-FireTemp:
+    glob: "npp_viirs_ngfs_fire_temp_rgb_*.tif"
+  snpp-GINA-GeoColor:
+    glob: "npp_viirs_true_color_*.tif"
+  snpp-GINA-I04:
+    glob: "npp_viirs_i04_*.tif"
+  snpp-GINA-NGFSMicrophysics:
+    glob: "npp_viirs_ngfs_microphysics_iband_*.tif"
+  noaa20-GINA-M12:
+    glob: "noaa20_viirs_M12_*.tif"
+  noaa21-GINA-M12:
+    glob: "noaa21_viirs_M12_*.tif"
+  snpp-GINA-M12:
+    glob: "npp_viirs_M12_*.tif"
