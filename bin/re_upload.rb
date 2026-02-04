@@ -9,7 +9,13 @@ require 'pp'
 def get_details (item)
  #npp_viirs_i04_20250205_000640_alaska_polar_fit.tif
   chunks = /(npp|noaa20|noaa21)_viirs_(i04|M12|ngfs_day_fire_rgb|ngfs_fire_temp_rgb|ngfs_microphysics_iband|true_color)_(\d{8}_\d{6})/.match(File.basename(item))
-  return nil unless chunks
+unless chunks
+     #GINA format..
+     chunks = /(npp|noaa20|noaa21)\.(\d{8}\.\d{4})/.match(File.basename(item))
+	 return nil unless chunks
+     time_of_file = DateTime.strptime(chunks[2], "%Y%m%d.%H%M")
+     return { "date" => time_of_file.strftime("%Y%m%d %H%M%S"), "chunks" => chunks}
+  end
   #pp chunks
   #2025_02_02_033_18_04_47
   time_of_file = DateTime.strptime(chunks[3], "%Y%m%d_%H%M%S")
