@@ -37,14 +37,14 @@ sets:
   snpp-GINA-M12:
     glob: "npp_viirs_M12_*.tif"
   noaa20-GINA-DayLandCloud:
-    glob: "noaa20*_I03_I02_I01.tif"
+    glob: "noaa20.*.*_I03_I02_I01.tif"
   noaa20-GINA-I05:
-    glob: "noaa20*_i05_colored.tif"
+    glob: "noaa20.*.*_i05_colored.tif"
   noaa21-GINA-DayLandCloud:
-    glob: "noaa21*_I03_I02_I01.tif"
+    glob: "noaa21.*.*_I03_I02_I01.tif"
   noaa21-GINA-I05:
-    glob: "noaa21*_i05_colored.tif"
+    glob: "noaa21.*.*_i05_colored.tif"
   snpp-GINA-DayLandCloud:
-    glob: "npp*_I03_I02_I01.tif"
+    glob: "npp.*.*_I03_I02_I01.tif"
   snpp-GINA-I05:
-    glob: "npp*_i05_colored.tif"
+    glob: "npp.*.*_i05_colored.tif"
