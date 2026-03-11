@@ -55,16 +55,16 @@ configs:
          grid: polar_alaska_700
          bands: "cld_emiss_acha cld_height_acha cld_opd_dcomp cld_reff_dcomp cld_temp_acha cld_height_base_acha rain_rate"
   acspo:
-   options: " --sector-id Polar --letters --compress --fix-awips --grid-coverage 0.0001 --output-filename '{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
-   save:
+    options: " --sector-id Polar --letters --compress --fix-awips --grid-coverage 0.0001 --output-filename '{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
+    save:
      - "*.nc"
-   p2g_config: "awips_tiled.yaml"
-   p2g_grid: "scmi_grids.conf"
-   tasks:
-     acspo:
-       qkm:
-         grid: polar_alaska_500
-         bands: "sst"
+    p2g_config: "awips_tiled.yaml"
+    p2g_grid: "scmi_grids.conf"
+    tasks:
+      acspo:
+        qkm:
+          grid: polar_alaska_500
+          bands: "sst"
   avhrr:
     options: " --num-workers 8 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
     save:
