@@ -16,48 +16,48 @@ configs:
          grid: polar_alaska_700
          bands: "m03 m04 m08 m09 m10 m11 m12 m13 m14 m15 m16 dynamic_dnb adaptive_dnb hncc_dnb viirs_crefl01 viirs_crefl03 viirs_crefl04"
   edr:
-   options: " --num-workers 8 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
-   save:
-     - "*.nc"
-   p2g_config: "awips_tiled.yaml"
-   p2g_grid: "scmi_grids.conf"
-   tasks:
-     viirs_edr:
-       ibands:
-         grid: polar_alaska_700
-         bands: " AOD550 IceSrfTemp IceConc IceAge IceThickness  AshMassLoading AshEffRad AshTopHeight CldTopTemp CldTopHght AshConfidence CloudPhase CloudType CldBaseHght "
+    options: " --num-workers 8 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
+    save:
+      - "*.nc"
+    p2g_config: "awips_tiled.yaml"
+    p2g_grid: "scmi_grids.conf"
+    tasks:
+      viirs_edr:
+        ibands:
+          grid: polar_alaska_700
+          bands: " AOD550 IceSrfTemp IceConc IceAge IceThickness  AshMassLoading AshEffRad AshTopHeight CldTopTemp CldTopHght AshConfidence CloudPhase CloudType CldBaseHght "
   modis:
-   options: " --num-workers 4 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
-   save:
-     - "UAF_AII_*.nc"
-   p2g_config: "awips_tiled.yaml"
-   p2g_grid: "scmi_grids.conf"
-   tasks:
-     modis_l1b:
-       qkm:
-         grid: polar_alaska_250
-         bands: "vis01 vis02 modis_crefl01_250m modis_crefl02_250m"
-       hkm:
-         grid: polar_alaska_500
-         bands: "vis03 vis04 vis05 vis06 vis07 modis_crefl03_500m modis_crefl04_500m "
-       km:
-         grid: polar_alaska_1km
-         bands: "vis26 bt20 bt27 bt23 bt28 bt29 bt30 bt31 bt32 "
+    options: " --num-workers 4 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
+    save:
+      - "UAF_AII_*.nc"
+    p2g_config: "awips_tiled.yaml"
+    p2g_grid: "scmi_grids.conf"
+    tasks:
+      modis_l1b:
+        qkm:
+          grid: polar_alaska_250
+          bands: "vis01 vis02 modis_crefl01_250m modis_crefl02_250m"
+        hkm:
+          grid: polar_alaska_500
+          bands: "vis03 vis04 vis05 vis06 vis07 modis_crefl03_500m modis_crefl04_500m "
+        km:
+          grid: polar_alaska_1km
+          bands: "vis26 bt20 bt27 bt23 bt28 bt29 bt30 bt31 bt32 "
   clavrx:
-   options: " --sector-id Polar --letters --compress --fix-awips --grid-coverage 0.0001 --output-filename '{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
-   save:
-     - "*.nc"
-   p2g_config: "awips_tiled.yaml"
-   p2g_grid: "scmi_grids.conf"
-   tasks:
-     clavrx:
-       qkm:
-         grid: polar_alaska_700
-         bands: "cld_emiss_acha cld_height_acha cld_opd_dcomp cld_reff_dcomp cld_temp_acha cld_height_base_acha rain_rate"
-  acspo:
     options: " --sector-id Polar --letters --compress --fix-awips --grid-coverage 0.0001 --output-filename '{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
     save:
      - "*.nc"
+    p2g_config: "awips_tiled.yaml"
+    p2g_grid: "scmi_grids.conf"
+    tasks:
+      clavrx:
+        qkm:
+          grid: polar_alaska_700
+          bands: "cld_emiss_acha cld_height_acha cld_opd_dcomp cld_reff_dcomp cld_temp_acha cld_height_base_acha rain_rate"
+  acspo:
+    options: " --sector-id Polar --letters --compress --fix-awips --grid-coverage 0.0001 --output-filename '{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
+    save:
+      - "*.nc"
     p2g_config: "awips_tiled.yaml"
     p2g_grid: "scmi_grids.conf"
     tasks:
