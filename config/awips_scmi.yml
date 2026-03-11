@@ -1,4 +1,4 @@
-driver:  /opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh
+driver: /opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh
 configs:
   viirs:
    options: " --num-workers 4 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
@@ -25,7 +25,7 @@ configs:
      viirs_edr:
        ibands:
          grid: polar_alaska_700
-         bands:  " AOD550 IceSrfTemp IceConc IceAge IceThickness  AshMassLoading AshEffRad AshTopHeight CldTopTemp CldTopHght AshConfidence CloudPhase CloudType CldBaseHght "
+         bands: " AOD550 IceSrfTemp IceConc IceAge IceThickness  AshMassLoading AshEffRad AshTopHeight CldTopTemp CldTopHght AshConfidence CloudPhase CloudType CldBaseHght "
   modis:
    options: " --num-workers 4 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
    save:
@@ -64,7 +64,7 @@ configs:
      acspo:
        qkm:
          grid: polar_alaska_500
-         bands:  "sst"
+         bands: "sst"
   avhrr:
     options: " --num-workers 8 --sector-id Polar --letters --compress --fix-awips --output-filename 'UAF_AII_{satellite}_{instrument}_{product_name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc' "
     save:
