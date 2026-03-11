@@ -27,4 +27,4 @@ class NaggerClamp <  ProcessingFramework::CommandLineHelper
   end
 end
 
-Naggerlamp.run
+NaggerClamp.run
