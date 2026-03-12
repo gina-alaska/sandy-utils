@@ -20,7 +20,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: redhat/ubi10
+      image: rockylinux/rockylinux:10
     steps:
     - uses: actions/checkout@v4
     - name: Set up Ruby
