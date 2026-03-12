@@ -54,8 +54,6 @@ class NOAAL0Clamp <  ProcessingFramework::CommandLineHelper
     "#{sourcefile}.hrp"
   end
 
-  end
-
   #don't fetch a tle each time run
   def get_tle
     command = 'get_tle'
