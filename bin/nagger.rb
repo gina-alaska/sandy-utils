@@ -18,7 +18,7 @@ class NaggerClamp <  ProcessingFramework::CommandLineHelper
   def execute
     working_dir = "#{tempdir}/#{basename}"
     inside(working_dir) do
-      command = File.join(File.expand_path('./', __FILE__), 'nagg.rb')
+      command = File.dirname(__FILE__) + '/nagg.rb' + " " + input
       result = shell_out(command, clean_environment: false )
       conf['save'].each do |glob|
         copy_output(output, glob)
