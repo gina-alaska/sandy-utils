@@ -48,3 +48,13 @@ sets:
     glob: "npp.*.*_I03_I02_I01.tif"
   snpp-GINA-I05:
     glob: "npp.*.*_i05_colored.tif"
+  noaa20-GINA-DayFire:
+    glob: "noaa20_viirs_ngfs_day_fire_rgb_*.tif"
+  VIIRS-GINA-FireTemp:
+    glob: "*_viirs_ngfs_fire_temp_rgb_*.tif"
+  VIIRS-GINA-GeoColor:
+    glob: "*_viirs_true_color_*.tif"
+  VIIRS-GINA-I04:
+    glob: "*_viirs_i04_*.tif"
+  VIIRS-GINA-NGFSMicrophysics:
+    glob: "*_viirs_ngfs_microphysics_iband_*.tif"
