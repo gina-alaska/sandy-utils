@@ -58,3 +58,7 @@ sets:
     glob: "*_viirs_i04_*.tif"
   VIIRS-GINA-NGFSMicrophysics:
     glob: "*_viirs_ngfs_microphysics_iband_*.tif"
+  VIIRS-GINA-I05:
+    glob: "*.*.*_i05_colored.tif"
+  VIIRS-GINA-M12:
+    glob: "*_viirs_M12_*.tif"
