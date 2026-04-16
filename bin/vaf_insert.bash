@@ -13,6 +13,6 @@ source "$SCRIPT_PATH"/../env.sh
 #inject all txt files
 for vaf_file in $1/*.txt; do
     if [ -f "$vaf_file" ]; then
-        echo python "$SCRIPT_PATH"/fire_insert.py "$vaf_file"
+        python "$SCRIPT_PATH"/fire_insert.py "$vaf_file"
     fi
 done
