@@ -38,7 +38,7 @@ configs:
       - "npp_viirs_dynamic_dnb_*_alaska_600.png"
   viirs_polar:
     p2g_args: "--tiled --compress DEFLATE"
-    grid_file: "viirs_geotiff_grids.grd"
+    grid_file: "grids.yaml"
     tasks:
       - "/opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p 'i01 i02 i03 i04 i05' -g polar_300"
       - "/opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 --png-quicklook -p  'adaptive_dnb dynamic_dnb histogram_dnb hncc_dnb dnb' -g polar_600"
