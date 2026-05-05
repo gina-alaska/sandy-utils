@@ -8,7 +8,7 @@ configs:
       - "/opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 -p 'i01 i02 i03 i04 i05 m08' -g alaska_300"
       - "/opt/cspp/polar2grid_v_2_3/bin/viirs2gtiff.sh --grid-coverage 0.002 --png-quicklook -p  'm02 m03 m04 m05 m06 m07 m08 m10 m11 m12 m15 adaptive_dnb dynamic_dnb histogram_dnb' -g alaska_600"
       - "/opt/cspp/polar2grid_v_2_3/bin/crefl2gtiff.sh --grid-coverage 0.002 --true-color -g alaska_300"
-      - "/opt/cspp/polar2grid_v_3_2/bin/polar2grid.sh -v -r viirs_sdr -w geotiff --extra-config-path /opt/gina/sandy-utils-1.7.4-20221116002627/config/p2g/ -g alaska_polar_fit -p viirs_daycloudphase_rgb --grid-configs /opt/gina/sandy-utils-1.7.4-20221116002627/config/grids.yaml"
+      - "/opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh -v -r viirs_sdr -w geotiff --extra-config-path /opt/gina/sandy-utils-1.7.4-20221116002627/config/p2g/ -g alaska_polar_fit -p viirs_daycloudphase_rgb --grid-configs /opt/gina/sandy-utils-1.7.4-20221116002627/config/grids.yaml"
     save:
       - "*.tif"
       - "npp_viirs_dynamic_dnb_*_alaska_600.png"
