@@ -40,11 +40,11 @@ configs:
     p2g_args: "--tiled --compress DEFLATE  --fill-value 0 "
     grid_file: "grids.yaml"
     tasks:
-      - "/opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh -v -r viirs_sdr -w geotiff --grid-coverage 0.002 -p i01 i02 i03 i04 i05 -g polar_300"
-      - "/opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh -v -r viirs_sdr -w geotiff --grid-coverage 0.002 -p adaptive_dnb dynamic_dnb histogram_dnb hncc_dnb -g polar_600"
-      - "/opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh -v -r viirs_sdr -w geotiff --grid-coverage 0.002 -p i01 i02 i04 i05 -g polar_300 --no-enhance --dtype float32 --output-filename {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif -vv"
-      - "/opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh -v -r viirs_sdr -w geotiff --grid-coverage 0.002 -p true_color i01 i02 i03 i04 i05 -g polar_300  -vv"
-      - "/opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh -v -r viirs_sdr -w geotiff --extra-config-path /opt/gina/sandy-utils-1.7.4-20221116002627/config/p2g/ -g alaska_polar_fit -p viirs_daycloudphase_rgb --grid-configs /opt/gina/sandy-utils-1.7.4-20221116002627/config/grids.yaml"
+      - "/opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh -r viirs_sdr -w geotiff --grid-coverage 0.002 -p i01 i02 i03 i04 i05 -g polar_300"
+      - "/opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh -r viirs_sdr -w geotiff --grid-coverage 0.002 -p adaptive_dnb dynamic_dnb histogram_dnb hncc_dnb -g polar_600"
+      - "/opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh -r viirs_sdr -w geotiff --grid-coverage 0.002 -p i01 i02 i04 i05 -g polar_300 --no-enhance --dtype float32 --output-filename {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif -vv"
+      - "/opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh -r viirs_sdr -w geotiff --grid-coverage 0.002 -p true_color i01 i02 i03 i04 i05 -g polar_300  "
+      - "/opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh -r viirs_sdr -w geotiff --extra-config-path /opt/gina/sandy-utils-1.7.4-20221116002627/config/p2g/ -g alaska_polar_fit -p viirs_daycloudphase_rgb "
     save:
       - "*.tif"
       - "npp_viirs_dynamic_dnb_*_polar_600.png"
