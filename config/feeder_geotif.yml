@@ -946,6 +946,7 @@ configs:
   noaa20polar:
     mapper:
       dnb: noaa20_viirs_dynamic_dnb_*_polar_600.tif
+      daycloudphase: noaa20_viirs_viirs_daycloudphase_rgb_*_alaska_polar_fit.tif
       adaptive_dnb: noaa20_viirs_adaptive_dnb_*_polar_600.tif
       dynamic_dnb: noaa20_viirs_dynamic_dnb_*_polar_600.tif
       histogram_dnb: noaa20_viirs_histogram_dnb_*_polar_600.tif
@@ -984,6 +985,9 @@ configs:
       crefl04: noaa20_viirs_viirs_crefl04_*_polar_300.tif
       crefl08: noaa20_viirs_viirs_crefl08_*_polar_300.tif
     single:
+    - title: day_cloud_phase
+      band: daycloudphase
+      name: noaa20.%Y%m%d.%H%M_day_cloud_phase
     - title: true_color
       band: true_color
       name: noaa20.%Y%m%d.%H%M_true_color_polar
@@ -1024,6 +1028,7 @@ configs:
   snpp20polar:
     mapper:
       dnb: npp_viirs_dynamic_dnb_*_polar_600.tif
+      daycloudphase: npp_viirs_viirs_daycloudphase_rgb_*_alaska_polar_fit.tif
       adaptive_dnb: npp_viirs_adaptive_dnb_*_polar_600.tif
       dynamic_dnb: npp_viirs_dynamic_dnb_*_polar_600.tif
       histogram_dnb: npp_viirs_histogram_dnb_*_polar_600.tif
@@ -1062,6 +1067,9 @@ configs:
       crefl04: npp_viirs_viirs_crefl04_*_polar_300.tif
       crefl08: npp_viirs_viirs_crefl08_*_polar_300.tif
     single:
+    - title: day_cloud_phase
+      band: daycloudphase
+      name: npp.%Y%m%d.%H%M_day_cloud_phase
     - title: true_color
       band: true_color
       name: npp.%Y%m%d.%H%M_true_color_polar
@@ -1101,6 +1109,7 @@ configs:
       name: npp.%Y%m%d.%H%M_i05_colored_polar
   noaa21polar:
     mapper:
+      daycloudphase: noaa21_viirs_viirs_daycloudphase_rgb_*_alaska_polar_fit.tif
       dnb: noaa21_viirs_dynamic_dnb_*_polar_600.tif
       adaptive_dnb: noaa21_viirs_adaptive_dnb_*_polar_600.tif
       dynamic_dnb: noaa21_viirs_dynamic_dnb_*_polar_600.tif
@@ -1143,6 +1152,9 @@ configs:
     - title: true_color
       band: true_color
       name: noaa21.%Y%m%d.%H%M_true_color_polar
+    - title: day_cloud_phase
+      band: daycloudphase
+      name: noaa21.%Y%m%d.%H%M_day_cloud_phase
     - title: dnb
       band: dnb
       name: noaa21.%Y%m%d.%H%M_DNB_dynamic_polar
