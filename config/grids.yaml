@@ -7,3 +7,139 @@ alaska_polar_fit:
   resolution:
     dy: 250.0
     dx: 250.0
+alaska_600:
+  description: ''
+  projection:
+    proj: aea
+    lat_0: 50
+    lon_0: -154
+    lat_1: 55
+    lat_2: 65
+    datum: WGS84
+    units: m
+    no_defs: null
+    type: crs
+  shape:
+    height: 6000
+    width: 6000
+  resolution:
+    dy: 600.0
+    dx: 600.0
+  upper_left_extent:
+    x: -1502976.64
+    y: 3467976.36
+    units: meters
+alaska_300:
+  description: ''
+  projection:
+    proj: aea
+    lat_0: 50
+    lon_0: -154
+    lat_1: 55
+    lat_2: 65
+    datum: WGS84
+    units: m
+    no_defs: null
+    type: crs
+  shape:
+    height: 12000
+    width: 12000
+  resolution:
+    dy: 300.0
+    dx: 300.0
+  upper_left_extent:
+    x: -1502826.64
+    y: 3467826.36
+    units: meters
+alaska_overview:
+  description: ''
+  projection:
+    proj: aea
+    lat_0: 50
+    lon_0: -154
+    lat_1: 55
+    lat_2: 65
+    datum: WGS84
+    units: m
+    no_defs: null
+    type: crs
+  shape:
+    height: 1000
+    width: 1000
+  resolution:
+    dy: 6000.0
+    dx: 6000.0
+  upper_left_extent:
+    x: -1505676.64
+    y: 3470676.36
+    units: meters
+alaska_gm_300:
+  description: ''
+  projection:
+    EPSG: 3857
+  shape:
+    height: 17000
+    width: 22000
+  resolution:
+    dy: 300.0
+    dx: 300.0
+  upper_left_extent:
+    x: -20037657.23
+    y: 11753334.62
+    units: meters
+alaska_gm_600:
+  description: ''
+  projection:
+    EPSG: 3857
+  shape:
+    height: 8500
+    width: 11000
+  resolution:
+    dy: 600.0
+    dx: 600.0
+  upper_left_extent:
+    x: -20037807.23
+    y: 11753484.62
+    units: meters
+polar_6km:
+  description: ''
+  projection:
+    EPSG: 3572
+  shape:
+    height: 650
+    width: 900
+  resolution:
+    dy: 6000.0
+    dx: 6000.0
+  upper_left_extent:
+    x: -2592330.0
+    y: 1003000.0
+    units: meters
+polar_600:
+  description: ''
+  projection:
+    EPSG: 3572
+  shape:
+    height: 6500
+    width: 9000
+  resolution:
+    dy: 600.0
+    dx: 600.0
+  upper_left_extent:
+    x: -2589630.0
+    y: 1000300.0
+    units: meters
+polar_300:
+  description: ''
+  projection:
+    EPSG: 3572
+  shape:
+    height: 13000
+    width: 18000
+  resolution:
+    dy: 300.0
+    dx: 300.0
+  upper_left_extent:
+    x: -2589480.0
+    y: 1000150.0
+    units: meters
