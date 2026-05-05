@@ -1,0 +1,18 @@
+sensor_name: visir/viirs
+
+composites:
+  viirs_daycloudphase_rgb:
+    # From carl d:
+    # Color    Band     Max     Min     Gamma
+    # Red      i05      -53.53  +7.52   1.0
+    # Green    i01      78.0    0.0     1.0
+    # Blue     i03      59.0    0.0     1.0
+    standard_name: viirs_daycloudphase_rgb
+    name: viirs_daycloudphase_rgb
+    compositor: !!python/name:satpy.composites.GenericCompositor
+    prerequisites:
+    - name: I05
+    - name: I01
+      modifiers: [sunz_corrected_iband, rayleigh_corrected]
+    - name: I03
+      modifiers: [sunz_corrected_iband]

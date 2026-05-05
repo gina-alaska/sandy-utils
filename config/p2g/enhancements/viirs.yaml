@@ -104,3 +104,19 @@ enhancements:
                  [180,240,180,255]
                 ]
                }
+  viirs_daycloudphase_rgb:
+    # From carl d:
+    # Color    Band     Max     Min     Gamma
+    # Red      i05      -53.53  +7.52   1.0
+    # Green    i01      78.0    0.0     1.0
+    # Blue     i03      59.0    0.0     1.0
+    operations:
+    - name: stretch
+      method: !!python/name:satpy.enhancements.stretch
+      kwargs:
+        stretch: crude
+        min_stretch: [280.67, 0, 1]
+        max_stretch: [219.62, 78, 59]
+    - name: gamma
+      method: !!python/name:satpy.enhancements.gamma
+      kwargs: {gamma: [1.0, 1.0, 1.0]}
