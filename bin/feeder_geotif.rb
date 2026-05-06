@@ -165,7 +165,7 @@ class FeederGeotifClamp < ProcessingFramework::CommandLineHelper
 	return DateTime.strptime(File.basename(f).split('.')[1, 2].join('_'), '%Y%m%d_%H%M')
     else
 
-	if (f.downcase.include?("_alaska_gm_"))
+	if (f.downcase.include?("_alaska_gm_") || f.downcase.include?("_alaska_polar_fit"))
 	  return DateTime.strptime(File.basename(f).split('_')[-5, 2].join('_'), '%Y%m%d_%H%M%S')
 	else
     	  return DateTime.strptime(File.basename(f).split('_')[-4, 2].join('_'), '%Y%m%d_%H%M%S')
