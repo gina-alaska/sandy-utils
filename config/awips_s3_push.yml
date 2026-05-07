@@ -1,8 +1,8 @@
 ---
 pushes:
-  awips:
+  - awips:
     aws_profile: awips-cloud
     url: "s3://geotowr-products/polar/gina/%Y/%m/%d/%H/"
-  imet_awips:
+  - imet_awips:
     aws_profile: awips-cloud
     url: "s3://geotowr-staging/gina/"
