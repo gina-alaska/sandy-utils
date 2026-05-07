@@ -23,7 +23,7 @@ class AwipsS3PushCamp < ProcessingFramework::CommandLineHelper
       url = time_of_pass.strftime(set['url'])
 
       puts("INFO: Transfering to #{url}")
-      command = "aws s3 sync  --profile #{conf['awips']['aws_profile']} #{input}/ #{url}"
+      command = "aws s3 sync  --profile #{set['aws_profile']} #{input}/ #{url}"
       time = Benchmark.realtime { shell_out!(command) }
       puts("INFO: S3 upload took #{time}s")
     end
