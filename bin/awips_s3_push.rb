@@ -19,8 +19,8 @@ class AwipsS3PushCamp < ProcessingFramework::CommandLineHelper
 
     platform, time_of_pass = parse_name(input)
     puts("INFO: Data from #{platform} / #{time_of_pass}")
-    conf.each do |_set|
-      url = time_of_pass.strftime(conf['awips']['url'])
+    conf.each do |set|
+      url = time_of_pass.strftime(set['url'])
 
       puts("INFO: Transfering to #{url}")
       command = "aws s3 sync  --profile #{conf['awips']['aws_profile']} #{input}/ #{url}"
