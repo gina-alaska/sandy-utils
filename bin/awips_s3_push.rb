@@ -18,14 +18,15 @@ class AwipsS3PushCamp < ProcessingFramework::CommandLineHelper
     return unless File.directory? input
 
     platform, time_of_pass = parse_name(input)
-
-    url = time_of_pass.strftime(conf['awips']['url'])
-
     puts("INFO: Data from #{platform} / #{time_of_pass}")
-    puts("INFO: Transfering to #{url}")
-    command = "aws s3 sync  --profile #{conf['awips']['aws_profile']} #{input}/ #{url}"
-    time = Benchmark.realtime { shell_out!(command) }
-    puts("INFO: S3 upload took #{time}s")
+    conf.each do |_set|
+      url = time_of_pass.strftime(conf['awips']['url'])
+
+      puts("INFO: Transfering to #{url}")
+      command = "aws s3 sync  --profile #{conf['awips']['aws_profile']} #{input}/ #{url}"
+      time = Benchmark.realtime { shell_out!(command) }
+      puts("INFO: S3 upload took #{time}s")
+    end
   end
 
   def parse_name(filename)
