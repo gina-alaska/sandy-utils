@@ -3,11 +3,6 @@
 
 if [ -d /gluster/cache ];  then
    echo "INFO: Has Gluster Mount, checking it is valid"
-#!/bin/bash
-. $HOME/slack.env
-
-if [ -d /gluster/cache ];  then
-   echo "INFO: Has Gluster Mount, checking it is valid"
    if [ -f /gluster/cache/testfile ]; then
        echo "INFO: Has Gluster is ok!"
    else
