@@ -1,4 +1,7 @@
 ## [[Unreleased]]
+## 2026-05-21
+- Added cleanup script.
+
 ## 2026-05-20
 - Added gluster checking script. 
 
