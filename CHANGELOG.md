@@ -1,6 +1,6 @@
 ## [[Unreleased]]
-##  2019-10-15
-- updated edr.
+## 2026-05-20
+- Added gluster checking script. 
 
 ## [[1.6.14]] - 2019-10-1
 - added gcom-w level1 processing
