@@ -7,6 +7,7 @@ configs:
   noaa21: "/opt/rt-stps/config/jpss2.xml"
   gcomw: "/opt/rt-stps/config/GCOM-W1.xml"
   aws: "/opt/rt-stps/config/aws.xml"
+  metop-sga1:  "/opt/rt-stps/config/metop-sga1.xml"
 rtstps_driver: "/opt/rt-stps/bin/batch.sh"
 source:
   uafgina: "/gluster/cache/antenna/uafgina"
