@@ -1190,16 +1190,16 @@ configs:
       tool: 'color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap '
       name: noaa21.%Y%m%d.%H%M_i05_colored_polar
   metop-sga1:
-   mapper:
-     "VII-37": 'metop-sg-a1_metimage_vii_10690*_alaska_polar_fit_500m.tif'
-     "true_color": 'metop-sg-a1_metimage_true_color_*_alaska_polar_fit_500m.tif'
-   single:
-     - title: thermal_37
-       band: "VII-37"
-       name: "metop-sga1.%Y%m%d.%H%M_vii_37"
-     - title: true_color
-       band: "true_color"
-       name: "metop-sga1.%Y%m%d.%H%M_true_color"
+    mapper:
+      "VII-37": 'metop-sg-a1_metimage_vii_10690*_alaska_polar_fit_500m.tif'
+      "true_color": 'metop-sg-a1_metimage_true_color_*_alaska_polar_fit_500m.tif'
+    single:
+    - title: thermal_37
+      band: "VII-37"
+      name: "metop-sga1.%Y%m%d.%H%M_vii_37"
+    - title: true_color
+      band: "true_color"
+      name: "metop-sga1.%Y%m%d.%H%M_true_color"
    combinations:
 limits:
   processor: 1
