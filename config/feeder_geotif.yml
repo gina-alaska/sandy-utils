@@ -1190,38 +1190,38 @@ configs:
       tool: 'color_thermal_long_wave.rb --colormap /opt/gina/sandy-utils-1.7.1-20201216153420/processing-utils/config/i05.k.cmap '
       name: noaa21.%Y%m%d.%H%M_i05_colored_polar
   metop-sga1:
-   mapper:
-     "VII-37": 'metop-sg-a1_metimage_vii_10690*_alaska_polar_fit_500m.tif'
-     "VII-26": 'metop-sg-a1_metimage_vii_3740*_alaska_polar_fit_500m.tif'
-     "true_color": 'metop-sg-a1_metimage_true_color_*_alaska_polar_fit_500m.tif'
-     "VII-37-float": 'Metop-SG-A1_metimage_vii_10690_*alaska_polar_fit_500m.float.tif'
-     "VII-26-float": 'Metop-SG-A1_metimage_vii_3740_*alaska_polar_fit_500m.float.tif'
-   single:
-     - title: thermal_37
-       band: "VII-37"
-       name: "metop-sga1.%Y%m%d.%H%M_vii_37"
-     - title: thermal_26
-       band: "VII-26"
-       name: "metop-sga1.%Y%m%d.%H%M_vii_26"
-     - title: true_color
-       band: "true_color"
-       name: "metop-sga1.%Y%m%d.%H%M_true_color"
-   extras:
-   - title: vii_26_colored
-     bands:
-       r: "VII-26-float"
-       g: "VII-26-float"
-       b: "VII-26-float"
-     tool: "color_thermal_long_wave.rb  "
-     name: "metop-sga1.%Y%m%d.%H%M_vii_26_colored"
-   - title: vii_37_colored
-     bands:
-       r: "VII-37-float"
-       g: "VII-37-float"
-       b: "VII-37-float"
-     tool: "color_thermal_long_wave.rb "
-     name: "metop-sga1.%Y%m%d.%H%M_vii_37_colored"
-   combinations:
+    mapper:
+      "VII-37": 'metop-sg-a1_metimage_vii_10690*_alaska_polar_fit_500m.tif'
+      "VII-26": 'metop-sg-a1_metimage_vii_3740*_alaska_polar_fit_500m.tif'
+      "true_color": 'metop-sg-a1_metimage_true_color_*_alaska_polar_fit_500m.tif'
+      "VII-37-float": 'Metop-SG-A1_metimage_vii_10690_*alaska_polar_fit_500m.float.tif'
+      "VII-26-float": 'Metop-SG-A1_metimage_vii_3740_*alaska_polar_fit_500m.float.tif'
+    single:
+    - title: thermal_37
+      band: "VII-37"
+      name: "metop-sga1.%Y%m%d.%H%M_vii_37"
+    - title: thermal_26
+      band: "VII-26"
+      name: "metop-sga1.%Y%m%d.%H%M_vii_26"
+    - title: true_color
+      band: "true_color"
+      name: "metop-sga1.%Y%m%d.%H%M_true_color"
+    extras:
+    - title: vii_26_colored
+      bands:
+        r: "VII-26-float"
+        g: "VII-26-float"
+        b: "VII-26-float"
+      tool: "color_thermal_long_wave.rb  "
+      name: "metop-sga1.%Y%m%d.%H%M_vii_26_colored"
+    - title: vii_37_colored
+      bands:
+        r: "VII-37-float"
+        g: "VII-37-float"
+        b: "VII-37-float"
+      tool: "color_thermal_long_wave.rb "
+      name: "metop-sga1.%Y%m%d.%H%M_vii_37_colored"
+    combinations:
 
 limits:
   processor: 1
