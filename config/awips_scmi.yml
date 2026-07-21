@@ -1,3 +1,4 @@
+---
 driver: /opt/cspp/polar2grid_v_3_1/bin/polar2grid.sh
 configs:
   viirs:
