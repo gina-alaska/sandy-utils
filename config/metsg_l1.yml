@@ -1,0 +1,9 @@
+configs:
+  metimage:
+   glob: "*VCID16.METimage.dat"
+   driver: "/opt/cspp/metop/run_metopsg_level1.bash"
+  mws:
+   glob: "*VCID13.MWS.dat"
+   driver: "/opt/cspp/metop/run_metopsg_level1.bash"
+limits:
+  processor: 7
