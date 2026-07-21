@@ -1,3 +1,4 @@
+---
 configs:
   viirs:
     p2g_args: "--tiled --compress DEFLATE"
