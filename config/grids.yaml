@@ -7,6 +7,27 @@ alaska_polar_fit:
   resolution:
     dy: 250.0
     dx: 250.0
+alaska_polar_fit_1k:
+  description: 'ESPG:3572'
+  projection:
+    EPSG: 3572
+  resolution:
+    dy: 1000.0
+    dx: 1000.0
+alaska_polar_fit_500m:
+  description: 'ESPG:3572'
+  projection:
+    EPSG: 3572
+  resolution:
+    dy: 500.0
+    dx: 500.0
+alaska_polar_m_fit:
+  description: 'ESPG:3572'
+  projection:
+    EPSG: 3572
+  resolution:
+    dy: 700.0
+    dx: 700.0
 alaska_600:
   description: ''
   projection:
