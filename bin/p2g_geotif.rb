@@ -36,10 +36,10 @@ class P2gGeotifClamp <  ProcessingFramework::CommandLineHelper
             task = processing_cfg['tasks'].pop
             break if (task.nil?)
 
-            in_file_args = "-d #{input} "
+            in_file_args = "-f #{input}/*.nc" 
+            in_file_args = "-d #{input} " if task.include?("polar2grid_v_2_3")
             in_file_args = "-f #{input}/*IMG* " if mode.include?("mirs")
             in_file_args = "-f #{input}/*L1DLBTBR*.h5 " if mode.include?("amsr2")
-	    in_file_args = "-f #{input}/*.nc" if mode.include?("metimage")
 
             shell_out("cd thread_#{thread_number}; #{task} #{processing_cfg['p2g_args']} #{grid} #{rescale} #{in_file_args}")
           end
