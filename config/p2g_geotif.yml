@@ -118,5 +118,13 @@ configs:
     save:
       - "*.tif"
       - "*.log"
+  metimage:
+    p2g_args: "--tiled --compress DEFLATE"
+    grid_file: "grids.yaml"
+    tasks:
+     - "unset POLAR2GRID_HOME; . /opt/cspp/polar2grid_beta/bin/activate; polar2grid.sh -r vii_l1b_nc -w geotiff -p true_color vii_10690 vii_3740 -g alaska_polar_fit_500m"
+     - "unset POLAR2GRID_HOME; . /opt/cspp/polar2grid_beta/bin/activate; polar2grid.sh -vvv -r metimage_l1b_nc -w geotiff -p vii_10690 vii_3740 -g alaska_polar_fit_500m --tiled --compress DEFLATE  --grid-configs /opt/gina/sandy-utils-1.7.4-20221116002627/config/grids.yaml  --dtype float32 --no-enhance  --output-filename {satellite}_{instrument}_{product_name}_{begin_time}_{grid_name}.float.tif"
+    save:
+     - "*.tif"
 limits:
   processor: 1
