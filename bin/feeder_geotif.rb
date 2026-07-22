@@ -32,12 +32,14 @@ class FeederGeotifClamp < ProcessingFramework::CommandLineHelper
         end
       end
       # combinations
+      if processing_cfg['combinations'] 
       processing_cfg['combinations'].each do |rgb|
         begin
           save_list << generate_image(rgb, input, processing_cfg)
         rescue RuntimeError => e
           puts("INFO: skipping #{rgb['title']}, bands not found. #{e.to_s}")
         end
+      end
       end
       # specials
       if (processing_cfg['extras'])
@@ -160,16 +162,12 @@ class FeederGeotifClamp < ProcessingFramework::CommandLineHelper
 
   # get date of pass, from p2g style naming
   def get_date_of_pass(f)
-    if (f.downcase.include?("gcom"))
-	puts File.basename(f).split('.')[1, 2].join('_')
-	return DateTime.strptime(File.basename(f).split('.')[1, 2].join('_'), '%Y%m%d_%H%M')
-    else
 
-	if (f.downcase.include?("_alaska_gm_") || f.downcase.include?("_alaska_polar_fit"))
-	  return DateTime.strptime(File.basename(f).split('_')[-5, 2].join('_'), '%Y%m%d_%H%M%S')
-	else
-    	  return DateTime.strptime(File.basename(f).split('_')[-4, 2].join('_'), '%Y%m%d_%H%M%S')
-	end
+    bits = f.match(/_(\d{8}_\d{6})_/)
+    if bits[1]
+	return DateTime.strptime(bits[1], '%Y%m%d_%H%M%S')
+    else
+	return nil
     end
   end
 
