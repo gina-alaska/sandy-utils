@@ -162,7 +162,12 @@ class FeederGeotifClamp < ProcessingFramework::CommandLineHelper
 
   # get date of pass, from p2g style naming
   def get_date_of_pass(f)
-
+    #Is it the one off gcomw stuff..
+	if (f.downcase.include?("gcom"))
+        puts File.basename(f).split('.')[1, 2].join('_')
+        return DateTime.strptime(File.basename(f).split('.')[1, 2].join('_'), '%Y%m%d_%H%M')
+	end
+    #standard p2g output naming scheme
     bits = f.match(/_(\d{8}_\d{6})_/)
     if bits[1]
 	return DateTime.strptime(bits[1], '%Y%m%d_%H%M%S')
