@@ -1,0 +1,5 @@
+driver: "$AWSL1DB_HOME/scripts/awsl1db.sh"
+options: " "
+limits:
+  processor: 1
+env: "/cspp/aws/awsl1db/env.sh"
