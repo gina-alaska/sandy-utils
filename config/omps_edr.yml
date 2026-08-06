@@ -1,0 +1,8 @@
+---
+configs:
+  omps:
+    driver: /opt/cspp/cspp_omps_l2-1.0/bin/omps_l2.sh
+    options: " -vv -d "
+limits:
+  processor: 2
+env: " "
