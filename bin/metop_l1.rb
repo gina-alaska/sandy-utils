@@ -52,6 +52,7 @@ class MetopL0Clamp <  ProcessingFramework::CommandLineHelper
     shell_out(command, env: {"TLE" => "1",
                               "PAR_NAVIGATION_DEFAULT_LISTESAT" => spacecraft_id,
                               "WRK" => "#{@working_dir}/WRK"}.merge(conf['env']),  clean_environment: true)
+    shell_out("chmod -R a+r .") 
   end
 
   def convert_bufr(sensor)
