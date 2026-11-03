@@ -290,146 +290,147 @@ templates:
             raw_value: 12.0 um BT (C)
           units: {}
       # METimage Products
-      vii_0443:
-        name: VII-4
+# METimage Products
+      vii_443:
+        name: vii_443
         var_name: data
         attributes:
           physical_element:
             raw_value: 0.44 um refl
           units: {}
-      vii_0555:
-        name: VII-8
+      vii_555:
+        name: vii_555
         var_name: data
         attributes:
           physical_element:
             raw_value: 0.56 um refl
           units: {}
-      vii_0668:
-        name: VII-12
+      vii_668:
+        name: vii_668
         var_name: data
         attributes:
           physical_element:
             raw_value: 0.67 um refl
           units: {}
-      vii_07515:
-        name: VII-15
+      vii_752:
+        name: vii_752
         var_name: data
         attributes:
           physical_element:
             raw_value: 0.75 um refl
           units: {}
-      vii_07627:
-        name: VII-16
+      vii_763:
+        name: vii_763
         var_name: data
         attributes:
           physical_element:
             raw_value: 0.76 um refl
           units: {}
-      vii_0865:
-        name: VII-17
+      vii_865:
+        name: vii_856
         var_name: data
         attributes:
           physical_element:
             raw_value: 0.87 um refl
           units: {}
-      vii_0914:
-        name: VII-20
+      vii_914:
+        name: vii_914
         var_name: data
         attributes:
           physical_element:
             raw_value: 0.91 um refl
           units: {}
       vii_1240:
-        name: VII-22
+        name: vii_1240
         var_name: data
         attributes:
           physical_element:
             raw_value: 1.24 um refl
           units: {}
       vii_1375:
-        name: VII-23
+        name: vii_1375
         var_name: data
         attributes:
           physical_element:
             raw_value: 1.38 um refl
           units: {}
       vii_1630:
-        name: VII-24
+        name: vii_1630
         var_name: data
         attributes:
           physical_element:
             raw_value: 1.63 um refl
           units: {}
       vii_2250:
-        name: VII-25
+        name: vii_2250
         var_name: data
         attributes:
           physical_element:
             raw_value: 2.25 um refl
           units: {}
       vii_3740:
-        name: VII-26
+        name: vii_3740
         var_name: data
         attributes:
           physical_element:
             raw_value: 3.74 um BT (C)
           units: {}
       vii_3959:
-        name: VII-28
+        name: vii_3959
         var_name: data
         attributes:
           physical_element:
             raw_value: 3.96 um BT (C)
           units: {}
       vii_4050:
-        name: VII-30
+        name: vii_4050
         var_name: data
         attributes:
           physical_element:
             raw_value: 4.05 um BT (C)
           units: {}
       vii_6725:
-        name: VII-33
+        name: vii_6725
         var_name: data
         attributes:
           physical_element:
             raw_value: 6.73 um BT (C)
           units: {}
       vii_7325:
-        name: VII-34
+        name: vii_7325
         var_name: data
         attributes:
           physical_element:
             raw_value: 7.33 um BT (C)
           units: {}
       vii_8540:
-        name: VII-35
+        name: vii_8540
         var_name: data
         attributes:
           physical_element:
             raw_value: 8.54 um BT (C)
           units: {}
       vii_10690:
-        name: VII-37
+        name: vii_10690
         var_name: data
         attributes:
           physical_element:
             raw_value: 10.7 um BT (C)
           units: {}
       vii_12020:
-        name: VII-39
+        name: vii_12020
         var_name: data
         attributes:
           physical_element:
             raw_value: 12.0 um BT (C)
           units: {}
       vii_13345:
-        name: VII-40
+        name: vii_13345
         var_name: data
         attributes:
           physical_element:
             raw_value: 13.3 um BT (C)
-          units: {}
+          units: {} 
 
       # MODIS L1B Products
       modis_vis01:
