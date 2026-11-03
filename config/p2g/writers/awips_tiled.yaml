@@ -327,7 +327,7 @@ templates:
             raw_value: 0.76 um refl
           units: {}
       vii_865:
-        name: vii_856
+        name: vii_865
         var_name: data
         attributes:
           physical_element:
