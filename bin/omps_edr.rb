@@ -21,7 +21,7 @@ class OmpsEDRClamp <  ProcessingFramework::CommandLineHelper
     inside(working_dir) do
       command = " #{conf['configs']['omps']['driver']} #{conf['configs']['omps']['options']} #{input}"
       shell_out!(command, clean_environment: true)
-      command = " #{conf['configs']['omps_so2']['driver']} #{conf['configs']['omps_so2']['options']} #{input}"
+      command = " #{conf['configs']['omps_so2']['driver']} #{conf['configs']['omps_so2']['options']} . "
       shell_out!(command, clean_environment: true)
       copy_output(output, '*.nc')
     end
