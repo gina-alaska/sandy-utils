@@ -14,17 +14,14 @@ class OmpsEDRClamp <  ProcessingFramework::CommandLineHelper
   parameter 'OUTPUT', 'The output directory'
 
   def execute
-    mode = 'omps'  
-    exit_with_error("Unknown/unconfigured mode #{mode}", 19) unless conf['configs'][mode]
-    processing_cfg = conf['configs'][mode]
 
     basename = File.basename(input) unless basename
     working_dir = "#{tempdir}/#{basename}"
 
     inside(working_dir) do
-      command = " #{processing_cfg['omps']['driver']} #{processing_cfg['omps']['options']} #{input}"
+      command = " #{conf['config']['omps']['driver']} #{conf['config']['omps']['options']} #{input}"
       shell_out!(command, clean_environment: true)
-      command = " #{processing_cfg['omps_so2']['driver']} #{processing_cfg['omps_so2']['options']} #{input}"
+      command = " #{conf['config']['omps_so2']['driver']} #{conf['config']['omps_so2']['options']} #{input}"
       shell_out!(command, clean_environment: true)
       copy_output(output, '*.nc')
     end
