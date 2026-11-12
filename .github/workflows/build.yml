@@ -16,6 +16,6 @@ jobs:
           RELEASE_NAME: sandy-utils-${{ github.ref_name }}
           GH_TOKEN: ${{ github.token }}
         run: |
-          export FULL_RELEASE_NAME="${RELEASE_NAME}.$(date +%Y%m%d)"
+          export RELEASE_NAME_FULL="${RELEASE_NAME}.$(date +%Y%m%d)"
           tar --bzip2 -cvf "/tmp/${RELEASE_NAME_FULL}.tar.bz2" .
           gh release upload "${{ github.ref_name }}" "/tmp/${RELEASE_NAME_FULL}.tar.bz2"
