@@ -1,24 +1,29 @@
-# Reusable workflow for building artifacts
+
 name: Build
 
 on: [workflow_dispatch]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
+
       - name: Get current date
         id: date
-        run: |
-          echo "date=$(date +'%Y%m%d')" >> $GITHUB_ENV
+        shell: bash
+        run: echo "date=$(date +'%Y%m%d')" >> "$GITHUB_ENV"
+
       - name: Test with environment variables
-        run: tar --bzip2 -cvf /tmp/$RELEASE_NAME.tar.bz2 *
         env:
           RELEASE_NAME: sandy-utils-${{ github.ref_name }}-${{ env.date }}
+        run: |
+          tar --bzip2 -cvf "/tmp/${RELEASE_NAME}.tar.bz2" .
+
       - name: release
-        uses: actions/upload-artifact@v7
+        env:
+          RELEASE_NAME: sandy-utils-${{ github.ref_name }}-${{ env.date }}
+        uses: actions/upload-artifact@v4
         with:
           name: release
-          path: /tmp/$RELEASE_NAME.tar.bz2
-        env:
-          RELEASE_NAME: sandy-utils-${{ github.ref_name }}-${{ env.date }}
+          path: /tmp/${{ env.RELEASE_NAME }}.tar.bz2
