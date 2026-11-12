@@ -9,15 +9,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Get current date
-        id: date
-        shell: bash
-        run: echo "date=$(date +'%Y%m%d')" >> "$GITHUB_ENV"
-
       - name: Release
+        id: release
+        shell: bash
         env:
-          RELEASE_NAME: sandy-utils-${{ github.ref_name }}-${{ env.date }}
+          RELEASE_NAME: sandy-utils-${{ github.ref_name }}
           GH_TOKEN: ${{ github.token }}
         run: |
-          tar --bzip2 -cvf "/tmp/${RELEASE_NAME}.tar.bz2" .
-          gh release upload "${{ github.ref_name }}" "/tmp/${{ env.RELEASE_NAME }}.tar.bz2"
+          export FULL_RELEASE_NAME="${RELEASE_NAME}.$(date +%Y%m%d)"
+          tar --bzip2 -cvf "/tmp/${RELEASE_NAME_FULL}.tar.bz2" .
+          gh release upload "${{ github.ref_name }}" "/tmp/${RELEASE_NAME_FULL}.tar.bz2"
