@@ -14,15 +14,10 @@ jobs:
         shell: bash
         run: echo "date=$(date +'%Y%m%d')" >> "$GITHUB_ENV"
 
-      - name: Test with environment variables
-        env:
-          RELEASE_NAME: sandy-utils-${{ github.ref_name }}-${{ env.date }}
-        run: |
-          tar --bzip2 -cvf "/tmp/${RELEASE_NAME}.tar.bz2" .
-
-      - name: release
+      - name: Release
         env:
           RELEASE_NAME: sandy-utils-${{ github.ref_name }}-${{ env.date }}
           GH_TOKEN: ${{ github.token }}
         run: |
+          tar --bzip2 -cvf "/tmp/${RELEASE_NAME}.tar.bz2" .
           gh release upload "${{ github.ref_name }}" "/tmp/${{ env.RELEASE_NAME }}.tar.bz2"
