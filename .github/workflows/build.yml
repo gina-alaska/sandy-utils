@@ -15,8 +15,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          export SANITIZED_REF="${GITHUB_REF_NAME//\//-}"
-          export FULL_RELEASE_NAME="sandy-utils-${SANITIZED_REF}.$(date +%Y%m%d)"
-          export RELEASE_NAME_FULL="${RELEASE_NAME}.$(date +%Y%m%d)"
-          tar --bzip2 -cvf "/tmp/${RELEASE_NAME_FULL}.tar.bz2" .
-          gh release upload "${{ github.ref_name }}" "/tmp/${RELEASE_NAME_FULL}.tar.bz2"
+          export SAFE_REF="${GITHUB_REF_NAME//\//-}"
+          export FULL_RELEASE_NAME="sandy-utils-${SAFE_REF}.$(date +%Y%m%d)"
+          tar --bzip2 -cvf "/tmp/${FULL_RELEASE_NAME}.tar.bz2" .
+          gh release upload "${{ github.ref_name }}" "/tmp/${FULL_RELEASE_NAME}.tar.bz2"
+
