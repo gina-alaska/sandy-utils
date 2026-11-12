@@ -23,5 +23,6 @@ jobs:
       - name: release
         env:
           RELEASE_NAME: sandy-utils-${{ github.ref_name }}-${{ env.date }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh release upload "${{ github.ref_name }}" "/tmp/${{ env.RELEASE_NAME }}.tar.bz2"
