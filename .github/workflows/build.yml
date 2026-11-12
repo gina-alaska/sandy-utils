@@ -10,7 +10,7 @@ jobs:
       - name: Get current date
         id: date
         run: |
-          echo "{date}={$(date +'%Y%m%d')}" >> $GITHUB_STATE
+          echo "date=$(date +'%Y%m%d')" >> $GITHUB_ENV
       - name: Test with environment variables
         run: tar --bzip2 -cvf /tmp/$RELEASE_NAME.tar.bz2 *
         env:
@@ -20,5 +20,5 @@ jobs:
         with:
           name: release
           path: /tmp/$RELEASE_NAME.tar.bz2
-         env:
+        env:
           RELEASE_NAME: sandy-utils-${{ github.ref_name }}-${{ env.date }}
