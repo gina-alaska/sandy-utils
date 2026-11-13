@@ -17,6 +17,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          dnf install -y 'dnf-command(config-manager)'
+          dnf config-manager -y --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+          dnf install gh --repo gh-cli
           export SAFE_REF="${GITHUB_REF_NAME//\//-}"
           export FULL_RELEASE_NAME="sandy-utils-${SAFE_REF}.$(date +%Y%m%d)"
           gh release view "${{ github.ref_name }}" >/dev/null 2>&1 || \
