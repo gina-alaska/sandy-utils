@@ -9,7 +9,7 @@ jobs:
     container:
       image: rockylinux:8
       volumes:
-        - /github/workspace:/build
+        - ${{ github.workspace }}:/build
     steps:
       - uses: actions/checkout@v4
 
