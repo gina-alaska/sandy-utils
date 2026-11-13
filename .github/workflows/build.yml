@@ -6,6 +6,8 @@ on: [workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: rockylinux:8
     steps:
       - uses: actions/checkout@v4
 
