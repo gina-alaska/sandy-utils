@@ -18,7 +18,6 @@ jobs:
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-        options: -v ${{ github.workspace }}:/build
         run: |
           cd /build
           dnf install -y 'dnf-command(config-manager)'
