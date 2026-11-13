@@ -1,16 +1,35 @@
 #!/bin/bash -l
-cd 
+echo "Installing conda"
+dnf update -y
+dnf install -y wget bzip2 xz  make
+dnf group install -y "Development Tools"
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
+bash ./Miniforge3-Linux-x86_64.sh -b -p "${HOME}/conda"
+source "${HOME}/conda/etc/profile.d/conda.sh"
+# For mamba support also run the following command
+source "${HOME}/conda/etc/profile.d/mamba.sh"
 
-VERSION=$(cat ~/build/VERSION)-$(date +"%Y%m%d%H%M%S")
+echo "Conda installed"
+
+
+ if [ -d "/mnt/src" ]; then
+   echo "INFO: Standalone build"
+   cd /mnt/src
+ else 
+   echo "INFO: CDI Build"
+   cd 
+ fi
+
+VERSION=$(cat ./VERSION)-$(date +"%Y%m%d")
 
 echo "Version is " $VERSION
 
-echo $VERSION > ~/build/VERSION.tmp
+echo $VERSION > ./VERSION.tmp
 
 echo "Setting up Conda.."
 rm -rf /opt/gina/sandy-utils-$VERSION
 conda config --add channels conda-forge
-conda create -y -p /opt/gina/sandy-utils-$VERSION gdal ruby=2.6.5 libffi pkg-config gxx_linux-64 conda-pack git lftp
+conda create -y -p /opt/gina/sandy-utils-$VERSION gdal ruby=3 libffi pkg-config gxx_linux-64 conda-pack git lftp
 conda activate /opt/gina/sandy-utils-$VERSION
 
 #echo "Conda setup."
@@ -18,16 +37,13 @@ echo "Installing ruby gems.."
 export GEM_HOME="/opt/gina/sandy-utils-$VERSION/vendor/bundle"
 export GEM_PATH="/opt/gina/sandy-utils-$VERSION:/opt/gina/sandy-utils-$VERSION/vendor/bundle"
 
-
-
 echo "setting ld library path.."
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/gina/sandy-utils-$VERSION/lib
 
 echo "Copying sandy-utils to build area.."
-cd ~/build
 cp -rv lib/processing_framework* /opt/gina/sandy-utils-$VERSION/lib/
 cp -rv config /opt/gina/sandy-utils-$VERSION/config
-cp -v  Gemfile Gemfile.lock config README.md VERSION CHANGELOG.md  notes.md LICENSE Rakefile /opt/gina/sandy-utils-$VERSION
+cp -v  Gemfile Gemfile.lock  README.md VERSION CHANGELOG.md  notes.md LICENSE Rakefile /opt/gina/sandy-utils-$VERSION
 mkdir -p /opt/gina/sandy-utils-$VERSION/tools
 ./build_bin_stubs.rb bin/*
 
@@ -35,25 +51,9 @@ chmod a+rx /opt/gina/sandy-utils-$VERSION/tools/*
 
 echo "Installing gems required for Sandy-utils.."
 cd /opt/gina/sandy-utils-$VERSION
-bundle install --deployment
+bundle config set deployment true
+bundle install 
 echo "Done with  ruby gems.."
-
-echo "Installing Processing Utils"
-cd /opt/gina/sandy-utils-$VERSION
-git clone git@github.com:gina-alaska/processing-utils.git
-cd processing-utils
-bundle install --binstubs
-bin/rake
-
-echo "Building Dan's Scripts"
-cd ~/build
-git clone git@github.com:gina-alaska/dans-gdal-scripts.git
-cd dans-gdal-scripts
-./autogen.sh
-./configure  --prefix=/opt/gina/sandy-utils-$VERSION
-make
-make install
-
 
 echo "Ddditional Environment Setting.."
 echo export VERSION=$VERSION > /opt/gina/sandy-utils-$VERSION/env.sh
@@ -61,19 +61,34 @@ echo source /opt/gina/sandy-utils-$VERSION/bin/activate >> /opt/gina/sandy-utils
 echo export GEM_HOME="/opt/gina/sandy-utils-$VERSION/vendor/bundle" >> /opt/gina/sandy-utils-$VERSION/env.sh 
 echo export GEM_PATH="/opt/gina/sandy-utils-$VERSION:/opt/gina/sandy-utils-$VERSION/vendor/bundle"  >> /opt/gina/sandy-utils-$VERSION/env.sh
 echo export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/opt/gina/sandy-utils-$VERSION/lib >> /opt/gina/sandy-utils-$VERSION/env.sh
-echo export PATH=\$PATH:/opt/gina/sandy-utils-$VERSION/processing-utils/bin >> /opt/gina/sandy-utils-$VERSION/env.sh
-
 
 echo "Making package..."
-cd ~/build
-SB_TARBALL="sandy-utils-$VERSION.pre.tar.gz"
+BUILDDIR=/mnt/build
+mkdir -p ${BUILDDIR}
+cd ${BUILDDIR}
+SB_TARBALL="sandy-utils-$VERSION.pre.tar"
 rm  $SB_TARBALL
-conda pack -q --n-threads -1 --compress-level 0 -o $SB_TARBALL
-rm -rf ~/build/sandy-utils-$VERSION
-mkdir  ~/build/sandy-utils-$VERSION
-cd ~/build/sandy-utils-$VERSION
-tar -xf ~/build/$SB_TARBALL
-cd ~/build
-cp build_log.txt sandy-utils-$VERSION/
-tar --bzip2 -cf sandy-utils-$VERSION.tar.bz2 sandy-utils-$VERSION
+conda-pack -q --n-threads -1 --compress-level 1 -o $SB_TARBALL
 
+rm -rf ${BUILDDIR}/sandy-utils-$VERSION
+mkdir  ${BUILDDIR}/sandy-utils-$VERSION
+cd ${BUILDDIR}/sandy-utils-$VERSION
+tar -xf ${BUILDDIR}/$SB_TARBALL
+cd ${BUILDDIR}
+#not sure how to save the build log.
+#cp build_log.txt sandy-utils-$VERSION/
+tar --bzip2 -cf sandy-utils-$VERSION.tar.bz2 sandy-utils-$VERSION
+tar -cJf  sandy-utils-$VERSION.tar.xz sandy-utils-$VERSION
+
+
++  if [ -d "/mnt/src" ]; then
++    echo "INFO: Standalone build - don't do github stuff"
++  else
++    echo "INFO: CDI Build"
+     gh release view "${{ github.ref_name }}" >/dev/null 2>&1 || \
+     gh release create "${{ github.ref_name }}" \
+           --title "${{ github.ref_name }}" \
+           --notes "Automated release for ${{ github.ref_name }}" \
+           --target "${{ github.sha }}"
+     gh release upload "${{ github.ref_name }}" "sandy-utils-$VERSION.tar.bz2" "sandy-utils-$VERSION.tar.xz"
++  fi
