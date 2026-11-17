@@ -21,6 +21,8 @@ jobs:
         run: |
           echo "default:"
           ls
+          ls .git
+          cat .git/config
           cd /build
           pwd
           ls
