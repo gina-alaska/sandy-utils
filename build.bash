@@ -12,12 +12,13 @@ source "${HOME}/conda/etc/profile.d/mamba.sh"
 echo "Conda installed"
 
 
+SCRIPT_PATH=$(readlink -f -- "${BASH_SOURCE[0]}")
+
  if [ -d "/mnt/src" ]; then
    echo "INFO: Standalone build"
    cd /mnt/src
  else 
    echo "INFO: CDI Build"
-   cd 
  fi
 
 VERSION=$(cat ./VERSION)-$(date +"%Y%m%d")
