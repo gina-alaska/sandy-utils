@@ -36,6 +36,7 @@ jobs:
         run: |
           git config --global --add safe.directory /__w/sandy-utils/sandy-utils
           git status
+          ./build.bash
           export SAFE_REF="${GITHUB_REF_NAME//\//-}"
           export FULL_RELEASE_NAME="sandy-utils-${SAFE_REF}.$(date +%Y%m%d)"
           gh release view "${{ github.ref_name }}" >/dev/null 2>&1 || \
