@@ -18,6 +18,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           echo "default:"
+          dnf update -y 
+          dnf install -y wget bzip2 xz make
+          dnf group install -y "Development Tools"
           dnf install -y 'dnf-command(config-manager)'
           dnf config-manager -y --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
           dnf install -y git
