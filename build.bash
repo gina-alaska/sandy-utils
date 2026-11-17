@@ -68,7 +68,7 @@ BUILDDIR=/mnt/build
 mkdir -p ${BUILDDIR}
 cd ${BUILDDIR}
 SB_TARBALL="sandy-utils-$VERSION.pre.tar"
-rm  $SB_TARBALL
+rm -f $SB_TARBALL
 conda-pack -q --n-threads -1 --compress-level 1 -o $SB_TARBALL
 
 rm -rf ${BUILDDIR}/sandy-utils-$VERSION
