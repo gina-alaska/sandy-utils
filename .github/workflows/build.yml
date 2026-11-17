@@ -19,7 +19,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          ls
           cd /build
+          ls
           dnf install -y 'dnf-command(config-manager)'
           dnf config-manager -y --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
           dnf install -y git
