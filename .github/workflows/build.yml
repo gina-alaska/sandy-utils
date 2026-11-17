@@ -31,6 +31,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          git config --global --add safe.directory /__w/sandy-utils/sandy-utils
           git status
           export SAFE_REF="${GITHUB_REF_NAME//\//-}"
           export FULL_RELEASE_NAME="sandy-utils-${SAFE_REF}.$(date +%Y%m%d)"
