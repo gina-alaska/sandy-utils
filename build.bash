@@ -76,24 +76,21 @@ mkdir  ${BUILDDIR}/sandy-utils-$VERSION
 cd ${BUILDDIR}/sandy-utils-$VERSION
 tar -xf ${BUILDDIR}/$SB_TARBALL
 cd ${BUILDDIR}
-#not sure how to save the build log.
-#cp build_log.txt sandy-utils-$VERSION/
 
-
-+  if [ -d "/mnt/src" ]; then
-+    echo "INFO: Standalone build - don't do github stuff"
-     tar --bzip2 -cf sandy-utils-$VERSION.tar.bz2 sandy-utils-$VERSION
-     tar -cJf  sandy-utils-$VERSION.tar.xz sandy-utils-$VERSION
-+  else
-+    echo "INFO: CDI Build"
-          export SAFE_REF="${GITHUB_REF_NAME//\//-}"
-          export FULL_RELEASE_NAME="sandy-utils-${SAFE_REF}.$(date +%Y%m%d)"
-          tar --bzip2 -cf $FULL_RELEASE_NAME.tar.bz2 sandy-utils-$VERSION
-          tar -cJf  $FULL_RELEASE_NAME.tar.xz sandy-utils-$VERSION
-          gh release view "${{ github.ref_name }}" >/dev/null 2>&1 || \
-          gh release create "${{ github.ref_name }}" \
-           --title "${{ github.ref_name }}" \
-           --notes "Automated release for ${{ github.ref_name }}" \
-           --target "${{ github.sha }}"
-          gh release upload "${{ github.ref_name }}" "${FULL_RELEASE_NAME}.tar.bz2" "${FULL_RELEASE_NAME}.tar.xz"
-+  fi
+if [ -d "/mnt/src" ]; then
+   echo "INFO: Standalone build - don't do github stuff"
+   tar --bzip2 -cf sandy-utils-$VERSION.tar.bz2 sandy-utils-$VERSION
+   tar -cJf  sandy-utils-$VERSION.tar.xz sandy-utils-$VERSION
+else
+   echo "INFO: CDI Build"
+   export SAFE_REF="${GITHUB_REF_NAME//\//-}"
+   export FULL_RELEASE_NAME="sandy-utils-${SAFE_REF}.$(date +%Y%m%d)"
+   tar --bzip2 -cf $FULL_RELEASE_NAME.tar.bz2 sandy-utils-$VERSION
+   tar -cJf  $FULL_RELEASE_NAME.tar.xz sandy-utils-$VERSION
+   gh release view "${{ github.ref_name }}" >/dev/null 2>&1 || \
+   gh release create "${{ github.ref_name }}" \
+      --title "${{ github.ref_name }}" \
+      --notes "Automated release for ${{ github.ref_name }}" \
+      --target "${{ github.sha }}"
+   gh release upload "${{ github.ref_name }}" "${FULL_RELEASE_NAME}.tar.bz2" "${FULL_RELEASE_NAME}.tar.xz"
+fi
