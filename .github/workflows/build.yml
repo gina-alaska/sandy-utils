@@ -11,10 +11,8 @@ jobs:
       volumes:
         - ${{ github.workspace }}:/build
     steps:
-      - uses: actions/checkout@v7
-
-      - name: Release
-        id: release
+      - name: setup
+        id: setup
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
@@ -24,6 +22,15 @@ jobs:
           dnf config-manager -y --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
           dnf install -y git
           dnf install -y gh --repo gh-cli
+          
+      - uses: actions/checkout@v7
+
+      - name: build
+        id: build
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
           git status
           export SAFE_REF="${GITHUB_REF_NAME//\//-}"
           export FULL_RELEASE_NAME="sandy-utils-${SAFE_REF}.$(date +%Y%m%d)"
