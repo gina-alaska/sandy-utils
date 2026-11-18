@@ -86,9 +86,9 @@ else
    export SAFE_REF="${GITHUB_REF_NAME//\//-}"
    export FULL_RELEASE_NAME="sandy-utils-${SAFE_REF}.$(date +%Y%m%d)"
    tar --gzip -cf $FULL_RELEASE_NAME.tar.gz sandy-utils-$VERSION
+   #commented out to make build faster, for the moment
    #tar --bzip2 -cf $FULL_RELEASE_NAME.tar.bz2 sandy-utils-$VERSION
    #tar -cJf  $FULL_RELEASE_NAME.tar.xz sandy-utils-$VERSION
-   mv -v *.tar.* /mnt/build 
    #gh release view "${{ github.ref_name }}" >/dev/null 2>&1 || \
    #gh release create "${{ github.ref_name }}" \
    #   --title "${{ github.ref_name }}" \
